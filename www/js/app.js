@@ -1,0 +1,104 @@
+﻿require.config({
+
+    baseUrl: 'lib',
+
+    paths: {
+        app: '../js',
+        view: '../js/views',
+        tpl: '../tpl',
+        tag: '../js/tags',
+        tagtpl: '../js/tags/tpl'
+    },
+
+    map: {
+        '*': {
+            'adapters/data': 'app/adapters/json-adapter',
+            'adapters/tag': 'app/adapters/tag-adapter'
+        }
+    },
+
+    shim: {
+        'handlebars': {
+            exports: 'Handlebars'
+        },
+        'underscore': {
+            exports: '_'
+        },
+        'bootstrap': {
+            deps: ['jquery']
+        },
+        'jquery.pageme': {
+            deps: ['jquery']
+        }
+    }
+
+});
+
+require(['jquery', 'bootstrap', 'handlebars', 'app/router'], function ($, Bootstrap, Handlebars, router) {
+
+    "use strict";
+
+    // format with id format
+    // usage: {{idFormat money}}
+    Handlebars.registerHelper('idFormat', function (context) {
+        return pad(context, 4);
+    });
+
+    // add curly braces around content
+    // usage: {{curly true}}{{name}}{{curly}}
+    Handlebars.registerHelper('curly', function (object, open) {
+        return open ? '{' : '}';
+    });
+
+    // format with percentage format
+    // usage: {{percentFormat value}}
+    Handlebars.registerHelper('percentFormat', function (context) {
+        return (context * 100) + '%';
+    });
+
+    // add basic compare operators
+    // usage: {{compare number ">" 10}}
+    Handlebars.registerHelper('compare', function (lvalue, operator, rvalue, options) {
+
+        var operators, result;
+
+        if (arguments.length < 3) {
+            throw new Error("Handlerbars Helper 'compare' needs 2 parameters");
+        }
+
+        if (options === undefined) {
+            options = rvalue;
+            rvalue = operator;
+            operator = "===";
+        }
+
+        operators = {
+            '==': function (l, r) { return l == r; },
+            '===': function (l, r) { return l === r; },
+            '!=': function (l, r) { return l != r; },
+            '!==': function (l, r) { return l !== r; },
+            '<': function (l, r) { return l < r; },
+            '>': function (l, r) { return l > r; },
+            '<=': function (l, r) { return l <= r; },
+            '>=': function (l, r) { return l >= r; },
+            'typeof': function (l, r) { return typeof l == r; }
+        };
+
+        if (!operators[operator]) {
+            throw new Error("Handlerbars Helper 'compare' doesn't know the operator " + operator);
+        }
+
+        result = operators[operator](lvalue, rvalue);
+
+        if (result) {
+            return options.fn(this);
+        } else {
+            return options.inverse(this);
+        }
+
+    });
+
+    // Start
+    router.start();
+
+});
