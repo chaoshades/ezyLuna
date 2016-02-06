@@ -2,48 +2,46 @@ define(function (require) {
 
     "use strict";
 
-    var $ = require('jquery'),
-        _ = require('underscore'),
-        Handlebars = require('handlebars'),
-        dataAdapter = require('adapters/data'),
-        StatParser = require("tag/StatParser"),
+    var YEPCoreTags = require("tag/yep-1-core-engine"),
 
-        parsers = [
-            { tag: "hp", parser: new StatParser() },
-            { tag: "mp", parser: new StatParser() },
-            { tag: "atk", parser: new StatParser() },
-            { tag: "def", parser: new StatParser() },
-            { tag: "mat", parser: new StatParser() },
-            { tag: "mdf", parser: new StatParser() },
-            { tag: "agi", parser: new StatParser() },
-            { tag: "luk", parser: new StatParser() }
+        tags = [
+            new YEPCoreTags()
         ],
 
-    stringify = function (tags) {
-        var result = "";
-        $.each(tags, function (i, nt) {
-            var p = _.find(parsers,  function (p) { return p.tag == nt.tag; });
-            result += p.parser.stringify(nt) + "\n";
-        });
-        
-        return result;
-    },
-        
-    parse = function (tags) {
-        var result = [];
-        $.each(parsers, function (i, p) {
-            var temp = p.parse(tags);
+    getStringFromNoteTags = function (notetags) {
+        var deferred = $.Deferred(),
+            result = "";
+
+        $.each(tags, function (i, t) {
+            var temp = t.stringify(notetags);
             if (temp)
-                result.push(temp);
+                result += temp + "\n";
         });
 
-        return result;
+        deferred.resolve(result);
+
+        return deferred.promise();
+    },
+        
+    getNoteTagsFromString = function (notetags) {
+        var deferred = $.Deferred(),
+            results = [];
+
+        $.each(tags, function (i, t) {
+            var temp = t.parse(notetags);
+            if (temp)
+                results.push(temp);
+        });
+
+        deferred.resolve(results);
+
+        return deferred.promise();
     };
 
     // The public API
     return {
-        stringify: stringify,
-        parse: parse
+        getStringFromNoteTags: getStringFromNoteTags,
+        getNoteTagsFromString: getNoteTagsFromString
     };
 
 });

@@ -75,9 +75,48 @@
                 $(this).addClass('active');
             });
 
+            // Click Event for checkboxes
+            this.$el.on('click', '.js_Stat', function () {
+                var txt = $(this).parent().next();
+                if ($(this).is(':checked')) {
+                    $(txt).removeAttr('readonly');
+                } else {
+                    $(txt).attr('readonly', 'readonly');
+                }
+            });
+
             // Click Event for sidebar buttons
             this.$el.on('click', '#btnGenerateTags', function () {
-                $('#txtOutput').val(tagAdapter.stringify([{ "tag": "hp", "data": 10000 }, { "tag": "mp", "data": 12345 }]));
+                var tags = [];
+                if ($('#chkHP').is(':checked'))
+                    tags.push(new NoteTag("hp", $('#numHP').val()));
+                if ($('#chkMP').is(':checked'))
+                    tags.push(new NoteTag("mp", $('#numMP').val()));
+                if ($('#chkAtk').is(':checked'))
+                    tags.push(new NoteTag("atk", $('#numAtk').val()));
+                if ($('#chkDef').is(':checked'))
+                    tags.push(new NoteTag("def", $('#numDef').val()));
+                if ($('#chkMat').is(':checked'))
+                    tags.push(new NoteTag("mat", $('#numMat').val()));
+                if ($('#chkMdf').is(':checked'))
+                    tags.push(new NoteTag("mdf", $('#numMdf').val()));
+                if ($('#chkAgi').is(':checked'))
+                    tags.push(new NoteTag("agi", $('#numAgi').val()));
+                if ($('#chkLuk').is(':checked'))
+                    tags.push(new NoteTag("luk", $('#numLuk').val()));
+
+                tagAdapter.getStringFromNoteTags(tags)
+                .done(function (output) {
+
+                    $('#successTags').hide();
+                    $('#errorNoTags').hide();
+                    if (output)
+                        $('#successTags').show();
+                    else
+                        $('#errorNoTags').show();
+
+                    $('#txtOutput').val(output);
+                });
             });
 
             // Carousel Navigation Events
@@ -92,33 +131,74 @@
         };
 
         this.render = function () {
-            if (current.dropItems) {
-                // Define new properties for drops display
-                _.each(current.dropItems, function (drop) {
-                    if (drop.kind == 1) {
-                        // Get item name
-                        var item = _.find(linked_data.items, function (i) { return i.id == drop.dataId; });
-                        drop.name = item.name;
-                    }
-                    else if (drop.kind == 2) {
-                        // Get weapon name
-                        var weapon = _.find(linked_data.weapons, function (w) { return w.id == drop.dataId; });
-                        drop.name = weapon.name;
-                    }
-                    else if (drop.kind == 3) {
-                        // Get armor name
-                        var armor = _.find(linked_data.armors, function (a) { return a.id == drop.dataId; });
-                        drop.name = armor.name;
-                    }
-                });
-            }
-
             var paged_enemies = [];
             var temp = enemies.slice(0);
             while (temp.length > 0) {
                 paged_enemies.push(temp.splice(0, 15));
             }
 
+            if (current.dropItems) {
+                this.renderDropItems();
+            }
+            this.renderTraits();
+            this.renderActions();
+
+            var data = {
+                'paged_enemies': paged_enemies,
+                'current': current
+            };
+            this.$el.html(enemiesTpl(data));
+
+            this.setActiveMenuItem(current.id);
+
+            this.$el.find('#successTags').hide();
+            this.$el.find('#errorNoTags').hide();
+
+            // Enables carousel
+            this.$el.find('.carousel').carousel({
+                interval: false
+            });
+            
+            this.$el.find('.carousel .item:has(.list-group a.active)').addClass('active');
+
+            // Adds pagers to tables
+            this.$el.find('#tblTraits').pageMe({ pagerSelector: this.$el.find('#pgTraits'), showPrevNext: true, hidePageNumbers: false, perPage: 12 });
+            this.$el.find('#tblActions').pageMe({ pagerSelector: this.$el.find('#pgActions'), showPrevNext: true, hidePageNumbers: false, perPage: 8 });
+
+            return this;
+        };
+
+        this.clearActiveMenuItem = function () {
+            this.$el.find('.list-group > .active').removeClass('active');
+        };
+
+        this.setActiveMenuItem = function (id) {
+            this.clearActiveMenuItem();
+            this.$el.find('.list-group a[href="#enemies/' + id + '"]').addClass('active');
+        };
+
+        this.renderDropItems = function () {
+            // Define new properties for drops display
+            _.each(current.dropItems, function (drop) {
+                if (drop.kind == 1) {
+                    // Get item name
+                    var item = _.find(linked_data.items, function (i) { return i.id == drop.dataId; });
+                    drop.name = item.name;
+                }
+                else if (drop.kind == 2) {
+                    // Get weapon name
+                    var weapon = _.find(linked_data.weapons, function (w) { return w.id == drop.dataId; });
+                    drop.name = weapon.name;
+                }
+                else if (drop.kind == 3) {
+                    // Get armor name
+                    var armor = _.find(linked_data.armors, function (a) { return a.id == drop.dataId; });
+                    drop.name = armor.name;
+                }
+            });
+        };
+
+        this.renderTraits = function () {
             // Define new properties for traits display
             for (var i = 0; i < current.traits.length; i++) {
                 var trait = current.traits[i];
@@ -209,7 +289,9 @@
                     trait.label = PARTY_ABILITIES[trait.value];
                 }
             }
+        };
 
+        this.renderActions = function () {
             // Define new properties for actions display
             for (var i = 0; i < current.actions.length; i++) {
                 var action = current.actions[i];
@@ -225,36 +307,6 @@
                     action.state = state.name;
                 }
             }
-
-            var data = {
-                'paged_enemies': paged_enemies,
-                'current': current
-            };
-            this.$el.html(enemiesTpl(data));
-
-            this.setActiveMenuItem(current.id);
-
-            // Enables carousel
-            this.$el.find('.carousel').carousel({
-                interval: false
-            });
-            
-            this.$el.find('.carousel .item:has(.list-group a.active)').addClass('active');
-
-            // Adds pagers to tables
-            this.$el.find('#tblTraits').pageMe({ pagerSelector: this.$el.find('#pgTraits'), showPrevNext: true, hidePageNumbers: false, perPage: 12 });
-            this.$el.find('#tblActions').pageMe({ pagerSelector: this.$el.find('#pgActions'), showPrevNext: true, hidePageNumbers: false, perPage: 8 });
-
-            return this;
-        };
-
-        this.clearActiveMenuItem = function () {
-            this.$el.find('.list-group > .active').removeClass('active');
-        };
-
-        this.setActiveMenuItem = function (id) {
-            this.clearActiveMenuItem();
-            this.$el.find('.list-group a[href="#enemies/' + id + '"]').addClass('active');
         };
 
         this.initialize();

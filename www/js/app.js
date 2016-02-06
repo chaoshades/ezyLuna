@@ -7,7 +7,8 @@
         view: '../js/views',
         tpl: '../tpl',
         tag: '../js/tags',
-        tagtpl: '../js/tags/tpl'
+        parser: '../js/parsers',
+        parsertpl: '../js/parsers/tpl'
     },
 
     map: {

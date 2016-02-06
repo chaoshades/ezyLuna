@@ -1,4 +1,5 @@
-﻿body {
+﻿
+body {
   padding-top: 100px;
 }
 
@@ -11,6 +12,7 @@ textarea {
     vertical-align:bottom;
 }
 
+/*Misc*/
 .no-bottom {
     margin-bottom:0;
 }
@@ -24,6 +26,12 @@ textarea {
     padding-bottom:16px;
 }
 
+/*Bootstrap Overrides*/
+input[type="radio"], input[type="checkbox"] {
+    margin: 2px 0 0;
+}
+
+/*Vertical carousel*/
 .carousel-inner.vertical > .item .list-group-item:first-child {
     border-radius:0;
 }

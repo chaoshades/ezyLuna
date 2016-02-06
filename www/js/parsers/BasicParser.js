@@ -4,9 +4,9 @@
 
     var $ = require('jquery'),
         Handlebars = require('handlebars'),
-        statHtml = require('text!tagtpl/stat.htm'),
+        basicHtml = require('text!parsertpl/basic.htm'),
 
-        statTpl = Handlebars.compile(statHtml),
+        basicTpl = Handlebars.compile(basicHtml),
             
         regex = /^<\s{1,}:\s{1,}>$/;
 
@@ -19,15 +19,15 @@
 
         this.stringify = function (nt) {
             var data = {
-                "stat": nt.tag,
+                "tag": nt.tag,
                 "value": nt.data
             };
-            return statTpl(data);
+            return basicTpl(data);
         };
 
         this.parse = function (tag) {
             var matches = tag.match(regex);
-            return {"tag": matches[0], "data": matches[1]};
+            return new NoteTag(matches[0], matches[1]);
         };
 
         this.initialize();
