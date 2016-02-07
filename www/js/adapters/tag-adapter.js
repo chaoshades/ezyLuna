@@ -2,12 +2,14 @@ define(function (require) {
 
     "use strict";
 
-    var YEPCoreTags = require("tag/yep-1-core-engine"),
-        YEPBattleCoreTags = require("tag/yep-3-battle-engine-core"),
+    var YEPCoreEngineTags = require("tag/yep-1-core-engine"),
+        YEPBattleEngineCoreTags = require("tag/yep-3-battle-engine-core"),
+        YEPAnimatedSideViewEnemiesTags = require("tag/yep-44-animated-sideview-enemies"),
 
         tags = [
-            new YEPCoreTags(),
-            new YEPBattleCoreTags()
+            new YEPCoreEngineTags(),
+            new YEPBattleEngineCoreTags(),
+            new YEPAnimatedSideViewEnemiesTags()
         ],
 
     getStringFromNoteTags = function (notetags) {
@@ -17,10 +19,10 @@ define(function (require) {
         $.each(tags, function (i, t) {
             var temp = t.stringify(notetags);
             if (temp)
-                result += temp + "\n";
+                result += temp;
         });
 
-        deferred.resolve(result);
+        deferred.resolve(result.trim());
 
         return deferred.promise();
     },

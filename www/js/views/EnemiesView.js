@@ -75,54 +75,72 @@
                 $(this).addClass('active');
             });
 
-            // Click Event for checkboxes
-            this.$el.on('click', '.js_Stat', function () {
+            // Click Event for checkboxes that enables tags
+            this.$el.on('click', '.js_Tags', function () {
                 var ctrl = $(this).parent().next(),
                     attr = null;
                 if ($(this).is(':checked')) {
-                    if (ctrl.is('select'))
+                    if (ctrl.is('select') || ctrl.hasClass('radio') || ctrl.hasClass('checkbox'))
                         attr = 'disabled';
                     else
                         attr = 'readonly';
+
+                    if (ctrl.hasClass('radio'))
+                        $(ctrl).find('input[type=radio]').removeAttr(attr);
+                    else if (ctrl.hasClass('checkbox'))
+                        $(ctrl).find('input[type=checkbox]').removeAttr(attr);
+
                     $(ctrl).removeAttr(attr);
                 } else {
-                    if (ctrl.is('select'))
+                    if (ctrl.is('select') || ctrl.hasClass('radio') || ctrl.hasClass('checkbox'))
                         attr = 'disabled';
                     else
                         attr = 'readonly';
+
+                    if (ctrl.hasClass('radio'))
+                        $(ctrl).find('input[type=radio]').attr(attr, attr);
+                    else if (ctrl.hasClass('checkbox'))
+                        $(ctrl).find('input[type=checkbox]').attr(attr, attr);
+
                     $(ctrl).attr(attr, attr);
                 }
             });
 
             // Click Event for sidebar buttons
+            var setValueTagCallback = this.setValueTag;
+            var setTagCallback = this.setTag;
+            var setPercentValueTagCallback = this.setPercentValueTag;
             this.$el.on('click', '#btnGenerateTags', function () {
                 var tags = [];
-                if ($('#chkHP').is(':checked'))
-                    tags.push(new NoteTag("hp", $('#numHP').val()));
-                if ($('#chkMP').is(':checked'))
-                    tags.push(new NoteTag("mp", $('#numMP').val()));
-                if ($('#chkAtk').is(':checked'))
-                    tags.push(new NoteTag("atk", $('#numAtk').val()));
-                if ($('#chkDef').is(':checked'))
-                    tags.push(new NoteTag("def", $('#numDef').val()));
-                if ($('#chkMat').is(':checked'))
-                    tags.push(new NoteTag("mat", $('#numMat').val()));
-                if ($('#chkMdf').is(':checked'))
-                    tags.push(new NoteTag("mdf", $('#numMdf').val()));
-                if ($('#chkAgi').is(':checked'))
-                    tags.push(new NoteTag("agi", $('#numAgi').val()));
-                if ($('#chkLuk').is(':checked'))
-                    tags.push(new NoteTag("luk", $('#numLuk').val()));
+                // Core Settings
+                setValueTagCallback(tags, '#chkHP', 'hp', '#numHP');
+                setValueTagCallback(tags, '#chkMP', 'mp', '#numMP');
+                setValueTagCallback(tags, '#chkAtk', 'atk', '#numAtk');
+                setValueTagCallback(tags, '#chkDef', 'def', '#numDef');
+                setValueTagCallback(tags, '#chkMat', 'mat', '#numMat');
+                setValueTagCallback(tags, '#chkMdf', 'mdf', '#numMdf');
+                setValueTagCallback(tags, '#chkAgi', 'agi', '#numAgi');
+                setValueTagCallback(tags, '#chkLuk', 'luk', '#numLuk');
 
-                if ($('#chkExp').is(':checked'))
-                    tags.push(new NoteTag("exp", $('#numExp').val()));
-                if ($('#chkGold').is(':checked'))
-                    tags.push(new NoteTag("gold", $('#numGold').val()));
+                setValueTagCallback(tags, '#chkExp', 'exp', '#numExp');
+                setValueTagCallback(tags, '#chkGold', 'gold', '#numGold');
 
-                if ($('#chkReflectAnimation').is(':checked'))
-                    tags.push(new NoteTag("Reflect Animation ID", $('#ddlReflectAnimation').val()));
-                if ($('#chkSpriteCannotMove').is(':checked'))
-                    tags.push(new NoteTag("Sprite Cannot Move"));
+                // Battle Settings
+                setValueTagCallback(tags, '#chkReflectAnimation', 'Reflect Animation ID', '#ddlReflectAnimation');
+                setTagCallback(tags, '#chkSpriteCannotMove', 'Sprite Cannot Move');
+
+                // Animated SideView Settings
+                if ($('#chkBreathing').is(':checked')) {
+                    setTagCallback(tags, '#radBreathing', 'Breathing');
+                    setTagCallback(tags, '#radNoBreathing', 'No Breathing');
+                }
+                setValueTagCallback(tags, '#chkBreathingSpeed', 'Breathing Speed', '#numBreathingSpeed');
+                setPercentValueTagCallback(tags, '#chkBreathingRateX', 'Breathing Rate X', '#numBreathingRateX');
+                setPercentValueTagCallback(tags, '#chkBreathingRateY', 'Breathing Rate Y', '#numBreathingRateY');
+
+                setTagCallback(tags, '#chkFloating', 'Floating');
+                setValueTagCallback(tags, '#chkFloatingSpeed', 'Floating Speed', '#numFloatingSpeed');
+                setValueTagCallback(tags, '#chkFloatingHeight', 'Floating Height', '#numFloatingHeight');
 
                 tagAdapter.getStringFromNoteTags(tags)
                 .done(function (output) {
@@ -195,6 +213,23 @@
         this.setActiveMenuItem = function (id) {
             this.clearActiveMenuItem();
             this.$el.find('.list-group a[href="#enemies/' + id + '"]').addClass('active');
+        };
+
+        this.setTag = function (tags, chkSelector, tag) {
+            if ($(chkSelector).is(':checked'))
+                tags.push(new NoteTag(tag));
+        };
+
+        this.setValueTag = function (tags, chkSelector, tag, valSelector) {
+            var value = $(valSelector).val();
+            if ($(chkSelector).is(':checked') && value)
+                tags.push(new NoteTag(tag, value));
+        };
+
+        this.setPercentValueTag = function (tags, chkSelector, tag, valSelector) {
+            var value = $(valSelector).val();
+            if ($(chkSelector).is(':checked') && value)
+                tags.push(new NoteTag(tag, value/100));
         };
 
         this.renderDropItems = function () {
