@@ -6,12 +6,10 @@
         Handlebars = require('handlebars'),
         basicHtml = require('text!parsertpl/basic.htm'),
 
-        basicTpl = Handlebars.compile(basicHtml),
-            
-        regex = /^<\s{1,}:\s{1,}>$/;
+        basicTpl = Handlebars.compile(basicHtml);
 
 
-    return function () {
+    return function (tag) {
 
         this.initialize = function () {
             // Nothing to do
@@ -25,9 +23,16 @@
             return basicTpl(data);
         };
 
-        this.parse = function (tag) {
-            var matches = tag.match(regex);
-            return new NoteTag(matches[0], matches[1]);
+        this.parse = function (tagToParse, tags) {
+            var regex = new RegExp("<(" + tagToParse + "):([\\w\\.]{1,})>"),
+                matches = null,
+                result = null;
+
+            matches = tags.match(regex);
+            if (matches)
+                result = new NoteTag(matches[1], matches[2]);
+
+            return result;
         };
 
         this.initialize();

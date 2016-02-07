@@ -6,9 +6,7 @@
         Handlebars = require('handlebars'),
         tagOnlyHtml = require('text!parsertpl/tagOnly.htm'),
 
-        basicTpl = Handlebars.compile(tagOnlyHtml),
-            
-        regex = /^<\s{1,}>$/;
+        basicTpl = Handlebars.compile(tagOnlyHtml);
 
 
     return function () {
@@ -24,9 +22,16 @@
             return basicTpl(data);
         };
 
-        this.parse = function (tag) {
-            var matches = tag.match(regex);
-            return new NoteTag(matches[0]);
+        this.parse = function (tagToParse, tags) {
+            var regex = new RegExp("<(" + tagToParse + ")>"),
+                matches = null,
+                result = null;
+
+            matches = tags.match(regex);
+            if (matches)
+                result = new NoteTag(matches[1]);
+
+            return result;
         };
 
         this.initialize();

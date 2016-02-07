@@ -57,6 +57,24 @@ require(['jquery', 'bootstrap', 'handlebars', 'app/router'], function ($, Bootst
         return (context * 100) + '%';
     });
 
+    // add checked if condition is true
+    // usage: {{checkedIf value}}
+    Handlebars.registerHelper("checkedIf", function (condition) {
+        return (condition) ? "checked" : "";
+    });
+
+    // add readonly if condition is false
+    // usage: {{readonlyIfNot value}}
+    Handlebars.registerHelper("readonlyIfNot", function (condition) {
+        return (!condition) ? "readonly" : "";
+    });
+
+    // add disabled if condition is false
+    // usage: {{disabledIfNot value}}
+    Handlebars.registerHelper("disabledIfNot", function (condition) {
+        return (!condition) ? "disabled" : "";
+    });
+
     // add basic compare operators
     // usage: {{compare number ">" 10}}
     Handlebars.registerHelper('compare', function (lvalue, operator, rvalue, options) {

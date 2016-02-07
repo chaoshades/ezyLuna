@@ -56,9 +56,9 @@
                                     <label for="numHP">Max HP:</label>
                                     <div class="input-group">
                                         <span class="input-group-addon">
-                                            <input id="chkHP" type="checkbox" class="js_Tags" title="Overrides HP">
+                                            <input id="chkHP" type="checkbox" class="js_Tags" title="Overrides HP" {{checkedIf overrideparams.[0]}} />
                                         </span>
-                                        <input type="number" class="form-control" id="numHP" value="{{params.[0]}}" readonly="readonly" />
+                                        <input type="number" class="form-control" id="numHP" value="{{params.[0]}}" {{readonlyIfNot overrideparams.[0]}} />
                                     </div>
                                 </div>
                             </div>
@@ -67,9 +67,9 @@
                                     <label for="numMP">Max MP:</label>
                                     <div class="input-group">
                                         <span class="input-group-addon">
-                                            <input id="chkMP" type="checkbox" class="js_Tags" title="Overrides MP">
+                                            <input id="chkMP" type="checkbox" class="js_Tags" title="Overrides MP" {{checkedIf overrideparams.[1]}} />
                                         </span>
-                                        <input type="number" class="form-control" id="numMP" value="{{params.[1]}}" readonly="readonly" />
+                                        <input type="number" class="form-control" id="numMP" value="{{params.[1]}}" {{readonlyIfNot overrideparams.[1]}} />
                                     </div>
                                 </div>
                             </div>
@@ -80,9 +80,9 @@
                                     <label for="numAtk">Attack:</label>
                                     <div class="input-group">
                                         <span class="input-group-addon">
-                                            <input id="chkAtk" type="checkbox" class="js_Tags" title="Overrides Attack">
+                                            <input id="chkAtk" type="checkbox" class="js_Tags" title="Overrides Attack" {{checkedIf overrideparams.[2]}} />
                                         </span>
-                                        <input type="number" class="form-control" id="numAtk" value="{{params.[2]}}" readonly="readonly" />
+                                        <input type="number" class="form-control" id="numAtk" value="{{params.[2]}}" {{readonlyIfNot overrideparams.[2]}} />
                                     </div>
                                 </div>
                             </div>
@@ -91,9 +91,9 @@
                                     <label for="numDef">Defense:</label>
                                     <div class="input-group">
                                         <span class="input-group-addon">
-                                            <input id="chkDef" type="checkbox" class="js_Tags" title="Overrides Defense">
+                                            <input id="chkDef" type="checkbox" class="js_Tags" title="Overrides Defense" {{checkedIf overrideparams.[3]}} />
                                         </span>
-                                        <input type="number" class="form-control" id="numDef" value="{{params.[3]}}" readonly="readonly">
+                                        <input type="number" class="form-control" id="numDef" value="{{params.[3]}}" {{readonlyIfNot overrideparams.[3]}} />
                                     </div>
                                 </div>
                             </div>
@@ -104,9 +104,9 @@
                                     <label for="numMat">M.Attack:</label>
                                     <div class="input-group">
                                         <span class="input-group-addon">
-                                            <input id="chkMat" type="checkbox" class="js_Tags" title="Overrides M.Attack">
+                                            <input id="chkMat" type="checkbox" class="js_Tags" title="Overrides M.Attack" {{checkedIf overrideparams.[4]}} />
                                         </span>
-                                        <input type="number" class="form-control" id="numMat" value="{{params.[4]}}" readonly="readonly" />
+                                        <input type="number" class="form-control" id="numMat" value="{{params.[4]}}" {{readonlyIfNot overrideparams.[4]}} />
                                     </div>
                                 </div>
                             </div>
@@ -115,9 +115,9 @@
                                     <label for="numMdf">M.Defense:</label>
                                     <div class="input-group">
                                         <span class="input-group-addon">
-                                            <input id="chkMdf" type="checkbox" class="js_Tags" title="Overrides M.Defense">
+                                            <input id="chkMdf" type="checkbox" class="js_Tags" title="Overrides M.Defense" {{checkedIf overrideparams.[5]}} />
                                         </span>
-                                        <input type="number" class="form-control" id="numMdf" value="{{params.[5]}}" readonly="readonly" />
+                                        <input type="number" class="form-control" id="numMdf" value="{{params.[5]}}" {{readonlyIfNot overrideparams.[5]}} />
                                     </div>
                                 </div>
                             </div>
@@ -128,9 +128,9 @@
                                     <label for="numAgi">Agility:</label>
                                     <div class="input-group">
                                         <span class="input-group-addon">
-                                            <input id="chkAgi" type="checkbox" class="js_Tags" title="Overrides Agility">
+                                            <input id="chkAgi" type="checkbox" class="js_Tags" title="Overrides Agility" {{checkedIf overrideparams.[6]}} />
                                         </span>
-                                        <input type="number" class="form-control" id="numAgi" value="{{params.[6]}}" readonly="readonly" />
+                                        <input type="number" class="form-control" id="numAgi" value="{{params.[6]}}" {{readonlyIfNot overrideparams.[6]}} />
                                     </div>
                                 </div>
                             </div>
@@ -139,9 +139,9 @@
                                     <label for="numLuk">Luck:</label>
                                     <div class="input-group">
                                         <span class="input-group-addon">
-                                            <input id="chkLuk" type="checkbox" class="js_Tags" title="Overrides Luck">
+                                            <input id="chkLuk" type="checkbox" class="js_Tags" title="Overrides Luck" {{checkedIf overrideparams.[7]}} />
                                         </span>
-                                        <input type="number" class="form-control" id="numLuk" value="{{params.[7]}}" readonly="readonly" />
+                                        <input type="number" class="form-control" id="numLuk" value="{{params.[7]}}" {{readonlyIfNot overrideparams.[7]}} />
                                     </div>
                                 </div>
                             </div>
@@ -157,18 +157,18 @@
                             <label for="numExp">EXP:</label>
                             <div class="input-group">
                                 <span class="input-group-addon">
-                                    <input id="chkExp" type="checkbox" class="js_Tags" title="Overrides EXP">
+                                    <input id="chkExp" type="checkbox" class="js_Tags" title="Overrides EXP" {{checkedIf overrideexp}} />
                                 </span>
-                                <input type="number" class="form-control" id="numExp" value="{{exp}}" readonly="readonly" />
+                                <input type="number" class="form-control" id="numExp" value="{{exp}}" {{readonlyIfNot overrideexp}} />
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="numGold">Gold:</label>
                             <div class="input-group">
                                 <span class="input-group-addon">
-                                    <input id="chkGold" type="checkbox" class="js_Tags" title="Overrides Gold">
+                                    <input id="chkGold" type="checkbox" class="js_Tags" title="Overrides Gold" {{checkedIf overridegold}} />
                                 </span>
-                                <input type="number" class="form-control" id="numGold" value="{{gold}}" readonly="readonly" />
+                                <input type="number" class="form-control" id="numGold" value="{{gold}}" {{readonlyIfNot overridegold}} />
                             </div>
                         </div>
                     </div>
@@ -253,15 +253,15 @@
                             <label>Breathing:</label>
                             <div class="input-group">
                                 <span class="input-group-addon">
-                                    <input id="chkBreathing" type="checkbox" class="js_Tags" title="Enables Breathing">
+                                    <input id="chkBreathing" type="checkbox" class="js_Tags" title="Enables Breathing" {{checkedIf breathing.enabled}} />
                                 </span>
-                                <div class="radio form-control" disabled="disabled">
+                                <div class="radio form-control" {{disabledIfNot breathing.enabled}}>
                                     <label class="radio-inline">
-                                        <input type="radio" name="Breathing" id="radBreathing" disabled="disabled" />
+                                        <input type="radio" name="Breathing" id="radBreathing" {{disabledIfNot breathing.enabled}} {{checkedIf breathing.yes}} />
                                         Yes
                                     </label>
                                     <label class="radio-inline">
-                                        <input type="radio" name="Breathing" id="radNoBreathing" disabled="disabled" />
+                                        <input type="radio" name="Breathing" id="radNoBreathing" {{disabledIfNot breathing.enabled}} {{checkedIf breathing.no}} />
                                         No
                                     </label>
                                 </div>
@@ -273,9 +273,9 @@
                             <label for="numBreathingSpeed">Breathing Speed:</label>
                             <div class="input-group">
                                 <span class="input-group-addon">
-                                    <input id="chkBreathingSpeed" type="checkbox" class="js_Tags" title="Enables Breathing Speed">
+                                    <input id="chkBreathingSpeed" type="checkbox" class="js_Tags" title="Enables Breathing Speed" {{checkedIf breathing.speed}} />
                                 </span>
-                                <input type="number" class="form-control" id="numBreathingSpeed" value="{{breathing.speed}}" readonly="readonly" />
+                                <input type="number" class="form-control" id="numBreathingSpeed" value="{{breathing.speed}}" {{readonlyIfNot breathing.speed}} />
                             </div>
                         </div>
                     </div>
@@ -286,9 +286,9 @@
                             <label for="numBreathingRateX">Breathing Rate X:</label>
                             <div class="input-group">
                                 <span class="input-group-addon">
-                                    <input id="chkBreathingRateX" type="checkbox" class="js_Tags" title="Enables Breathing Rate X">
+                                    <input id="chkBreathingRateX" type="checkbox" class="js_Tags" title="Enables Breathing Rate X" {{checkedIf breathing.rateX}} />
                                 </span>
-                                <input type="number" class="form-control" id="numBreathingRateX" value="{{breathing.rateX}}" readonly="readonly" />
+                                <input type="number" class="form-control" id="numBreathingRateX" value="{{breathing.rateX}}" {{readonlyIfNot breathing.rateX}} />
                                 <span class="input-group-addon">%</span>
                             </div>
                         </div>
@@ -298,9 +298,9 @@
                             <label for="numBreathingRateY">Breathing Rate Y:</label>
                             <div class="input-group">
                                 <span class="input-group-addon">
-                                    <input id="chkBreathingRateY" type="checkbox" class="js_Tags" title="Enables Breathing Rate Y">
+                                    <input id="chkBreathingRateY" type="checkbox" class="js_Tags" title="Enables Breathing Rate Y" {{checkedIf breathing.rateY}} />
                                 </span>
-                                <input type="number" class="form-control" id="numBreathingRateY" value="{{breathing.rateY}}" readonly="readonly" />
+                                <input type="number" class="form-control" id="numBreathingRateY" value="{{breathing.rateY}}" {{readonlyIfNot breathing.rateY}} />
                                 <span class="input-group-addon">%</span>
                             </div>
                         </div>
@@ -308,7 +308,7 @@
                 </div>
                 <div class="form-group">
                     <div class="checkbox checkbox-right no-top">
-                        <label for="chkFloating">Floating:<input type="checkbox" id="chkFloating"></label>
+                        <label for="chkFloating">Floating:<input id="chkFloating" type="checkbox" {{checkedIf floating.enabled}} /></label>
                     </div>
                 </div>
                 <div class="row">
@@ -317,9 +317,9 @@
                             <label for="numFloatingSpeed">Floating Speed:</label>
                             <div class="input-group">
                                 <span class="input-group-addon">
-                                    <input id="chkFloatingSpeed" type="checkbox" class="js_Tags" title="Enables Floating Speed">
+                                    <input id="chkFloatingSpeed" type="checkbox" class="js_Tags" title="Enables Floating Speed" {{checkedIf floating.speed}} />
                                 </span>
-                                <input type="number" class="form-control" id="numFloatingSpeed" value="{{floating.speed}}" readonly="readonly" />
+                                <input type="number" class="form-control" id="numFloatingSpeed" value="{{floating.speed}}" {{readonlyIfNot floating.speed}} />
                             </div>
                         </div>
                     </div>
@@ -328,9 +328,9 @@
                             <label for="numFloatingHeight">Floating Height:</label>
                             <div class="input-group">
                                 <span class="input-group-addon">
-                                    <input id="chkFloatingHeight" type="checkbox" class="js_Tags" title="Enables Floating Height">
+                                    <input id="chkFloatingHeight" type="checkbox" class="js_Tags" title="Enables Floating Height" {{checkedIf floating.height}} />
                                 </span>
-                                <input type="number" class="form-control" id="numFloatingHeight" value="{{floating.height}}" readonly="readonly" />
+                                <input type="number" class="form-control" id="numFloatingHeight" value="{{floating.height}}" {{readonlyIfNot floating.height}} />
                             </div>
                         </div>
                     </div>
@@ -514,18 +514,23 @@
                     <label for="ddlReflectAnimation">Reflect Animation:</label>
                     <div class="input-group">
                         <span class="input-group-addon">
-                            <input id="chkReflectAnimation" type="checkbox" class="js_Tags" title="Overrides Reflect Animation">
+                            <input id="chkReflectAnimation" type="checkbox" class="js_Tags" title="Overrides Reflect Animation" {{checkedIf reflectAnimationID}} />
                         </span>
-                        <select id="ddlReflectAnimation" class="form-control" disabled="disabled">
+                        <select id="ddlReflectAnimation" class="form-control" {{disabledIfNot reflectAnimationID}}>
                             {{#each ../animations}}
-                            <option value="{{id}}">{{name}}</option>
+                            {{#compare id "==" ../../current.reflectAnimationID}}
+                                <option value="{{id}}" selected>{{name}}</option>
+                            {{/compare}}
+                            {{#compare id "!=" ../../current.reflectAnimationID}}
+                                <option value="{{id}}">{{name}}</option>
+                            {{/compare}}
                             {{/each}}
                         </select>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="checkbox checkbox-right">
-                        <label for="chkSpriteCannotMove">Sprite Cannot Move:<input type="checkbox" id="chkSpriteCannotMove"></label>
+                        <label for="chkSpriteCannotMove">Sprite Cannot Move:<input id="chkSpriteCannotMove" type="checkbox" {{checkedIf spriteCannotMove}} /></label>
                     </div>
                 </div>
             </div>

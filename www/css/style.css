@@ -52,6 +52,10 @@ input[type="radio"], input[type="checkbox"] {
     margin-top:0;
 }
 
+.radio.form-control[disabled] label, .checkbox.form-control[disabled] labe {
+    cursor:not-allowed;
+}
+
 /*Vertical carousel*/
 .carousel-inner.vertical > .item .list-group-item:first-child {
     border-radius:0;

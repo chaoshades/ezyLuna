@@ -38,7 +38,7 @@
         this.parse = function (tags) {
             var result = [];
             $.each(parsers, function (i, p) {
-                var temp = p.parse(tags);
+                var temp = p.parser.parse(p.tag, tags);
                 if (temp)
                     result.push(temp);
             });

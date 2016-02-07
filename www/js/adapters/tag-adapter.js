@@ -34,7 +34,7 @@ define(function (require) {
         $.each(tags, function (i, t) {
             var temp = t.parse(notetags);
             if (temp)
-                results.push(temp);
+                results = results.concat(temp);
         });
 
         deferred.resolve(results);

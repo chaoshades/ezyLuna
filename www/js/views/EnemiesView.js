@@ -106,54 +106,13 @@
                 }
             });
 
-            // Click Event for sidebar buttons
-            var setValueTagCallback = this.setValueTag;
+            // Click Event for GenerateTags button
             var setTagCallback = this.setTag;
+            var setValueTagCallback = this.setValueTag;
             var setPercentValueTagCallback = this.setPercentValueTag;
+            var generateTagsCallback = this.generateTags;
             this.$el.on('click', '#btnGenerateTags', function () {
-                var tags = [];
-                // Core Settings
-                setValueTagCallback(tags, '#chkHP', 'hp', '#numHP');
-                setValueTagCallback(tags, '#chkMP', 'mp', '#numMP');
-                setValueTagCallback(tags, '#chkAtk', 'atk', '#numAtk');
-                setValueTagCallback(tags, '#chkDef', 'def', '#numDef');
-                setValueTagCallback(tags, '#chkMat', 'mat', '#numMat');
-                setValueTagCallback(tags, '#chkMdf', 'mdf', '#numMdf');
-                setValueTagCallback(tags, '#chkAgi', 'agi', '#numAgi');
-                setValueTagCallback(tags, '#chkLuk', 'luk', '#numLuk');
-
-                setValueTagCallback(tags, '#chkExp', 'exp', '#numExp');
-                setValueTagCallback(tags, '#chkGold', 'gold', '#numGold');
-
-                // Battle Settings
-                setValueTagCallback(tags, '#chkReflectAnimation', 'Reflect Animation ID', '#ddlReflectAnimation');
-                setTagCallback(tags, '#chkSpriteCannotMove', 'Sprite Cannot Move');
-
-                // Animated SideView Settings
-                if ($('#chkBreathing').is(':checked')) {
-                    setTagCallback(tags, '#radBreathing', 'Breathing');
-                    setTagCallback(tags, '#radNoBreathing', 'No Breathing');
-                }
-                setValueTagCallback(tags, '#chkBreathingSpeed', 'Breathing Speed', '#numBreathingSpeed');
-                setPercentValueTagCallback(tags, '#chkBreathingRateX', 'Breathing Rate X', '#numBreathingRateX');
-                setPercentValueTagCallback(tags, '#chkBreathingRateY', 'Breathing Rate Y', '#numBreathingRateY');
-
-                setTagCallback(tags, '#chkFloating', 'Floating');
-                setValueTagCallback(tags, '#chkFloatingSpeed', 'Floating Speed', '#numFloatingSpeed');
-                setValueTagCallback(tags, '#chkFloatingHeight', 'Floating Height', '#numFloatingHeight');
-
-                tagAdapter.getStringFromNoteTags(tags)
-                .done(function (output) {
-
-                    $('#successTags').hide();
-                    $('#errorNoTags').hide();
-                    if (output)
-                        $('#successTags').show();
-                    else
-                        $('#errorNoTags').show();
-
-                    $('#txtOutput').val(output);
-                });
+                generateTagsCallback(setValueTagCallback, setTagCallback, setPercentValueTagCallback);
             });
 
             // Carousel Navigation Events
@@ -172,6 +131,10 @@
             var temp = enemies.slice(0);
             while (temp.length > 0) {
                 paged_enemies.push(temp.splice(0, 15));
+            }
+
+            if (current.tags) {
+                this.renderTags();
             }
 
             if (current.dropItems) {
@@ -362,6 +325,144 @@
                     action.state = state.name;
                 }
             }
+        };
+
+        this.renderTags = function () {
+            current.overrideparams = _.range(8).map(function () { return false });
+            current.overrideexp = false;
+            current.overridegold = false;
+            current.breathing = {};
+            current.floating = {};
+
+            // Define new properties for tags display
+            _.each(current.tags, function (t) {
+                // Core Settings
+                if (t.tag == "hp") {
+                    current.overrideparams[0] = true;
+                    current.params[0] = t.data;
+                }
+                else if (t.tag == "mp") {
+                    current.overrideparams[1] = true;
+                    current.params[1] = t.data;
+                }
+                else if (t.tag == "atk") {
+                    current.overrideparams[2] = true;
+                    current.params[2] = t.data;
+                }
+                else if (t.tag == "def") {
+                    current.overrideparams[3] = true;
+                    current.params[3] = t.data;
+                }
+                else if (t.tag == "mat") {
+                    current.overrideparams[4] = true;
+                    current.params[4] = t.data;
+                }
+                else if (t.tag == "mdf") {
+                    current.overrideparams[5] = true;
+                    current.params[5] = t.data;
+                }
+                else if (t.tag == "agi") {
+                    current.overrideparams[6] = true;
+                    current.params[6] = t.data;
+                }
+                else if (t.tag == "luk") {
+                    current.overrideparams[7] = true;
+                    current.params[7] = t.data;
+                }
+
+                if (t.tag == "exp") {
+                    current.overrideexp = true;
+                    current.exp = t.data;
+                }
+                else if (t.tag == "gold") {
+                    current.overridegold = true;
+                    current.gold = t.data;
+                }
+
+                // Battle Settings
+                if (t.tag == "Reflect Animation ID") {
+                    current.reflectAnimationID = t.data;
+                }
+                else if (t.tag == "Sprite Cannot Move") {
+                    current.spriteCannotMove = true;
+                }
+
+                // Animated SideView Settings
+                if (t.tag == "Breathing") {
+                    current.breathing.enabled = true;
+                    current.breathing.yes = true;
+                }
+                else if (t.tag == "No Breathing") {
+                    current.breathing.enabled = true;
+                    current.breathing.no = true;
+                }
+                else if (t.tag == "Breathing Speed") {
+                    current.breathing.speed = t.data;
+                }
+                else if (t.tag == "Breathing Rate X") {
+                    current.breathing.rateX = t.data*100;
+                }
+                else if (t.tag == "Breathing Rate Y") {
+                    current.breathing.rateY = t.data*100;
+                }
+
+                if (t.tag == "Floating") {
+                    current.floating.enabled = true;
+                }
+                else if (t.tag == "Floating Speed") {
+                    current.floating.speed = t.data;
+                }
+                else if (t.tag == "Floating Height") {
+                    current.floating.height = t.data;
+                }
+
+            });
+        };
+
+        this.generateTags = function (setValueTagCallback, setTagCallback, setPercentValueTagCallback) {
+            var tags = [];
+            // Core Settings
+            setValueTagCallback(tags, '#chkHP', 'hp', '#numHP');
+            setValueTagCallback(tags, '#chkMP', 'mp', '#numMP');
+            setValueTagCallback(tags, '#chkAtk', 'atk', '#numAtk');
+            setValueTagCallback(tags, '#chkDef', 'def', '#numDef');
+            setValueTagCallback(tags, '#chkMat', 'mat', '#numMat');
+            setValueTagCallback(tags, '#chkMdf', 'mdf', '#numMdf');
+            setValueTagCallback(tags, '#chkAgi', 'agi', '#numAgi');
+            setValueTagCallback(tags, '#chkLuk', 'luk', '#numLuk');
+
+            setValueTagCallback(tags, '#chkExp', 'exp', '#numExp');
+            setValueTagCallback(tags, '#chkGold', 'gold', '#numGold');
+
+            // Battle Settings
+            setValueTagCallback(tags, '#chkReflectAnimation', 'Reflect Animation ID', '#ddlReflectAnimation');
+            setTagCallback(tags, '#chkSpriteCannotMove', 'Sprite Cannot Move');
+
+            // Animated SideView Settings
+            if ($('#chkBreathing').is(':checked')) {
+                setTagCallback(tags, '#radBreathing', 'Breathing');
+                setTagCallback(tags, '#radNoBreathing', 'No Breathing');
+            }
+            setValueTagCallback(tags, '#chkBreathingSpeed', 'Breathing Speed', '#numBreathingSpeed');
+            setPercentValueTagCallback(tags, '#chkBreathingRateX', 'Breathing Rate X', '#numBreathingRateX');
+            setPercentValueTagCallback(tags, '#chkBreathingRateY', 'Breathing Rate Y', '#numBreathingRateY');
+
+            setTagCallback(tags, '#chkFloating', 'Floating');
+            setValueTagCallback(tags, '#chkFloatingSpeed', 'Floating Speed', '#numFloatingSpeed');
+            setValueTagCallback(tags, '#chkFloatingHeight', 'Floating Height', '#numFloatingHeight');
+
+            tagAdapter.getStringFromNoteTags(tags)
+            .done(function (output) {
+
+                $('#successTags').hide();
+                $('#errorNoTags').hide();
+                if (output)
+                    $('#successTags').show();
+                else
+                    $('#errorNoTags').show();
+
+                $('#txtOutput').val(output);
+            });
         };
 
         this.initialize();
