@@ -114,6 +114,24 @@ define(function (require) {
             });
         },
 
+        getAnimations = function () {
+            return $.getJSON("data/Animations.json")
+                    .then(compactDataCallback);
+        },
+
+        getAnimationById = function (id) {
+            return getAnimations()
+            .then(function (animations) {
+                return $.Deferred(function (deferred) {
+                    var result = _.find(animations, function (animation) { return animation.id == id; });
+                    if (result)
+                        deferred.resolve(result);
+                    else
+                        deferred.reject("Animation can't be found");
+                }).promise();
+            });
+        },
+
         getSystem = function () {
             return $.getJSON("data/System.json");
         },
@@ -201,6 +219,8 @@ define(function (require) {
         getArmors: getArmors,
         getArmorById: getArmorById,
         getStates: getStates,
+        getAnimations: getAnimations,
+        getAnimationById: getAnimationById,
         getSystem: getSystem,
         getStateById: getStateById,
         getTypes: getTypes,

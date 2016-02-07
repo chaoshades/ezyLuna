@@ -150,6 +150,30 @@
             });
         },
 
+        getAnimations = function () {
+            var deferred = $.Deferred(),
+                results = null;
+
+            results = _.compact(animations);
+
+            deferred.resolve(results);
+
+            return deferred.promise();
+        },
+
+        getAnimationById = function (id) {
+            return getAnimations()
+            .then(function (animations) {
+                return $.Deferred(function (deferred) {
+                    var result = _.find(animations, function (animation) { return animation.id == id; });
+                    if (result)
+                        deferred.resolve(result);
+                    else
+                        deferred.reject("Animation can't be found");
+                }).promise();
+            });
+        },
+
         getSystem = function () {
             var deferred = $.Deferred(),
                 results = null;
@@ -256,6 +280,20 @@ null,
 { "id": 10, "autoRemovalTiming": 1, "chanceByDamage": 100, "iconIndex": 8, "maxTurns": 5, "message1": " falls asleep!", "message2": " falls asleep!", "message3": " is sleeping.", "message4": " wakes up!", "minTurns": 3, "motion": 2, "name": "Sleep", "note": "", "overlay": 7, "priority": 90, "releaseByDamage": true, "removeAtBattleEnd": true, "removeByDamage": true, "removeByRestriction": false, "removeByWalking": false, "restriction": 4, "stepsToRemove": 100, "traits": [{ "code": 22, "dataId": 1, "value": -1 }] }
 ],
 
+animations = [
+null,
+{"id":1,"animation1Hue":0,"animation1Name":"Hit1","animation2Hue":0,"animation2Name":"","frames":[[],[[0,0,0,250,0,0,255,1],[-1,0,0,0,0,0,0,0],[-1,0,0,0,0,0,0,0],[-1,0,0,0,0,0,0,0]],[[1,0,0,200,0,0,255,1]],[[2,0,0,200,0,0,255,1]],[[3,0,0,200,0,0,255,1]]],"name":"Hit Physical","position":1,"timings":[{"flashColor":[255,255,255,255],"flashDuration":2,"flashScope":1,"frame":0,"se":{"name":"Blow3","pan":0,"pitch":100,"volume":90}}]},
+{"id":2,"animation1Hue":0,"animation1Name":"Hit1","animation2Hue":0,"animation2Name":"HitPhoton","frames":[[],[[0,0,0,250,0,0,255,1],[100,-16,0,230,0,0,255,1],[-1,0,0,0,0,0,0,0],[-1,0,0,0,0,0,0,0],[-1,0,0,0,0,0,0,0],[-1,0,0,0,0,0,0,0],[-1,0,0,0,0,0,0,0]],[[1,0,0,200,0,0,255,1],[101,-16,0,230,0,0,255,1]],[[2,0,0,200,0,0,255,1],[102,-16,0,230,0,0,255,1]],[[3,0,0,200,0,0,255,1],[103,-16,0,230,0,0,255,1]],[[-1,0,0,0,0,0,0,0],[104,-16,0,230,0,0,180,1]]],"name":"Hit Effect","position":1,"timings":[{"flashColor":[255,255,255,255],"flashDuration":2,"flashScope":0,"frame":0,"se":{"name":"Evasion2","pan":0,"pitch":150,"volume":80}},{"flashColor":[255,255,255,255],"flashDuration":2,"flashScope":1,"frame":1,"se":{"name":"Damage4","pan":0,"pitch":120,"volume":90}},{"flashColor":[255,255,255,255],"flashDuration":5,"flashScope":0,"frame":2,"se":{"name":"Powerup","pan":0,"pitch":180,"volume":90}}]},
+{"id":3,"animation1Hue":0,"animation1Name":"Hit2","animation2Hue":0,"animation2Name":"HitFire","frames":[[[0,0,-12,150,0,0,255,1]],[[1,0,-12,150,0,0,255,1]],[[2,0,-12,150,0,0,255,1],[100,0,-12,225,0,0,255,1]],[[2,0,-12,165,0,0,180,1],[101,0,-12,225,0,0,255,1]],[[2,0,-12,172,0,0,100,1],[102,0,-12,225,0,0,255,1]],[[-1,0,-12,172,0,0,100,1],[103,0,-12,225,0,0,255,1]],[[-1,0,-12,172,0,0,100,1],[104,0,-12,225,0,0,255,1]],[[-1,0,-12,172,0,0,100,1],[105,0,-12,225,0,0,255,1]],[[-1,0,-12,172,0,0,100,1],[106,0,-12,225,0,0,255,1]],[[-1,0,-12,172,0,0,100,1],[107,0,-12,225,0,0,255,1]]],"name":"Hit Fire","position":1,"timings":[{"flashColor":[255,255,255,255],"flashDuration":5,"flashScope":0,"frame":0,"se":{"name":"Fire1","pan":0,"pitch":100,"volume":100}},{"flashColor":[255,119,102,221],"flashDuration":3,"flashScope":1,"frame":0,"se":{"name":"Blow3","pan":0,"pitch":100,"volume":100}},{"flashColor":[255,136,51,153],"flashDuration":5,"flashScope":2,"frame":2,"se":null}]},
+{"id":4,"animation1Hue":0,"animation1Name":"Hit2","animation2Hue":0,"animation2Name":"HitIce","frames":[[[0,0,-12,150,0,0,255,1]],[[1,0,-12,150,0,0,255,1]],[[2,0,-12,150,0,0,255,1],[101,0,-12,120,0,0,255,1],[102,0,-12,195,0,0,255,1]],[[2,0,-12,165,0,0,180,1],[100,0,-12,210,0,0,255,1],[103,0,-12,240,0,0,255,1]],[[2,0,-12,172,0,0,100,1],[100,0,-12,195,0,0,255,1],[104,0,-12,240,0,0,255,1],[105,0,0,225,0,0,255,1],[108,0,-12,225,0,0,255,1]],[[101,0,-12,195,0,0,255,1],[104,0,-12,255,0,0,255,1],[108,0,-12,255,0,0,255,1],[106,0,0,165,0,0,255,1]],[[100,0,-12,180,0,0,255,1],[104,0,-12,262,0,0,180,1],[109,0,-12,210,0,0,255,1],[106,0,0,180,0,0,255,1]],[[101,0,-12,195,0,0,255,1],[104,0,-12,270,0,0,100,1],[109,0,-12,225,0,0,200,1],[107,0,0,180,0,0,255,1]],[[100,0,-12,180,0,0,255,1],[109,0,-12,240,0,0,100,1],[106,0,0,180,0,0,255,1]],[[101,0,-12,195,0,0,180,1],[107,0,0,180,0,0,255,1]],[[101,0,-12,195,0,0,100,1]]],"name":"Hit Ice","position":1,"timings":[{"flashColor":[255,255,255,255],"flashDuration":5,"flashScope":0,"frame":0,"se":{"name":"Ice4","pan":0,"pitch":75,"volume":100}},{"flashColor":[119,187,255,221],"flashDuration":3,"flashScope":1,"frame":0,"se":{"name":"Blow3","pan":0,"pitch":100,"volume":100}},{"flashColor":[187,221,221,153],"flashDuration":5,"flashScope":2,"frame":2,"se":null}]},
+{"id":5,"animation1Hue":0,"animation1Name":"Hit2","animation2Hue":0,"animation2Name":"HitThunder","frames":[[[0,0,-12,150,0,0,255,1]],[[1,0,-12,150,0,0,255,1]],[[2,0,-12,150,0,0,255,1],[100,0,-12,225,0,0,255,1]],[[2,0,-12,165,0,0,180,1],[101,0,-12,225,0,0,255,1]],[[2,0,-12,172,0,0,100,1],[102,0,-12,225,0,0,255,1]],[[103,0,-12,225,0,0,255,1]],[[104,0,-12,225,0,0,255,1]],[[105,0,-12,225,0,0,255,1]],[[106,0,-12,225,0,0,255,1]],[[-1,0,-12,225,0,0,255,1],[106,0,-12,232,20,0,150,1]]],"name":"Hit Thunder","position":1,"timings":[{"flashColor":[255,255,255,255],"flashDuration":5,"flashScope":0,"frame":0,"se":{"name":"Thunder8","pan":0,"pitch":80,"volume":100}},{"flashColor":[255,255,102,221],"flashDuration":3,"flashScope":1,"frame":0,"se":{"name":"Blow3","pan":0,"pitch":100,"volume":100}},{"flashColor":[255,255,119,153],"flashDuration":5,"flashScope":2,"frame":2,"se":null}]},
+{"id":6,"animation1Hue":0,"animation1Name":"Slash","animation2Hue":0,"animation2Name":"","frames":[[[0,24,-42,180,0,0,255,1]],[[1,24,-42,180,0,0,255,1]],[[2,0,-18,180,0,0,255,1]],[[3,0,-18,180,0,0,255,1]],[[4,0,-18,180,0,0,255,1]]],"name":"Slash Physical","position":1,"timings":[{"flashColor":[255,255,255,187],"flashDuration":2,"flashScope":1,"frame":0,"se":{"name":"Slash1","pan":0,"pitch":140,"volume":80}}]},
+{"id":7,"animation1Hue":0,"animation1Name":"Slash","animation2Hue":0,"animation2Name":"SlashPhoton","frames":[[[0,0,-42,180,0,0,255,1],[100,0,-2,180,0,0,255,1]],[[1,0,-42,180,0,0,255,1],[101,0,-2,180,0,0,255,1]],[[2,0,-18,180,0,0,255,1],[102,16,-2,180,0,0,255,1]],[[3,0,-18,180,0,0,255,1],[103,60.5,-25.5,180,0,0,255,1]],[[4,0,-18,180,0,0,255,1],[103,79,-17.5,180,2,0,127,1]]],"name":"Slash Effect","position":1,"timings":[{"flashColor":[255,255,255,187],"flashDuration":2,"flashScope":0,"frame":0,"se":{"name":"Evasion2","pan":0,"pitch":150,"volume":80}},{"flashColor":[255,255,255,187],"flashDuration":2,"flashScope":1,"frame":1,"se":{"name":"Slash1","pan":0,"pitch":150,"volume":80}},{"flashColor":[255,255,255,255],"flashDuration":5,"flashScope":0,"frame":2,"se":{"name":"Powerup","pan":0,"pitch":180,"volume":90}}]},
+{"id":8,"animation1Hue":0,"animation1Name":"SlashFire","animation2Hue":0,"animation2Name":"","frames":[[[0,24,-72,180,0,0,255,1]],[[1,24,-72,180,0,0,255,1],[6,24,-72,195,0,0,255,1]],[[2,0,-48,180,0,0,255,1],[7,0,-48,195,0,0,255,1]],[[3,0,-48,180,0,0,255,1],[8,0,-48,195,0,0,255,1]],[[4,0,-48,180,0,0,255,1],[9,0,-48,195,0,0,255,1]],[[5,0,-48,180,0,0,255,1],[10,0,-48,195,0,0,255,1]],[[11,0,-48,195,0,0,255,1]],[[12,0,-48,195,0,0,255,1]],[[13,0,-48,195,0,0,255,1]]],"name":"Slash Fire","position":1,"timings":[{"flashColor":[255,255,255,187],"flashDuration":3,"flashScope":1,"frame":0,"se":{"name":"Slash1","pan":0,"pitch":100,"volume":100}},{"flashColor":[255,136,51,153],"flashDuration":5,"flashScope":2,"frame":1,"se":{"name":"Fire1","pan":0,"pitch":120,"volume":100}}]},
+{"id":9,"animation1Hue":0,"animation1Name":"SlashIce","animation2Hue":0,"animation2Name":"","frames":[[[0,24,-72,180,0,0,255,1]],[[1,24,-72,180,0,0,255,1],[6,24,-72,195,0,0,255,1]],[[2,0,-48,180,0,0,255,1],[7,0,-48,195,0,0,255,1]],[[3,0,-48,180,0,0,255,1],[8,0,-48,195,0,0,255,1]],[[4,0,-48,180,0,0,255,1],[9,0,-48,195,0,0,255,1]],[[5,0,-48,180,0,0,255,1],[10,0,-48,195,0,0,255,1]],[[11,0,-48,195,0,0,255,1]],[[12,0,-48,195,0,0,255,1]]],"name":"Slash Ice","position":1,"timings":[{"flashColor":[255,255,255,187],"flashDuration":3,"flashScope":1,"frame":0,"se":{"name":"Slash1","pan":0,"pitch":100,"volume":100}},{"flashColor":[187,221,221,153],"flashDuration":5,"flashScope":2,"frame":1,"se":{"name":"Ice4","pan":0,"pitch":100,"volume":100}}]},
+{"id":10,"animation1Hue":0,"animation1Name":"SlashThunder","animation2Hue":0,"animation2Name":"","frames":[[[0,24,-72,180,0,0,255,1]],[[1,24,-72,180,0,0,255,1],[6,24,-72,195,0,0,255,1]],[[2,0,-48,180,0,0,255,1],[7,0,-48,195,0,0,255,1]],[[3,0,-48,180,0,0,255,1],[8,0,-48,195,0,0,255,1]],[[4,0,-48,180,0,0,255,1],[9,0,-48,195,0,0,255,1]],[[5,0,-48,180,0,0,255,1],[10,0,-48,195,0,0,255,1]],[[11,0,-48,195,0,0,255,1]],[[12,0,-48,195,0,0,255,1]],[[13,0,-48,195,0,0,255,1]]],"name":"Slash Thunder","position":1,"timings":[{"flashColor":[255,255,255,187],"flashDuration":3,"flashScope":1,"frame":0,"se":{"name":"Slash1","pan":0,"pitch":100,"volume":100}},{"flashColor":[255,255,119,153],"flashDuration":5,"flashScope":2,"frame":1,"se":{"name":"Thunder8","pan":0,"pitch":100,"volume":100}}]}
+],
+
 types = {
 "armorTypes": ["", "General Armor", "Magic Armor", "Light Armor", "Heavy Armor", "Small Shield", "Large Shield"],
 "elements": ["", "Physical", "Fire", "Ice", "Thunder", "Water", "Earth", "Wind", "Light", "Darkness"],
@@ -287,6 +325,8 @@ terms = {
         getArmorById: getArmorById,
         getStates: getStates,
         getStateById: getStateById,
+        getAnimations: getAnimations,
+        getAnimationById: getAnimationById,
         getSystem: getSystem,
         getTypes: getTypes,
         getTerms: getTerms

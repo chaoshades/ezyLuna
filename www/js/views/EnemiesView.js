@@ -77,11 +77,20 @@
 
             // Click Event for checkboxes
             this.$el.on('click', '.js_Stat', function () {
-                var txt = $(this).parent().next();
+                var ctrl = $(this).parent().next(),
+                    attr = null;
                 if ($(this).is(':checked')) {
-                    $(txt).removeAttr('readonly');
+                    if (ctrl.is('select'))
+                        attr = 'disabled';
+                    else
+                        attr = 'readonly';
+                    $(ctrl).removeAttr(attr);
                 } else {
-                    $(txt).attr('readonly', 'readonly');
+                    if (ctrl.is('select'))
+                        attr = 'disabled';
+                    else
+                        attr = 'readonly';
+                    $(ctrl).attr(attr, attr);
                 }
             });
 
@@ -104,6 +113,16 @@
                     tags.push(new NoteTag("agi", $('#numAgi').val()));
                 if ($('#chkLuk').is(':checked'))
                     tags.push(new NoteTag("luk", $('#numLuk').val()));
+
+                if ($('#chkExp').is(':checked'))
+                    tags.push(new NoteTag("exp", $('#numExp').val()));
+                if ($('#chkGold').is(':checked'))
+                    tags.push(new NoteTag("gold", $('#numGold').val()));
+
+                if ($('#chkReflectAnimation').is(':checked'))
+                    tags.push(new NoteTag("Reflect Animation ID", $('#ddlReflectAnimation').val()));
+                if ($('#chkSpriteCannotMove').is(':checked'))
+                    tags.push(new NoteTag("Sprite Cannot Move"));
 
                 tagAdapter.getStringFromNoteTags(tags)
                 .done(function (output) {
@@ -145,7 +164,8 @@
 
             var data = {
                 'paged_enemies': paged_enemies,
-                'current': current
+                'current': current,
+                'animations': linked_data.animations
             };
             this.$el.html(enemiesTpl(data));
 

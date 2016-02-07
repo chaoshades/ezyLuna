@@ -17,9 +17,9 @@
                     <div class="item">
                         <div class="list-group no-bottom">
                             {{#.}}
-                        <a href="#enemies/{{id}}" class="list-group-item">
-                            <span class="spacing-right">{{idFormat id}}</span><span>{{name}}</span>
-                        </a>
+                            <a href="#enemies/{{id}}" class="list-group-item">
+                                <span class="spacing-right">{{idFormat id}}</span><span>{{name}}</span>
+                            </a>
                             {{/.}}
                         </div>
                     </div>
@@ -40,12 +40,12 @@
         {{#with current}}
         <div class="col-md-6">
             <div class="well well-sm">
-                <h4>General Settings</h4>
+                <h4>General Settings<span class="pull-right label label-info">YEP-Core</span></h4>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="txtName">Name:</label>
-                            <input type="text" class="form-control" id="txtName" value="{{name}}" readonly>
+                            <input type="text" class="form-control" id="txtName" value="{{name}}" readonly="readonly" />
                         </div>
                         <img id="imgEnemy" class="img-responsive center-block" src="img/enemies/{{battlerName}}.png" />
                     </div>
@@ -58,7 +58,7 @@
                                         <span class="input-group-addon">
                                             <input id="chkHP" type="checkbox" class="js_Stat" title="Overrides HP">
                                         </span>
-                                        <input type="number" class="form-control" id="numHP" value="{{params.[0]}}" readonly>
+                                        <input type="number" class="form-control" id="numHP" value="{{params.[0]}}" readonly="readonly" />
                                     </div>
                                 </div>
                             </div>
@@ -69,7 +69,7 @@
                                         <span class="input-group-addon">
                                             <input id="chkMP" type="checkbox" class="js_Stat" title="Overrides MP">
                                         </span>
-                                        <input type="number" class="form-control" id="numMP" value="{{params.[1]}}" readonly>
+                                        <input type="number" class="form-control" id="numMP" value="{{params.[1]}}" readonly="readonly" />
                                     </div>
                                 </div>
                             </div>
@@ -80,9 +80,9 @@
                                     <label for="numAtk">Attack:</label>
                                     <div class="input-group">
                                         <span class="input-group-addon">
-                                            <input  id="chkAtk" type="checkbox" class="js_Stat" title="Overrides Attack">
+                                            <input id="chkAtk" type="checkbox" class="js_Stat" title="Overrides Attack">
                                         </span>
-                                        <input type="number" class="form-control" id="numAtk" value="{{params.[2]}}" readonly>
+                                        <input type="number" class="form-control" id="numAtk" value="{{params.[2]}}" readonly="readonly" />
                                     </div>
                                 </div>
                             </div>
@@ -93,7 +93,7 @@
                                         <span class="input-group-addon">
                                             <input id="chkDef" type="checkbox" class="js_Stat" title="Overrides Defense">
                                         </span>
-                                        <input type="number" class="form-control" id="numDef" value="{{params.[3]}}" readonly>
+                                        <input type="number" class="form-control" id="numDef" value="{{params.[3]}}" readonly="readonly">
                                     </div>
                                 </div>
                             </div>
@@ -106,7 +106,7 @@
                                         <span class="input-group-addon">
                                             <input id="chkMat" type="checkbox" class="js_Stat" title="Overrides M.Attack">
                                         </span>
-                                        <input type="number" class="form-control" id="numMat" value="{{params.[4]}}" readonly>
+                                        <input type="number" class="form-control" id="numMat" value="{{params.[4]}}" readonly="readonly" />
                                     </div>
                                 </div>
                             </div>
@@ -117,7 +117,7 @@
                                         <span class="input-group-addon">
                                             <input id="chkMdf" type="checkbox" class="js_Stat" title="Overrides M.Defense">
                                         </span>
-                                        <input type="number" class="form-control" id="numMdf" value="{{params.[5]}}" readonly>
+                                        <input type="number" class="form-control" id="numMdf" value="{{params.[5]}}" readonly="readonly" />
                                     </div>
                                 </div>
                             </div>
@@ -130,7 +130,7 @@
                                         <span class="input-group-addon">
                                             <input id="chkAgi" type="checkbox" class="js_Stat" title="Overrides Agility">
                                         </span>
-                                        <input type="number" class="form-control" id="numAgi" value="{{params.[6]}}" readonly>
+                                        <input type="number" class="form-control" id="numAgi" value="{{params.[6]}}" readonly="readonly" />
                                     </div>
                                 </div>
                             </div>
@@ -141,7 +141,7 @@
                                         <span class="input-group-addon">
                                             <input id="chkLuk" type="checkbox" class="js_Stat" title="Overrides Luck">
                                         </span>
-                                        <input type="number" class="form-control" id="numLuk" value="{{params.[7]}}" readonly>
+                                        <input type="number" class="form-control" id="numLuk" value="{{params.[7]}}" readonly="readonly" />
                                     </div>
                                 </div>
                             </div>
@@ -150,21 +150,31 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-xs-6 col-md-3">
+                <div class="col-xs-6 col-md-4">
                     <div class="well well-sm">
-                        <h4>Rewards</h4>
+                        <h4>Rewards<span class="pull-right label label-info">YEP-Core</span></h4>
                         <div class="form-group">
                             <label for="numExp">EXP:</label>
-                            <input type="number" class="form-control" id="numExp" value="{{exp}}" readonly>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <input id="chkExp" type="checkbox" class="js_Stat" title="Overrides EXP">
+                                </span>
+                                <input type="number" class="form-control" id="numExp" value="{{exp}}" readonly="readonly" />
+                            </div>
                         </div>
 
                         <div class="form-group">
                             <label for="numGold">Gold:</label>
-                            <input type="number" class="form-control" id="numGold" value="{{gold}}" readonly>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <input id="chkGold" type="checkbox" class="js_Stat" title="Overrides Gold">
+                                </span>
+                                <input type="number" class="form-control" id="numGold" value="{{gold}}" readonly="readonly" />
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-xs-6 col-md-9">
+                <div class="col-xs-6 col-md-8">
                     <div class="well well-sm fill-bottom">
                         <h4>Drop Items</h4>
                         <table class="table table-striped table-hover table-condensed">
@@ -249,152 +259,152 @@
                     </thead>
                     <tbody id="tblTraits">
                         {{#each traits}}
-                    <tr>
-                        {{#compare code 11}}
-                        <td>Element Rate
-                        </td>
-                        <td>{{element}} * {{percentFormat value}}
-                        </td>
-                        {{/compare}}
-                        {{#compare code 12}}
-                        <td>Debuff Rate
-                        </td>
-                        <td>{{param}} * {{percentFormat value}}
-                        </td>
-                        {{/compare}}
-                        {{#compare code 13}}
-                        <td>State Rate
-                        </td>
-                        <td>{{state}} * {{percentFormat value}}
-                        </td>
-                        {{/compare}}
-                        {{#compare code 14}}
-                        <td>State Resist
-                        </td>
-                        <td>{{state}}
-                        </td>
-                        {{/compare}}
-                        {{#compare code 21}}
-                        <td>Parameter
-                        </td>
-                        <td>{{param}} * {{percentFormat value}}
-                        </td>
-                        {{/compare}}
-                        {{#compare code 22}}
-                        <td>Ex-Parameter
-                        </td>
-                        <td>{{param}} + {{percentFormat value}}
-                        </td>
-                        {{/compare}}
-                        {{#compare code 23}}
-                        <td>Sp-Parameter
-                        </td>
-                        <td>{{param}} * {{percentFormat value}}
-                        </td>
-                        {{/compare}}
-                        {{#compare code 31}}
-                        <td>Attack Element
-                        </td>
-                        <td>{{element}}
-                        </td>
-                        {{/compare}}
-                        {{#compare code 32}}
-                        <td>Attack State
-                        </td>
-                        <td>{{state}} + {{percentFormat value}}
-                        </td>
-                        {{/compare}}
-                        {{#compare code 33}}
-                        <td>Attack Speed
-                        </td>
-                        <td>{{value}}
-                        </td>
-                        {{/compare}}
-                        {{#compare code 34}}
-                        <td>Attack Times +
-                        </td>
-                        <td>{{value}}
-                        </td>
-                        {{/compare}}
-                        {{#compare code 41}}
-                        <td>Add Skill Type
-                        </td>
-                        <td>{{type}}
-                        </td>
-                        {{/compare}}
-                        {{#compare code 42}}
-                        <td>Seal Skill Type
-                        </td>
-                        <td>{{type}}
-                        </td>
-                        {{/compare}}
-                        {{#compare code 43}}
-                        <td>Add Skill
-                        </td>
-                        <td>{{skill}}
-                        </td>
-                        {{/compare}}
-                        {{#compare code 44}}
-                        <td>Seal Skill
-                        </td>
-                        <td>{{skill}}
-                        </td>
-                        {{/compare}}
-                        {{#compare code 51}}
-                        <td>Equip Weapon
-                        </td>
-                        <td>{{type}}
-                        </td>
-                        {{/compare}}
-                        {{#compare code 52}}
-                        <td>Equip Armor
-                        </td>
-                        <td>{{type}}
-                        </td>
-                        {{/compare}}
-                        {{#compare code 53}}
-                        <td>Lock Equip
-                        </td>
-                        <td>{{type}}
-                        </td>
-                        {{/compare}}
-                        {{#compare code 54}}
-                        <td>Seal Equip
-                        </td>
-                        <td>{{type}}
-                        </td>
-                        {{/compare}}
-                        {{#compare code 55}}
-                        <td>Slot Type
-                        </td>
-                        <td>{{type}}
-                        </td>
-                        {{/compare}}
-                        {{#compare code 61}}
-                        <td>Action Times +
-                        </td>
-                        <td>{{percentFormat value}}
-                        </td>
-                        {{/compare}}
-                        {{#compare code 62}}
-                        <td>Special Flag
-                        </td>
-                        <td>{{label}}
-                        </td>
-                        {{/compare}}
-                        {{#compare code 63}}
-                        <td>Collapse Effect
-                        </td>
-                        <td>{{label}}
-                        </td>
-                        {{/compare}}
-                        {{#compare code 64}}
-                        <td>Party Ability
-                        </td>
-                        <td>{{label}}
-                        </td>
-                        {{/compare}}
-                    </tr>
+                        <tr>
+                            {{#compare code 11}}
+                            <td>Element Rate
+                            </td>
+                            <td>{{element}} * {{percentFormat value}}
+                            </td>
+                            {{/compare}}
+                            {{#compare code 12}}
+                            <td>Debuff Rate
+                            </td>
+                            <td>{{param}} * {{percentFormat value}}
+                            </td>
+                            {{/compare}}
+                            {{#compare code 13}}
+                            <td>State Rate
+                            </td>
+                            <td>{{state}} * {{percentFormat value}}
+                            </td>
+                            {{/compare}}
+                            {{#compare code 14}}
+                            <td>State Resist
+                            </td>
+                            <td>{{state}}
+                            </td>
+                            {{/compare}}
+                            {{#compare code 21}}
+                            <td>Parameter
+                            </td>
+                            <td>{{param}} * {{percentFormat value}}
+                            </td>
+                            {{/compare}}
+                            {{#compare code 22}}
+                            <td>Ex-Parameter
+                            </td>
+                            <td>{{param}} + {{percentFormat value}}
+                            </td>
+                            {{/compare}}
+                            {{#compare code 23}}
+                            <td>Sp-Parameter
+                            </td>
+                            <td>{{param}} * {{percentFormat value}}
+                            </td>
+                            {{/compare}}
+                            {{#compare code 31}}
+                            <td>Attack Element
+                            </td>
+                            <td>{{element}}
+                            </td>
+                            {{/compare}}
+                            {{#compare code 32}}
+                            <td>Attack State
+                            </td>
+                            <td>{{state}} + {{percentFormat value}}
+                            </td>
+                            {{/compare}}
+                            {{#compare code 33}}
+                            <td>Attack Speed
+                            </td>
+                            <td>{{value}}
+                            </td>
+                            {{/compare}}
+                            {{#compare code 34}}
+                            <td>Attack Times +
+                            </td>
+                            <td>{{value}}
+                            </td>
+                            {{/compare}}
+                            {{#compare code 41}}
+                            <td>Add Skill Type
+                            </td>
+                            <td>{{type}}
+                            </td>
+                            {{/compare}}
+                            {{#compare code 42}}
+                            <td>Seal Skill Type
+                            </td>
+                            <td>{{type}}
+                            </td>
+                            {{/compare}}
+                            {{#compare code 43}}
+                            <td>Add Skill
+                            </td>
+                            <td>{{skill}}
+                            </td>
+                            {{/compare}}
+                            {{#compare code 44}}
+                            <td>Seal Skill
+                            </td>
+                            <td>{{skill}}
+                            </td>
+                            {{/compare}}
+                            {{#compare code 51}}
+                            <td>Equip Weapon
+                            </td>
+                            <td>{{type}}
+                            </td>
+                            {{/compare}}
+                            {{#compare code 52}}
+                            <td>Equip Armor
+                            </td>
+                            <td>{{type}}
+                            </td>
+                            {{/compare}}
+                            {{#compare code 53}}
+                            <td>Lock Equip
+                            </td>
+                            <td>{{type}}
+                            </td>
+                            {{/compare}}
+                            {{#compare code 54}}
+                            <td>Seal Equip
+                            </td>
+                            <td>{{type}}
+                            </td>
+                            {{/compare}}
+                            {{#compare code 55}}
+                            <td>Slot Type
+                            </td>
+                            <td>{{type}}
+                            </td>
+                            {{/compare}}
+                            {{#compare code 61}}
+                            <td>Action Times +
+                            </td>
+                            <td>{{percentFormat value}}
+                            </td>
+                            {{/compare}}
+                            {{#compare code 62}}
+                            <td>Special Flag
+                            </td>
+                            <td>{{label}}
+                            </td>
+                            {{/compare}}
+                            {{#compare code 63}}
+                            <td>Collapse Effect
+                            </td>
+                            <td>{{label}}
+                            </td>
+                            {{/compare}}
+                            {{#compare code 64}}
+                            <td>Party Ability
+                            </td>
+                            <td>{{label}}
+                            </td>
+                            {{/compare}}
+                        </tr>
                         {{/each}}
                     </tbody>
                 </table>
@@ -405,14 +415,35 @@
             <div class="well well-sm">
                 <h4>Note</h4>
                 <div class="form-group">
-                    <textarea class="form-control" id="txtNote" rows="5" readonly>{{note}}</textarea>
+                    <textarea class="form-control" id="txtNote" rows="5" readonly="readonly">{{note}}</textarea>
+                </div>
+            </div>
+            <div class="well well-sm">
+                <h4>Battle settings<span class="pull-right label label-info">YEP-Battle-Core</span></h4>
+                <div class="form-group">
+                    <label for="ddlReflectAnimation">Reflect Animation:</label>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <input id="chkReflectAnimation" type="checkbox" class="js_Stat" title="Overrides Reflect Animation">
+                        </span>
+                        <select id="ddlReflectAnimation" class="form-control" disabled="disabled">
+                            {{#each ../animations}}
+                            <option value="{{id}}">{{name}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="checkbox checkbox-right">
+                        <label for="chkSpriteCannotMove">Sprite Cannot Move:<input type="checkbox" id="chkSpriteCannotMove"></label>
+                    </div>
                 </div>
             </div>
         </div>
         {{/with}}
     </div>
 
-    <div class="text-center">
+    <div class="text-center half-spacing-bottom ">
         <button id="btnGenerateTags" type="button" class="btn btn-default btn-primary btn-lg">
             <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Generate notetags<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
         </button>

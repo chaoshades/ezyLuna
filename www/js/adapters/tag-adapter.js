@@ -3,9 +3,11 @@ define(function (require) {
     "use strict";
 
     var YEPCoreTags = require("tag/yep-1-core-engine"),
+        YEPBattleCoreTags = require("tag/yep-3-battle-engine-core"),
 
         tags = [
-            new YEPCoreTags()
+            new YEPCoreTags(),
+            new YEPBattleCoreTags()
         ],
 
     getStringFromNoteTags = function (notetags) {

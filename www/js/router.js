@@ -88,10 +88,11 @@
                             dataAdapter.getWeapons(),
                             dataAdapter.getSkills(),
                             dataAdapter.getStates(),
+                            dataAdapter.getAnimations(),
                             dataAdapter.getTypes(),
                             dataAdapter.getTerms()
-                        ).done(function (items, armors, weapons, skills, states, types, terms) {
-                            var linked_data = { "items": items, "armors": armors, "weapons": weapons, "skills": skills, "states": states, "types": types, "terms": terms };
+                        ).done(function (items, armors, weapons, skills, states, animations, types, terms) {
+                            var linked_data = { "items": items, "armors": armors, "weapons": weapons, "skills": skills, "states": states, "animations": animations, "types": types, "terms": terms };
                             changeContent(new EnemiesView(enemies, current, linked_data));
                         });
                     })

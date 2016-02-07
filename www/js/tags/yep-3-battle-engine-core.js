@@ -5,18 +5,11 @@
     var $ = require('jquery'),
         _ = require('underscore'),
         BasicParser = require("parser/BasicParser"),
+        TagOnlyParser = require("parser/TagOnlyParser"),
 
         parsers = [
-            { tag: "hp", parser: new BasicParser() },
-            { tag: "mp", parser: new BasicParser() },
-            { tag: "atk", parser: new BasicParser() },
-            { tag: "def", parser: new BasicParser() },
-            { tag: "mat", parser: new BasicParser() },
-            { tag: "mdf", parser: new BasicParser() },
-            { tag: "agi", parser: new BasicParser() },
-            { tag: "luk", parser: new BasicParser() },
-            { tag: "exp", parser: new BasicParser() },
-            { tag: "gold", parser: new BasicParser() }
+            { tag: "Reflect Animation ID", parser: new BasicParser() },
+            { tag: "Sprite Cannot Move", parser: new TagOnlyParser() }
         ];
 
     return function () {
