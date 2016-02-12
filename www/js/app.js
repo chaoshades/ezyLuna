@@ -5,7 +5,9 @@
     paths: {
         app: '../js',
         view: '../js/views',
+        partial: '../js/views/partials',
         tpl: '../tpl',
+        partialtpl: '../tpl/partials',
         tag: '../js/tags',
         parser: '../js/parsers',
         parsertpl: '../js/parsers/tpl'
@@ -13,8 +15,7 @@
 
     map: {
         '*': {
-            'adapters/data': 'app/adapters/json-adapter',
-            'adapters/tag': 'app/adapters/tag-adapter'
+            'adapters/data': 'app/adapters/json-adapter'
         }
     },
 

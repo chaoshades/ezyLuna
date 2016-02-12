@@ -6,7 +6,6 @@
         _ = require('underscore'),
         Handlebars = require('handlebars'),
         dataAdapter = require('adapters/data'),
-        tagAdapter = require('adapters/tag'),
         HomeView = require("view/HomeView"),
         EnemiesView = require("view/EnemiesView"),
         ItemsView = require("view/ItemsView"),
@@ -84,7 +83,6 @@
                     dataAdapter.getEnemyById(id)
                     .done(function (current) {
                         $.when(
-                            tagAdapter.getNoteTagsFromString(current.note),
                             dataAdapter.getItems(),
                             dataAdapter.getArmors(),
                             dataAdapter.getWeapons(),
@@ -93,8 +91,7 @@
                             dataAdapter.getAnimations(),
                             dataAdapter.getTypes(),
                             dataAdapter.getTerms()
-                        ).done(function (tags, items, armors, weapons, skills, states, animations, types, terms) {
-                            current.tags = tags;
+                        ).done(function (items, armors, weapons, skills, states, animations, types, terms) {
                             var linked_data = { "items": items, "armors": armors, "weapons": weapons, "skills": skills, "states": states, "animations": animations, "types": types, "terms": terms };
                             changeContent(new EnemiesView(enemies, current, linked_data));
                         });

@@ -1,0 +1,108 @@
+﻿<h4>General Settings<span class="pull-right label label-info">YEP-Core</span></h4>
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="txtName">Name:</label>
+            <input type="text" class="form-control" id="txtName" value="{{name}}" readonly="readonly" />
+        </div>
+        <img id="imgEnemy" class="img-responsive center-block" src="img/enemies/{{battlerName}}.png" />
+    </div>
+    <div class="col-md-6">
+        <div class="row">
+            <div class="col-xs-6 col-md-6">
+                <div class="form-group">
+                    <label for="numHP">Max HP:</label>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <input id="chkHP" type="checkbox" class="js_Tags" title="Overrides HP" {{checkedIf overrideparams.[0]}} />
+                        </span>
+                        <input type="number" class="form-control" id="numHP" value="{{params.[0]}}" {{readonlyIfNot overrideparams.[0]}} />
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6 col-md-6">
+                <div class="form-group">
+                    <label for="numMP">Max MP:</label>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <input id="chkMP" type="checkbox" class="js_Tags" title="Overrides MP" {{checkedIf overrideparams.[1]}} />
+                        </span>
+                        <input type="number" class="form-control" id="numMP" value="{{params.[1]}}" {{readonlyIfNot overrideparams.[1]}} />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6 col-md-6">
+                <div class="form-group">
+                    <label for="numAtk">Attack:</label>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <input id="chkAtk" type="checkbox" class="js_Tags" title="Overrides Attack" {{checkedIf overrideparams.[2]}} />
+                        </span>
+                        <input type="number" class="form-control" id="numAtk" value="{{params.[2]}}" {{readonlyIfNot overrideparams.[2]}} />
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6 col-md-6">
+                <div class="form-group">
+                    <label for="numDef">Defense:</label>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <input id="chkDef" type="checkbox" class="js_Tags" title="Overrides Defense" {{checkedIf overrideparams.[3]}} />
+                        </span>
+                        <input type="number" class="form-control" id="numDef" value="{{params.[3]}}" {{readonlyIfNot overrideparams.[3]}} />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6 col-md-6">
+                <div class="form-group">
+                    <label for="numMat">M.Attack:</label>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <input id="chkMat" type="checkbox" class="js_Tags" title="Overrides M.Attack" {{checkedIf overrideparams.[4]}} />
+                        </span>
+                        <input type="number" class="form-control" id="numMat" value="{{params.[4]}}" {{readonlyIfNot overrideparams.[4]}} />
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6 col-md-6">
+                <div class="form-group">
+                    <label for="numMdf">M.Defense:</label>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <input id="chkMdf" type="checkbox" class="js_Tags" title="Overrides M.Defense" {{checkedIf overrideparams.[5]}} />
+                        </span>
+                        <input type="number" class="form-control" id="numMdf" value="{{params.[5]}}" {{readonlyIfNot overrideparams.[5]}} />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6 col-md-6">
+                <div class="form-group">
+                    <label for="numAgi">Agility:</label>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <input id="chkAgi" type="checkbox" class="js_Tags" title="Overrides Agility" {{checkedIf overrideparams.[6]}} />
+                        </span>
+                        <input type="number" class="form-control" id="numAgi" value="{{params.[6]}}" {{readonlyIfNot overrideparams.[6]}} />
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6 col-md-6">
+                <div class="form-group">
+                    <label for="numLuk">Luck:</label>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <input id="chkLuk" type="checkbox" class="js_Tags" title="Overrides Luck" {{checkedIf overrideparams.[7]}} />
+                        </span>
+                        <input type="number" class="form-control" id="numLuk" value="{{params.[7]}}" {{readonlyIfNot overrideparams.[7]}} />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

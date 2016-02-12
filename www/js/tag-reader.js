@@ -6,40 +6,34 @@ define(function (require) {
         YEPBattleEngineCoreTags = require("tag/yep-3-battle-engine-core"),
         YEPAnimatedSideViewEnemiesTags = require("tag/yep-44-animated-sideview-enemies"),
 
-        tags = [
-            new YEPCoreEngineTags(),
-            new YEPBattleEngineCoreTags(),
-            new YEPAnimatedSideViewEnemiesTags()
-        ],
+        tags = _.flatten([
+            YEPCoreEngineTags,
+            YEPBattleEngineCoreTags,
+            YEPAnimatedSideViewEnemiesTags
+        ]),
 
     getStringFromNoteTags = function (notetags) {
-        var deferred = $.Deferred(),
-            result = "";
+        var result = "";
 
-        $.each(tags, function (i, t) {
-            var temp = t.stringify(notetags);
+        $.each(notetags, function (i, nt) {
+            var temp = _.find(tags, function (t) { return t.tag == nt.tag; });
             if (temp)
-                result += temp;
+                result += temp.parser.stringify(nt) + "\n";
         });
 
-        deferred.resolve(result.trim());
-
-        return deferred.promise();
+        return result.trim();
     },
-        
+
     getNoteTagsFromString = function (notetags) {
-        var deferred = $.Deferred(),
-            results = [];
+        var results = [];
 
         $.each(tags, function (i, t) {
-            var temp = t.parse(notetags);
+            var temp = t.parser.parse(t.tag, notetags);
             if (temp)
-                results = results.concat(temp);
+                results.push(temp);
         });
 
-        deferred.resolve(results);
-
-        return deferred.promise();
+        return results;
     };
 
     // The public API

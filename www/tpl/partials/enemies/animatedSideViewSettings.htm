@@ -1,0 +1,89 @@
+﻿<h4>Animated SideView Settings<span class="pull-right label label-info">YEP-Animated-SideView-Enemies</span></h4>
+<div class="row">
+    <div class="col-xs-6 col-md-6">
+        <div class="form-group">
+            <label>Breathing:</label>
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <input id="chkBreathing" type="checkbox" class="js_Tags" title="Enables Breathing" {{checkedIf breathing.enabled}} />
+                </span>
+                <div class="radio form-control" {{disabledIfNot breathing.enabled}}>
+                    <label class="radio-inline">
+                        <input type="radio" name="Breathing" id="radBreathing" {{disabledIfNot breathing.enabled}} {{checkedIf breathing.yes}} />
+                        Yes
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="Breathing" id="radNoBreathing" {{disabledIfNot breathing.enabled}} {{checkedIf breathing.no}} />
+                        No
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-6 col-md-6">
+        <div class="form-group">
+            <label for="numBreathingSpeed">Breathing Speed:</label>
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <input id="chkBreathingSpeed" type="checkbox" class="js_Tags" title="Enables Breathing Speed" {{checkedIf breathing.speed}} />
+                </span>
+                <input type="number" class="form-control" id="numBreathingSpeed" value="{{breathing.speed}}" {{readonlyIfNot breathing.speed}} />
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-6 col-md-6">
+        <div class="form-group">
+            <label for="numBreathingRateX">Breathing Rate X:</label>
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <input id="chkBreathingRateX" type="checkbox" class="js_Tags" title="Enables Breathing Rate X" {{checkedIf breathing.rateX}} />
+                </span>
+                <input type="number" class="form-control" id="numBreathingRateX" value="{{breathing.rateX}}" {{readonlyIfNot breathing.rateX}} />
+                <span class="input-group-addon">%</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-6 col-md-6">
+        <div class="form-group">
+            <label for="numBreathingRateY">Breathing Rate Y:</label>
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <input id="chkBreathingRateY" type="checkbox" class="js_Tags" title="Enables Breathing Rate Y" {{checkedIf breathing.rateY}} />
+                </span>
+                <input type="number" class="form-control" id="numBreathingRateY" value="{{breathing.rateY}}" {{readonlyIfNot breathing.rateY}} />
+                <span class="input-group-addon">%</span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <div class="checkbox checkbox-right no-top">
+        <label for="chkFloating">Floating:<input id="chkFloating" type="checkbox" {{checkedIf floating.enabled}} /></label>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-6 col-md-6">
+        <div class="form-group">
+            <label for="numFloatingSpeed">Floating Speed:</label>
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <input id="chkFloatingSpeed" type="checkbox" class="js_Tags" title="Enables Floating Speed" {{checkedIf floating.speed}} />
+                </span>
+                <input type="number" class="form-control" id="numFloatingSpeed" value="{{floating.speed}}" {{readonlyIfNot floating.speed}} />
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-6 col-md-6">
+        <div class="form-group">
+            <label for="numFloatingHeight">Floating Height:</label>
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <input id="chkFloatingHeight" type="checkbox" class="js_Tags" title="Enables Floating Height" {{checkedIf floating.height}} />
+                </span>
+                <input type="number" class="form-control" id="numFloatingHeight" value="{{floating.height}}" {{readonlyIfNot floating.height}} />
+            </div>
+        </div>
+    </div>
+</div>

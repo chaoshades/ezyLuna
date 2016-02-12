@@ -1,0 +1,19 @@
+﻿<h4>Rewards<span class="pull-right label label-info">YEP-Core</span></h4>
+<div class="form-group">
+    <label for="numExp">EXP:</label>
+    <div class="input-group">
+        <span class="input-group-addon">
+            <input id="chkExp" type="checkbox" class="js_Tags" title="Overrides EXP" {{checkedIf overrideexp}} />
+        </span>
+        <input type="number" class="form-control" id="numExp" value="{{exp}}" {{readonlyIfNot overrideexp}} />
+    </div>
+</div>
+<div class="form-group">
+    <label for="numGold">Gold:</label>
+    <div class="input-group">
+        <span class="input-group-addon">
+            <input id="chkGold" type="checkbox" class="js_Tags" title="Overrides Gold" {{checkedIf overridegold}} />
+        </span>
+        <input type="number" class="form-control" id="numGold" value="{{gold}}" {{readonlyIfNot overridegold}} />
+    </div>
+</div>
