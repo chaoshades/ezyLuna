@@ -3,8 +3,9 @@
     "use strict";
 
     var $ = require('jquery'),
+        _ = require('underscore'),
         Handlebars = require('handlebars'),
-        PageMe = require('jquery.pageme'),
+        TablePagerPartialView = require("partial/TablePagerPartialView"),
         traitsHtml = require('text!partialtpl/enemies/traits.htm'),
 
         traitsTpl = Handlebars.compile(traitsHtml),
@@ -64,7 +65,7 @@
 
     return function (current, linked_data) {
 
-        var partials = [];
+        var pager = new TablePagerPartialView(current.traits, 12);
 
         this.initialize = function () {
             // Define a div wrapper for the view. The div wrapper is used to attach events.
@@ -75,6 +76,11 @@
             this.renderTraits();
 
             this.$el.html(traitsTpl(current));
+
+            // Render pager
+            this.$el.find('#pgTraits').html(pager.render().$el);
+
+            pager.setTableReference(this.$el.find('#tblTraits'));
 
             return this;
         };

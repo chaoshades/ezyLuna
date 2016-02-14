@@ -2,7 +2,9 @@ define(function (require) {
 
     "use strict";
 
-    var YEPCoreEngineTags = require("tag/yep-1-core-engine"),
+    var $ = require('jquery'),
+        _ = require('underscore'),
+        YEPCoreEngineTags = require("tag/yep-1-core-engine"),
         YEPBattleEngineCoreTags = require("tag/yep-3-battle-engine-core"),
         YEPAnimatedSideViewEnemiesTags = require("tag/yep-44-animated-sideview-enemies"),
 
@@ -15,7 +17,7 @@ define(function (require) {
     getStringFromNoteTags = function (notetags) {
         var result = "";
 
-        $.each(notetags, function (i, nt) {
+        _.each(notetags, function (nt) {
             var temp = _.find(tags, function (t) { return t.tag == nt.tag; });
             if (temp)
                 result += temp.parser.stringify(nt) + "\n";
@@ -27,7 +29,7 @@ define(function (require) {
     getNoteTagsFromString = function (notetags) {
         var results = [];
 
-        $.each(tags, function (i, t) {
+        _.each(tags, function (t) {
             var temp = t.parser.parse(t.tag, notetags);
             if (temp)
                 results.push(temp);

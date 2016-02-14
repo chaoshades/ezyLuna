@@ -28,9 +28,6 @@
         },
         'bootstrap': {
             deps: ['jquery']
-        },
-        'jquery.pageme': {
-            deps: ['jquery']
         }
     }
 
@@ -83,7 +80,7 @@ require(['jquery', 'bootstrap', 'handlebars', 'app/router'], function ($, Bootst
         var operators, result;
 
         if (arguments.length < 3) {
-            throw new Error("Handlerbars Helper 'compare' needs 2 parameters");
+            throw new Error("Handlebars Helper 'compare' needs 2 parameters");
         }
 
         if (options === undefined) {
@@ -105,7 +102,7 @@ require(['jquery', 'bootstrap', 'handlebars', 'app/router'], function ($, Bootst
         };
 
         if (!operators[operator]) {
-            throw new Error("Handlerbars Helper 'compare' doesn't know the operator " + operator);
+            throw new Error("Handlebars Helper 'compare' doesn't know the operator " + operator);
         }
 
         result = operators[operator](lvalue, rvalue);

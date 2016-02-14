@@ -3,6 +3,7 @@
     "use strict";
 
     var $ = require('jquery'),
+        _ = require('underscore'),
         Handlebars = require('handlebars'),
         dropItemsHtml = require('text!partialtpl/enemies/dropItems.htm'),
 
@@ -17,7 +18,6 @@
         };
 
         this.render = function () {
-
             if (current.dropItems) {
                 this.renderDropItems();
             }

@@ -3,6 +3,7 @@
     "use strict";
 
     var $ = require('jquery'),
+        _ = require('underscore'),
         Handlebars = require('handlebars'),
         battleSettingsHtml = require('text!partialtpl/enemies/battleSettings.htm'),
 
@@ -30,7 +31,7 @@
             var data = {
                 'current': current,
                 'animations': linked_data.animations
-            }
+            };
             this.$el.html(battleSettingsTpl(data));
 
             return this;

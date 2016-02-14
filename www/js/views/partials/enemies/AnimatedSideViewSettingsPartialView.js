@@ -3,6 +3,7 @@
     "use strict";
 
     var $ = require('jquery'),
+        _ = require('underscore'),
         Handlebars = require('handlebars'),
         animatedSideViewSettingsHtml = require('text!partialtpl/enemies/animatedSideViewSettings.htm'),
 

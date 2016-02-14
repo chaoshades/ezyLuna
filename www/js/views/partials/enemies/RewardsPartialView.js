@@ -3,6 +3,7 @@
     "use strict";
 
     var $ = require('jquery'),
+        _ = require('underscore'),
         Handlebars = require('handlebars'),
         rewardsHtml = require('text!partialtpl/enemies/rewards.htm'),
 
@@ -33,7 +34,6 @@
         };
 
         this.renderTags = function () {
-
             // Define new properties for tags display
             _.each(current.tags, function (t) {
                 if (t.tag == "exp") {

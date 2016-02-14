@@ -3,6 +3,7 @@
     "use strict";
 
     var $ = require('jquery'),
+        _ = require('underscore'),
         Handlebars = require('handlebars'),
         generalSettingsHtml = require('text!partialtpl/enemies/generalSettings.htm'),
 

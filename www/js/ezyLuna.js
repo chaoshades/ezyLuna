@@ -13,10 +13,10 @@ function pad(n, width, z) {
 };
 
 /**
- * 
- * @param {Number} tags: . 
- * @param {String} chkSelector: .
- * @param {String} tag: . 
+ * Set a basic tag
+ * @param {Number} tags: Tags array. 
+ * @param {String} chkSelector: Checkbox selector.
+ * @param {String} tag: Tag to create. 
  */
 function setTag(tags, chkSelector, tag) {
     if ($(chkSelector).is(':checked'))
@@ -24,11 +24,11 @@ function setTag(tags, chkSelector, tag) {
 }
 
 /**
- * 
- * @param {Number} tags: . 
- * @param {String} chkSelector: .
- * @param {String} tag: . 
- * @param {String} valSelector: .
+ * Set a tag with a value
+ * @param {Number} tags: Tags array. 
+ * @param {String} chkSelector: Checkbox selector.
+ * @param {String} tag: Tag to create. 
+ * @param {String} valSelector: Input value selector.
  */
 function setValueTag(tags, chkSelector, tag, valSelector) {
     var value = $(valSelector).val();
@@ -37,11 +37,11 @@ function setValueTag(tags, chkSelector, tag, valSelector) {
 }
 
 /**
- * 
- * @param {Number} tags: . 
- * @param {String} chkSelector: .
- * @param {String} tag: . 
- * @param {String} valSelector: .
+ * Set a tag with a percentage value
+ * @param {Number} tags: Tags array. 
+ * @param {String} chkSelector: Checkbox selector.
+ * @param {String} tag: Tag to create. 
+ * @param {String} valSelector: Input value selector.
  */
 function setPercentValueTag(tags, chkSelector, tag, valSelector) {
     var value = $(valSelector).val();
@@ -50,8 +50,8 @@ function setPercentValueTag(tags, chkSelector, tag, valSelector) {
 }
 
 /**
- * 
- * @param {Object} chk: .
+ * Enable/Disable inputs linked to a checkbox
+ * @param {Object} chk: Checkbox selector.
  */
 function enableInputs(chk) {
     var ctrl = $(chk).parent().next(),
@@ -82,6 +82,25 @@ function enableInputs(chk) {
         $(ctrl).attr(attr, attr);
     }
 }
+
+/**
+ * Clear active menu item from within container
+ * @param {Object} container: container object.
+ */
+function clearActiveMenuItem(container) {
+    $(container).find('.list-group > .active').removeClass('active');
+};
+
+/**
+ * Set active menu item from base url and id from within container
+ * @param {Object} container: container object.
+ * @param {String} hash: hash of the menu item to set active.
+ */
+function setActiveMenuItem(container, hash) {
+    clearActiveMenuItem(container);
+    $(container).find('.list-group a[href="' + hash + '"]').addClass('active');
+    $(container).find('.carousel .item:has(.list-group a.active)').addClass('active');
+};
 
 // Utils classes
 

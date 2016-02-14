@@ -5,7 +5,7 @@
     var $ = require('jquery'),
         Handlebars = require('handlebars'),
         dataAdapter = require('adapters/data'),
-        tagAdapter = require('adapters/tag'),
+        tagReader = require('app/tag-reader'),
         armorsHtml = require('text!tpl/armors.htm'),
 
         armorsTpl = Handlebars.compile(armorsHtml);

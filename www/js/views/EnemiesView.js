@@ -3,9 +3,10 @@
     "use strict";
 
     var $ = require('jquery'),
+        _ = require('underscore'),
         Handlebars = require('handlebars'),
-        PageMe = require('jquery.pageme'),
         tagReader = require('app/tag-reader'),
+        CarouselPartialView = require("partial/CarouselPartialView"),
         GeneralSettingsPartialView = require("partial/enemies/GeneralSettingsPartialView"),
         TraitsPartialView = require("partial/enemies/TraitsPartialView"),
         RewardsPartialView = require("partial/enemies/RewardsPartialView"),
@@ -16,12 +17,15 @@
         AnimatedSideViewSettingsPartialView = require("partial/enemies/AnimatedSideViewSettingsPartialView"),
         enemiesHtml = require('text!tpl/enemies.htm'),
 
-        enemiesTpl = Handlebars.compile(enemiesHtml);
+        enemiesTpl = Handlebars.compile(enemiesHtml),
+            
+        BASE_URL = "#enemies";
 
 
     return function (enemies, current, linked_data) {
 
         var partials = {
+            'carousel': new CarouselPartialView(BASE_URL, enemies, 15),
             'general_settings': new GeneralSettingsPartialView(current),
             'traits': new TraitsPartialView(current, linked_data),
             'rewards': new RewardsPartialView(current, linked_data),
@@ -36,87 +40,40 @@
             // Define a div wrapper for the view. The div wrapper is used to attach events.
             this.$el = $('<div/>');
 
-            // Click Event for sidebar buttons
-            this.$el.on('click', '.list-group-item', function () {
-                $('.list-group > .active').removeClass('active');
-                $(this).addClass('active');
-            });
-
             // Click Event for GenerateTags button
             var generateTagsCallback = this.generateTags;
             this.$el.on('click', '#btnGenerateTags', function () {
                 generateTagsCallback();
             });
-
-            // Carousel Navigation Events
-            this.$el.on('click', '.next-slider', function () {
-                $('.carousel').carousel('next');
-                return false;
-            });
-            this.$el.on('click', '.prev-slider', function () {
-                $('.carousel').carousel('prev');
-                return false;
-            });
         };
 
         this.render = function () {
-            var paged_enemies = [];
-            var temp = enemies.slice(0);
-            while (temp.length > 0) {
-                paged_enemies.push(temp.splice(0, 15));
-            }
-
             // Run parsers on note to read tags
             current.tags = tagReader.getNoteTagsFromString(current.note);
 
-            var renderedPartials = _.mapObject(partials, function (p, key) { return p.render().$el.html(); });
+            // Render view
+            this.$el.html(enemiesTpl(current));
 
-            var data = {
-                'partials': renderedPartials,
-                'paged_enemies': paged_enemies,
-                'current': current
-            };
-            this.$el.html(enemiesTpl(data));
+            // Render partial views
+            var wrapperReference = this.$el;
+            var renderedPartials = _.mapObject(partials, function (p, key) { wrapperReference.find('#' + key).html(p.render().$el); });
 
-            this.setActiveMenuItem(current.id);
-
+            // Initial Display
+            setActiveMenuItem(this.$el, BASE_URL + '/' + current.id);
             this.$el.find('#successTags').hide();
             this.$el.find('#errorNoTags').hide();
-
-            // Enables carousel
-            this.$el.find('.carousel').carousel({
-                interval: false
-            });
-            
-            this.$el.find('.carousel .item:has(.list-group a.active)').addClass('active');
-
-            // Adds pagers to tables
-            this.$el.find('#tblTraits').pageMe({ pagerSelector: this.$el.find('#pgTraits'), showPrevNext: true, hidePageNumbers: false, perPage: 12 });
-            this.$el.find('#tblActions').pageMe({ pagerSelector: this.$el.find('#pgActions'), showPrevNext: true, hidePageNumbers: false, perPage: 8 });
 
             return this;
         };
 
-        this.clearActiveMenuItem = function () {
-            this.$el.find('.list-group > .active').removeClass('active');
-        };
-
-        this.setActiveMenuItem = function (id) {
-            this.clearActiveMenuItem();
-            this.$el.find('.list-group a[href="#enemies/' + id + '"]').addClass('active');
-        };
-
         this.generateTags = function (setValueTagCallback, setTagCallback, setPercentValueTagCallback) {
             var tags = [];
-            // Core Settings
-            tags = tags.concat(partials['general_settings'].generateTags());
-            tags = tags.concat(partials['rewards'].generateTags());
 
-            // Battle Settings
-            tags = tags.concat(partials['battle_settings'].generateTags());
-
-            // Animated SideView Settings
-            tags = tags.concat(partials['animated_sideview_settings'].generateTags());
+            // Generate tags from every partials (if method is defined)
+            _.each(partials, function (p) {
+                if (p.generateTags)
+                    tags = tags.concat(p.generateTags());
+            });
 
             // Run parsers on tags to output notetags
             var output = tagReader.getStringFromNoteTags(tags);
