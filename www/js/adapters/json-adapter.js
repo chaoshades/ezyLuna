@@ -184,6 +184,28 @@ define(function (require) {
             });
         },
 
+        getWeaponSprites = function () {
+            var deferred = $.Deferred(),
+                results = null;
+
+            results = weapon_sprites;
+
+            deferred.resolve(results);
+
+            return deferred.promise();
+        },
+
+        getMotions = function () {
+            var deferred = $.Deferred(),
+                results = null;
+
+            results = motions;
+
+            deferred.resolve(results);
+
+            return deferred.promise();
+        },
+
         //getTypesByName = function (typeName) {
         //    return getSystem()
         //    .then(function (data) {
@@ -203,7 +225,64 @@ define(function (require) {
             return $.Deferred(function (deferred) {
                 deferred.resolve(_.compact(data));
             }).promise();
-        };
+        },
+        
+// Custom YEP Data
+
+weapon_sprites = [
+{ "id": 0, "name": "Nothing" },
+{ "id": 1, "name": "Dagger" },
+{ "id": 2, "name": "Sword" },
+{ "id": 3, "name": "Flail" },
+{ "id": 4, "name": "Axe" },
+{ "id": 5, "name": "Whip" },
+{ "id": 6, "name": "Staff" },
+{ "id": 7, "name": "Long Bow" },
+{ "id": 8, "name": "Crossbow" },
+{ "id": 9, "name": "Gun" },
+{ "id": 10, "name": "Claw" },
+{ "id": 11, "name": "Glove" },
+{ "id": 12, "name": "Spear" },
+{ "id": 13, "name": "Mace" },
+{ "id": 14, "name": "Rod" },
+{ "id": 15, "name": "Club" },
+{ "id": 16, "name": "Chain" },
+{ "id": 17, "name": "Sword#2" },
+{ "id": 18, "name": "Iron Pipe" },
+{ "id": 19, "name": "Slingshot" },
+{ "id": 20, "name": "Shotgun" },
+{ "id": 21, "name": "Rifle" },
+{ "id": 22, "name": "Chainsaw" },
+{ "id": 23, "name": "Railgun" },
+{ "id": 24, "name": "Stun Rod" },
+{ "id": 25, "name": "Book" },
+{ "id": 26, "name": "Custom" },
+{ "id": 27, "name": "Custom#2" },
+{ "id": 28, "name": "Custom#3" },
+{ "id": 29, "name": "Custom#4" },
+{ "id": 30, "name": "Custom#5" }
+],
+
+motions = [
+{ "id": "walk", "name": "Walk" },
+{ "id": "wait", "name": "Wait" },
+{ "id": "chant", "name": "Chant" },
+{ "id": "guard", "name": "Guard" },
+{ "id": "damage", "name": "Damage" },
+{ "id": "evade", "name": "Evade" },
+{ "id": "thrust", "name": "Thrust" },
+{ "id": "swing", "name": "Swing" },
+{ "id": "missile", "name": "Missile" },
+{ "id": "skill", "name": "Skill" },
+{ "id": "spell", "name": "Spell" },
+{ "id": "item", "name": "Item" },
+{ "id": "escape", "name": "Escape" },
+{ "id": "victory", "name": "Victory" },
+{ "id": "dying", "name": "Dying" },
+{ "id": "abnormal", "name": "Abnormal" },
+{ "id": "sleep", "name": "Sleep" },
+{ "id": "dead", "name": "Dead" }
+];
 
     // The public API
     return {
@@ -224,7 +303,9 @@ define(function (require) {
         getSystem: getSystem,
         getStateById: getStateById,
         getTypes: getTypes,
-        getTerms: getTerms
+        getTerms: getTerms,
+        getWeaponSprites: getWeaponSprites,
+        getMotions: getMotions
     };
 
 });

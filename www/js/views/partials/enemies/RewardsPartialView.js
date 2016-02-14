@@ -7,7 +7,10 @@
         Handlebars = require('handlebars'),
         rewardsHtml = require('text!partialtpl/enemies/rewards.htm'),
 
-        rewardsTpl = Handlebars.compile(rewardsHtml);
+        rewardsTpl = Handlebars.compile(rewardsHtml),
+            
+        EXP = "exp",
+        GOLD = "gold";
 
 
     return function (current) {
@@ -36,11 +39,11 @@
         this.renderTags = function () {
             // Define new properties for tags display
             _.each(current.tags, function (t) {
-                if (t.tag == "exp") {
+                if (t.tag == EXP) {
                     current.overrideexp = true;
                     current.exp = t.data;
                 }
-                else if (t.tag == "gold") {
+                else if (t.tag == GOLD) {
                     current.overridegold = true;
                     current.gold = t.data;
                 }
@@ -50,8 +53,8 @@
         this.generateTags = function () {
             var tags = [];
 
-            setValueTag(tags, '#chkExp', 'exp', '#numExp');
-            setValueTag(tags, '#chkGold', 'gold', '#numGold');
+            setValueTag(tags, '#chkExp', EXP, '#numExp');
+            setValueTag(tags, '#chkGold', GOLD, '#numGold');
 
             return tags;
         };

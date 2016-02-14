@@ -4,9 +4,9 @@
 
     var $ = require('jquery'),
         Handlebars = require('handlebars'),
-        basicHtml = require('text!parsertpl/basic.htm'),
+        basicPercentHtml = require('text!parsertpl/basicPercent.htm'),
 
-        basicTpl = Handlebars.compile(basicHtml);
+        basicPercentTpl = Handlebars.compile(basicPercentHtml);
 
 
     return function (tag) {
@@ -20,11 +20,11 @@
                 "tag": nt.tag,
                 "value": nt.data
             };
-            return basicTpl(data);
+            return basicPercentTpl(data);
         };
 
         this.parse = function (tagToParse, tags) {
-            var regex = new RegExp("<(" + tagToParse + "): ([\\w\\.]+)>"),
+            var regex = new RegExp("<(" + tagToParse + "): ([\\w\\.]+)%>"),
                 matches = null,
                 result = null;
 

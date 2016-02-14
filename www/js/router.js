@@ -90,9 +90,11 @@
                             dataAdapter.getStates(),
                             dataAdapter.getAnimations(),
                             dataAdapter.getTypes(),
-                            dataAdapter.getTerms()
-                        ).done(function (items, armors, weapons, skills, states, animations, types, terms) {
-                            var linked_data = { "items": items, "armors": armors, "weapons": weapons, "skills": skills, "states": states, "animations": animations, "types": types, "terms": terms };
+                            dataAdapter.getTerms(),
+                            dataAdapter.getWeaponSprites(),
+                            dataAdapter.getMotions()
+                        ).done(function (items, armors, weapons, skills, states, animations, types, terms, weapon_sprites, motions) {
+                            var linked_data = { "items": items, "armors": armors, "weapons": weapons, "skills": skills, "states": states, "animations": animations, "types": types, "terms": terms, "weapon_sprites": weapon_sprites, "motions": motions };
                             changeContent(new EnemiesView(enemies, current, linked_data));
                         });
                     })

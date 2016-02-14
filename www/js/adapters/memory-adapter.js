@@ -207,6 +207,28 @@
             return deferred.promise();
         },
 
+        getWeaponSprites = function () {
+            var deferred = $.Deferred(),
+                results = null;
+
+            results = weapon_sprites;
+
+            deferred.resolve(results);
+
+            return deferred.promise();
+        },
+
+        getMotions = function () {
+            var deferred = $.Deferred(),
+                results = null;
+
+            results = motions;
+
+            deferred.resolve(results);
+
+            return deferred.promise();
+        },
+
         //getTypesByName = function (typeName) {
         //    var deferred = $.Deferred(),
         //        results = null;
@@ -308,7 +330,62 @@ terms = {
 "commands": ["Fight", "Escape", "Attack", "Guard", "Item", "Skill", "Equip", "Status", "Formation", "Save", "Game End", "Options", "Weapon", "Armor", "Key Item", "Equip", "Optimize", "Clear", "New Game", "Continue", null, "To Title", "Cancel", null, "Buy", "Sell"],
 "params": ["Max HP", "Max MP", "Attack", "Defense", "M.Attack", "M.Defense", "Agility", "Luck", "Hit", "Evasion"],
 "messages": { "actionFailure": "There was no effect on %1!", "actorDamage": "%1 took %2 damage!", "actorDrain": "%1 was drained of %2 %3!", "actorGain": "%1 gained %2 %3!", "actorLoss": "%1 lost %2 %3!", "actorNoDamage": "%1 took no damage!", "actorNoHit": "Miss! %1 took no damage!", "actorRecovery": "%1 recovered %2 %3!", "alwaysDash": "Always Dash", "bgmVolume": "BGM Volume", "bgsVolume": "BGS Volume", "buffAdd": "%1's %2 went up!", "buffRemove": "%1's %2 returned to normal!", "commandRemember": "Command Remember", "counterAttack": "%1 counterattacked!", "criticalToActor": "A painful blow!!", "criticalToEnemy": "An excellent hit!!", "debuffAdd": "%1's %2 went down!", "defeat": "%1 was defeated.", "emerge": "%1 emerged!", "enemyDamage": "%1 took %2 damage!", "enemyDrain": "%1 was drained of %2 %3!", "enemyGain": "%1 gained %2 %3!", "enemyLoss": "%1 lost %2 %3!", "enemyNoDamage": "%1 took no damage!", "enemyNoHit": "Miss! %1 took no damage!", "enemyRecovery": "%1 recovered %2 %3!", "escapeFailure": "However, it was unable to escape!", "escapeStart": "%1 has started to escape!", "evasion": "%1 evaded the attack!", "expNext": "To Next %1", "expTotal": "Current %1", "file": "File", "levelUp": "%1 is now %2 %3!", "loadMessage": "Load which file?", "magicEvasion": "%1 nullified the magic!", "magicReflection": "%1 reflected the magic!", "meVolume": "ME Volume", "obtainExp": "%1 %2 received!", "obtainGold": "%1\\G found!", "obtainItem": "%1 found!", "obtainSkill": "%1 learned!", "partyName": "%1's Party", "possession": "Possession", "preemptive": "%1 got the upper hand!", "saveMessage": "Save to which file?", "seVolume": "SE Volume", "substitute": "%1 protected %2!", "surprise": "%1 was surprised!", "useItem": "%1 uses %2!", "victory": "%1 was victorious!" }
-};
+},
+
+weapon_sprites = [
+{ "id": 0, "name": "Nothing" },
+{ "id": 1, "name": "Dagger" },
+{ "id": 2, "name": "Sword" },
+{ "id": 3, "name": "Flail" },
+{ "id": 4, "name": "Axe" },
+{ "id": 5, "name": "Whip" },
+{ "id": 6, "name": "Staff" },
+{ "id": 7, "name": "Long Bow" },
+{ "id": 8, "name": "Crossbow" },
+{ "id": 9, "name": "Gun" },
+{ "id": 10, "name": "Claw" },
+{ "id": 11, "name": "Glove" },
+{ "id": 12, "name": "Spear" },
+{ "id": 13, "name": "Mace" },
+{ "id": 14, "name": "Rod" },
+{ "id": 15, "name": "Club" },
+{ "id": 16, "name": "Chain" },
+{ "id": 17, "name": "Sword#2" },
+{ "id": 18, "name": "Iron Pipe" },
+{ "id": 19, "name": "Slingshot" },
+{ "id": 20, "name": "Shotgun" },
+{ "id": 21, "name": "Rifle" },
+{ "id": 22, "name": "Chainsaw" },
+{ "id": 23, "name": "Railgun" },
+{ "id": 24, "name": "Stun Rod" },
+{ "id": 25, "name": "Book" },
+{ "id": 26, "name": "Custom" },
+{ "id": 27, "name": "Custom#2" },
+{ "id": 28, "name": "Custom#3" },
+{ "id": 29, "name": "Custom#4" },
+{ "id": 30, "name": "Custom#5" }
+],
+
+motions = [
+{ "id": "walk", "name": "Walk" },
+{ "id": "wait", "name": "Wait" },
+{ "id": "chant", "name": "Chant" },
+{ "id": "guard", "name": "Guard" },
+{ "id": "damage", "name": "Damage" },
+{ "id": "evade", "name": "Evade" },
+{ "id": "thrust", "name": "Thrust" },
+{ "id": "swing", "name": "Swing" },
+{ "id": "missile", "name": "Missile" },
+{ "id": "skill", "name": "Skill" },
+{ "id": "spell", "name": "Spell" },
+{ "id": "item", "name": "Item" },
+{ "id": "escape", "name": "Escape" },
+{ "id": "victory", "name": "Victory" },
+{ "id": "dying", "name": "Dying" },
+{ "id": "abnormal", "name": "Abnormal" },
+{ "id": "sleep", "name": "Sleep" },
+{ "id": "dead", "name": "Dead" }
+];
 
     // The public API
     return {
@@ -329,7 +406,9 @@ terms = {
         getAnimationById: getAnimationById,
         getSystem: getSystem,
         getTypes: getTypes,
-        getTerms: getTerms
+        getTerms: getTerms,
+        getWeaponSprites: getWeaponSprites,
+        getMotions: getMotions
     };
 
 });

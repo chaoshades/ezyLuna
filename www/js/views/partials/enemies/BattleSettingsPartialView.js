@@ -7,7 +7,10 @@
         Handlebars = require('handlebars'),
         battleSettingsHtml = require('text!partialtpl/enemies/battleSettings.htm'),
 
-        battleSettingsTpl = Handlebars.compile(battleSettingsHtml);
+        battleSettingsTpl = Handlebars.compile(battleSettingsHtml),
+            
+        REFLECT_ANIMATION_ID = "Reflect Animation ID",
+        SPRITE_CANNOT_MOVE = "Sprite Cannot Move";
 
 
     return function (current, linked_data) {
@@ -34,6 +37,9 @@
             };
             this.$el.html(battleSettingsTpl(data));
 
+            // Initial Display
+            openCollapse(this.$el.find('#collapseBattleSettings'));
+
             return this;
         };
 
@@ -42,10 +48,10 @@
 
             // Define new properties for tags display
             _.each(current.tags, function (t) {
-                if (t.tag == "Reflect Animation ID") {
+                if (t.tag == REFLECT_ANIMATION_ID) {
                     current.reflectAnimationID = t.data;
                 }
-                else if (t.tag == "Sprite Cannot Move") {
+                else if (t.tag == SPRITE_CANNOT_MOVE) {
                     current.spriteCannotMove = true;
                 }
             });
@@ -54,8 +60,8 @@
         this.generateTags = function () {
             var tags = [];
   
-            setValueTag(tags, '#chkReflectAnimation', 'Reflect Animation ID', '#ddlReflectAnimation');
-            setTag(tags, '#chkSpriteCannotMove', 'Sprite Cannot Move');
+            setValueTag(tags, '#chkReflectAnimation', REFLECT_ANIMATION_ID, '#ddlReflectAnimation');
+            setTag(tags, '#chkSpriteCannotMove', SPRITE_CANNOT_MOVE);
 
             return tags;
         };

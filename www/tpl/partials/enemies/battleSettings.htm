@@ -1,26 +1,28 @@
-﻿<h4>Battle Settings<span class="pull-right label label-info">YEP-Battle-Core</span></h4>
-{{#with current}}
-<div class="form-group">
-    <label for="ddlReflectAnimation">Reflect Animation:</label>
-    <div class="input-group">
-        <span class="input-group-addon">
-            <input id="chkReflectAnimation" type="checkbox" class="js_Tags" title="Overrides Reflect Animation" {{checkedIf reflectAnimationID}} />
-        </span>
-        <select id="ddlReflectAnimation" class="form-control" {{disabledIfNot reflectAnimationID}}>
-            {{#each ../animations}}
-            {{#compare id "==" ../../current.reflectAnimationID}}
-                <option value="{{id}}" selected>{{name}}</option>
-            {{/compare}}
-            {{#compare id "!=" ../../current.reflectAnimationID}}
-                <option value="{{id}}">{{name}}</option>
-            {{/compare}}
-            {{/each}}
-        </select>
+﻿<h4><a role="button" data-toggle="collapse" href="#collapseBattleSettings" aria-expanded="true" aria-controls="collapseBattleSettings">Battle Settings</a><span class="pull-right label label-info">YEP-Battle-Core</span></h4>
+<div id="collapseBattleSettings" class="collapse">
+    {{#with current}}
+    <div class="form-group">
+        <label for="ddlReflectAnimation">Reflect Animation:</label>
+        <div class="input-group">
+            <span class="input-group-addon">
+                <input id="chkReflectAnimation" type="checkbox" class="js_Tags" title="Overrides Reflect Animation" {{checkedIf reflectAnimationID}} />
+            </span>
+            <select id="ddlReflectAnimation" class="form-control" {{disabledIfNot reflectAnimationID}}>
+                {{#each ../animations}}
+                {{#compare id "==" ../../current.reflectAnimationID}}
+                    <option value="{{id}}" selected>{{name}}</option>
+                {{/compare}}
+                {{#compare id "!=" ../../current.reflectAnimationID}}
+                    <option value="{{id}}">{{name}}</option>
+                {{/compare}}
+                {{/each}}
+            </select>
+        </div>
     </div>
-</div>
-<div class="form-group">
-    <div class="checkbox checkbox-right">
-        <label for="chkSpriteCannotMove">Sprite Cannot Move:<input id="chkSpriteCannotMove" type="checkbox" {{checkedIf spriteCannotMove}} /></label>
+    <div class="form-group">
+        <div class="checkbox checkbox-right">
+            <label for="chkSpriteCannotMove">Sprite Cannot Move:<input id="chkSpriteCannotMove" type="checkbox" {{checkedIf spriteCannotMove}} /></label>
+        </div>
     </div>
+    {{/with}}
 </div>
-{{/with}}

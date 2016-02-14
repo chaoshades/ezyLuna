@@ -1,89 +1,458 @@
-﻿<h4>Animated SideView Settings<span class="pull-right label label-info">YEP-Animated-SideView-Enemies</span></h4>
-<div class="row">
-    <div class="col-xs-6 col-md-6">
-        <div class="form-group">
-            <label>Breathing:</label>
-            <div class="input-group">
-                <span class="input-group-addon">
-                    <input id="chkBreathing" type="checkbox" class="js_Tags" title="Enables Breathing" {{checkedIf breathing.enabled}} />
-                </span>
-                <div class="radio form-control" {{disabledIfNot breathing.enabled}}>
-                    <label class="radio-inline">
-                        <input type="radio" name="Breathing" id="radBreathing" {{disabledIfNot breathing.enabled}} {{checkedIf breathing.yes}} />
-                        Yes
-                    </label>
-                    <label class="radio-inline">
-                        <input type="radio" name="Breathing" id="radNoBreathing" {{disabledIfNot breathing.enabled}} {{checkedIf breathing.no}} />
-                        No
-                    </label>
+﻿<h4><a role="button" data-toggle="collapse" href="#collapseAnimatedSideViewSettings" aria-expanded="true" aria-controls="collapseAnimatedSideViewSettings">Animated SideView Settings</a><span class="pull-right label label-info">YEP-Animated-SideView-Enemies</span></h4>
+<div id="collapseAnimatedSideViewSettings" class="collapse">
+    {{#with current}}
+    <div class="row">
+        <div class="col-xs-6 col-md-6">
+            <div class="form-group">
+                <label>Breathing:</label>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <input id="chkBreathing" type="checkbox" class="js_Tags" title="Enables Breathing" {{checkedIf breathing.enabled}} />
+                    </span>
+                    <div class="radio form-control" {{disabledIfNot breathing.enabled}}>
+                        <label class="radio-inline">
+                            <input type="radio" name="Breathing" id="radBreathing" {{disabledIfNot breathing.enabled}} {{checkedIf breathing.yes}} />
+                            Yes
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="Breathing" id="radNoBreathing" {{disabledIfNot breathing.enabled}} {{checkedIf breathing.no}} />
+                            No
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-md-6">
+            <div class="form-group">
+                <label for="numBreathingSpeed">Breathing Speed:</label>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <input id="chkBreathingSpeed" type="checkbox" class="js_Tags" title="Enables Breathing Speed" {{checkedIf breathing.speed}} />
+                    </span>
+                    <input type="number" class="form-control" id="numBreathingSpeed" value="{{breathing.speed}}" {{readonlyIfNot breathing.speed}} />
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-xs-6 col-md-6">
-        <div class="form-group">
-            <label for="numBreathingSpeed">Breathing Speed:</label>
-            <div class="input-group">
-                <span class="input-group-addon">
-                    <input id="chkBreathingSpeed" type="checkbox" class="js_Tags" title="Enables Breathing Speed" {{checkedIf breathing.speed}} />
-                </span>
-                <input type="number" class="form-control" id="numBreathingSpeed" value="{{breathing.speed}}" {{readonlyIfNot breathing.speed}} />
+    <div class="row">
+        <div class="col-xs-6 col-md-6">
+            <div class="form-group">
+                <label for="numBreathingRateX">Breathing Rate X:</label>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <input id="chkBreathingRateX" type="checkbox" class="js_Tags" title="Enables Breathing Rate X" {{checkedIf breathing.rateX}} />
+                    </span>
+                    <input type="number" class="form-control" id="numBreathingRateX" value="{{breathing.rateX}}" {{readonlyIfNot breathing.rateX}} />
+                    <span class="input-group-addon">%</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-md-6">
+            <div class="form-group">
+                <label for="numBreathingRateY">Breathing Rate Y:</label>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <input id="chkBreathingRateY" type="checkbox" class="js_Tags" title="Enables Breathing Rate Y" {{checkedIf breathing.rateY}} />
+                    </span>
+                    <input type="number" class="form-control" id="numBreathingRateY" value="{{breathing.rateY}}" {{readonlyIfNot breathing.rateY}} />
+                    <span class="input-group-addon">%</span>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<div class="row">
-    <div class="col-xs-6 col-md-6">
-        <div class="form-group">
-            <label for="numBreathingRateX">Breathing Rate X:</label>
-            <div class="input-group">
-                <span class="input-group-addon">
-                    <input id="chkBreathingRateX" type="checkbox" class="js_Tags" title="Enables Breathing Rate X" {{checkedIf breathing.rateX}} />
-                </span>
-                <input type="number" class="form-control" id="numBreathingRateX" value="{{breathing.rateX}}" {{readonlyIfNot breathing.rateX}} />
-                <span class="input-group-addon">%</span>
+    <div class="form-group">
+        <div class="checkbox checkbox-right no-top">
+            <label for="chkFloating">Floating:<input id="chkFloating" type="checkbox" {{checkedIf floating.enabled}} /></label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6 col-md-6">
+            <div class="form-group">
+                <label for="numFloatingSpeed">Floating Speed:</label>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <input id="chkFloatingSpeed" type="checkbox" class="js_Tags" title="Enables Floating Speed" {{checkedIf floating.speed}} />
+                    </span>
+                    <input type="number" class="form-control" id="numFloatingSpeed" value="{{floating.speed}}" {{readonlyIfNot floating.speed}} />
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-md-6">
+            <div class="form-group">
+                <label for="numFloatingHeight">Floating Height:</label>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <input id="chkFloatingHeight" type="checkbox" class="js_Tags" title="Enables Floating Height" {{checkedIf floating.height}} />
+                    </span>
+                    <input type="number" class="form-control" id="numFloatingHeight" value="{{floating.height}}" {{readonlyIfNot floating.height}} />
+                </div>
             </div>
         </div>
     </div>
-    <div class="col-xs-6 col-md-6">
-        <div class="form-group">
-            <label for="numBreathingRateY">Breathing Rate Y:</label>
-            <div class="input-group">
-                <span class="input-group-addon">
-                    <input id="chkBreathingRateY" type="checkbox" class="js_Tags" title="Enables Breathing Rate Y" {{checkedIf breathing.rateY}} />
-                </span>
-                <input type="number" class="form-control" id="numBreathingRateY" value="{{breathing.rateY}}" {{readonlyIfNot breathing.rateY}} />
-                <span class="input-group-addon">%</span>
+    <div class="row">
+        <div class="col-xs-6 col-md-6">
+            <div class="form-group">
+                <label for="numScaleSprite">Scale Sprite:</label>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <input id="chkScaleSprite" type="checkbox" class="js_Tags" title="Enables Scale Sprite" {{checkedIf scale.rate}} />
+                    </span>
+                    <input type="number" class="form-control" id="numScaleSprite" value="{{scale.rate}}" {{readonlyIfNot scale.rate}} />
+                    <span class="input-group-addon">%</span>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<div class="form-group">
-    <div class="checkbox checkbox-right no-top">
-        <label for="chkFloating">Floating:<input id="chkFloating" type="checkbox" {{checkedIf floating.enabled}} /></label>
-    </div>
-</div>
-<div class="row">
-    <div class="col-xs-6 col-md-6">
-        <div class="form-group">
-            <label for="numFloatingSpeed">Floating Speed:</label>
-            <div class="input-group">
-                <span class="input-group-addon">
-                    <input id="chkFloatingSpeed" type="checkbox" class="js_Tags" title="Enables Floating Speed" {{checkedIf floating.speed}} />
-                </span>
-                <input type="number" class="form-control" id="numFloatingSpeed" value="{{floating.speed}}" {{readonlyIfNot floating.speed}} />
+    <div class="row">
+        <div class="col-xs-6 col-md-6">
+            <div class="form-group">
+                <label for="numScaleSpriteWidth">Scale Sprite Width:</label>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <input id="chkScaleSpriteWidth" type="checkbox" class="js_Tags" title="Enables Scale Sprite Width" {{checkedIf scale.width}} />
+                    </span>
+                    <input type="number" class="form-control" id="numScaleSpriteWidth" value="{{scale.width}}" {{readonlyIfNot scale.width}} />
+                    <span class="input-group-addon">%</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-md-6">
+            <div class="form-group">
+                <label for="numScaleSpriteHeight">Scale Sprite Height:</label>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <input id="chkScaleSpriteHeight" type="checkbox" class="js_Tags" title="Enables Scale Sprite Height" {{checkedIf scale.height}} />
+                    </span>
+                    <input type="number" class="form-control" id="numScaleSpriteHeight" value="{{scale.height}}" {{readonlyIfNot scale.height}} />
+                    <span class="input-group-addon">%</span>
+                </div>
             </div>
         </div>
     </div>
-    <div class="col-xs-6 col-md-6">
-        <div class="form-group">
-            <label for="numFloatingHeight">Floating Height:</label>
-            <div class="input-group">
-                <span class="input-group-addon">
-                    <input id="chkFloatingHeight" type="checkbox" class="js_Tags" title="Enables Floating Height" {{checkedIf floating.height}} />
-                </span>
-                <input type="number" class="form-control" id="numFloatingHeight" value="{{floating.height}}" {{readonlyIfNot floating.height}} />
+    <div class="form-group">
+        <label for="txtSideViewBattler">Sideview Battler:</label>
+        <div class="input-group">
+            <span class="input-group-addon">
+                <input id="chkSideViewBattler" type="checkbox" class="js_Tags" title="Enables Sideview Battler" {{checkedIf sideview.battler}} />
+            </span>
+            <input type="text" class="form-control" id="txtSideViewBattler" value="{{sideview.battler}}" {{readonlyIfNot sideview.battler}} />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6 col-md-6">
+            <div class="form-group">
+                <label for="numSideViewAnchorX_x">Sideview Anchor X:</label>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <input id="chkSideViewAnchorX" type="checkbox" class="js_Tags" title="Enables Sideview Anchor X" {{checkedIf sideview.anchorX}} />
+                    </span>
+                    <span class="input-group-addon">X</span>
+                    <input type="number" class="form-control" id="numSideViewAnchorX_x" value="{{sideview.anchorX.x}}" {{readonlyIfNot sideview.anchorX}} />
+                    <span class="input-group-addon">Y</span>
+                    <input type="number" class="form-control" id="numSideViewAnchorX_y" value="{{sideview.anchorX.y}}" {{readonlyIfNot sideview.anchorX}} />
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-md-6">
+            <div class="form-group">
+                <label for="numSideViewAnchorY_x">Sideview Anchor Y:</label>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <input id="chkSideViewAnchorY" type="checkbox" class="js_Tags" title="Enables Sideview Anchor Y" {{checkedIf sideview.anchorY}} />
+                    </span>
+                    <span class="input-group-addon">X</span>
+                    <input type="number" class="form-control" id="numSideViewAnchorY_x" value="{{sideview.anchorY.x}}" {{readonlyIfNot sideview.anchorY}} />
+                    <span class="input-group-addon">Y</span>
+                    <input type="number" class="form-control" id="numSideViewAnchorY_y" value="{{sideview.anchorY.y}}" {{readonlyIfNot sideview.anchorY}} />
+                </div>
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-xs-6 col-md-6">
+            <div class="form-group">
+                <label for="numSideViewWidth">Sideview Width:</label>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <input id="chkSideViewWidth" type="checkbox" class="js_Tags" title="Enables Sideview Width" {{checkedIf sideview.width}} />
+                    </span>
+                    <input type="number" class="form-control" id="numSideViewWidth" value="{{sideview.width}}" {{readonlyIfNot sideview.width}} />
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-md-6">
+            <div class="form-group">
+                <label for="numSideViewHeight">Sideview Height:</label>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <input id="chkSideViewHeight" type="checkbox" class="js_Tags" title="Enables Sideview Height" {{checkedIf sideview.height}} />
+                    </span>
+                    <input type="number" class="form-control" id="numSideViewHeight" value="{{sideview.height}}" {{readonlyIfNot sideview.height}} />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6 col-md-6">
+            <div class="form-group">
+                <label>Sideview Collapse:</label>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <input id="chkSideViewCollapse" type="checkbox" class="js_Tags" title="Enables Sideview Collapse" {{checkedIf sideview.collapse}} />
+                    </span>
+                    <div class="radio form-control" {{disabledIfNot sideview.collapse.enabled}}>
+                        <label class="radio-inline">
+                            <input type="radio" name="Collapse" id="radCollapse" {{disabledIfNot sideview.collapse.enabled}} {{checkedIf sideview.collapse.yes}} />
+                            Yes
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="Collapse" id="radNoCollapse" {{disabledIfNot sideview.collapse.enabled}} {{checkedIf sideview.collapse.no}} />
+                            No
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-md-6">
+            <div class="form-group">
+                <label for="numSideViewFrameSpeed">Sideview Frame Speed:</label>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <input id="chkSideViewFrameSpeed" type="checkbox" class="js_Tags" title="Enables Sideview Frame Speed" {{checkedIf sideview.frameSpeed}} />
+                    </span>
+                    <input type="number" class="form-control" id="numSideViewFrameSpeed" value="{{sideview.frameSpeed}}" {{readonlyIfNot sideview.frameSpeed}} />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6 col-md-6">
+            <div class="form-group">
+                <label for="ddlSideViewAttackMotion">Sideview Attack Motion:</label>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <input id="chkSideViewAttackMotion" type="checkbox" class="js_Tags" title="Enables Sideview Attack Motion" {{checkedIf sideview.attackMotionID}} />
+                    </span>
+                    <select id="ddlSideViewAttackMotion" class="form-control" {{disabledIfNot sideview.attackMotionID}}>
+                        {{#each ../motions}}
+                        {{#compare id "==" ../../current.sideview.attackMotionID}}
+                            <option value="{{id}}" selected>{{name}}</option>
+                        {{/compare}}
+                        {{#compare id "!=" ../../current.sideview.attackMotionID}}
+                            <option value="{{id}}">{{name}}</option>
+                        {{/compare}}
+                        {{/each}}
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="ddlSideViewWeaponSprite">Sideview Weapon:</label>
+        <div class="input-group">
+            <span class="input-group-addon">
+                <input id="chkSideViewWeapon" type="checkbox" class="js_Tags" title="Enables Sideview Weapon" {{checkedIf sideview.weapon}} />
+            </span>
+            <span class="input-group-addon">Sprite</span>
+            <select id="ddlSideViewWeaponSprite" class="form-control" {{disabledIfNot sideview.weapon}}>
+                {{#each ../weapon_sprites}}
+                {{#compare id "==" ../../current.sideview.weapon.spriteID}}
+                    <option value="{{id}}" selected>{{name}}</option>
+                {{/compare}}
+                {{#compare id "!=" ../../current.sideview.weapon.spriteID}}
+                    <option value="{{id}}">{{name}}</option>
+                {{/compare}}
+                {{/each}}
+            </select>
+            <span class="input-group-addon">Motion</span>
+            <select id="ddlSideViewWeaponMotion" class="form-control" {{disabledIfNot sideview.weapon}}>
+                {{#each ../weapon_motions}}
+                {{#compare id "==" ../../current.sideview.weapon.motionID}}
+                    <option value="{{id}}" selected>{{name}}</option>
+                {{/compare}}
+                {{#compare id "!=" ../../current.sideview.weapon.motionID}}
+                    <option value="{{id}}">{{name}}</option>
+                {{/compare}}
+                {{/each}}
+            </select>
+            <span class="input-group-addon">Animation</span>
+            <select id="ddlSideViewWeaponAnimation" class="form-control" {{disabledIfNot sideview.weapon}}>
+                {{#each ../weapon_animations}}
+                {{#compare id "==" ../../current.sideview.weapon.animationID}}
+                    <option value="{{id}}" selected>{{name}}</option>
+                {{/compare}}
+                {{#compare id "!=" ../../current.sideview.weapon.animationID}}
+                    <option value="{{id}}">{{name}}</option>
+                {{/compare}}
+                {{/each}}
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-4 col-md-4">
+            <div class="form-group">
+                <label for="ddlSideViewIdleMotion">Sideview Idle Motion:</label>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <input id="chkSideViewIdleMotion" type="checkbox" class="js_Tags" title="Enables Sideview Idle Motion" {{checkedIf sideview.idleMotionID}} />
+                    </span>
+                    <select id="ddlSideViewIdleMotion" class="form-control" {{disabledIfNot sideview.idleMotionID}}>
+                        {{#each ../motions}}
+                        {{#compare id "==" ../../current.sideview.idleMotionID}}
+                            <option value="{{id}}" selected>{{name}}</option>
+                        {{/compare}}
+                        {{#compare id "!=" ../../current.sideview.idleMotionID}}
+                            <option value="{{id}}">{{name}}</option>
+                        {{/compare}}
+                        {{/each}}
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-4 col-md-4">
+            <div class="form-group">
+                <label for="ddlSideViewDamageMotion">Sideview Damage Motion:</label>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <input id="chkSideViewDamageMotion" type="checkbox" class="js_Tags" title="Enables Sideview Damage Motion" {{checkedIf sideview.damageMotionID}} />
+                    </span>
+                    <select id="ddlSideViewDamageMotion" class="form-control" {{disabledIfNot sideview.damageMotionID}}>
+                        {{#each ../motions}}
+                        {{#compare id "==" ../../current.sideview.damageMotionID}}
+                            <option value="{{id}}" selected>{{name}}</option>
+                        {{/compare}}
+                        {{#compare id "!=" ../../current.sideview.damageMotionID}}
+                            <option value="{{id}}">{{name}}</option>
+                        {{/compare}}
+                        {{/each}}
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-4 col-md-4">
+            <div class="form-group">
+                <label for="ddlSideViewEvadeMotion">Sideview Evade Motion:</label>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <input id="chkSideViewEvadeMotion" type="checkbox" class="js_Tags" title="Enables Sideview Evade Motion" {{checkedIf sideview.evadeMotionID}} />
+                    </span>
+                    <select id="ddlSideViewEvadeMotion" class="form-control" {{disabledIfNot sideview.evadeMotionID}}>
+                        {{#each ../motions}}
+                        {{#compare id "==" ../../current.sideview.evadeMotionID}}
+                            <option value="{{id}}" selected>{{name}}</option>
+                        {{/compare}}
+                        {{#compare id "!=" ../../current.sideview.evadeMotionID}}
+                            <option value="{{id}}">{{name}}</option>
+                        {{/compare}}
+                        {{/each}}
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-4 col-md-4">
+            <div class="form-group">
+                <label for="ddlSideViewEscapeMotion">Sideview Escape Motion:</label>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <input id="chkSideViewEscapeMotion" type="checkbox" class="js_Tags" title="Enables Sideview Escape Motion" {{checkedIf sideview.escapeMotionID}} />
+                    </span>
+                    <select id="ddlSideViewEscapeMotion" class="form-control" {{disabledIfNot sideview.escapeMotionID}}>
+                        {{#each ../motions}}
+                        {{#compare id "==" ../../current.sideview.escapeMotionID}}
+                            <option value="{{id}}" selected>{{name}}</option>
+                        {{/compare}}
+                        {{#compare id "!=" ../../current.sideview.escapeMotionID}}
+                            <option value="{{id}}">{{name}}</option>
+                        {{/compare}}
+                        {{/each}}
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-4 col-md-4">
+            <div class="form-group">
+                <label for="ddlSideViewGuardMotion">Sideview Guard Motion:</label>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <input id="chkSideViewGuardMotion" type="checkbox" class="js_Tags" title="Enables Sideview Guard Motion" {{checkedIf sideview.guardMotionID}} />
+                    </span>
+                    <select id="ddlSideViewGuardMotion" class="form-control" {{disabledIfNot sideview.guardMotionID}}>
+                        {{#each ../motions}}
+                        {{#compare id "==" ../../current.sideview.guardMotionID}}
+                            <option value="{{id}}" selected>{{name}}</option>
+                        {{/compare}}
+                        {{#compare id "!=" ../../current.sideview.guardMotionID}}
+                            <option value="{{id}}">{{name}}</option>
+                        {{/compare}}
+                        {{/each}}
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-4 col-md-4">
+            <div class="form-group">
+                <label for="ddlSideViewAbnormalMotion">Sideview Abnormal Motion:</label>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <input id="chkSideViewAbnormalMotion" type="checkbox" class="js_Tags" title="Enables Sideview Abnormal Motion" {{checkedIf sideview.abnormalMotionID}} />
+                    </span>
+                    <select id="ddlSideViewAbnormalMotion" class="form-control" {{disabledIfNot sideview.abnormalMotionID}}>
+                        {{#each ../motions}}
+                        {{#compare id "==" ../../current.sideview.abnormalMotionID}}
+                            <option value="{{id}}" selected>{{name}}</option>
+                        {{/compare}}
+                        {{#compare id "!=" ../../current.sideview.abnormalMotionID}}
+                            <option value="{{id}}">{{name}}</option>
+                        {{/compare}}
+                        {{/each}}
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-4 col-md-4">
+            <div class="form-group">
+                <label for="ddlSideViewSleepMotion">Sideview Sleep Motion:</label>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <input id="chkSideViewSleepMotion" type="checkbox" class="js_Tags" title="Enables Sideview Sleep Motion" {{checkedIf sideview.sleepMotionID}} />
+                    </span>
+                    <select id="ddlSideViewSleepMotion" class="form-control" {{disabledIfNot sideview.sleepMotionID}}>
+                        {{#each ../motions}}
+                        {{#compare id "==" ../../current.sideview.sleepMotionID}}
+                            <option value="{{id}}" selected>{{name}}</option>
+                        {{/compare}}
+                        {{#compare id "!=" ../../current.sideview.sleepMotionID}}
+                            <option value="{{id}}">{{name}}</option>
+                        {{/compare}}
+                        {{/each}}
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-4 col-md-4">
+            <div class="form-group">
+                <label for="ddlSideViewDyingMotion">Sideview Dying Motion:</label>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <input id="chkSideViewDyingMotion" type="checkbox" class="js_Tags" title="Enables Sideview Dying Motion" {{checkedIf sideview.dyingMotionID}} />
+                    </span>
+                    <select id="ddlSideViewDyingMotion" class="form-control" {{disabledIfNot sideview.dyingMotionID}}>
+                        {{#each ../motions}}
+                        {{#compare id "==" ../../current.sideview.dyingMotionID}}
+                            <option value="{{id}}" selected>{{name}}</option>
+                        {{/compare}}
+                        {{#compare id "!=" ../../current.sideview.dyingMotionID}}
+                            <option value="{{id}}">{{name}}</option>
+                        {{/compare}}
+                        {{/each}}
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/with}}
 </div>

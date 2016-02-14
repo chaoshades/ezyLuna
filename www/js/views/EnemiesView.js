@@ -33,7 +33,7 @@
             'action_patterns': new ActionPatternsPartialView(current, linked_data),
             'note': new NotePartialView(current),
             'battle_settings': new BattleSettingsPartialView(current, linked_data),
-            'animated_sideview_settings': new AnimatedSideViewSettingsPartialView(current)
+            'animated_sideview_settings': new AnimatedSideViewSettingsPartialView(current, linked_data)
         };
 
         this.initialize = function () {

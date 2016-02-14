@@ -50,12 +50,35 @@ function setPercentValueTag(tags, chkSelector, tag, valSelector) {
 }
 
 /**
+ * Set a tag with an array of values
+ * @param {Number} tags: Tags array. 
+ * @param {String} chkSelector: Checkbox selector.
+ * @param {String} tag: Tag to create. 
+ * @param {Array} valSelectosr: Array of input value selectors.
+ */
+function setValuesTag(tags, chkSelector, tag, valSelectors) {
+    var values = [];
+    for (var i = 0; i < valSelectors.length; i++) {
+        var value = $(valSelectors[i]).val();
+        if (value)
+            values.push(value);
+    }
+
+    if ($(chkSelector).is(':checked') && values)
+        tags.push(new NoteTag(tag, values));
+}
+
+/**
  * Enable/Disable inputs linked to a checkbox
  * @param {Object} chk: Checkbox selector.
  */
 function enableInputs(chk) {
-    var ctrl = $(chk).parent().next(),
-        attr = null;
+    var attr = null;
+
+    ctrl = $(chk).parent().siblings('input, select');
+    if (ctrl.length === 0)
+        ctrl = $(chk).parent().next();
+
     if ($(chk).is(':checked')) {
         if (ctrl.is('select') || ctrl.hasClass('radio') || ctrl.hasClass('checkbox'))
             attr = 'disabled';
@@ -102,12 +125,21 @@ function setActiveMenuItem(container, hash) {
     $(container).find('.carousel .item:has(.list-group a.active)').addClass('active');
 };
 
+/**
+ * Open collapsed div if any checkbox is checked
+ * @param {Object} collapsed_div: collapsed div object.
+ */
+function openCollapse(collapsed_div) {
+    if ($(collapsed_div).find('input[type=checkbox].js_Tags').is(':checked'))
+        $(collapsed_div).addClass('in');
+};
+
 // Utils classes
 
 /**
  * The Tag class defines a tag.
  * @param {String} tag: Name of the tag. 
- * @param {String} data: The data contained in the tag (JSON).
+ * @param {String/Array/Object} data: The data contained in the tag.
  */
 function NoteTag(tag, data) {
     this.tag = String(tag);

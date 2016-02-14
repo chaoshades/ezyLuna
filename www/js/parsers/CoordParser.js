@@ -4,9 +4,9 @@
 
     var $ = require('jquery'),
         Handlebars = require('handlebars'),
-        basicHtml = require('text!parsertpl/basic.htm'),
+        coordHtml = require('text!parsertpl/coord.htm'),
 
-        basicTpl = Handlebars.compile(basicHtml);
+        coordTpl = Handlebars.compile(coordHtml);
 
 
     return function (tag) {
@@ -18,19 +18,19 @@
         this.stringify = function (nt) {
             var data = {
                 "tag": nt.tag,
-                "value": nt.data
+                "values": nt.data
             };
-            return basicTpl(data);
+            return coordTpl(data);
         };
 
         this.parse = function (tagToParse, tags) {
-            var regex = new RegExp("<(" + tagToParse + "): ([\\w\\.]+)>"),
+            var regex = new RegExp("<(" + tagToParse + "): ([\\d]+).([\\d]+)>"),
                 matches = null,
                 result = null;
 
             matches = tags.match(regex);
             if (matches)
-                result = new NoteTag(matches[1], matches[2]);
+                result = new NoteTag(matches[1], [matches[2], matches[3]]);
 
             return result;
         };
