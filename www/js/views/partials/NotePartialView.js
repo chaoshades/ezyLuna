@@ -4,6 +4,7 @@
 
     var $ = require('jquery'),
         Handlebars = require('handlebars'),
+        tagReader = require('app/tag-reader'),
         noteHtml = require('text!partialtpl/note.htm'),
 
         noteTpl = Handlebars.compile(noteHtml);
@@ -17,6 +18,15 @@
         };
 
         this.render = function () {
+            // Run parsers on note to filter tags that aren't parsed
+            var tags = tagReader.getNoteTagsFromString(current.note),
+                output = tagReader.getStringFromNoteTags(tags),
+                temp = current.note;
+
+            _.each(output.split("\n"), function (t) {
+                temp = temp.replace(t, "");
+            });
+            current.note = temp;
 
             this.$el.html(noteTpl(current));
 
