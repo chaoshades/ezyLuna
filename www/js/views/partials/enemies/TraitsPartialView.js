@@ -39,21 +39,18 @@
             "Dual Wield"
         ],
         SPECIAL_FLAGS = [
-            "",
             "Auto Battle",
             "Guard",
             "Substitute",
             "Preserve TP"
         ],
         COLLAPSE_EFFECTS = [
-            "",
             "Normal",
             "Boss",
             "Instant",
             "No Disappear"
         ],
         PARTY_ABILITIES = [
-            "",
             "Encounter Half",
             "Encounter None",
             "Cancel Surprise",
@@ -161,19 +158,19 @@
                 // Special flag trait only
                 if (trait.code === 62) {
                     // Get flag
-                    trait.label = SPECIAL_FLAGS[trait.value];
+                    trait.label = SPECIAL_FLAGS[trait.dataId];
                 }
 
                 // Collapse effect trait only
                 if (trait.code === 63) {
                     // Get effect
-                    trait.label = COLLAPSE_EFFECTS[trait.value];
+                    trait.label = COLLAPSE_EFFECTS[trait.dataId];
                 }
 
                 // Party ability trait only
                 if (trait.code === 64) {
                     // Get ability
-                    trait.label = PARTY_ABILITIES[trait.value];
+                    trait.label = PARTY_ABILITIES[trait.dataId];
                 }
             }
         };
