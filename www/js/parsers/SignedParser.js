@@ -4,9 +4,9 @@
 
     var $ = require('jquery'),
         Handlebars = require('handlebars'),
-        basicHtml = require('text!parsertpl/basic.htm'),
+        signedHtml = require('text!parsertpl/signed.htm'),
 
-        basicTpl = Handlebars.compile(basicHtml);
+        signedTpl = Handlebars.compile(signedHtml);
 
 
     return function (tag) {
@@ -18,13 +18,13 @@
         this.stringify = function (tagToStringify, tagData) {
             var data = {
                 "tag": tagToStringify,
-                "value": tagData
+                "signed_value": tagData
             };
-            return basicTpl(data);
+            return signedTpl(data);
         };
 
         this.parse = function (tagToParse, tags) {
-            var regex = new RegExp("<(" + tagToParse + "): ([\\w\\.]+)>"),
+            var regex = new RegExp("<(" + tagToParse + "): ([\\-\\+][\\w\\.]+)>"),
                 matches = null,
                 result = null;
 

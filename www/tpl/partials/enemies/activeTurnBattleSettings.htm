@@ -1,0 +1,29 @@
+﻿<h4><a role="button" data-toggle="collapse" href="#collapseActiveTurnBattleSettings" aria-expanded="true" aria-controls="collapseActiveTurnBattleSettings">ATB Settings</a><span class="pull-right label label-info">YEP-Battle-ATB</span></h4>
+<div id="collapseActiveTurnBattleSettings" class="collapse">
+    <div class="form-group">
+        <label for="numAtbStart">ATB Start:</label>
+        <div class="input-group">
+            <span class="input-group-addon">
+                <input id="chkAtbStart" type="checkbox" class="js_Tags" title="Enables ATB Start" {{checkedIf atbStart}} />
+            </span>
+            <span class="input-group-addon">Unit</span>
+            <input type="number" class="form-control" id="numAtbStart" value="{{atbStart.unit}}" {{readonlyIfNot atbStart}} />
+            <span class="input-group-addon">Rate</span>
+            <input type="number" class="form-control" id="numAtbStartRate" value="{{atbStart.rate}}" {{readonlyIfNot atbStart}} />
+            <span class="input-group-addon">%</span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="numAtbTurn">ATB Turn:</label>
+        <div class="input-group">
+            <span class="input-group-addon">
+                <input id="chkAtbTurn" type="checkbox" class="js_Tags" title="Enables ATB Turn" {{checkedIf atbTurn}} />
+            </span>
+            <span class="input-group-addon">Unit</span>
+            <input type="number" class="form-control" id="numAtbTurn" value="{{atbTurn.unit}}" {{readonlyIfNot atbTurn}} />
+            <span class="input-group-addon">Rate</span>
+            <input type="number" class="form-control" id="numAtbTurnRate" value="{{atbTurn.rate}}" {{readonlyIfNot atbTurn}} />
+            <span class="input-group-addon">%</span>
+        </div>
+    </div>
+</div>

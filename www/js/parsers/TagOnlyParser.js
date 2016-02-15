@@ -15,9 +15,9 @@
             // Nothing to do
         };
 
-        this.stringify = function (nt) {
+        this.stringify = function (tagToStringify) {
             var data = {
-                "tag": nt.tag
+                "tag": tagToStringify
             };
             return basicTpl(data);
         };

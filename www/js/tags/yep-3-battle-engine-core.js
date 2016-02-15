@@ -6,8 +6,8 @@
         TagOnlyParser = require("parser/TagOnlyParser");
 
     return [
-            { tag: "Reflect Animation ID", parser: new BasicParser() },
-            { tag: "Sprite Cannot Move", parser: new TagOnlyParser() }
+            new TagParser("Reflect Animation ID", new BasicParser()),
+            new TagParser("Sprite Cannot Move", new TagOnlyParser())
     ];
 
 });

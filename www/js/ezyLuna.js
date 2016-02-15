@@ -69,6 +69,22 @@ function setValuesTag(tags, chkSelector, tag, valSelectors) {
 }
 
 /**
+ * Set a tag with a signed value
+ * @param {Number} tags: Tags array. 
+ * @param {String} chkSelector: Checkbox selector.
+ * @param {String} tag: Tag to create. 
+ * @param {String} valSelector: Input value selector.
+ */
+function setSignedValueTag(tags, chkSelector, tag, valSelector) {
+    var value = $(valSelector).val();
+    if ($(chkSelector).is(':checked') && value) {
+        if (value > 0)
+            value = "+" + value;
+        tags.push(new NoteTag(tag, value));
+    }
+}
+
+/**
  * Enable/Disable inputs linked to a checkbox
  * @param {Object} chk: Checkbox selector.
  */
@@ -144,5 +160,20 @@ function openCollapse(collapsed_div) {
 function NoteTag(tag, data) {
     this.tag = String(tag);
     this.data = data;
+}
+
+/**
+ * The TagParser class defines a tag parser.
+ * @param {String} id: Unique id of the tag. 
+ * @param {Object} data: The parser object.
+ * @param {String} tag: Name of the tag (optional). 
+ */
+function TagParser(id, parser, tag) {
+    this.id = String(id);
+    this.parser = parser;
+    if (tag)
+        this.tag = String(tag);
+    else
+        this.tag = this.id;
 }
 

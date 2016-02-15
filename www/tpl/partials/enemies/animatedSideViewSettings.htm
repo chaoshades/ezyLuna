@@ -454,5 +454,58 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-xs-6 col-md-6">
+            <div class="form-group">
+                <label>Sideview Show Shadow:</label>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <input id="chkSideViewShowShadow" type="checkbox" class="js_Tags" title="Enables Show Shadow" {{checkedIf sideview.shadow.enabled}} />
+                    </span>
+                    <div class="radio form-control" {{disabledIfNot sideview.shadow.enabled}}>
+                        <label class="radio-inline">
+                            <input type="radio" name="Shadow" id="radShowShadow" {{disabledIfNot sideview.shadow.enabled}} {{checkedIf sideview.shadow.show}} />
+                            Show
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="Shadow" id="radHideShadow" {{disabledIfNot sideview.shadow.enabled}} {{checkedIf sideview.shadow.hide}} />
+                            Hide
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+     </div>
+     <div class="row">
+        <div class="col-xs-6 col-md-6">
+            <div class="form-group">
+                <label for="numSideViewShadowWidth">Sideview Shadow Width:</label>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <input id="chkSideViewShadowWidth" type="checkbox" class="js_Tags" title="Enables Sideview Shadow Width" {{checkedIf sideview.shadow.width}} />
+                    </span>
+                    <input type="number" class="form-control" id="numSideViewShadowWidth" value="{{sideview.width}}" {{readonlyIfNot sideview.shadow.width}} />
+                    <span class="input-group-addon">%</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-md-6">
+            <div class="form-group">
+                <label for="numSideViewShadowHeight">Sideview Shadow Height:</label>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <input id="chkSideViewShadowHeight" type="checkbox" class="js_Tags" title="Enables Sideview Shadow Height" {{checkedIf sideview.shadow.height}} />
+                    </span>
+                    <input type="number" class="form-control" id="numSideViewShadowHeight" value="{{sideview.height}}" {{readonlyIfNot sideview.shadow.height}} />
+                    <span class="input-group-addon">%</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="checkbox checkbox-right no-top">
+            <label for="chkHideSideViewWeapon">Hide Sideview Weapon:<input id="chkHideSideViewWeapon" type="checkbox" {{checkedIf sideview.weapon.enabled}} /></label>
+        </div>
+    </div>
     {{/with}}
 </div>

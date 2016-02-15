@@ -5,16 +5,16 @@
     var BasicParser = require("parser/BasicParser");
 
     return [
-            { tag: "hp", parser: new BasicParser() },
-            { tag: "mp", parser: new BasicParser() },
-            { tag: "atk", parser: new BasicParser() },
-            { tag: "def", parser: new BasicParser() },
-            { tag: "mat", parser: new BasicParser() },
-            { tag: "mdf", parser: new BasicParser() },
-            { tag: "agi", parser: new BasicParser() },
-            { tag: "luk", parser: new BasicParser() },
-            { tag: "exp", parser: new BasicParser() },
-            { tag: "gold", parser: new BasicParser() }
+            new TagParser("hp", new BasicParser()),
+            new TagParser("mp", new BasicParser()),
+            new TagParser("atk", new BasicParser()),
+            new TagParser("def", new BasicParser()),
+            new TagParser("mat", new BasicParser()),
+            new TagParser("mdf", new BasicParser()),
+            new TagParser("agi", new BasicParser()),
+            new TagParser("luk", new BasicParser()),
+            new TagParser("exp", new BasicParser()),
+            new TagParser("gold", new BasicParser())
     ];
 
 });

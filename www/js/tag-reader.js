@@ -7,20 +7,24 @@ define(function (require) {
         YEPCoreEngineTags = require("tag/yep-1-core-engine"),
         YEPBattleEngineCoreTags = require("tag/yep-3-battle-engine-core"),
         YEPAnimatedSideViewEnemiesTags = require("tag/yep-44-animated-sideview-enemies"),
+        YEPBattleSystemActiveTurnBattleTags = require("tag/yep-24-battle-system-active-turn-battle"),
+        YEPVisualATBGaugeTags = require("tag/yep-31-visual-atb-gauge"),
 
         tags = _.flatten([
             YEPCoreEngineTags,
             YEPBattleEngineCoreTags,
-            YEPAnimatedSideViewEnemiesTags
+            YEPAnimatedSideViewEnemiesTags,
+            YEPBattleSystemActiveTurnBattleTags,
+            YEPVisualATBGaugeTags
         ]),
 
     getStringFromNoteTags = function (notetags) {
         var result = "";
 
         _.each(notetags, function (nt) {
-            var temp = _.find(tags, function (t) { return t.tag == nt.tag; });
+            var temp = _.find(tags, function (t) { return t.id == nt.tag; });
             if (temp)
-                result += temp.parser.stringify(nt) + "\n";
+                result += temp.parser.stringify(temp.tag, nt.data) + "\n";
         });
 
         return result.trim();

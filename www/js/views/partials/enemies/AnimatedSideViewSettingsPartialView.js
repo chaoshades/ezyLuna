@@ -37,7 +37,12 @@
         SIDEVIEW_GUARD_MOTION = "Sideview Guard Motion",
         SIDEVIEW_ABNORMAL_MOTION = "Sideview Abnormal Motion",
         SIDEVIEW_SLEEP_MOTION = "Sideview Sleep Motion",
-        SIDEVIEW_DYING_MOTION = "Sideview Dying Motion";
+        SIDEVIEW_DYING_MOTION = "Sideview Dying Motion",
+        SIDEVIEW_SHOW_SHADOW = "Sideview Show Shadow",
+        SIDEVIEW_HIDE_SHADOW = "Sideview Hide Shadow",
+        SIDEVIEW_SHADOW_WIDTH = "Sideview Shadow Width",
+        SIDEVIEW_SHADOW_HEIGHT = "Sideview Shadow Height",
+        HIDE_SIDEVIEW_WEAPON = "Hide Sideview Weapon";
 
 
     return function (current, linked_data) {
@@ -79,6 +84,7 @@
             current.scale = {};
             current.sideview = {};
             current.sideview.weapon = {};
+            current.sideview.shadow = {};
 
             // Define new properties for tags display
             _.each(current.tags, function (t) {
@@ -190,6 +196,23 @@
                 else if (t.tag == SIDEVIEW_DYING_MOTION) {
                     current.sideview.dyingMotionID = t.data;
                 }
+                else if (t.tag == SIDEVIEW_SHOW_SHADOW) {
+                    current.sideview.shadow.enabled = true;
+                    current.sideview.shadow.show = true;
+                }
+                else if (t.tag == SIDEVIEW_HIDE_SHADOW) {
+                    current.sideview.shadow.enabled = true;
+                    current.sideview.shadow.hide = true;
+                }
+                else if (t.tag == SIDEVIEW_SHADOW_WIDTH) {
+                    current.sideview.shadow.width = t.data;
+                }
+                else if (t.tag == SIDEVIEW_SHADOW_HEIGHT) {
+                    current.sideview.shadow.height = t.data;
+                }
+                else if (t.tag == HIDE_SIDEVIEW_WEAPON) {
+                    current.sideview.weapon.enabled = true;
+                }
             });
         };
 
@@ -232,6 +255,13 @@
             setValueTag(tags, '#chkSideViewAbnormalMotion', SIDEVIEW_ABNORMAL_MOTION, '#ddlSideViewAbnormalMotion');
             setValueTag(tags, '#chkSideViewSleepMotion', SIDEVIEW_SLEEP_MOTION, '#ddlSideViewSleepMotion');
             setValueTag(tags, '#chkSideViewDyingMotion', SIDEVIEW_DYING_MOTION, '#ddlSideViewDyingMotion');
+            if ($('#chkSideViewShowShadow').is(':checked')) {
+                setTag(tags, '#radShowShadow', SIDEVIEW_SHOW_SHADOW);
+                setTag(tags, '#radHideShadow', SIDEVIEW_HIDE_SHADOW);
+            }
+            setValueTag(tags, '#chkSideViewShadowWidth', SIDEVIEW_SHADOW_WIDTH, '#numSideViewShadowWidth');
+            setValueTag(tags, '#chkSideViewShadowHeight', SIDEVIEW_SHADOW_HEIGHT, '#numSideViewShadowHeight');
+            setTag(tags, '#chkHideSideViewWeapon', HIDE_SIDEVIEW_WEAPON);
 
             return tags;
         };

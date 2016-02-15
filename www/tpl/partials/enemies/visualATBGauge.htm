@@ -1,0 +1,30 @@
+﻿<h4><a role="button" data-toggle="collapse" href="#collapseVisualATBGauge" aria-expanded="true" aria-controls="collapseVisualATBGauge">ATB Gauge</a><span class="pull-right label label-info">YEP-Visual-ATB-Gauge</span></h4>
+<div id="collapseVisualATBGauge" class="collapse">
+    <div class="form-group">
+        <label>Show ATB Gauge:</label>
+        <div class="input-group">
+            <span class="input-group-addon">
+                <input id="chkShowAtbGauge" type="checkbox" class="js_Tags" title="Enables Show ATB Gauge" {{checkedIf atbGauge.enabled}} />
+            </span>
+            <div class="radio form-control" {{disabledIfNot atbGauge.enabled}}>
+                <label class="radio-inline">
+                    <input type="radio" name="ATBGauge" id="radShowAtbGauge" {{disabledIfNot atbGauge.enabled}} {{checkedIf atbGauge.show}} />
+                    Show
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="ATBGauge" id="radHideAtbGauge" {{disabledIfNot atbGauge.enabled}} {{checkedIf atbGauge.hide}} />
+                    Hide
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="numAtbTurn">ATB Gauge Width:</label>
+        <div class="input-group">
+            <span class="input-group-addon">
+                <input id="chkAtbGaugeWidth" type="checkbox" class="js_Tags" title="Enables ATB Gauge Width" {{checkedIf atbGaugeWidth}} />
+            </span>
+            <input type="number" class="form-control" id="numAtbGaugeWidth" value="{{atbGaugeWidth}}" {{readonlyIfNot atbGaugeWidth}} />
+        </div>
+    </div>
+</div>

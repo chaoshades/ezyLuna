@@ -44,8 +44,6 @@
         };
 
         this.renderTags = function () {
-            current.overrideparams = _.range(8).map(function () { return false });
-
             // Define new properties for tags display
             _.each(current.tags, function (t) {
                 if (t.tag == REFLECT_ANIMATION_ID) {

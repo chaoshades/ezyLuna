@@ -15,10 +15,10 @@
             // Nothing to do
         };
 
-        this.stringify = function (nt) {
+        this.stringify = function (tagToStringify, tagData) {
             var data = {
-                "tag": nt.tag,
-                "values": nt.data
+                "tag": tagToStringify,
+                "values": tagData
             };
             return basicArrayTpl(data);
         };

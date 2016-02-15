@@ -15,6 +15,8 @@
         NotePartialView = require("partial/NotePartialView"),
         BattleSettingsPartialView = require("partial/enemies/BattleSettingsPartialView"),
         AnimatedSideViewSettingsPartialView = require("partial/enemies/AnimatedSideViewSettingsPartialView"),
+        ActiveTurnBattleSettingsPartialView = require("partial/enemies/ActiveTurnBattleSettingsPartialView"),
+        VisualATBGaugePartialView = require("partial/enemies/VisualATBGaugePartialView"),
         enemiesHtml = require('text!tpl/enemies.htm'),
 
         enemiesTpl = Handlebars.compile(enemiesHtml),
@@ -33,7 +35,9 @@
             'action_patterns': new ActionPatternsPartialView(current, linked_data),
             'note': new NotePartialView(current),
             'battle_settings': new BattleSettingsPartialView(current, linked_data),
-            'animated_sideview_settings': new AnimatedSideViewSettingsPartialView(current, linked_data)
+            'animated_sideview_settings': new AnimatedSideViewSettingsPartialView(current, linked_data),
+            'active_turn_battle_settings': new ActiveTurnBattleSettingsPartialView(current),
+            'visual_atb_gauge': new VisualATBGaugePartialView(current)
         };
 
         this.initialize = function () {
