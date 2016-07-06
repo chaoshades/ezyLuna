@@ -1,0 +1,73 @@
+﻿define(function (require) {
+
+    "use strict";
+
+    var $ = require('jquery'),
+        _ = require('underscore'),
+        Handlebars = require('handlebars'),
+        chargeTurnBattleSettingsHtml = require('text!partialtpl/enemies/chargeTurnBattleSettings.htm'),
+
+        chargeTurnBattleSettingsTpl = Handlebars.compile(chargeTurnBattleSettingsHtml),
+            
+        CTB_ICON = "CTB Icon",
+        CTB_BORDER_COLOR = "CTB Border Color",
+        CTB_BACKGROUND_COLOR = "CTB Background Color";
+
+
+    return function (current, linked_data) {
+
+        this.initialize = function () {
+            // Define a div wrapper for the view. The div wrapper is used to attach events.
+            this.$el = $('<div/>');
+
+            // Click Event for checkboxes that enables tags
+            this.$el.on('click', '.js_Tags', function () {
+                enableInputs(this);
+            });
+
+        };
+
+        this.render = function () {
+            if (current.tags) {
+                this.renderTags();
+            }
+
+            this.$el.html(chargeTurnBattleSettingsTpl(current));
+
+            // Initial Display
+            openCollapse(this.$el.find('#collapseChargeTurnBattleSettings'));
+
+            return this;
+        };
+
+        this.renderTags = function () {
+            // Define new properties for tags display
+            _.each(current.tags, function (t) {
+                if (t.tag == CTB_ICON) {
+                    current.ctbIcon = t.data;
+                }
+                else if (t.tag == CTB_BORDER_COLOR) {
+                    current.ctbBorderColor = t.data;
+                }
+                else if (t.tag == CTB_BACKGROUND_COLOR) {
+                    current.ctbBackgroundColor = t.data;
+                }
+            });
+        };
+
+        this.generateTags = function () {
+            var tags = [];
+  
+            setValueTag(tags, '#chkCtbIcon', CTB_ICON, '#numCtbIcon');
+            setValueTag(tags, '#chkCtbBorderColor', CTB_BORDER_COLOR, '#numCtbBorderColor');
+            setValueTag(tags, '#chkCtbBackgroundColor', CTB_BACKGROUND_COLOR, '#numCtbBackgroundColor');
+
+            return tags;
+        };
+
+        this.initialize();
+
+    };
+
+});
+

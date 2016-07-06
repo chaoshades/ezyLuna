@@ -251,10 +251,10 @@
         <label for="ddlSideViewWeaponSprite">Sideview Weapon:</label>
         <div class="input-group">
             <span class="input-group-addon">
-                <input id="chkSideViewWeapon" type="checkbox" class="js_Tags" title="Enables Sideview Weapon" {{checkedIf sideview.weapon}} />
+                <input id="chkSideViewWeapon" type="checkbox" class="js_Tags" title="Enables Sideview Weapon" {{checkedIf sideview.weapon.enabled}} />
             </span>
             <span class="input-group-addon">Sprite</span>
-            <select id="ddlSideViewWeaponSprite" class="form-control" {{disabledIfNot sideview.weapon}}>
+            <select id="ddlSideViewWeaponSprite" class="form-control" {{disabledIfNot sideview.weapon.enabled}}>
                 {{#each ../weapon_sprites}}
                 {{#compare id "==" ../../current.sideview.weapon.spriteID}}
                     <option value="{{id}}" selected>{{name}}</option>
@@ -265,7 +265,7 @@
                 {{/each}}
             </select>
             <span class="input-group-addon">Motion</span>
-            <select id="ddlSideViewWeaponMotion" class="form-control" {{disabledIfNot sideview.weapon}}>
+            <select id="ddlSideViewWeaponMotion" class="form-control" {{disabledIfNot sideview.weapon.enabled}}>
                 {{#each ../weapon_motions}}
                 {{#compare id "==" ../../current.sideview.weapon.motionID}}
                     <option value="{{id}}" selected>{{name}}</option>
@@ -276,7 +276,7 @@
                 {{/each}}
             </select>
             <span class="input-group-addon">Animation</span>
-            <select id="ddlSideViewWeaponAnimation" class="form-control" {{disabledIfNot sideview.weapon}}>
+            <select id="ddlSideViewWeaponAnimation" class="form-control" {{disabledIfNot sideview.weapon.enabled}}>
                 {{#each ../weapon_animations}}
                 {{#compare id "==" ../../current.sideview.weapon.animationID}}
                     <option value="{{id}}" selected>{{name}}</option>

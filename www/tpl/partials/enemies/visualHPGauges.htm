@@ -1,0 +1,66 @@
+﻿<h4><a role="button" data-toggle="collapse" href="#collapseVisualHPGauges" aria-expanded="true" aria-controls="collapseVisualHPGauges">HP Gauges</a><span class="pull-right label label-info">YEP-Visual-HP-Gauges</span></h4>
+<div id="collapseVisualHPGauges" class="collapse">
+    <div class="form-group">
+        <label>Show HP Gauge:</label>
+        <div class="input-group">
+            <span class="input-group-addon">
+                <input id="chkShowHpGauge" type="checkbox" class="js_Tags" title="Enables Show HP Gauge" {{checkedIf hpGauge.enabled}} />
+            </span>
+            <div class="radio form-control" {{disabledIfNot hpGauge.enabled}}>
+                <label class="radio-inline">
+                    <input type="radio" name="HPGauge" id="radShowHpGauge" {{disabledIfNot hpGauge.enabled}} {{checkedIf hpGauge.show}} />
+                    Show
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="HPGauge" id="radHideHpGauge" {{disabledIfNot hpGauge.enabled}} {{checkedIf hpGauge.hide}} />
+                    Hide
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="numHpGaugeHeight">HP Gauge Height:</label>
+        <div class="input-group">
+            <span class="input-group-addon">
+                <input id="chkHpGaugeHeight" type="checkbox" class="js_Tags" title="Enables HP Gauge Height" {{checkedIf hpGaugeHeight}} />
+            </span>
+            <input type="number" class="form-control" id="numHpGaugeHeight" value="{{hpGaugeHeight}}" {{readonlyIfNot hpGaugeHeight}} />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="numHpGaugeWidth">HP Gauge Width:</label>
+        <div class="input-group">
+            <span class="input-group-addon">
+                <input id="chkHpGaugeWidth" type="checkbox" class="js_Tags" title="Enables HP Gauge Width" {{checkedIf hpGaugeWidth}} />
+            </span>
+            <input type="number" class="form-control" id="numHpGaugeWidth" value="{{hpGaugeWidth}}" {{readonlyIfNot hpGaugeWidth}} />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="numHpGaugeBackColor">HP Gauge Back Color:</label>
+        <div class="input-group">
+            <span class="input-group-addon">
+                <input id="chkHpGaugeBackColor" type="checkbox" class="js_Tags" title="Enables HP Gauge Back Color" {{checkedIf hpGaugeBackColor}} />
+            </span>
+            <input type="number" class="form-control" id="numHpGaugeBackColor" value="{{hpGaugeBackColor}}" {{readonlyIfNot hpGaugeBackColor}} />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="numHpGaugeColor1">HP Gauge Color 1:</label>
+        <div class="input-group">
+            <span class="input-group-addon">
+                <input id="chkHpGaugeColor1" type="checkbox" class="js_Tags" title="Enables HP Gauge Color 1" {{checkedIf hpGaugeColor1}} />
+            </span>
+            <input type="number" class="form-control" id="numHpGaugeColor1" value="{{hpGaugeColor1}}" {{readonlyIfNot hpGaugeColor1}} />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="numHpGaugeColor2">HP Gauge Color 2:</label>
+        <div class="input-group">
+            <span class="input-group-addon">
+                <input id="chkHpGaugeColor2" type="checkbox" class="js_Tags" title="Enables HP Gauge Color 2" {{checkedIf hpGaugeColor2}} />
+            </span>
+            <input type="number" class="form-control" id="numHpGaugeColor2" value="{{hpGaugeColor2}}" {{readonlyIfNot hpGaugeColor2}} />
+        </div>
+    </div>
+</div>

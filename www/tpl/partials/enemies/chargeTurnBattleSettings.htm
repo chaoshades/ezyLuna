@@ -1,0 +1,30 @@
+﻿<h4><a role="button" data-toggle="collapse" href="#collapseChargeTurnBattleSettings" aria-expanded="true" aria-controls="collapseChargeTurnBattleSettings">CTB Gauge</a><span class="pull-right label label-info">YEP-Battle-CTB</span></h4>
+<div id="collapseChargeTurnBattleSettings" class="collapse">
+    <div class="form-group">
+        <label for="numCtbIcon">CTB Icon:</label>
+        <div class="input-group">
+            <span class="input-group-addon">
+                <input id="chkCtbIcon" type="checkbox" class="js_Tags" title="Enables CTB Icon" {{checkedIf ctbIcon}} />
+            </span>
+            <input type="number" class="form-control" id="numCtbIcon" value="{{ctbIcon}}" {{readonlyIfNot ctbIcon}} />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="numCtbBorderColor">CTB Border Color:</label>
+        <div class="input-group">
+            <span class="input-group-addon">
+                <input id="chkCtbBorderColor" type="checkbox" class="js_Tags" title="Enables CTB Border Color" {{checkedIf ctbBorderColor}} />
+            </span>
+            <input type="number" class="form-control" id="numCtbBorderColor" value="{{ctbBorderColor}}" {{readonlyIfNot ctbBorderColor}} />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="numCtbBackgroundColor">CTB Background Color:</label>
+        <div class="input-group">
+            <span class="input-group-addon">
+                <input id="chkCtbBackgroundColor" type="checkbox" class="js_Tags" title="Enables CTB Background Color" {{checkedIf ctbBackgroundColor}} />
+            </span>
+            <input type="number" class="form-control" id="numCtbBackgroundColor" value="{{ctbBackgroundColor}}" {{readonlyIfNot ctbBackgroundColor}} />
+        </div>
+    </div>
+</div>

@@ -17,6 +17,10 @@
         AnimatedSideViewSettingsPartialView = require("partial/enemies/AnimatedSideViewSettingsPartialView"),
         ActiveTurnBattleSettingsPartialView = require("partial/enemies/ActiveTurnBattleSettingsPartialView"),
         VisualATBGaugePartialView = require("partial/enemies/VisualATBGaugePartialView"),
+        ChargeTurnBattleSettingsPartialView = require("partial/enemies/ChargeTurnBattleSettingsPartialView"),
+        VisualHPGaugesPartialView = require("partial/enemies/VisualHPGaugesPartialView"),
+        BuffsStatesPartialView = require("partial/enemies/BuffsStatesSettingsPartialView"),
+        DamageSettingsPartialView = require("partial/enemies/DamageSettingsPartialView"),
         enemiesHtml = require('text!tpl/enemies.htm'),
 
         enemiesTpl = Handlebars.compile(enemiesHtml),
@@ -37,7 +41,11 @@
             'battle_settings': new BattleSettingsPartialView(current, linked_data),
             'animated_sideview_settings': new AnimatedSideViewSettingsPartialView(current, linked_data),
             'active_turn_battle_settings': new ActiveTurnBattleSettingsPartialView(current),
-            'visual_atb_gauge': new VisualATBGaugePartialView(current)
+            'visual_atb_gauge': new VisualATBGaugePartialView(current),
+            'charge_turn_battle_settings': new ChargeTurnBattleSettingsPartialView(current),
+            'visual_hp_gauges': new VisualHPGaugesPartialView(current),
+            'buffs_states': new BuffsStatesPartialView(current),
+            'damage_settings': new DamageSettingsPartialView(current)
         };
 
         this.initialize = function () {

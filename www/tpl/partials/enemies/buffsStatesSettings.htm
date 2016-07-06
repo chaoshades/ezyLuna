@@ -1,0 +1,200 @@
+﻿<h4><a role="button" data-toggle="collapse" href="#collapseBuffsStatesSettings" aria-expanded="true" aria-controls="collapseBuffsStatesSettings">Buffs & States Settings</a><span class="pull-right label label-info">YEP-Buffs-States-Core</span></h4>
+<div id="collapseBuffsStatesSettings" class="collapse">
+    <div class="row">
+        <div class="col-xs-6 col-md-6">
+            <div class="form-group">
+                <label for="numMaxHPBuff">Max HP Buff:</label>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <input id="chkMaxHPBuff" type="checkbox" class="js_Tags" title="Enables Max HP Buff" {{checkedIf maxbuffparams.[0]}} />
+                    </span>
+                    <input type="number" class="form-control" id="numMaxHPBuff" value="{{maxbuffparams.[0]}}" {{readonlyIfNot maxbuffparams.[0]}} />
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-md-6">
+            <div class="form-group">
+                <label for="numMaxMPBuff">Max MP Buff:</label>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <input id="chkMaxMPBuff" type="checkbox" class="js_Tags" title="Enables Max MP Buff" {{checkedIf maxbuffparams.[1]}} />
+                    </span>
+                    <input type="number" class="form-control" id="numMaxMPBuff" value="{{maxbuffparams.[1]}}" {{readonlyIfNot maxbuffparams.[1]}} />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6 col-md-6">
+            <div class="form-group">
+                <label for="numMaxAtkBuff">Max Attack Buff:</label>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <input id="chkMaxAtkBuff" type="checkbox" class="js_Tags" title="Enables Max Attack Buff" {{checkedIf maxbuffparams.[2]}} />
+                    </span>
+                    <input type="number" class="form-control" id="numMaxAtkBuff" value="{{maxbuffparams.[2]}}" {{readonlyIfNot maxbuffparams.[2]}} />
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-md-6">
+            <div class="form-group">
+                <label for="numMaxDefBuff">Max Defense Buff:</label>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <input id="chkMaxDefBuff" type="checkbox" class="js_Tags" title="Enables Max Defense Buff" {{checkedIf maxbuffparams.[3]}} />
+                    </span>
+                    <input type="number" class="form-control" id="numMaxDefBuff" value="{{maxbuffparams.[3]}}" {{readonlyIfNot maxbuffparams.[3]}} />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6 col-md-6">
+            <div class="form-group">
+                <label for="numMaxMatBuff">Max M.Attack Buff:</label>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <input id="chkMaxMatBuff" type="checkbox" class="js_Tags" title="Enables Max M.Attack Buff" {{checkedIf maxbuffparams.[4]}} />
+                    </span>
+                    <input type="number" class="form-control" id="numMaxMatBuff" value="{{maxbuffparams.[4]}}" {{readonlyIfNot maxbuffparams.[4]}} />
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-md-6">
+            <div class="form-group">
+                <label for="numMaxMdfBuff">Max M.Defense Buff:</label>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <input id="chkMaxMdfBuff" type="checkbox" class="js_Tags" title="Enables Max M.Defense Buff" {{checkedIf maxbuffparams.[5]}} />
+                    </span>
+                    <input type="number" class="form-control" id="numMaxMdfBuff" value="{{maxbuffparams.[5]}}" {{readonlyIfNot maxbuffparams.[5]}} />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6 col-md-6">
+            <div class="form-group">
+                <label for="numMaxAgiBuff">Max Agility Buff:</label>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <input id="chkMaxAgiBuff" type="checkbox" class="js_Tags" title="Enables Max Agility Buff" {{checkedIf maxbuffparams.[6]}} />
+                    </span>
+                    <input type="number" class="form-control" id="numMaxAgiBuff" value="{{maxbuffparams.[6]}}" {{readonlyIfNot maxbuffparams.[6]}} />
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-md-6">
+            <div class="form-group">
+                <label for="numMaxLukBuff">Max Luck Buff:</label>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <input id="chkMaxLukBuff" type="checkbox" class="js_Tags" title="Enables Max Luck Buff" {{checkedIf maxbuffparams.[7]}} />
+                    </span>
+                    <input type="number" class="form-control" id="numMaxLukBuff" value="{{maxbuffparams.[7]}}" {{readonlyIfNot maxbuffparams.[7]}} />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6 col-md-6">
+            <div class="form-group">
+                <label for="numMaxHPDebuff">Max HP Debuff:</label>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <input id="chkMaxHPDebuff" type="checkbox" class="js_Tags" title="Enables Max HP Debuff" {{checkedIf maxdebuffparams.[0]}} />
+                    </span>
+                    <input type="number" class="form-control" id="numMaxHPDebuff" value="{{maxdebuffparams.[0]}}" {{readonlyIfNot maxdebuffparams.[0]}} />
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-md-6">
+            <div class="form-group">
+                <label for="numMaxMPDebuff">Max MP Debuff:</label>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <input id="chkMaxMPDebuff" type="checkbox" class="js_Tags" title="Enables Max MP Debuff" {{checkedIf maxdebuffparams.[1]}} />
+                    </span>
+                    <input type="number" class="form-control" id="numMaxMPDebuff" value="{{maxdebuffparams.[1]}}" {{readonlyIfNot maxdebuffparams.[1]}} />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6 col-md-6">
+            <div class="form-group">
+                <label for="numMaxAtkDebuff">Max Attack Debuff:</label>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <input id="chkMaxAtkDebuff" type="checkbox" class="js_Tags" title="Enables Max Attack Debuff" {{checkedIf maxdebuffparams.[2]}} />
+                    </span>
+                    <input type="number" class="form-control" id="numMaxAtkDebuff" value="{{maxdebuffparams.[2]}}" {{readonlyIfNot maxdebuffparams.[2]}} />
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-md-6">
+            <div class="form-group">
+                <label for="numMaxDefDebuff">Max Defense Debuff:</label>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <input id="chkMaxDefDebuff" type="checkbox" class="js_Tags" title="Enables Max Defense Debuff" {{checkedIf maxdebuffparams.[3]}} />
+                    </span>
+                    <input type="number" class="form-control" id="numMaxDefDebuff" value="{{maxdebuffparams.[3]}}" {{readonlyIfNot maxdebuffparams.[3]}} />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6 col-md-6">
+            <div class="form-group">
+                <label for="numMaxMatDebuff">Max M.Attack Debuff:</label>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <input id="chkMaxMatDebuff" type="checkbox" class="js_Tags" title="Enables Max M.Attack Debuff" {{checkedIf maxdebuffparams.[4]}} />
+                    </span>
+                    <input type="number" class="form-control" id="numMaxMatDebuff" value="{{maxdebuffparams.[4]}}" {{readonlyIfNot maxdebuffparams.[4]}} />
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-md-6">
+            <div class="form-group">
+                <label for="numMaxMdfDebuff">Max M.Defense Debuff:</label>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <input id="chkMaxMdfDebuff" type="checkbox" class="js_Tags" title="Enables Max M.Defense Debuff" {{checkedIf maxdebuffparams.[5]}} />
+                    </span>
+                    <input type="number" class="form-control" id="numMaxMdfDebuff" value="{{maxdebuffparams.[5]}}" {{readonlyIfNot maxdebuffparams.[5]}} />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6 col-md-6">
+            <div class="form-group">
+                <label for="numMaxAgiDebuff">Max Agility Debuff:</label>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <input id="chkMaxAgiDebuff" type="checkbox" class="js_Tags" title="Enables Max Agility Debuff" {{checkedIf maxdebuffparams.[6]}} />
+                    </span>
+                    <input type="number" class="form-control" id="numMaxAgiDebuff" value="{{maxdebuffparams.[6]}}" {{readonlyIfNot maxdebuffparams.[6]}} />
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-md-6">
+            <div class="form-group">
+                <label for="numMaxLukDebuff">Max Luck Debuff:</label>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <input id="chkMaxLukDebuff" type="checkbox" class="js_Tags" title="Enables Max Luck Debuff" {{checkedIf maxdebuffparams.[7]}} />
+                    </span>
+                    <input type="number" class="form-control" id="numMaxLukDebuff" value="{{maxdebuffparams.[7]}}" {{readonlyIfNot maxdebuffparams.[7]}} />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="checkbox checkbox-right no-top">
+            <label for="chkShowStateTurn">Show State Turn:<input id="chkShowStateTurn" type="checkbox" {{checkedIf showStateTurn.enabled}} /></label>
+        </div>
+    </div>
+</div>

@@ -9,13 +9,21 @@ define(function (require) {
         YEPAnimatedSideViewEnemiesTags = require("tag/yep-44-animated-sideview-enemies"),
         YEPBattleSystemActiveTurnBattleTags = require("tag/yep-24-battle-system-active-turn-battle"),
         YEPVisualATBGaugeTags = require("tag/yep-31-visual-atb-gauge"),
+        YEPBattleSystemChargeTurnBattleTags = require("tag/yep-38-battle-system-charge-turn-battle"),
+        YEPVisualHPGaugesTags = require("tag/yep-30-visual-hp-gauges"),
+        YEPBuffsStatesCoreTags = require("tag/yep-50-buffs-states-core"),
+        YEPDamageCoreTags = require("tag/yep-25-damage-core"),
 
         tags = _.flatten([
             YEPCoreEngineTags,
             YEPBattleEngineCoreTags,
             YEPAnimatedSideViewEnemiesTags,
             YEPBattleSystemActiveTurnBattleTags,
-            YEPVisualATBGaugeTags
+            YEPVisualATBGaugeTags,
+            YEPBattleSystemChargeTurnBattleTags,
+            YEPVisualHPGaugesTags,
+            YEPBuffsStatesCoreTags,
+            YEPDamageCoreTags
         ]),
 
     getStringFromNoteTags = function (notetags) {

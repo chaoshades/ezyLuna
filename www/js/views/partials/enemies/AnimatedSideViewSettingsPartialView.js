@@ -162,6 +162,7 @@
                     current.sideview.attackMotionID = t.data;
                 }
                 else if (t.tag == SIDEVIEW_WEAPON) {
+                    current.sideview.weapon.enabled = true;
                     current.sideview.weapon.spriteID = t.data[0];
                     if (t.length > 1) {
                         current.sideview.weapon.motionID = t.data[1];
