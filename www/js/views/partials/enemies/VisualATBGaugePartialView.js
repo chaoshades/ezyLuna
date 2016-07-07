@@ -14,7 +14,7 @@
         ATB_GAUGE_WIDTH = "ATB Gauge Width";
 
 
-    return function (current, linked_data) {
+    return function (current) {
 
         this.initialize = function () {
             // Define a div wrapper for the view. The div wrapper is used to attach events.

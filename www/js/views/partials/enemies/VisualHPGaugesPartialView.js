@@ -18,7 +18,7 @@
         HP_GAUGE_COLOR_2 = "HP Gauge Color 2";
 
 
-    return function (current, linked_data) {
+    return function (current) {
 
         this.initialize = function () {
             // Define a div wrapper for the view. The div wrapper is used to attach events.

@@ -13,6 +13,9 @@ define(function (require) {
         YEPVisualHPGaugesTags = require("tag/yep-30-visual-hp-gauges"),
         YEPBuffsStatesCoreTags = require("tag/yep-50-buffs-states-core"),
         YEPDamageCoreTags = require("tag/yep-25-damage-core"),
+        YEPArmorScalingTags = require("tag/yep-33-armor-scaling"),
+        YEPTauntTags = require("tag/yep-23-taunt"),
+        YEPLimitedSkillUsesTags = require("tag/yep-56-limited-skill-uses"),
 
         tags = _.flatten([
             YEPCoreEngineTags,
@@ -23,7 +26,10 @@ define(function (require) {
             YEPBattleSystemChargeTurnBattleTags,
             YEPVisualHPGaugesTags,
             YEPBuffsStatesCoreTags,
-            YEPDamageCoreTags
+            YEPDamageCoreTags,
+            YEPArmorScalingTags,
+            YEPTauntTags,
+            YEPLimitedSkillUsesTags
         ]),
 
     getStringFromNoteTags = function (notetags) {

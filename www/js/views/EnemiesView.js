@@ -21,6 +21,9 @@
         VisualHPGaugesPartialView = require("partial/enemies/VisualHPGaugesPartialView"),
         BuffsStatesPartialView = require("partial/enemies/BuffsStatesSettingsPartialView"),
         DamageSettingsPartialView = require("partial/enemies/DamageSettingsPartialView"),
+        ArmorScalingPartialView = require("partial/enemies/ArmorScalingPartialView"),
+        TauntSettingsPartialView = require("partial/enemies/TauntSettingsPartialView"),
+        LimitedSkillUsesPartialView = require("partial/enemies/LimitedSkillUsesPartialView"),
         enemiesHtml = require('text!tpl/enemies.htm'),
 
         enemiesTpl = Handlebars.compile(enemiesHtml),
@@ -34,7 +37,7 @@
             'carousel': new CarouselPartialView(BASE_URL, enemies, 15),
             'general_settings': new GeneralSettingsPartialView(current),
             'traits': new TraitsPartialView(current, linked_data),
-            'rewards': new RewardsPartialView(current, linked_data),
+            'rewards': new RewardsPartialView(current),
             'drop_items': new DropItemsPartialView(current, linked_data),
             'action_patterns': new ActionPatternsPartialView(current, linked_data),
             'note': new NotePartialView(current),
@@ -45,7 +48,10 @@
             'charge_turn_battle_settings': new ChargeTurnBattleSettingsPartialView(current),
             'visual_hp_gauges': new VisualHPGaugesPartialView(current),
             'buffs_states': new BuffsStatesPartialView(current),
-            'damage_settings': new DamageSettingsPartialView(current)
+            'damage_settings': new DamageSettingsPartialView(current),
+            'armor_scaling': new ArmorScalingPartialView(current),
+            'taunt_settings': new TauntSettingsPartialView(current),
+            'limited_skill_uses': new LimitedSkillUsesPartialView(current, linked_data)
         };
 
         this.initialize = function () {

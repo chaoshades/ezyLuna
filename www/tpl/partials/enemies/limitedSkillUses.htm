@@ -1,0 +1,56 @@
+﻿<h4><a role="button" data-toggle="collapse" href="#collapseLimitedSkillUses" aria-expanded="true" aria-controls="collapseLimitedSkillUses">Limited Skill Uses</a><span class="pull-right label label-info">YEP-Limited-Skill-Uses</span></h4>
+<div id="collapseLimitedSkillUses" class="collapse">
+    {{#with current}}
+    <div class="form-group">
+        <label for="numGlobalUseMax">Global Use Max:</label>
+        <div class="input-group">
+            <span class="input-group-addon">
+                <input id="chkGlobalUseMax" type="checkbox" class="js_Tags" title="Enables Global Use Max" {{checkedIf globalUseMax}} />
+            </span>
+            <input type="number" class="form-control" id="numGlobalUseMax" value="{{globalUseMax}}" {{readonlyIfNot globalUseMax}} />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="ddlSkillTypeUseMax">Skill Type Use Max:</label>
+        <div class="input-group">
+            <span class="input-group-addon">
+                <input id="chkSkillTypeUseMax" type="checkbox" class="js_Tags" title="Enables Skill Type Use Max" {{checkedIf skillTypeID}} />
+            </span>
+            <span class="input-group-addon">Type</span>
+            <select id="ddlSkillTypeUseMax" class="form-control" {{disabledIfNot skillTypeID}}>
+                {{#each ../skillTypes}}
+                {{#compare id "==" ../../current.skillTypeID}}
+                    <option value="{{id}}" selected>{{name}}</option>
+                {{/compare}}
+                {{#compare id "!=" ../../current.skillTypeID}}
+                    <option value="{{id}}">{{name}}</option>
+                {{/compare}}
+                {{/each}}
+            </select>
+            <span class="input-group-addon">Max</span>
+            <input type="number" class="form-control" id="numSkillTypeUseMax" value="{{skillTypeUseMax}}" {{readonlyIfNot skillTypeUseMax}} />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="ddlSkillUseMax">Skill Use Max:</label>
+        <div class="input-group">
+            <span class="input-group-addon">
+                <input id="chkSkillUseMax" type="checkbox" class="js_Tags" title="Enables Skill Use Max" {{checkedIf skillID}} />
+            </span>
+            <span class="input-group-addon">Skill</span>
+            <select id="ddlSkillUseMax" class="form-control" {{disabledIfNot skillID}}>
+                {{#each ../skills}}
+                {{#compare id "==" ../../current.skillID}}
+                    <option value="{{id}}" selected>{{name}}</option>
+                {{/compare}}
+                {{#compare id "!=" ../../current.skillID}}
+                    <option value="{{id}}">{{name}}</option>
+                {{/compare}}
+                {{/each}}
+            </select>
+            <span class="input-group-addon">Max</span>
+            <input type="number" class="form-control" id="numSkillUseMax" value="{{skillUseMax}}" {{readonlyIfNot skillUseMax}} />
+        </div>
+    </div>
+    {{/with}}
+</div>

@@ -1,0 +1,47 @@
+﻿<h4><a role="button" data-toggle="collapse" href="#collapseArmorScaling" aria-expanded="true" aria-controls="collapseArmorScaling">Armor Scaling</a><span class="pull-right label label-info">YEP-Armor-Scaling</span></h4>
+<div id="collapseArmorScaling" class="collapse">
+    <div class="form-group">
+        <div class="checkbox checkbox-right no-top">
+            <label for="chkBypassArmorScaling">Bypass Armor Scaling:<input id="chkBypassArmorScaling" type="checkbox" {{checkedIf bypassArmorScaling}} /></label>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="numPhysicalArmorReduction">Physical Armor Reduction:</label>
+        <div class="input-group">
+            <span class="input-group-addon">
+                <input id="chkPhysicalArmorReduction" type="checkbox" class="js_Tags" title="Enables Physical Armor Reduction" {{checkedIf physicalArmorReduction}} />
+            </span>
+            <span class="input-group-addon">Unit</span>
+            <input type="number" class="form-control" id="numPhysicalArmorReduction" value="{{physicalArmorReduction.unit}}" {{readonlyIfNot physicalArmorReduction}} />
+            <span class="input-group-addon">Rate</span>
+            <input type="number" class="form-control" id="numPhysicalArmorReductionRate" value="{{physicalArmorReduction.rate}}" {{readonlyIfNot physicalArmorReduction}} />
+            <span class="input-group-addon">%</span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="numMagicalArmorReduction">Magical Armor Reduction:</label>
+        <div class="input-group">
+            <span class="input-group-addon">
+                <input id="chkMagicalArmorReduction" type="checkbox" class="js_Tags" title="Enables Magical Armor Reduction" {{checkedIf magicalArmorReduction}} />
+            </span>
+            <span class="input-group-addon">Unit</span>
+            <input type="number" class="form-control" id="numMagicalArmorReduction" value="{{magicalArmorReduction.unit}}" {{readonlyIfNot magicalArmorReduction}} />
+            <span class="input-group-addon">Rate</span>
+            <input type="number" class="form-control" id="numMagicalArmorReductionRate" value="{{magicalArmorReduction.rate}}" {{readonlyIfNot magicalArmorReduction}} />
+            <span class="input-group-addon">%</span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="numCertainArmorReduction">Certain Armor Reduction:</label>
+        <div class="input-group">
+            <span class="input-group-addon">
+                <input id="chkCertainArmorReduction" type="checkbox" class="js_Tags" title="Enables Certain Armor Reduction" {{checkedIf certainArmorReduction}} />
+            </span>
+            <span class="input-group-addon">Unit</span>
+            <input type="number" class="form-control" id="numCertainArmorReduction" value="{{certainArmorReduction.unit}}" {{readonlyIfNot certainArmorReduction}} />
+            <span class="input-group-addon">Rate</span>
+            <input type="number" class="form-control" id="numCertainArmorReductionRate" value="{{certainArmorReduction.rate}}" {{readonlyIfNot certainArmorReduction}} />
+            <span class="input-group-addon">%</span>
+        </div>
+    </div>
+</div>
