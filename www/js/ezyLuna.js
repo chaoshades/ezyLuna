@@ -150,6 +150,26 @@ function openCollapse(collapsed_div) {
         $(collapsed_div).addClass('in');
 };
 
+/**
+ * Download content into a file
+ * @param {String} filename: name of the file
+ * @param {String} text: text content of the file
+ */
+function download(filename, text) {
+    var pom = document.createElement('a');
+    pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    pom.setAttribute('download', filename);
+
+    if (document.createEvent) {
+        var event = document.createEvent('MouseEvents');
+        event.initEvent('click', true, true);
+        pom.dispatchEvent(event);
+    }
+    else {
+        pom.click();
+    }
+}
+
 // Utils classes
 
 /**

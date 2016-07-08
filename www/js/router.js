@@ -29,7 +29,22 @@
 
         // Default route
         if (!hash) {
-            changeContent(new HomeView());
+            dataAdapter.getConfig()
+            .done(function (config) {
+                var requests = [];
+                for (var i = 0; i < config.projects.length; i++) {
+                    requests.push(dataAdapter.getSystem(config.projects[i].path));
+                }
+
+                $.when.apply($, requests)
+                 .done(function () {
+                     var data = _.map(arguments, function(a) {return _.first(a)}),
+                         projects = _.map(config.projects, function (p, i) { p.system = data[i]; return p; });
+                     console.log(projects);
+                    changeContent(new HomeView(projects));
+                });
+            })
+            .fail(errorHandler);
             return;
         }
 

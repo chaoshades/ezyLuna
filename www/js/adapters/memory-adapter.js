@@ -4,6 +4,19 @@
 
     var t = null,
 
+        // Ezy Luna Data API
+
+        getConfig = function () {
+            var deferred = $.Deferred(),
+            results = null;
+
+            results = config;
+
+            deferred.resolve(results);
+
+            return deferred.promise();
+        },
+
         // RPG Maker MV Data API
 
         getEnemies = function () {
@@ -178,7 +191,7 @@
             var deferred = $.Deferred(),
                 results = null;
 
-            //results = system;
+            results = system;
 
             deferred.resolve(results);
 
@@ -316,6 +329,12 @@ null,
 {"id":10,"animation1Hue":0,"animation1Name":"SlashThunder","animation2Hue":0,"animation2Name":"","frames":[[[0,24,-72,180,0,0,255,1]],[[1,24,-72,180,0,0,255,1],[6,24,-72,195,0,0,255,1]],[[2,0,-48,180,0,0,255,1],[7,0,-48,195,0,0,255,1]],[[3,0,-48,180,0,0,255,1],[8,0,-48,195,0,0,255,1]],[[4,0,-48,180,0,0,255,1],[9,0,-48,195,0,0,255,1]],[[5,0,-48,180,0,0,255,1],[10,0,-48,195,0,0,255,1]],[[11,0,-48,195,0,0,255,1]],[[12,0,-48,195,0,0,255,1]],[[13,0,-48,195,0,0,255,1]]],"name":"Slash Thunder","position":1,"timings":[{"flashColor":[255,255,255,187],"flashDuration":3,"flashScope":1,"frame":0,"se":{"name":"Slash1","pan":0,"pitch":100,"volume":100}},{"flashColor":[255,255,119,153],"flashDuration":5,"flashScope":2,"frame":1,"se":{"name":"Thunder8","pan":0,"pitch":100,"volume":100}}]}
 ],
 
+system = {
+"gameTitle": "Project1",
+"title1Name": "Castle",
+"title2Name": ""
+},
+
 types = {
 "armorTypes": ["", "General Armor", "Magic Armor", "Light Armor", "Heavy Armor", "Small Shield", "Large Shield"],
 "elements": ["", "Physical", "Fire", "Ice", "Thunder", "Water", "Earth", "Wind", "Light", "Darkness"],
@@ -331,6 +350,15 @@ terms = {
 "params": ["Max HP", "Max MP", "Attack", "Defense", "M.Attack", "M.Defense", "Agility", "Luck", "Hit", "Evasion"],
 "messages": { "actionFailure": "There was no effect on %1!", "actorDamage": "%1 took %2 damage!", "actorDrain": "%1 was drained of %2 %3!", "actorGain": "%1 gained %2 %3!", "actorLoss": "%1 lost %2 %3!", "actorNoDamage": "%1 took no damage!", "actorNoHit": "Miss! %1 took no damage!", "actorRecovery": "%1 recovered %2 %3!", "alwaysDash": "Always Dash", "bgmVolume": "BGM Volume", "bgsVolume": "BGS Volume", "buffAdd": "%1's %2 went up!", "buffRemove": "%1's %2 returned to normal!", "commandRemember": "Command Remember", "counterAttack": "%1 counterattacked!", "criticalToActor": "A painful blow!!", "criticalToEnemy": "An excellent hit!!", "debuffAdd": "%1's %2 went down!", "defeat": "%1 was defeated.", "emerge": "%1 emerged!", "enemyDamage": "%1 took %2 damage!", "enemyDrain": "%1 was drained of %2 %3!", "enemyGain": "%1 gained %2 %3!", "enemyLoss": "%1 lost %2 %3!", "enemyNoDamage": "%1 took no damage!", "enemyNoHit": "Miss! %1 took no damage!", "enemyRecovery": "%1 recovered %2 %3!", "escapeFailure": "However, it was unable to escape!", "escapeStart": "%1 has started to escape!", "evasion": "%1 evaded the attack!", "expNext": "To Next %1", "expTotal": "Current %1", "file": "File", "levelUp": "%1 is now %2 %3!", "loadMessage": "Load which file?", "magicEvasion": "%1 nullified the magic!", "magicReflection": "%1 reflected the magic!", "meVolume": "ME Volume", "obtainExp": "%1 %2 received!", "obtainGold": "%1\\G found!", "obtainItem": "%1 found!", "obtainSkill": "%1 learned!", "partyName": "%1's Party", "possession": "Possession", "preemptive": "%1 got the upper hand!", "saveMessage": "Save to which file?", "seVolume": "SE Volume", "substitute": "%1 protected %2!", "surprise": "%1 was surprised!", "useItem": "%1 uses %2!", "victory": "%1 was victorious!" }
 },
+
+config = {
+"projects": [
+    {"path": "file:///C:/Program Files/RPG Making/RPG Maker MV/Projects/Project1", "show_all_plugins": true},
+    {"path": "file:///C:/Program Files/RPG Making/RPG Maker MV/Projects/Project1", "show_all_plugins": false}
+]
+},
+
+// Custom YEP Data
 
 weapon_sprites = [
 { "id": 0, "name": "Nothing" },
@@ -389,6 +417,8 @@ motions = [
 
     // The public API
     return {
+        // Ezy Luna Data API
+        getConfig: getConfig,
         // RPG Maker MV Data API
         getEnemies: getEnemies,
         getEnemyById: getEnemyById,

@@ -4,6 +4,12 @@ define(function (require) {
 
     var t = null,
 
+        // Ezy Luna Data API
+
+        getConfig = function () {
+            return $.getJSON("config.json");
+        },
+
         // RPG Maker MV Data API
 
         getEnemies = function () {
@@ -286,6 +292,8 @@ motions = [
 
     // The public API
     return {
+        // Ezy Luna Data API
+        getConfig: getConfig,
         // RPG Maker MV Data API
         getEnemies: getEnemies,
         getEnemyById: getEnemyById,

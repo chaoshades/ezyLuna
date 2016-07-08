@@ -5,6 +5,7 @@
     var $ = require('jquery'),
         _ = require('underscore'),
         Handlebars = require('handlebars'),
+        Clipboard = require('clipboard'),
         tagReader = require('app/tag-reader'),
         CarouselPartialView = require("partial/CarouselPartialView"),
         GeneralSettingsPartialView = require("partial/enemies/GeneralSettingsPartialView"),
@@ -63,6 +64,22 @@
             this.$el.on('click', '#btnGenerateTags', function () {
                 generateTagsCallback();
             });
+
+            // Click Event for GenerateTags button
+            this.$el.on('click', '#btnCopyClipboard', function () {
+                $('#successCopy').hide();
+                $('#errorCopy').hide();
+                $('#errorNoCopy').hide();
+                var output = $('#txtOutput').val();
+                if (!output)
+                    $('#errorNoCopy').show();
+                else
+                    Clipboard.copy(output).then(function () {
+                        $('#successCopy').show();
+                    }, function (err) {
+                        $('#errorCopy').show();
+                    });
+            });
         };
 
         this.render = function () {
@@ -80,6 +97,9 @@
             setActiveMenuItem(this.$el, BASE_URL + '/' + current.id);
             this.$el.find('#successTags').hide();
             this.$el.find('#errorNoTags').hide();
+            this.$el.find('#successCopy').hide();
+            this.$el.find('#errorCopy').hide();
+            this.$el.find('#errorNoCopy').hide();
 
             return this;
         };
@@ -98,6 +118,8 @@
 
             $('#successTags').hide();
             $('#errorNoTags').hide();
+            $('#successCopy').hide();
+            $('#errorNoCopy').hide();
             if (output)
                 $('#successTags').show();
             else
