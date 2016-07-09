@@ -5,7 +5,11 @@
             <label for="txtName">Name:</label>
             <input type="text" class="form-control" id="txtName" value="{{name}}" readonly="readonly" />
         </div>
-        <img id="imgEnemy" class="img-responsive center-block" src="img/enemies/{{battlerName}}.png" />
+        {{#if battlerName}}
+        <img id="imgEnemy" class="img-responsive center-block" src="{{url}}img/enemies/{{battlerName}}.png" />
+        {{else}}
+        <img id="imgEnemy" class="img-responsive center-block" src="img/NoEnemy.png" />
+        {{/if}}
     </div>
     <div class="col-md-6">
         <div class="row">

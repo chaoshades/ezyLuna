@@ -10,9 +10,9 @@
     <div class="row">
         {{#.}}
         <div class="col-md-4">
-        <a href="#" class="thumbnail text-center">
+        <a href="#project/{{id}}" class="thumbnail text-center">
             {{#if system.title1Name}}
-            <img class="img-responsive" src="img/titles1/{{system.title1Name}}.png" />
+            <img class="img-responsive" src="{{url}}img/titles1/{{system.title1Name}}.png" />
             {{else}}
             <img class="img-responsive" src="img/NoTitle.png" />
             {{/if}}

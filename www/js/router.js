@@ -7,6 +7,7 @@
         Handlebars = require('handlebars'),
         dataAdapter = require('adapters/data'),
         HomeView = require("view/HomeView"),
+        ProjectView = require("view/ProjectView"),
         EnemiesView = require("view/EnemiesView"),
         ItemsView = require("view/ItemsView"),
         SkillsView = require("view/SkillsView"),
@@ -16,11 +17,12 @@
         MasterView = require("view/MasterView"),
 
         routes = [
-            { name: "enemiesURL", url: /^#enemies\/?(\d{1,})?$/ },
-            { name: "itemsURL", url: /^#items\/?(\d{1,})?$/ },
-            { name: "skillsURL", url: /^#skills\/?(\d{1,})?$/ },
-            { name: "weaponsURL", url: /^#weapons\/?(\d{1,})?$/ },
-            { name: "armorsURL", url: /^#armors\/?(\d{1,})?$/ },
+            { name: "projectURL", url: /^#project\/(\w{1,})$/ },
+            { name: "enemiesURL", url: /^#project\/(\w{1,})\/enemies\/?(\d{1,})?$/ },
+            { name: "itemsURL", url: /^#project\/(\w{1,})\/items\/?(\d{1,})?$/ },
+            { name: "skillsURL", url: /^#project\/(\w{1,})\/skills\/?(\d{1,})?$/ },
+            { name: "weaponsURL", url: /^#project\/(\w{1,})\/weapons\/?(\d{1,})?$/ },
+            { name: "armorsURL", url: /^#project\/(\w{1,})\/armors\/?(\d{1,})?$/ },
         ],
 
     route = function () {
@@ -33,16 +35,19 @@
             .done(function (config) {
                 var requests = [];
                 for (var i = 0; i < config.projects.length; i++) {
-                    requests.push(dataAdapter.getSystem(config.projects[i].path));
+                    dataAdapter.setConfig(config.projects[i]);
+                    requests.push(dataAdapter.getSystem());
                 }
-
-                $.when.apply($, requests)
-                 .done(function () {
-                     var data = _.map(arguments, function(a) {return _.first(a)}),
-                         projects = _.map(config.projects, function (p, i) { p.system = data[i]; return p; });
-                     console.log(projects);
-                    changeContent(new HomeView(projects));
-                });
+                if (requests.length > 0)
+                    $.when.apply($, requests)
+                     .done(function () {
+                         var data = _.map(arguments, function(a) {return _.first(a)}),
+                             projects = _.map(config.projects, function (p, i) { p.system = data[i]; return p; });
+                        changeContent(new HomeView(projects));
+                     })
+                    .fail(errorHandler);
+                else
+                    changeContent(new HomeView([]));
             })
             .fail(errorHandler);
             return;
@@ -72,7 +77,7 @@
         var view = page.render();
 
         // Render MasterPage with page content
-        var masterView = new MasterView(view.$el).render();
+        var masterView = new MasterView(view.$settings, view.$el).render();
 
         $("body").html(masterView.$el);
     },
@@ -85,103 +90,119 @@
     },
 
     normalRoute = function (route, args) {
+        var project_id = args[1];
 
-        switch (route) {
+        dataAdapter.getProjectConfigById(project_id)
+        .done(function (config) {
 
-            case "enemiesURL":
-                dataAdapter.getEnemies()
-                .done(function (enemies) {
-                    // Default to first one
-                    var id = args[1];
-                    if (!id)
-                        id = 1;
-                    dataAdapter.getEnemyById(id)
-                    .done(function (current) {
-                        $.when(
-                            dataAdapter.getItems(),
-                            dataAdapter.getArmors(),
-                            dataAdapter.getWeapons(),
-                            dataAdapter.getSkills(),
-                            dataAdapter.getStates(),
-                            dataAdapter.getAnimations(),
-                            dataAdapter.getTypes(),
-                            dataAdapter.getTerms(),
-                            dataAdapter.getWeaponSprites(),
-                            dataAdapter.getMotions()
-                        ).done(function (items, armors, weapons, skills, states, animations, types, terms, weapon_sprites, motions) {
-                            var linked_data = { "items": items, "armors": armors, "weapons": weapons, "skills": skills, "states": states, "animations": animations, "types": types, "terms": terms, "weapon_sprites": weapon_sprites, "motions": motions };
-                            changeContent(new EnemiesView(enemies, current, linked_data));
-                        });
+            dataAdapter.setConfig(config);
+
+            switch (route) {
+
+                case "projectURL":
+                    dataAdapter.getSystem()
+                    .done(function (system) {
+                        changeContent(new ProjectView(config, system));
                     })
                     .fail(errorHandler);
-                })
-                .fail(errorHandler);
-                break;
+                    break;
 
-            case "itemsURL":
-                dataAdapter.getItems()
-                .done(function (items) {
-                    // Default to first one
-                    var id = args[1];
-                    if (!id)
-                        id = 1;
-                    dataAdapter.getItemById(id)
-                    .done(function (current) {
-                        changeContent(new ItemsView(items, current));
+                case "enemiesURL":
+                    dataAdapter.getEnemies()
+                    .done(function (enemies) {
+                        // Default to first one
+                        var id = args[2];
+                        if (!id)
+                            id = 1;
+                        dataAdapter.getEnemyById(id)
+                        .done(function (current) {
+                            $.when(
+                                dataAdapter.getItems(),
+                                dataAdapter.getArmors(),
+                                dataAdapter.getWeapons(),
+                                dataAdapter.getSkills(),
+                                dataAdapter.getStates(),
+                                dataAdapter.getAnimations(),
+                                dataAdapter.getTypes(),
+                                dataAdapter.getTerms(),
+                                dataAdapter.getWeaponSprites(),
+                                dataAdapter.getMotions()
+                            ).done(function (items, armors, weapons, skills, states, animations, types, terms, weapon_sprites, motions) {
+                                var linked_data = { "items": items, "armors": armors, "weapons": weapons, "skills": skills, "states": states, "animations": animations, "types": types, "terms": terms, "weapon_sprites": weapon_sprites, "motions": motions };
+                                changeContent(new EnemiesView(config, enemies, current, linked_data));
+                            });
+                        })
+                        .fail(errorHandler);
                     })
                     .fail(errorHandler);
-                })
-                .fail(errorHandler);
-                break;
+                    break;
 
-            case "skillsURL":
-                dataAdapter.getSkills()
-                .done(function (skills) {
-                    // Default to first one
-                    var id = args[1];
-                    if (!id)
-                        id = 1;
-                    dataAdapter.getSkillById(id)
-                    .done(function (current) {
-                        changeContent(new SkillsView(skills, current));
+                case "itemsURL":
+                    dataAdapter.getItems()
+                    .done(function (items) {
+                        // Default to first one
+                        var id = args[2];
+                        if (!id)
+                            id = 1;
+                        dataAdapter.getItemById(id)
+                        .done(function (current) {
+                            changeContent(new ItemsView(config, items, current));
+                        })
+                        .fail(errorHandler);
                     })
                     .fail(errorHandler);
-                })
-                .fail(errorHandler);
-                break;
+                    break;
 
-            case "weaponsURL":
-                dataAdapter.getWeapons()
-                .done(function (weapons) {
-                    // Default to first one
-                    var id = args[1];
-                    if (!id)
-                        id = 1;
-                    dataAdapter.getWeaponById(id)
-                    .done(function (current) {
-                        changeContent(new WeaponsView(weapons, current));
+                case "skillsURL":
+                    dataAdapter.getSkills()
+                    .done(function (skills) {
+                        // Default to first one
+                        var id = args[2];
+                        if (!id)
+                            id = 1;
+                        dataAdapter.getSkillById(id)
+                        .done(function (current) {
+                            changeContent(new SkillsView(config, skills, current));
+                        })
+                        .fail(errorHandler);
                     })
                     .fail(errorHandler);
-                })
-                .fail(errorHandler);
-                break;
+                    break;
 
-            case "armorsURL":
-                dataAdapter.getArmors()
-                .done(function (armors) {
-                    // Default to first one
-                    var id = args[1];
-                    if (!id)
-                        id = 1;
-                    dataAdapter.getArmorById(id)
-                    .done(function (current) {
-                        changeContent(new ArmorsView(armors, current));
+                case "weaponsURL":
+                    dataAdapter.getWeapons()
+                    .done(function (weapons) {
+                        // Default to first one
+                        var id = args[2];
+                        if (!id)
+                            id = 1;
+                        dataAdapter.getWeaponById(id)
+                        .done(function (current) {
+                            changeContent(new WeaponsView(config, weapons, current));
+                        })
+                        .fail(errorHandler);
                     })
                     .fail(errorHandler);
-                })
-                .fail(errorHandler);
-                break;
-        }
+                    break;
+
+                case "armorsURL":
+                    dataAdapter.getArmors()
+                    .done(function (armors) {
+                        // Default to first one
+                        var id = args[2];
+                        if (!id)
+                            id = 1;
+                        dataAdapter.getArmorById(id)
+                        .done(function (current) {
+                            changeContent(new ArmorsView(config, armors, current));
+                        })
+                        .fail(errorHandler);
+                    })
+                    .fail(errorHandler);
+                    break;
+            }
+        })
+        .fail(errorHandler);
     };
 
     // The public API

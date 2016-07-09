@@ -1,43 +1,8 @@
 ﻿<div>
     <div class="row">
-        <div class="col-md-3">
-            <div class="carousel slide vertical spacing-bottom" data-ride="carousel">
-                <div class="btn-group top-controls" role="group" aria-label="Carousel controls">
-                    <button class="btn btn-default prev-slider">
-                        <span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span></button>
-                    <button class="btn btn-default next-slider">
-                        <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </button>
-                </div>
-
-                <div class="carousel-inner vertical" role="listbox">
-                    {{#each paged_skills}}
-                    <div class="item">
-                        <div class="list-group no-bottom">
-                            {{#.}}
-                        <a href="#skills/{{id}}" class="list-group-item">
-                            <span class="spacing-right">{{idFormat id}}</span><span>{{name}}</span>
-                        </a>
-                            {{/.}}
-                        </div>
-                    </div>
-                    {{/each}}
-                </div>
-
-                <div class="btn-group bottom-controls" role="group" aria-label="Carousel controls">
-                    <button class="btn btn-default prev-slider">
-                        <span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span></button>
-                    <button class="btn btn-default next-slider">
-                        <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </button>
-                </div>
-            </div>
+        <div id="carousel" class="col-md-3">
+            <!-- Filled by CarouselPartialView.js-->
         </div>
-        {{#with current}}
         <div class="col-md-6">
             <div class="well well-sm">
                 <h4>General Settings</h4>
@@ -116,7 +81,6 @@
                 </table>
             </div>
         </div>
-        {{/with}}
     </div>
 
     <div class="text-center">

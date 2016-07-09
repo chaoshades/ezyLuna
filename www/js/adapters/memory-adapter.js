@@ -10,11 +10,29 @@
             var deferred = $.Deferred(),
             results = null;
 
+            config.projects = _.map(data.projects, function (p, i) { p.id = i+1; return p; });
             results = config;
 
             deferred.resolve(results);
 
             return deferred.promise();
+        },
+
+        setConfig = function (c) {
+            // Mocking
+        },
+
+        getProjectConfigById = function (id) {
+            return getConfig()
+            .then(function (config) {
+                return $.Deferred(function (deferred) {
+                    var result = _.find(config.projects, function (project) { return project.id == id; });
+                    if (result)
+                        deferred.resolve(result);
+                    else
+                        deferred.reject("Project config can't be found");
+                }).promise();
+            });
         },
 
         // RPG Maker MV Data API
@@ -353,8 +371,8 @@ terms = {
 
 config = {
 "projects": [
-    {"path": "file:///C:/Program Files/RPG Making/RPG Maker MV/Projects/Project1", "show_all_plugins": true},
-    {"path": "file:///C:/Program Files/RPG Making/RPG Maker MV/Projects/Project1", "show_all_plugins": false}
+    { "url": "http://localhost:9005/", "show_all_plugins": true },
+    { "url": "http://localhost:9006/", "show_all_plugins": false }
 ]
 },
 
@@ -419,6 +437,8 @@ motions = [
     return {
         // Ezy Luna Data API
         getConfig: getConfig,
+        setConfig: setConfig,
+        getProjectConfigById: getProjectConfigById,
         // RPG Maker MV Data API
         getEnemies: getEnemies,
         getEnemyById: getEnemyById,

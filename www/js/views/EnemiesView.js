@@ -27,33 +27,32 @@
         LimitedSkillUsesPartialView = require("partial/enemies/LimitedSkillUsesPartialView"),
         enemiesHtml = require('text!tpl/enemies.htm'),
 
-        enemiesTpl = Handlebars.compile(enemiesHtml),
-            
-        BASE_URL = "#enemies";
+        enemiesTpl = Handlebars.compile(enemiesHtml);
 
 
-    return function (enemies, current, linked_data) {
+    return function (project, enemies, current, linked_data) {
 
-        var partials = {
-            'carousel': new CarouselPartialView(BASE_URL, enemies, 15),
-            'general_settings': new GeneralSettingsPartialView(current),
-            'traits': new TraitsPartialView(current, linked_data),
-            'rewards': new RewardsPartialView(current),
-            'drop_items': new DropItemsPartialView(current, linked_data),
-            'action_patterns': new ActionPatternsPartialView(current, linked_data),
-            'note': new NotePartialView(current),
-            'battle_settings': new BattleSettingsPartialView(current, linked_data),
-            'animated_sideview_settings': new AnimatedSideViewSettingsPartialView(current, linked_data),
-            'active_turn_battle_settings': new ActiveTurnBattleSettingsPartialView(current),
-            'visual_atb_gauge': new VisualATBGaugePartialView(current),
-            'charge_turn_battle_settings': new ChargeTurnBattleSettingsPartialView(current),
-            'visual_hp_gauges': new VisualHPGaugesPartialView(current),
-            'buffs_states': new BuffsStatesPartialView(current),
-            'damage_settings': new DamageSettingsPartialView(current),
-            'armor_scaling': new ArmorScalingPartialView(current),
-            'taunt_settings': new TauntSettingsPartialView(current),
-            'limited_skill_uses': new LimitedSkillUsesPartialView(current, linked_data)
-        };
+        var base_url = "#project/" + project.id + "/enemies",
+            partials = {
+                'carousel': new CarouselPartialView(base_url, enemies, 15),
+                'general_settings': new GeneralSettingsPartialView(current),
+                'traits': new TraitsPartialView(current, linked_data),
+                'rewards': new RewardsPartialView(current),
+                'drop_items': new DropItemsPartialView(current, linked_data),
+                'action_patterns': new ActionPatternsPartialView(current, linked_data),
+                'note': new NotePartialView(current),
+                'battle_settings': new BattleSettingsPartialView(current, linked_data),
+                'animated_sideview_settings': new AnimatedSideViewSettingsPartialView(current, linked_data),
+                'active_turn_battle_settings': new ActiveTurnBattleSettingsPartialView(current),
+                'visual_atb_gauge': new VisualATBGaugePartialView(current),
+                'charge_turn_battle_settings': new ChargeTurnBattleSettingsPartialView(current),
+                'visual_hp_gauges': new VisualHPGaugesPartialView(current),
+                'buffs_states': new BuffsStatesPartialView(current),
+                'damage_settings': new DamageSettingsPartialView(current),
+                'armor_scaling': new ArmorScalingPartialView(current),
+                'taunt_settings': new TauntSettingsPartialView(current),
+                'limited_skill_uses': new LimitedSkillUsesPartialView(current, linked_data)
+            }   
 
         this.initialize = function () {
             // Define a div wrapper for the view. The div wrapper is used to attach events.
@@ -80,11 +79,19 @@
                         $('#errorCopy').show();
                     });
             });
+
+            this.$settings = {
+                menu: {
+                    active: base_url
+                },
+                project: project
+            };
         };
 
         this.render = function () {
             // Run parsers on note to read tags
             current.tags = tagReader.getNoteTagsFromString(current.note);
+            current.url = project.url;
 
             // Render view
             this.$el.html(enemiesTpl(current));
@@ -94,7 +101,7 @@
             var renderedPartials = _.mapObject(partials, function (p, key) { wrapperReference.find('#' + key).html(p.render().$el); });
 
             // Initial Display
-            setActiveMenuItem(this.$el, BASE_URL + '/' + current.id);
+            setActiveMenuItem(this.$el, base_url + '/' + current.id);
             this.$el.find('#successTags').hide();
             this.$el.find('#errorNoTags').hide();
             this.$el.find('#successCopy').hide();

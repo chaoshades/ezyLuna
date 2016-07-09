@@ -34,6 +34,10 @@
             Handlebars.registerHelper('messageHtml', function () {
                 return new Handlebars.SafeString(this.message);
             });
+
+            this.$settings = {
+                project: null
+            };
         };
 
         this.render = function () {

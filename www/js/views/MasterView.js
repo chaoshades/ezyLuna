@@ -10,13 +10,13 @@
         masterTpl = Handlebars.compile(masterHtml);
 
 
-    return function (page) {
+    return function (settings, page) {
 
         this.initialize = function () {
             // Define a div wrapper for the view. The div wrapper is used to attach events.
             this.$el = $('<div/>');
 
-            // Click Event for sidebar buttons
+            // Click Event for nav bar buttons
             this.$el.on('click', '.navbar-nav a', function () {
                 $('.navbar-nav > .active').removeClass('active');
                 $(this).parent().addClass('active');
@@ -26,7 +26,7 @@
 
         this.render = function () {
 
-            this.$el.html(masterTpl());
+            this.$el.html(masterTpl(settings));
 
             // Header init
             // Default route if none provided
@@ -34,12 +34,13 @@
             if (!hash)
                 hash = DEFAULT_ROUTE;
 
-            // Remove args to select active menu item
-            var argsIndex = hash.indexOf("/");
-            if (argsIndex > -1)
-                hash = hash.substr(0, argsIndex);
-
-            this.setActiveMenuItem(hash);
+            // Nav Bar menu init
+            if (settings.menu) {
+                // Sets specific menu link active
+                if (settings.menu.active) {
+                    this.setActiveMenuItem(settings.menu.active);
+                }
+            }
 
             // Page init
             this.$el.find("#contentPage").html(page);

@@ -3,74 +3,50 @@
     "use strict";
 
     var $ = require('jquery'),
+        _ = require('underscore'),
         Handlebars = require('handlebars'),
-        dataAdapter = require('adapters/data'),
         tagReader = require('app/tag-reader'),
+        CarouselPartialView = require("partial/CarouselPartialView"),
         skillsHtml = require('text!tpl/skills.htm'),
 
         skillsTpl = Handlebars.compile(skillsHtml);
 
 
-    return function (skills, current) {
+    return function (project, skills, current) {
+
+        var base_url = "#project/" + project.id + "/skills",
+            partials = {
+                'carousel': new CarouselPartialView(base_url, skills, 15)
+            }
 
         this.initialize = function () {
             // Define a div wrapper for the view. The div wrapper is used to attach events.
             this.$el = $('<div/>');
 
-            // Click Event for sidebar buttons
-            this.$el.on('click', '.list-group-item', function () {
-                $('.list-group > .active').removeClass('active');
-                $(this).addClass('active');
-            });
-
-            // Click Event for sidebar buttons
-            this.$el.on('click', '#btnGenerateTags', function () {
-                $('#txtOutput').val(tagAdapter.stringify([{ "tag": "hp", "data": 10000 }, { "tag": "mp", "data": 12345 }]));
-            });
-
-            // Carousel Navigation Events
-            this.$el.on('click', '.next-slider', function () {
-                $('.carousel').carousel('next');
-                return false;
-            });
-            this.$el.on('click', '.prev-slider', function () {
-                $('.carousel').carousel('prev');
-                return false;
-            });
+            this.$settings = {
+                menu: {
+                    active: base_url
+                },
+                project: project
+            };
         };
 
         this.render = function () {
+            // Run parsers on note to read tags
+            current.tags = tagReader.getNoteTagsFromString(current.note);
+            current.url = project.url;
 
-            var paged_skills = [];
-            var temp = skills.slice(0);
-            while (temp.length > 0) {
-                paged_skills.push(temp.splice(0, 15));
-            }
+            // Render view
+            this.$el.html(skillsTpl(current));
 
-            var data = {
-                'paged_skills': paged_skills,
-                'current': current
-            };
-            this.$el.html(skillsTpl(data));
+            // Render partial views
+            var wrapperReference = this.$el;
+            var renderedPartials = _.mapObject(partials, function (p, key) { wrapperReference.find('#' + key).html(p.render().$el); });
 
-            this.setActiveMenuItem(current.id);
-
-            this.$el.find('.carousel').carousel({
-                interval: false
-            });
-
-            this.$el.find('.carousel .item:has(.list-group a.active)').addClass('active');
+            // Initial Display
+            setActiveMenuItem(this.$el, base_url + '/' + current.id);
 
             return this;
-        };
-
-        this.clearActiveMenuItem = function () {
-            this.$el.find('.list-group > .active').removeClass('active');
-        };
-
-        this.setActiveMenuItem = function (id) {
-            this.clearActiveMenuItem();
-            this.$el.find('.list-group a[href="#skills/' + id + '"]').addClass('active');
         };
 
         this.initialize();

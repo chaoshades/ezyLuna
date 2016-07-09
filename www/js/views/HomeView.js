@@ -11,8 +11,6 @@
 
     return function (projects) {
 
-        var errormsg = {}
-
         this.initialize = function () {
             // Define a div wrapper for the view. The div wrapper is used to attach events.
             this.$el = $('<div/>');
@@ -27,6 +25,10 @@
                 }
                 download("config.json", JSON.stringify(config));
             });
+
+            this.$settings = {
+                project: null
+            };
         };
 
         this.render = function () {

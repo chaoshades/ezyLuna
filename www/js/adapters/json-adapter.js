@@ -2,18 +2,36 @@ define(function (require) {
 
     "use strict";
 
-    var t = null,
+    var config = null,
 
         // Ezy Luna Data API
 
         getConfig = function () {
-            return $.getJSON("config.json");
+            return $.getJSON("config.json")
+                    .then(setIdCallback);
+        },
+
+        setConfig = function (c) {
+            config = c;
+        },
+
+        getProjectConfigById = function (id) {
+            return getConfig()
+            .then(function (config) {
+                return $.Deferred(function (deferred) {
+                    var result = _.find(config.projects, function (project) { return project.id == id; });
+                    if (result)
+                        deferred.resolve(result);
+                    else
+                        deferred.reject("Project can't be found");
+                }).promise();
+            });
         },
 
         // RPG Maker MV Data API
 
         getEnemies = function () {
-            return $.getJSON("data/Enemies.json")
+            return $.getJSON(config.url + "data/Enemies.json")
                     .then(compactDataCallback);
         },
 
@@ -31,7 +49,7 @@ define(function (require) {
         },
 
         getItems = function () {
-            return $.getJSON("data/Items.json")
+            return $.getJSON(config.url + "data/Items.json")
                     .then(compactDataCallback);
         },
     
@@ -49,7 +67,7 @@ define(function (require) {
         },
         
         getSkills = function () {
-            return $.getJSON("data/Skills.json")
+            return $.getJSON(config.url + "data/Skills.json")
                     .then(compactDataCallback);
         },
 
@@ -67,7 +85,7 @@ define(function (require) {
         },
 
         getWeapons = function () {
-            return $.getJSON("data/Weapons.json")
+            return $.getJSON(config.url + "data/Weapons.json")
                     .then(compactDataCallback);
         },
 
@@ -85,7 +103,7 @@ define(function (require) {
         },
 
         getArmors = function () {
-            return $.getJSON("data/Armors.json")
+            return $.getJSON(config.url + "data/Armors.json")
                     .then(compactDataCallback);
         },
 
@@ -103,7 +121,7 @@ define(function (require) {
         },
     
         getStates = function () {
-            return $.getJSON("data/States.json")
+            return $.getJSON(config.url + "data/States.json")
                     .then(compactDataCallback);
         },
 
@@ -121,7 +139,7 @@ define(function (require) {
         },
 
         getAnimations = function () {
-            return $.getJSON("data/Animations.json")
+            return $.getJSON(config.url + "data/Animations.json")
                     .then(compactDataCallback);
         },
 
@@ -139,7 +157,7 @@ define(function (require) {
         },
 
         getSystem = function () {
-            return $.getJSON("data/System.json");
+            return $.getJSON(config.url + "data/System.json");
         },
 
         getTypes = function () {
@@ -232,6 +250,13 @@ define(function (require) {
                 deferred.resolve(_.compact(data));
             }).promise();
         },
+
+        setIdCallback = function (data) {
+            return $.Deferred(function (deferred) {
+                data.projects = _.map(data.projects, function (p, i) { p.id = i+1; return p; });
+                deferred.resolve(data);
+            }).promise();
+        },
         
 // Custom YEP Data
 
@@ -294,6 +319,8 @@ motions = [
     return {
         // Ezy Luna Data API
         getConfig: getConfig,
+        setConfig: setConfig,
+        getProjectConfigById: getProjectConfigById,
         // RPG Maker MV Data API
         getEnemies: getEnemies,
         getEnemyById: getEnemyById,

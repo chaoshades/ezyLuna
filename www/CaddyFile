@@ -1,0 +1,11 @@
+localhost:2015 {
+	cors
+}
+
+#Define each of your projects from here
+#Change the port number if you want to have more than one project
+#Change the root for the directory of your project
+#localhost:9005 {
+#	cors
+#	root "C:\path\to\project"
+#}
