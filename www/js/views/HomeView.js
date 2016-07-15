@@ -26,6 +26,11 @@
                 download("config.json", JSON.stringify(config));
             });
 
+            // Click Event for btnAddProject button
+            this.$el.on('click', '#btnAddProject', function () {
+                window.location.hash = "#project/add"
+            });
+
             this.$settings = {
                 project: null
             };

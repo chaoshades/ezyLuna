@@ -157,7 +157,8 @@ define(function (require) {
         },
 
         getSystem = function () {
-            return $.getJSON(config.url + "data/System.json");
+            return $.getJSON(config.url + "data/System.json")
+                    .then(simpleDataCallback);
         },
 
         getTypes = function () {
@@ -230,6 +231,11 @@ define(function (require) {
             return deferred.promise();
         },
 
+        getPlugins = function () {
+            return $.get(config.url + "js/plugins.js")
+                    .then(extractJSONCallback);
+        },
+
         //getTypesByName = function (typeName) {
         //    return getSystem()
         //    .then(function (data) {
@@ -245,6 +251,12 @@ define(function (require) {
 
         // Private Methods
 
+        simpleDataCallback = function (data) {
+            return $.Deferred(function (deferred) {
+                deferred.resolve(data);
+            }).promise();
+        },
+
         compactDataCallback = function (data) {
             return $.Deferred(function (deferred) {
                 deferred.resolve(_.compact(data));
@@ -255,6 +267,14 @@ define(function (require) {
             return $.Deferred(function (deferred) {
                 data.projects = _.map(data.projects, function (p, i) { p.id = i+1; return p; });
                 deferred.resolve(data);
+            }).promise();
+        },
+
+        extractJSONCallback = function (data) {
+            return $.Deferred(function (deferred) {
+                // Removes comments at the beginning + $plugins variable + line breaks around the array + last ;
+                data = $.trim(data.substr(data.indexOf('=') + 1, data.length-1)).slice(0, -1);
+                deferred.resolve(JSON.parse(data));
             }).promise();
         },
         
@@ -340,7 +360,8 @@ motions = [
         getTypes: getTypes,
         getTerms: getTerms,
         getWeaponSprites: getWeaponSprites,
-        getMotions: getMotions
+        getMotions: getMotions,
+        getPlugins: getPlugins
     };
 
 });

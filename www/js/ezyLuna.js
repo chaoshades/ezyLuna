@@ -197,3 +197,11 @@ function TagParser(id, parser, tag) {
         this.tag = this.id;
 }
 
+/**
+ * The Project class defines a project config.
+ * @param {String} url: url to the project. 
+ */
+function Project(url) {
+    this.url = String(url);
+}
+

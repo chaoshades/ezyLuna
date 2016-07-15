@@ -1,0 +1,27 @@
+﻿<div>
+    <h1>Add project</h1>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <div id="successUrl" class="alert alert-success" role="alert"><strong>Success!</strong> The url is valid and the project information is shown below.</div>
+                <div id="errorUrl" class="alert alert-danger" role="alert"><strong>Oh snap!</strong> The url is invalid.</div>
+                <label for="txtProjectUrl">Project url:</label>
+                <input type="text" class="form-control half-spacing-bottom" id="txtProjectUrl" placeholder="http://localhost:9005/" />
+                <button class="btn btn-default btn-primary" type="button" id="btnValidate">
+                    <span aria-hidden="true" class="glyphicon glyphicon-check"></span>Validate
+                </button>
+            </div>
+            <div id="project_info" class="well well-sm">
+                <!-- Filled by ProjectInfoPartialView.js-->
+            </div>
+            <div id="project_plugins" class="well well-sm">
+                <!-- Filled by ProjectPluginsPartialView.js-->
+            </div>
+        </div>
+    </div>
+    <div class="text-center half-spacing-bottom">
+        <button id="btnAdd" type="button" class="btn btn-default btn-success btn-lg">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add project
+        </button>
+    </div>
+</div>

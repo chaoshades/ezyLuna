@@ -260,6 +260,17 @@
             return deferred.promise();
         },
 
+        getPlugins = function () {
+            var deferred = $.Deferred(),
+                results = null;
+
+            results = plugins;
+
+            deferred.resolve(results);
+
+            return deferred.promise();
+        },
+
         //getTypesByName = function (typeName) {
         //    var deferred = $.Deferred(),
         //        results = null;
@@ -376,6 +387,11 @@ config = {
 ]
 },
 
+plugins = [
+{ "name": "AltMenuScreen", "status": false, "description": "Alternative menu screen layout.", "parameters": {} },
+{ "name": "AltSaveScreen", "status": true, "description": "Alternative save/load screen layout.", "parameters": {} }
+],
+
 // Custom YEP Data
 
 weapon_sprites = [
@@ -458,7 +474,8 @@ motions = [
         getTypes: getTypes,
         getTerms: getTerms,
         getWeaponSprites: getWeaponSprites,
-        getMotions: getMotions
+        getMotions: getMotions,
+        getPlugins: getPlugins
     };
 
 });

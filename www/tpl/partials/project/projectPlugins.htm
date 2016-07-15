@@ -1,0 +1,23 @@
+﻿<h4>Plugins</h4>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Enabled</th>
+            <th>Name</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#.}}
+        <tr>
+            <th scope="row"><input type="checkbox" class="js_Tags" title="Enables {{name}}" {{checkedIf enabled}} /></th>
+            <td>{{name}}</td>
+            <td>{{description}}
+                <span class="label label-default">Detected</span>
+                <span class="label label-success">Supported</span>
+                <span class="label label-danger">Not supported</span>
+            </td>
+        </tr>
+        {{/.}}
+    </tbody>
+</table>

@@ -2,7 +2,7 @@
 
     "use strict";
 
-    var DEFAULT_ROUTE = "#",
+    var //DEFAULT_ROUTE = "#",
         $ = require('jquery'),
         Handlebars = require('handlebars'),
         masterHtml = require('text!tpl/master.htm'),
@@ -30,9 +30,9 @@
 
             // Header init
             // Default route if none provided
-            var hash = window.location.hash
-            if (!hash)
-                hash = DEFAULT_ROUTE;
+            //var hash = window.location.hash
+            //if (!hash)
+            //    hash = DEFAULT_ROUTE;
 
             // Nav Bar menu init
             if (settings.menu) {
