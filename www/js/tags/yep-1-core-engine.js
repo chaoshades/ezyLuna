@@ -4,7 +4,11 @@
 
     var BasicParser = require("parser/BasicParser");
 
-    return [
+    return new Plugin(
+        'YEP_CoreEngine',
+        'v1.16',
+        'http://yanfly.moe/2015/10/09/yep-1-core-engine/',
+        [
             new TagParser("hp", new BasicParser()),
             new TagParser("mp", new BasicParser()),
             new TagParser("atk", new BasicParser()),
@@ -15,6 +19,7 @@
             new TagParser("luk", new BasicParser()),
             new TagParser("exp", new BasicParser()),
             new TagParser("gold", new BasicParser())
-    ];
+        ]
+    );
 
 });

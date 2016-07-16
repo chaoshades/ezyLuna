@@ -1,23 +1,45 @@
 ﻿<h4>Plugins</h4>
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>Enabled</th>
-            <th>Name</th>
-            <th>Description</th>
-        </tr>
-    </thead>
-    <tbody>
-        {{#.}}
-        <tr>
-            <th scope="row"><input type="checkbox" class="js_Tags" title="Enables {{name}}" {{checkedIf enabled}} /></th>
-            <td>{{name}}</td>
-            <td>{{description}}
-                <span class="label label-default">Detected</span>
-                <span class="label label-success">Supported</span>
-                <span class="label label-danger">Not supported</span>
-            </td>
-        </tr>
-        {{/.}}
-    </tbody>
-</table>
+<div class="text-center half-spacing-bottom">
+    <div class="btn-group" data-toggle="buttons">
+      <label class="btn btn-default btn-lg">
+        <input type="radio" name="PluginsOptions" id="radAll"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>All
+      </label>
+      <label class="btn btn-default btn-lg">
+        <input type="radio" name="PluginsOptions" id="radDetectedOnly"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>Detected only
+      </label>
+      <label class="btn btn-default btn-lg">
+        <input type="radio" name="PluginsOptions" id="radAdvanced"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>Advanced
+      </label>
+    </div>
+</div>
+<div id="advanced_plugins" class="table-responsive">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Enabled</th>
+                <th>Name</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#.}}
+            <tr>
+                <th scope="row"><input type="checkbox" class="js_Tags" title="Enables {{name}}" {{checkedIf enabled}} /></th>
+                <td>{{name}}</td>
+                <td>{{description}}<br />
+                    {{#if detected}}
+                    <span class="label label-primary">Detected</span>
+                    {{else}}
+                    <span class="label label-default">Not detected</span>
+                    {{/if}}
+                    {{#if supported}}
+                    <span class="label label-success">Supported</span>
+                    {{else}}
+                    <span class="label label-danger">Not supported</span>
+                    {{/if}}
+                </td>
+            </tr>
+            {{/.}}
+        </tbody>
+    </table>
+</div>

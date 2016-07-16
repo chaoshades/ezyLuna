@@ -6,7 +6,11 @@
         TagOnlyParser = require("parser/TagOnlyParser"),
         BasicPercentParser = require("parser/BasicPercentParser");
 
-    return [
+    return new Plugin(
+        'YEP_X_ArmorScaling',
+        'v1.02',
+        'http://yanfly.moe/2015/11/28/yep-33-armor-scaling/',
+        [
             new TagParser("Bypass Armor Scaling", new TagOnlyParser()),
             new TagParser("Physical Armor Reduction", new BasicParser(), "Physical Armor Reduction"),
             new TagParser("Magical Armor Reduction", new BasicParser(), "Magical Armor Reduction"),
@@ -14,6 +18,7 @@
             new TagParser("Physical Armor Reduction#2", new BasicPercentParser(), "Physical Armor Reduction"),
             new TagParser("Magical Armor Reduction#2", new BasicPercentParser(), "Magical Armor Reduction"),
             new TagParser("Certain Armor Reduction#2", new BasicPercentParser(), "Certain Armor Reduction")
-    ];
+        ]
+    );
 
 });

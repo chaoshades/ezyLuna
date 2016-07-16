@@ -8,7 +8,11 @@
         CoordParser = require("parser/CoordParser"),
         BasicArrayParser = require("parser/BasicArrayParser");
 
-    return [
+    return new Plugin(
+        'YEP_X_AnimatedSVEnemies',
+        'v1.11',
+        'http://yanfly.moe/2015/12/13/yep-44-animated-sideview-enemies/',
+        [
             new TagParser("Breathing", new TagOnlyParser()),
             new TagParser("No Breathing", new TagOnlyParser()),
             new TagParser("Breathing Speed", new BasicParser()),
@@ -43,6 +47,7 @@
             new TagParser("Sideview Shadow Width", new BasicPercentParser()),
             new TagParser("Sideview Shadow Height", new BasicPercentParser()),
             new TagParser("Hide Sideview Weapon", new TagOnlyParser())
-    ];
+        ]
+    );
 
 });

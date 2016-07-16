@@ -5,6 +5,7 @@
     var $ = require('jquery'),
         Handlebars = require('handlebars'),
         dataAdapter = require('adapters/data'),
+        tagReader = require('app/tag-reader'),
         ProjectInfoPartialView = require("partial/project/ProjectInfoPartialView"),
         ProjectPluginsPartialView = require("partial/project/ProjectPluginsPartialView"),
         projectAddHtml = require('text!tpl/projectAdd.htm'),
@@ -29,21 +30,21 @@
                 $.when(
                     dataAdapter.getSystem(),
                     dataAdapter.getPlugins()
-                ).done(function (system, plugins) {
-                     $('#successUrl').show();
-                     project.system = system;
+                ).done(function (system, detected_plugins) {
+                    $('#successUrl').show();
+                    project.system = system;
 
-                     var partials = {
-                         'project_info': new ProjectInfoPartialView(project),
-                         'project_plugins': new ProjectPluginsPartialView(plugins)
-                     }
+                    var partials = {
+                        'project_info': new ProjectInfoPartialView(project),
+                        'project_plugins': new ProjectPluginsPartialView(detected_plugins, tagReader.getSupportedPlugins())
+                    }
 
-                     // Render partial views
-                     var renderedPartials = _.mapObject(partials, function (p, key) { wrapperReference.find('#' + key).html(p.render().$el); });
+                    // Render partial views
+                    var renderedPartials = _.mapObject(partials, function (p, key) { wrapperReference.find('#' + key).html(p.render().$el); });
 
-                     $('#project_info').show();
-                     $('#project_plugins').show();
-                 })
+                    $('#project_info').show();
+                    $('#project_plugins').show();
+                })
                 .fail(function () {
                     $('#errorUrl').show();
 

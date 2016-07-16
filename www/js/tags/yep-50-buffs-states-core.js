@@ -5,7 +5,11 @@
     var SignedParser = require("parser/SignedParser"),
         TagOnlyParser = require("parser/TagOnlyParser");
 
-    return [
+    return new Plugin(
+        'YEP_BuffsStatesCore',
+        'v1.10',
+        'http://yanfly.moe/2015/12/25/yep-50-buffs-states-core/',
+        [
             new TagParser("Max maxhp Buff", new SignedParser()),
             new TagParser("Max maxmp Buff", new SignedParser()),
             new TagParser("Max atk Buff", new SignedParser()),
@@ -23,6 +27,7 @@
             new TagParser("Max agi Debuff", new SignedParser()),
             new TagParser("Max luk Debuff", new SignedParser()),
             new TagParser("Show State Turn", new TagOnlyParser())
-    ];
+        ]
+    );
 
 });

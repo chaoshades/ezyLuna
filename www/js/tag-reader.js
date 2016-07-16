@@ -4,33 +4,38 @@ define(function (require) {
 
     var $ = require('jquery'),
         _ = require('underscore'),
-        YEPCoreEngineTags = require("tag/yep-1-core-engine"),
-        YEPBattleEngineCoreTags = require("tag/yep-3-battle-engine-core"),
-        YEPAnimatedSideViewEnemiesTags = require("tag/yep-44-animated-sideview-enemies"),
-        YEPBattleSystemActiveTurnBattleTags = require("tag/yep-24-battle-system-active-turn-battle"),
-        YEPVisualATBGaugeTags = require("tag/yep-31-visual-atb-gauge"),
-        YEPBattleSystemChargeTurnBattleTags = require("tag/yep-38-battle-system-charge-turn-battle"),
-        YEPVisualHPGaugesTags = require("tag/yep-30-visual-hp-gauges"),
-        YEPBuffsStatesCoreTags = require("tag/yep-50-buffs-states-core"),
-        YEPDamageCoreTags = require("tag/yep-25-damage-core"),
-        YEPArmorScalingTags = require("tag/yep-33-armor-scaling"),
-        YEPTauntTags = require("tag/yep-23-taunt"),
-        YEPLimitedSkillUsesTags = require("tag/yep-56-limited-skill-uses"),
+        YEPCoreEngine = require("tag/yep-1-core-engine"),
+        YEPBattleEngineCore = require("tag/yep-3-battle-engine-core"),
+        YEPAnimatedSideViewEnemies = require("tag/yep-44-animated-sideview-enemies"),
+        YEPBattleSystemActiveTurnBattle = require("tag/yep-24-battle-system-active-turn-battle"),
+        YEPVisualATBGauge = require("tag/yep-31-visual-atb-gauge"),
+        YEPBattleSystemChargeTurnBattle = require("tag/yep-38-battle-system-charge-turn-battle"),
+        YEPVisualHPGauges = require("tag/yep-30-visual-hp-gauges"),
+        YEPBuffsStatesCore = require("tag/yep-50-buffs-states-core"),
+        YEPDamageCore = require("tag/yep-25-damage-core"),
+        YEPArmorScaling = require("tag/yep-33-armor-scaling"),
+        YEPTaunt = require("tag/yep-23-taunt"),
+        YEPLimitedSkillUses = require("tag/yep-56-limited-skill-uses"),
 
-        tags = _.flatten([
-            YEPCoreEngineTags,
-            YEPBattleEngineCoreTags,
-            YEPAnimatedSideViewEnemiesTags,
-            YEPBattleSystemActiveTurnBattleTags,
-            YEPVisualATBGaugeTags,
-            YEPBattleSystemChargeTurnBattleTags,
-            YEPVisualHPGaugesTags,
-            YEPBuffsStatesCoreTags,
-            YEPDamageCoreTags,
-            YEPArmorScalingTags,
-            YEPTauntTags,
-            YEPLimitedSkillUsesTags
-        ]),
+        plugins = [
+            YEPCoreEngine,
+            YEPBattleEngineCore,
+            YEPAnimatedSideViewEnemies,
+            YEPBattleSystemActiveTurnBattle,
+            YEPVisualATBGauge,
+            YEPBattleSystemChargeTurnBattle,
+            YEPVisualHPGauges,
+            YEPBuffsStatesCore,
+            YEPDamageCore,
+            YEPArmorScaling,
+            YEPTaunt,
+            YEPLimitedSkillUses
+        ],
+
+        tags = _.chain(plugins)
+                .map(function(p) { return p.tags; })
+                .flatten()
+                .value(),
 
     getStringFromNoteTags = function (notetags) {
         var result = "";
@@ -54,12 +59,23 @@ define(function (require) {
         });
 
         return results;
+    },
+        
+    getSupportedPlugins = function () {
+        var results = [];
+
+        _.each(plugins, function (p) {
+            results.push(new Plugin(p.name, p.version, p.help_url));
+        });
+
+        return results;
     };
 
     // The public API
     return {
         getStringFromNoteTags: getStringFromNoteTags,
-        getNoteTagsFromString: getNoteTagsFromString
+        getNoteTagsFromString: getNoteTagsFromString,
+        getSupportedPlugins: getSupportedPlugins
     };
 
 });

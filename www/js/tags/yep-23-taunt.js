@@ -4,7 +4,11 @@
 
     var TagOnlyParser = require("parser/TagOnlyParser");
 
-    return [
+    return new Plugin(
+        'YEP_Taunt',
+        'v1.01',
+        'http://yanfly.moe/2015/10/31/yep-23-taunt/',
+        [
             new TagParser("Physical Taunt", new TagOnlyParser()),
             new TagParser("Magical Taunt", new TagOnlyParser()),
             new TagParser("Certain Taunt", new TagOnlyParser()),
@@ -14,6 +18,7 @@
             new TagParser("Ignore Physical Taunt", new TagOnlyParser()),
             new TagParser("Ignore Magical Taunt", new TagOnlyParser()),
             new TagParser("Ignore Certain Taunt", new TagOnlyParser())
-    ];
+        ]
+    );
 
 });
