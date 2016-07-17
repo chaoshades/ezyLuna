@@ -28,7 +28,7 @@
             this.$el = $('<div/>');
 
             // Change Event for checkboxes that enables tags
-            this.$el.on('switchChange.bootstrapSwitch', '.js_Tags', function () {
+            this.$el.on('change', '.js_Tags', function () {
                 enableInputs(this);
             });
 

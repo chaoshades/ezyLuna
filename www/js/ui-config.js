@@ -24,7 +24,14 @@ define(function (require) {
                 offText: '&nbsp;',
                 onColor: 'success',
                 offColor: 'danger',
-                size: 'mini'
+                size: 'mini',
+                onInit: function (event, state) {
+                    var title = $(this).attr('title');
+                    $(this).parents('.bootstrap-switch').attr('title', title);
+                },
+                onSwitchChange: function (event, state) {
+                    $(this).change();
+                }
             }
         }
     };

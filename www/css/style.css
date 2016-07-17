@@ -106,6 +106,7 @@ h4 .label {
 
 .input-group-addon .bootstrap-switch {
     margin: 0 -6px;
+    width: 24px;
 }
 
 .bootstrap-switch.bootstrap-switch-mini .bootstrap-switch-handle-on,
