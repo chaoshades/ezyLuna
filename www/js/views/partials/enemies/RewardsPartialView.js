@@ -5,6 +5,8 @@
     var $ = require('jquery'),
         _ = require('underscore'),
         Handlebars = require('handlebars'),
+        UIConfig = require('ui-config'),
+        Switch = require('bootstrap-switch'),
         rewardsHtml = require('text!partialtpl/enemies/rewards.htm'),
 
         rewardsTpl = Handlebars.compile(rewardsHtml),
@@ -19,8 +21,8 @@
             // Define a div wrapper for the view. The div wrapper is used to attach events.
             this.$el = $('<div/>');
 
-            // Click Event for checkboxes that enables tags
-            this.$el.on('click', '.js_Tags', function () {
+            // Change Event for checkboxes that enables tags
+            this.$el.on('switchChange.bootstrapSwitch', '.js_Tags', function () {
                 enableInputs(this);
             });
 
@@ -32,6 +34,9 @@
             }
 
             this.$el.html(rewardsTpl(current));
+
+            // Initial Display
+            this.$el.find('input[type="checkbox"]').bootstrapSwitch(UIConfig.switch.tag);
 
             return this;
         };

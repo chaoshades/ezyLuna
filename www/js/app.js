@@ -15,6 +15,7 @@
 
     map: {
         '*': {
+            'ui-config': 'app/ui-config',
             'adapters/data': 'app/adapters/json-adapter'
         }
     },
@@ -28,6 +29,12 @@
         },
         'bootstrap': {
             deps: ['jquery']
+        },
+        'bootstrap-file-input': {
+            deps: ['jquery', 'bootstrap']
+        },
+        'bootstrap-switch': {
+            deps: ['jquery', 'bootstrap']
         }
     }
 

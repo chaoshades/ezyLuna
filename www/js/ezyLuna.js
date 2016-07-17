@@ -91,9 +91,10 @@ function setSignedValueTag(tags, chkSelector, tag, valSelector) {
 function enableInputs(chk) {
     var attr = null;
 
-    ctrl = $(chk).parent().siblings('input, select');
+    ctrl = $(chk).parents('.input-group-addon').siblings('input, select');
+    // For form-control div only (ex.: radio button group)
     if (ctrl.length === 0)
-        ctrl = $(chk).parent().next();
+        ctrl = $(chk).parents('.input-group-addon').next();
 
     if ($(chk).is(':checked')) {
         if (ctrl.is('select') || ctrl.hasClass('radio') || ctrl.hasClass('checkbox'))

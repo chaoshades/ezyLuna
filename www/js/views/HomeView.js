@@ -4,7 +4,8 @@
 
     var $ = require('jquery'),
         Handlebars = require('handlebars'),
-        FileInput = require('file-input'),
+        UIConfig = require('ui-config'),
+        FileInput = require('bootstrap-file-input'),
         homeHtml = require('text!tpl/home.htm'),
 
         homeTpl = Handlebars.compile(homeHtml);
@@ -55,13 +56,7 @@
             this.$el.html(homeTpl(projects));
 
             // Initial Display
-            this.$el.find("#btnImportConfig").fileinput({
-                showPreview: false,
-                showCancel: false,
-                showClose: false,
-                showUpload: false,
-                showUploadedThumbs: false
-            });
+            this.$el.find("#btnImportConfig").fileinput(UIConfig.fileInput.importConfig);
 
             return this;
         };
