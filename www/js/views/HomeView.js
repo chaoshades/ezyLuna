@@ -4,6 +4,7 @@
 
     var $ = require('jquery'),
         Handlebars = require('handlebars'),
+        FileInput = require('file-input'),
         homeHtml = require('text!tpl/home.htm'),
 
         homeTpl = Handlebars.compile(homeHtml);
@@ -31,6 +32,20 @@
                 window.location.hash = "#project/add"
             });
 
+            // Change event for ImportConfig file input
+            this.$el.on('change', '#btnImportConfig', function () {
+                var reader = new FileReader(),
+                    file = _.first(this.files);
+
+                reader.onload = function (event) {
+                    var result = event.target.result;
+                    
+                    // TODO : Import config
+                }
+
+                reader.readAsText(file)
+            });
+
             this.$settings = {
                 project: null
             };
@@ -38,6 +53,20 @@
 
         this.render = function () {
             this.$el.html(homeTpl(projects));
+
+            // Initial Display
+            this.$el.find("#btnImportConfig").fileinput({
+                showPreview: false,
+                showCancel: false,
+                showClose: false,
+                showUpload: false,
+                showUploadedThumbs: false,
+                browseIcon: '<span class="glyphicon glyphicon-upload"></span>',
+                browseLabel: 'Import config',
+                removeIcon: '<span class="glyphicon glyphicon-trash"></span>',
+                removeLabel: 'Clear',
+            });
+
             return this;
         };
 

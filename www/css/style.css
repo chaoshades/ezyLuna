@@ -53,6 +53,17 @@ textarea {
     1px 1px 0 #000;
     font-size:35px;
 }
+.home .btn-toolbar {
+    margin-top: 7px;
+}
+.home .btn-toolbar .file-input {
+    width: 400px;
+    float: left;
+}
+.home .btn-toolbar .file-input .btn {
+    float: none;
+}
+
 
 /*Bootstrap Overrides*/
 input[type="radio"], input[type="checkbox"] {

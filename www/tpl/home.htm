@@ -2,33 +2,36 @@
     <h1>Welcome to ezyLuna !!!</h1>
     <p>Makes notetags edition easy</p>
     <div class="btn-toolbar pull-right">
+        <input id="btnImportConfig" type="file" class="file">
         <button class="btn btn-default btn-primary" type="button" id="btnExportConfig">
             <span aria-hidden="true" class="glyphicon glyphicon-download"></span>Export config
         </button>
-    </div>
+    </div>  
     <h2>Your projects</h2>
-    <div class="row">
-        {{#.}}
-        <div class="col-md-4">
-        <a href="#project/{{id}}" class="thumbnail text-center">
-            {{#if system.title1Name}}
-            <img class="img-responsive" src="{{url}}img/titles1/{{system.title1Name}}.png" />
-            {{else}}
-            <img class="img-responsive" src="img/NoTitle.png" />
-            {{/if}}
-            <div class="caption">
-                <h4>{{system.gameTitle}}</h4>
-            </div>
-        </a>
-        </div>
-        {{/.}}
-        <div class="col-md-4">
-            <div class="thumbnail text-center">
-            <img class="img-responsive" src="img/NoTitle.png" />
+    <div class="well well-sm">
+        <div class="row">
+            {{#.}}
+            <div class="col-md-4">
+            <a href="#project/{{id}}" class="thumbnail text-center">
+                {{#if system.title1Name}}
+                <img class="img-responsive" src="{{url}}img/titles1/{{system.title1Name}}.png" />
+                {{else}}
+                <img class="img-responsive" src="img/NoTitle.png" />
+                {{/if}}
                 <div class="caption">
-                    <button class="btn btn-default btn-success btn-lg" type="button" id="btnAddProject">
-                        <span aria-hidden="true" class="glyphicon glyphicon-plus"></span>Add project
-                    </button>
+                    <h4>{{system.gameTitle}}</h4>
+                </div>
+            </a>
+            </div>
+            {{/.}}
+            <div class="col-md-4">
+                <div class="thumbnail text-center">
+                <img class="img-responsive" src="img/NoTitle.png" />
+                    <div class="caption">
+                        <button class="btn btn-default btn-success btn-lg" type="button" id="btnAddProject">
+                            <span aria-hidden="true" class="glyphicon glyphicon-plus"></span>Add project
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
