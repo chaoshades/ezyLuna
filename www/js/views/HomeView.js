@@ -60,11 +60,7 @@
                 showCancel: false,
                 showClose: false,
                 showUpload: false,
-                showUploadedThumbs: false,
-                browseIcon: '<span class="glyphicon glyphicon-upload"></span>',
-                browseLabel: 'Import config',
-                removeIcon: '<span class="glyphicon glyphicon-trash"></span>',
-                removeLabel: 'Clear',
+                showUploadedThumbs: false
             });
 
             return this;

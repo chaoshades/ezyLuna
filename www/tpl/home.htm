@@ -2,9 +2,13 @@
     <h1>Welcome to ezyLuna !!!</h1>
     <p>Makes notetags edition easy</p>
     <div class="btn-toolbar pull-right">
-        <input id="btnImportConfig" type="file" class="file">
-        <button class="btn btn-default btn-primary" type="button" id="btnExportConfig">
-            <span aria-hidden="true" class="glyphicon glyphicon-download"></span>Export config
+        <input id="btnImportConfig" type="file" class="file" title="Import configuration file"
+            data-browse-icon="<span class='glyphicon glyphicon-upload'></span>"
+            data-browse-label="Import config"
+            data-remove-icon="<span class='glyphicon glyphicon-trash'></span>"
+            data-remove-label="Clear">
+        <button id="btnExportConfig" type="button" class="btn btn-default btn-primary" title="Export configuration file">
+            <span class="glyphicon glyphicon-download" aria-hidden="true"></span>&nbsp;<span class="hidden-xs">Export config</span>
         </button>
     </div>  
     <h2>Your projects</h2>
@@ -28,8 +32,8 @@
                 <div class="thumbnail text-center">
                 <img class="img-responsive" src="img/NoTitle.png" />
                     <div class="caption">
-                        <button class="btn btn-default btn-success btn-lg" type="button" id="btnAddProject">
-                            <span aria-hidden="true" class="glyphicon glyphicon-plus"></span>Add project
+                        <button id="btnAddProject" type="button" class="btn btn-default btn-success btn-lg" title="Add a new project">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;Add project
                         </button>
                     </div>
                 </div>

@@ -54,11 +54,21 @@ textarea {
     font-size:35px;
 }
 .home .btn-toolbar {
+    max-width: 400px;
     margin-top: 7px;
 }
 .home .btn-toolbar .file-input {
-    width: 400px;
+    max-width: 300px;
     float: left;
+}
+@media (min-width:768px)
+{
+    .home .btn-toolbar {
+        max-width: 520px;
+    }
+    .home .btn-toolbar .file-input {
+        max-width: 400px;
+    }
 }
 .home .btn-toolbar .file-input .btn {
     float: none;
@@ -84,6 +94,10 @@ input[type="radio"], input[type="checkbox"] {
 
 .radio.form-control[disabled] label, .checkbox.form-control[disabled] labe {
     cursor:not-allowed;
+}
+
+.well .table {
+    background:white;
 }
 
 /*Vertical carousel*/
