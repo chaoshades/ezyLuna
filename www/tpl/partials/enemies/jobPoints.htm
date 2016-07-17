@@ -1,0 +1,12 @@
+﻿<h4><a role="button" data-toggle="collapse" href="#collapseJobPoints" aria-expanded="true" aria-controls="collapseJobPoints">Job Points</a><span class="pull-right label label-info">YEP-Job-Points</span></h4>
+<div id="collapseJobPoints" class="collapse">
+    <div class="form-group">
+        <label for="numJobPoints">Job Points:</label>
+        <div class="input-group">
+            <span class="input-group-addon">
+                <input id="chkJobPoints" type="checkbox" class="js_Tags" title="Enables Job Points" {{checkedIf jobPoints}} />
+            </span>
+            <input type="number" class="form-control" id="numJobPoints" value="{{jobPoints}}" {{readonlyIfNot jobPoints}} />
+        </div>
+    </div>
+</div>

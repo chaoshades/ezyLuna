@@ -14,9 +14,19 @@ define(function (require) {
         YEPBuffsStatesCore = require("tag/yep-50-buffs-states-core"),
         YEPDamageCore = require("tag/yep-25-damage-core"),
         YEPArmorScaling = require("tag/yep-33-armor-scaling"),
+        YEPExtraEnemyDrops = require("tag/yep-47-extra-enemy-drops"),
         YEPTaunt = require("tag/yep-23-taunt"),
         YEPLimitedSkillUses = require("tag/yep-56-limited-skill-uses"),
-
+        YEPSkillCooldowns = require("tag/yep-9-skill-cooldowns"),
+        YEPInstantCast = require("tag/yep-22-instant-cast-2"),
+        YEPWeaponAnimation = require("tag/yep-63-weapon-animation"),
+        YEPWeaponUnleash = require("tag/yep-51-weapon-unleash"),
+        YEPAutoPassiveStates = require("tag/yep-13-auto-passive-states"),
+        YEPEnemyLevels = require("tag/yep-64-enemy-levels"),
+        YEPJobPoints = require("tag/yep-27-job-points"),
+        YEPRowFormation = require("tag/yep-54-row-formation"),
+        YEPSwapEnemies = require("tag/yep-45-swap-enemies"),
+        
         plugins = [
             YEPCoreEngine,
             YEPBattleEngineCore,
@@ -28,8 +38,18 @@ define(function (require) {
             YEPBuffsStatesCore,
             YEPDamageCore,
             YEPArmorScaling,
+            YEPExtraEnemyDrops, // TODO
             YEPTaunt,
-            YEPLimitedSkillUses
+            YEPLimitedSkillUses,
+            YEPSkillCooldowns, // TODO
+            YEPInstantCast, // TODO
+            YEPWeaponAnimation,
+            YEPWeaponUnleash, // TODO
+            YEPAutoPassiveStates, // TODO
+            YEPEnemyLevels, // TODO
+            YEPJobPoints,
+            YEPRowFormation,
+            YEPSwapEnemies // TODO
         ],
 
         tags = _.chain(plugins)

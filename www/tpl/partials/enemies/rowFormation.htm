@@ -1,0 +1,30 @@
+﻿<h4><a role="button" data-toggle="collapse" href="#collapseRowFormation" aria-expanded="true" aria-controls="collapseRowFormation">Row Formation</a><span class="pull-right label label-info">YEP-Row-Formation</span></h4>
+<div id="collapseRowFormation" class="collapse">
+    <div class="form-group">
+        <label for="numDefaultRow">Default Row:</label>
+        <div class="input-group">
+            <span class="input-group-addon">
+                <input id="chkDefaultRow" type="checkbox" class="js_Tags" title="Enables Default Row" {{checkedIf defaultRow}} />
+            </span>
+            <input type="number" class="form-control" id="numDefaultRow" value="{{defaultRow}}" {{readonlyIfNot defaultRow}} />
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Row Lock:</label>
+        <div class="input-group">
+            <span class="input-group-addon">
+                <input id="chkRowLock" type="checkbox" class="js_Tags" title="Enables Row Lock" {{checkedIf rowLock}} />
+            </span>
+            <div class="radio form-control" {{disabledIfNot rowLock.enabled}}>
+                <label class="radio-inline">
+                    <input type="radio" name="RowLock" id="radRowLock" {{disabledIfNot rowLock.enabled}} {{checkedIf rowLock.yes}} />
+                    Yes
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="RowLock" id="radNoRowLock" {{disabledIfNot rowLock.enabled}} {{checkedIf rowLock.no}} />
+                    No
+                </label>
+            </div>
+        </div>
+    </div>
+</div>

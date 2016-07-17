@@ -25,6 +25,9 @@
         ArmorScalingPartialView = require("partial/enemies/ArmorScalingPartialView"),
         TauntSettingsPartialView = require("partial/enemies/TauntSettingsPartialView"),
         LimitedSkillUsesPartialView = require("partial/enemies/LimitedSkillUsesPartialView"),
+        JobPointsPartialView = require("partial/enemies/JobPointsPartialView"),
+        RowFormationPartialView = require("partial/enemies/RowFormationPartialView"),
+        WeaponAnimationSettingsPartialView = require("partial/enemies/WeaponAnimationSettingsPartialView"),
         enemiesHtml = require('text!tpl/enemies.htm'),
 
         enemiesTpl = Handlebars.compile(enemiesHtml);
@@ -51,7 +54,10 @@
                 'damage_settings': new DamageSettingsPartialView(current),
                 'armor_scaling': new ArmorScalingPartialView(current),
                 'taunt_settings': new TauntSettingsPartialView(current),
-                'limited_skill_uses': new LimitedSkillUsesPartialView(current, linked_data)
+                'limited_skill_uses': new LimitedSkillUsesPartialView(current, linked_data),
+                'job_points': new JobPointsPartialView(current),
+                'row_formation': new RowFormationPartialView(current),
+                'weapon_animation_settings': new WeaponAnimationSettingsPartialView(current, linked_data)
             }   
 
         this.initialize = function () {
