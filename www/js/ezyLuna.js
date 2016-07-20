@@ -54,7 +54,7 @@ function setPercentValueTag(tags, chkSelector, tag, valSelector) {
  * @param {Number} tags: Tags array. 
  * @param {String} chkSelector: Checkbox selector.
  * @param {String} tag: Tag to create. 
- * @param {Array} valSelectosr: Array of input value selectors.
+ * @param {Array} valSelectors: Array of input value selectors.
  */
 function setValuesTag(tags, chkSelector, tag, valSelectors) {
     var values = [];
@@ -91,35 +91,41 @@ function setSignedValueTag(tags, chkSelector, tag, valSelector) {
 function enableInputs(chk) {
     var attr = null;
 
-    ctrl = $(chk).parents('.input-group-addon').siblings('input, select');
+    var ctrls = $(chk).parents('.input-group-addon').siblings('input, select');
     // For form-control div only (ex.: radio button group)
-    if (ctrl.length === 0)
-        ctrl = $(chk).parents('.input-group-addon').next();
+    if (ctrls.length === 0)
+        ctrls = $(chk).parents('.input-group-addon').next();
 
     if ($(chk).is(':checked')) {
-        if (ctrl.is('select') || ctrl.hasClass('radio') || ctrl.hasClass('checkbox'))
-            attr = 'disabled';
-        else
-            attr = 'readonly';
+        $(ctrls).each(function (i, c) {
+            var ctrl = $(c);
+            if (ctrl.is('select') || ctrl.hasClass('radio') || ctrl.hasClass('checkbox'))
+                attr = 'disabled';
+            else
+                attr = 'readonly';
 
-        if (ctrl.hasClass('radio'))
-            $(ctrl).find('input[type=radio]').removeAttr(attr);
-        else if (ctrl.hasClass('checkbox'))
-            $(ctrl).find('input[type=checkbox]').removeAttr(attr);
+            if (ctrl.hasClass('radio'))
+                ctrl.find('input[type=radio]').removeAttr(attr);
+            else if (ctrl.hasClass('checkbox'))
+                ctrl.find('input[type=checkbox]').removeAttr(attr);
 
-        $(ctrl).removeAttr(attr);
+            ctrl.removeAttr(attr);
+        });
     } else {
-        if (ctrl.is('select') || ctrl.hasClass('radio') || ctrl.hasClass('checkbox'))
-            attr = 'disabled';
-        else
-            attr = 'readonly';
+        $(ctrls).each(function (i, c) {
+            var ctrl = $(c);
+            if (ctrl.is('select') || ctrl.hasClass('radio') || ctrl.hasClass('checkbox'))
+                attr = 'disabled';
+            else
+                attr = 'readonly';
 
-        if (ctrl.hasClass('radio'))
-            $(ctrl).find('input[type=radio]').attr(attr, attr);
-        else if (ctrl.hasClass('checkbox'))
-            $(ctrl).find('input[type=checkbox]').attr(attr, attr);
+            if (ctrl.hasClass('radio'))
+                ctrl.find('input[type=radio]').attr(attr, attr);
+            else if (ctrl.hasClass('checkbox'))
+                ctrl.find('input[type=checkbox]').attr(attr, attr);
 
-        $(ctrl).attr(attr, attr);
+            ctrl.attr(attr, attr);
+        });
     }
 }
 
@@ -186,7 +192,7 @@ function NoteTag(tag, data) {
 /**
  * The TagParser class defines a tag parser.
  * @param {String} id: Unique id of the tag. 
- * @param {Object} data: The parser object.
+ * @param {Object} parser: The parser object.
  * @param {String} tag: Name of the tag (optional). 
  */
 function TagParser(id, parser, tag) {

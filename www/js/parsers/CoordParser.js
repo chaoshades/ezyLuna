@@ -9,7 +9,7 @@
         coordTpl = Handlebars.compile(coordHtml);
 
 
-    return function (tag) {
+    return function () {
 
         this.initialize = function () {
             // Nothing to do

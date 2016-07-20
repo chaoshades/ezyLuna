@@ -9,7 +9,7 @@
         basicTpl = Handlebars.compile(basicHtml);
 
 
-    return function (tag) {
+    return function () {
 
         this.initialize = function () {
             // Nothing to do

@@ -9,7 +9,7 @@
         signedPercentTpl = Handlebars.compile(signedPercentHtml);
 
 
-    return function (tag) {
+    return function () {
 
         this.initialize = function () {
             // Nothing to do

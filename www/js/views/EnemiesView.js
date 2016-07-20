@@ -28,6 +28,7 @@
         JobPointsPartialView = require("partial/enemies/JobPointsPartialView"),
         RowFormationPartialView = require("partial/enemies/RowFormationPartialView"),
         WeaponAnimationSettingsPartialView = require("partial/enemies/WeaponAnimationSettingsPartialView"),
+        EnemyLevelsPartialView = require("partial/enemies/EnemyLevelsPartialView"),
         enemiesHtml = require('text!tpl/enemies.htm'),
 
         enemiesTpl = Handlebars.compile(enemiesHtml);
@@ -57,7 +58,8 @@
                 'limited_skill_uses': new LimitedSkillUsesPartialView(current, linked_data),
                 'job_points': new JobPointsPartialView(current),
                 'row_formation': new RowFormationPartialView(current),
-                'weapon_animation_settings': new WeaponAnimationSettingsPartialView(current, linked_data)
+                'weapon_animation_settings': new WeaponAnimationSettingsPartialView(current, linked_data),
+                'enemy_levels': new EnemyLevelsPartialView(current, linked_data)
             }   
 
         this.initialize = function () {

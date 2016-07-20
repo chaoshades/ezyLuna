@@ -9,7 +9,7 @@
         signedTpl = Handlebars.compile(signedHtml);
 
 
-    return function (tag) {
+    return function () {
 
         this.initialize = function () {
             // Nothing to do

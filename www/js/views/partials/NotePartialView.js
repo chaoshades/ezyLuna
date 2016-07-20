@@ -26,7 +26,8 @@
             _.each(output.split("\n"), function (t) {
                 temp = temp.replace(t, "");
             });
-            current.note = temp;
+            // Remove multiple line breaks
+            current.note = temp.replace(/\n\n/g, "");
 
             this.$el.html(noteTpl(current));
 

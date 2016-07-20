@@ -74,8 +74,10 @@ define(function (require) {
 
         _.each(tags, function (t) {
             var temp = t.parser.parse(t.tag, notetags);
-            if (temp)
+            if (temp) {
+                temp.tag = t.id;
                 results.push(temp);
+            }
         });
 
         return results;

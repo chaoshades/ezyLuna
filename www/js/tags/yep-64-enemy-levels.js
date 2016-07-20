@@ -3,7 +3,8 @@
     "use strict";
 
     var BasicParser = require("parser/BasicParser"),
-        TagOnlyParser = require("parser/TagOnlyParser");
+        TagOnlyParser = require("parser/TagOnlyParser"),
+        BasicTagArrayParser = require("parser/BasicTagArrayParser");
 
     return new Plugin(
         'YEP_EnemyLevels',
@@ -24,7 +25,7 @@
             //new TagParser("stat Flat: +x per level", new SignedParser()), TODO
             //new TagParser("stat Flat: +x.y per level", new SignedParser()), TODO
             new TagParser("Resist Level Change", new TagOnlyParser()),
-            //new TagParser("Skill x Require Level: y", new BasicParser()) TODO
+            new TagParser("Skill Require Level", new BasicTagArrayParser(1))
         ]
     );
 
