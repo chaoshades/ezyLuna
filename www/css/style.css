@@ -117,6 +117,10 @@ h4 .label {
     line-height: 1.25;
 }
 
+.well .table .btn-group {
+    min-width: 65px;
+}
+
 /*Vertical carousel*/
 .carousel-inner.vertical > .item .list-group-item:first-child {
     border-radius:0;

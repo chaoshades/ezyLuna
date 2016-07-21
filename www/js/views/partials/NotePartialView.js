@@ -27,7 +27,7 @@
                 temp = temp.replace(t, "");
             });
             // Remove multiple line breaks
-            current.note = temp.replace(/\n\n/g, "");
+            current.note = temp.replace(/^\s*[\r\n]/gm, "");
 
             this.$el.html(noteTpl(current));
 

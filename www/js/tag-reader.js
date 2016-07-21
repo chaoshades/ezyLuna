@@ -75,8 +75,14 @@ define(function (require) {
         _.each(tags, function (t) {
             var temp = t.parser.parse(t.tag, notetags);
             if (temp) {
-                temp.tag = t.id;
-                results.push(temp);
+                // Can parse more than one tags (ex.: BasicTagArrayParser)
+                if ($.isArray(temp)) {
+                    _.each(temp, function(tmp) { tmp.tag = t.id; });
+                    results = results.concat(temp);
+                } else {
+                    temp.tag = t.id;
+                    results.push(temp);
+                }
             }
         });
 
