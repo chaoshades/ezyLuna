@@ -2,12 +2,13 @@
 
     "use strict";
 
-    var $ = require('jquery'),
+    var STATE_KEY = "enemy_levels",
+        $ = require('jquery'),
         _ = require('underscore'),
         Handlebars = require('handlebars'),
         UIConfig = require('ui-config'),
         Switch = require('bootstrap-switch'),
-        TablePagerPartialView = require("partial/TablePagerPartialView"),
+        InlineEditTablePartialView = require("partial/InlineEditTablePartialView"),
         enemyLevelsHtml = require('text!partialtpl/enemies/enemyLevels.htm'),
 
         enemyLevelsTpl = Handlebars.compile(enemyLevelsHtml),
@@ -16,9 +17,7 @@
         SKILL_REQUIRE_LEVEL = "Skill Require Level";
 
 
-    return function (current, linked_data) {
-
-        var pager = null;
+    return function (current, linked_data, $stateManager) {
 
         this.initialize = function () {
             // Define a div wrapper for the view. The div wrapper is used to attach events.
@@ -36,22 +35,37 @@
                 this.renderTags();
             }
 
-            pager = new TablePagerPartialView(current.skillRequireLevel.list, 4);
-
             var data = {
                 'current': current,
                 'skills': linked_data.skills,
             };
+
+            var templateSets = [
+                new InlineEditTableTemplateSet($(enemyLevelsHtml),"#tplSkillRequireLevel")
+            ];
+            var templateInfos = {};
+
+            // Register partials for every template in template sets
+            _.each(templateSets, function (set) {
+                _.each(set.templates, function(t) {
+                    Handlebars.registerPartial(t.name, t.template);
+                });
+                templateInfos[set.setID] = new InlineEditTableTemplateInfo(set);
+            });
+
+            var partials = {
+                'skill_require_level': new InlineEditTablePartialView(data, templateInfos["tplSkillRequireLevel"], $stateManager, STATE_KEY, "skillRequireLevel", this.saveSkillRequireLevel)
+            }
+
             this.$el.html(enemyLevelsTpl(data));
+
+            // Render partial views
+            var wrapperReference = this.$el;
+            var renderedPartials = _.mapObject(partials, function (p, key) { wrapperReference.find('#' + key).html(p.render().$el); });
 
             // Initial Display
             openCollapse(this.$el.find('#collapseEnemyLevels'));
             this.$el.find('input[type="checkbox"]').bootstrapSwitch(UIConfig.switch.tag);
-
-            // Render pager
-            this.$el.find('#pgSkillRequiredLevel').html(pager.render().$el);
-
-            pager.setTableReference(this.$el.find('#tblSkillRequiredLevel'));
 
             return this;
         };
@@ -64,28 +78,47 @@
                 // TODO
                 if (t.tag == SKILL_REQUIRE_LEVEL) {
                     current.skillRequireLevel.enabled = true;
-                    if (!current.skillRequireLevel.list) current.skillRequireLevel.list = [{ edit: true }];
+                    if (!current.skillRequireLevel.list) current.skillRequireLevel.list = [];
 
                     var skill = _.find(linked_data.skills, function (skill) { return skill.id == t.data[0]; });
 
                     current.skillRequireLevel.list.push({
-                        edit: (t.data[0] == 2),
-                        deleting: (t.data[0] == 3),
                         skillID: t.data[0],
                         skill: skill.name,
                         level: t.data[1]
                     });
                 }
             });
+
+            var data = {
+                skillRequireLevel: current.skillRequireLevel.list
+            }
+            this.getStateManager().setState(STATE_KEY, data);
         };
 
         this.generateTags = function () {
-            var tags = [];
-  
+            var tags = [],
+                data = this.getStateManager().getState(STATE_KEY).data;
+
             // TODO
-            setValuesTag(tags, '#chkSkillRequireLevel', SKILL_REQUIRE_LEVEL, ['#ddlSkillRequireLevel', '#numSkillRequireLevel']);
+            if ($('#chkSkillRequireLevel').is(':checked')) {
+                _.each(data.skillRequireLevel, function (item) { tags.push(new NoteTag(SKILL_REQUIRE_LEVEL, [item.skillID, item.level])); });
+            }
 
             return tags;
+        };
+
+        this.getStateManager = function () {
+            return $stateManager;
+        };
+
+        this.saveSkillRequireLevel = function (item) {
+            var skillID = $('#ddlSkillRequireLevel').val();
+            var skill = _.find(linked_data.skills, function (skill) { return skill.id == skillID; });
+
+            item.skillID = skillID,
+            item.skill = skill.name,
+            item.level = $('#numSkillRequireLevel').val()
         };
 
         this.initialize();

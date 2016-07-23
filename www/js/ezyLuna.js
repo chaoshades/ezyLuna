@@ -95,11 +95,14 @@ function enableInputs(chk) {
     // For form-control div only (ex.: radio button group)
     if (ctrls.length === 0)
         ctrls = $(chk).parents('.input-group-addon').next();
+    // For controls within inline edit table
+    if (ctrls.length === 0)
+        ctrls = $(chk).parents('.checkbox').next().find('table input, table select, table button, .btn-toolbar button');
 
     if ($(chk).is(':checked')) {
         $(ctrls).each(function (i, c) {
             var ctrl = $(c);
-            if (ctrl.is('select') || ctrl.hasClass('radio') || ctrl.hasClass('checkbox'))
+            if (ctrl.is('select') || ctrl.hasClass('radio') || ctrl.hasClass('checkbox') || ctrl.is('button'))
                 attr = 'disabled';
             else
                 attr = 'readonly';
@@ -114,7 +117,7 @@ function enableInputs(chk) {
     } else {
         $(ctrls).each(function (i, c) {
             var ctrl = $(c);
-            if (ctrl.is('select') || ctrl.hasClass('radio') || ctrl.hasClass('checkbox'))
+            if (ctrl.is('select') || ctrl.hasClass('radio') || ctrl.hasClass('checkbox') || ctrl.is('button'))
                 attr = 'disabled';
             else
                 attr = 'readonly';
@@ -224,4 +227,48 @@ function Plugin(name, version, help_url, tags) {
     this.version = String(version);
     this.help_url = String(help_url);
     this.tags = tags;
+}
+
+/**
+ * The InlineEditTableTemplateSet class defines a set of partials templates for the inline edit table.
+ * @param {Object} container: container object.
+ * @param {String} selector: partial template selector.
+ */
+function InlineEditTableTemplateSet(container, selector) {
+    this.setID = selector.substring(1);
+    this.templates = [
+        new InlineEditTableTemplate(container, selector + '-headers'),
+        new InlineEditTableTemplate(container, selector + '-edit'),
+        new InlineEditTableTemplate(container, selector + '-read'),
+        new InlineEditTableTemplate(container, selector + '-empty')
+    ];
+}
+
+/**
+ * The InlineEditTableTemplate class defines a partial template for the inline edit table.
+ * @param {Object} container: container object.
+ * @param {String} selector: partial template selector.
+ */
+function InlineEditTableTemplate(container, selector) {
+    this.name = selector.substring(1);
+    this.template = $(container).find(selector).html();
+}
+
+/**
+ * The InlineEditTableTemplateInfo class defines templates informations for the inline edit table.
+ * @param {Object} set: set of partials templates object.
+ */
+function InlineEditTableTemplateInfo(set) {
+    this.setID = set.setID;
+    for (var i = 0; i < set.templates.length; i++) {
+        var t = set.templates[i];
+        if (t.name.indexOf('-headers') > 0)
+            this.headers_template = t.name;
+        else if (t.name.indexOf('-read') > 0)
+            this.read_template = t.name;
+        else if (t.name.indexOf('-edit') > 0)
+            this.edit_template = t.name;
+        else if (t.name.indexOf('-empty') > 0)
+            this.empty_template = t.name;
+    }
 }

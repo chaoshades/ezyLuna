@@ -34,7 +34,7 @@
         enemiesTpl = Handlebars.compile(enemiesHtml);
 
 
-    return function (project, enemies, current, linked_data) {
+    return function (project, enemies, current, linked_data, $stateManager) {
 
         var base_url = "#project/" + project.id + "/enemies",
             partials = {
@@ -59,7 +59,7 @@
                 'job_points': new JobPointsPartialView(current),
                 'row_formation': new RowFormationPartialView(current),
                 'weapon_animation_settings': new WeaponAnimationSettingsPartialView(current, linked_data),
-                'enemy_levels': new EnemyLevelsPartialView(current, linked_data)
+                'enemy_levels': new EnemyLevelsPartialView(current, linked_data, $stateManager)
             }   
 
         this.initialize = function () {

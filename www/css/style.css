@@ -73,6 +73,9 @@ textarea {
 .home .btn-toolbar .file-input .btn {
     float: none;
 }
+.inline-edit-table > tbody > tr > td {
+     vertical-align: middle;
+}
 
 
 /*Bootstrap Overrides*/

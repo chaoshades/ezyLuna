@@ -6,6 +6,7 @@
         _ = require('underscore'),
         Handlebars = require('handlebars'),
         dataAdapter = require('adapters/data'),
+        StateManager = require("app/StateManager"),
         HomeView = require("view/HomeView"),
         ProjectView = require("view/ProjectView"),
         ProjectAddView = require("view/ProjectAddView"),
@@ -26,6 +27,7 @@
             { name: "weaponsURL", url: /^#project\/(\d{1,})\/weapons\/?(\d{1,})?$/ },
             { name: "armorsURL", url: /^#project\/(\d{1,})\/armors\/?(\d{1,})?$/ },
         ],
+        stateManager = new StateManager(),
 
     route = function () {
 
@@ -67,6 +69,8 @@
 
         var mappedNormalRoute = _.find(routes, function (r) { return hash.match(r.url); });
         if (mappedNormalRoute) {
+            stateManager.clearAllStates();
+
             if (mappedNormalRoute.name === "projectAddURL") {
                 changeContent(new ProjectAddView());
             }
@@ -145,7 +149,7 @@
                                 dataAdapter.getMotions()
                             ).done(function (items, armors, weapons, skills, states, animations, types, terms, weapon_sprites, motions) {
                                 var linked_data = { "items": items, "armors": armors, "weapons": weapons, "skills": skills, "states": states, "animations": animations, "types": types, "terms": terms, "weapon_sprites": weapon_sprites, "motions": motions };
-                                changeContent(new EnemiesView(config, enemies, current, linked_data));
+                                changeContent(new EnemiesView(config, enemies, current, linked_data, stateManager));
                             });
                         })
                         .fail(errorHandler);
