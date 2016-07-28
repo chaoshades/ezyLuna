@@ -272,3 +272,13 @@ function InlineEditTableTemplateInfo(set) {
             this.empty_template = t.name;
     }
 }
+
+/**
+ * The InlineEditTableDataInfo class defines data information for the inline edit table.
+ * @param {Boolean} enabled: true if it should be enabled, else false.
+ * @param {Array} data: The data for the inline edit table.
+ */
+function InlineEditTableDataInfo(enabled, data) {
+    this.enabled = enabled;
+    this.data = data;
+}

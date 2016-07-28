@@ -35,6 +35,12 @@
         },
         'bootstrap-switch': {
             deps: ['jquery', 'bootstrap']
+        },
+        'jquery-tablesorter': {
+            deps: ['jquery']
+        },
+        'jquery-tablesorter-static-row': {
+            deps: ['jquery-tablesorter']
         }
     }
 

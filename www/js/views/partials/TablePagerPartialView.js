@@ -13,32 +13,32 @@
     return function (data, page_size) {
 
         var numPages = Math.ceil(data.length / page_size),
-            table_data = null;
+            currentPage = 0,
+            table = null;
 
         this.initialize = function () {
             // Define a div wrapper for the view. The div wrapper is used to attach events.
             this.$el = $('<div/>');
 
             // Table Pager Navigation Events
-            var previousCallback = this.previous;
-            var nextCallback = this.next;
-            var goToCallback = this.goTo;
+            var goToCallback = this.goTo,
+                getPageCallback = this.getPage;
             this.$el.on('click', '.js_TablePageLink', function () {
-                var pager = $(this).parents('.table_pager'),
-                    clickedPage = $(this).html().valueOf() - 1;
-                goToCallback(pager, clickedPage);
+                var page = getPageCallback(this);
+                var pager = $(this).parents('.table_pager');
+                goToCallback(pager, page);
                 return false;
             });
             this.$el.on('click', '.js_TablePrevLink', function () {
                 if ($(this).hasClass('disabled')) return false;
                 var pager = $(this).parents('.table_pager');
-                previousCallback(pager, goToCallback);
+                goToCallback(pager, currentPage - 1);
                 return false;
             });
             this.$el.on('click', '.js_TableNextLink', function () {
                 if ($(this).hasClass('disabled')) return false;
                 var pager = $(this).parents('.table_pager');
-                nextCallback(pager, goToCallback);
+                goToCallback(pager, currentPage + 1);
                 return false;
             });
         };
@@ -50,9 +50,6 @@
             this.$el.html(tablePagerTpl(pages));
 
             var pager = this.$el.find('.table_pager');
-            
-            // Init data contained within pager
-            pager.data("curr", 0);
 
             // Initial Display
             pager.find('.prev_link, .prev_link a').addClass("disabled");
@@ -65,26 +62,24 @@
         };
 
         this.setTableReference = function (tbl) {
-            table_data = tbl.children();
-            table_data.hide();
-            table_data.slice(0, page_size).show();
+            table = tbl;
+            table.children().hide();
+            table.children().slice(0, page_size).show();
         };
 
-        this.previous = function (pager, goToCallback) {
-            var goToPage = parseInt(pager.data("curr")) - 1;
-            goToCallback(pager, goToPage);
+        this.getCurrentPage = function () {
+            return currentPage;
         };
 
-        this.next = function (pager, goToCallback) {
-            var goToPage = parseInt(pager.data("curr")) + 1;
-            goToCallback(pager, goToPage);
+        this.getLastPage = function () {
+            return numPages - 1;
         };
-
+        
         this.goTo = function (pager, page) {
             var startAt = page * page_size,
                 endOn = startAt + page_size;
 
-            table_data.css('display', 'none').slice(startAt, endOn).show();
+            table.children().css('display', 'none').slice(startAt, endOn).show();
 
             if (page >= 1) {
                 pager.find('.prev_link, .prev_link a').removeClass("disabled");
@@ -100,9 +95,14 @@
                 pager.find('.next_link, .next_link a').addClass("disabled");
             }
 
-            pager.data("curr", page);
+            currentPage = page;
+
             pager.children().removeClass("active");
             pager.children().eq(page + 1).addClass("active");
+        };
+
+        this.getPage = function (anchor) {
+            return $(anchor).parents('li').data('page');
         };
 
         this.initialize();

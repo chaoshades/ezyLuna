@@ -8,8 +8,8 @@
         <div id="skill_require_level">
             {{!-- 
             <script id="tplSkillRequireLevel-headers" type="text/x-handlebars-template">
-                <th>{{partialID}}Skill</th>
-                <th>Level</th>
+                <th class="col-xs-4 col-md-4">{{partialID}}Skill</th>
+                <th class="col-xs-4 col-md-4">Level</th>
             </script>
             <script id="tplSkillRequireLevel-read" type="text/x-handlebars-template">
                 <td>{{skill}}</td>
@@ -17,7 +17,7 @@
             </script>
             <script id="tplSkillRequireLevel-edit" type="text/x-handlebars-template">
                 <td>
-                    <select id="ddlSkillRequireLevel" class="form-control" {{disabledIfNot parentContext.current.skillRequireLevel.enabled}}>
+                    <select id="ddlSkillRequireLevel" class="form-control js_InlineEditTableInput" >
                         {{#each parentContext.skills}}
                         {{#compare id "==" ../skillID}}
                             <option value="{{id}}" selected>{{name}}</option>
@@ -28,7 +28,7 @@
                         {{/each}}
                     </select>
                 </td>
-                <td><input type="number" class="form-control" id="numSkillRequireLevel" value="{{level}}" {{readonlyIfNot parentContext.current.skillRequireLevel.enabled}} /></td>
+                <td><input type="number" class="form-control js_InlineEditTableInput" id="numSkillRequireLevel" value="{{level}}" /></td>
             </script>
             <script id="tplSkillRequireLevel-empty" type="text/x-handlebars-template">
                 <td>None</td>

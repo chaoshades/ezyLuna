@@ -10,6 +10,7 @@
 
         traitsTpl = Handlebars.compile(traitsHtml),
      
+        PAGE_SIZE = 12,
         EX_PARAMETERS = [
             "Hit Rate",
             "Evasion Rate",
@@ -62,7 +63,7 @@
 
     return function (current, linked_data) {
 
-        var pager = new TablePagerPartialView(current.traits, 12);
+        var pager = new TablePagerPartialView(current.traits, PAGE_SIZE);
 
         this.initialize = function () {
             // Define a div wrapper for the view. The div wrapper is used to attach events.

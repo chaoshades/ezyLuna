@@ -9,3 +9,9 @@ localhost:2015 {
 #	cors
 #	root "C:\path\to\project"
 #}
+
+#Use 0.0.0.0 instead of localhost if you want to edit it anywhere on your local network
+#0.0.0.0:9005 {
+#	cors
+#	root "C:\path\to\project"
+#}

@@ -8,12 +8,14 @@
         TablePagerPartialView = require("partial/TablePagerPartialView"),
         actionPatternsHtml = require('text!partialtpl/enemies/actionPatterns.htm'),
 
-        actionPatternsTpl = Handlebars.compile(actionPatternsHtml);
+        actionPatternsTpl = Handlebars.compile(actionPatternsHtml),
+            
+        PAGE_SIZE = 8;
 
 
     return function (current, linked_data) {
 
-        var pager = new TablePagerPartialView(current.actions, 8);
+        var pager = new TablePagerPartialView(current.actions, PAGE_SIZE);
 
         this.initialize = function () {
             // Define a div wrapper for the view. The div wrapper is used to attach events.

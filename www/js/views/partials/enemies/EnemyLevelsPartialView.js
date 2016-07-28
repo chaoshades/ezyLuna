@@ -24,8 +24,18 @@
             this.$el = $('<div/>');
 
             // Change Event for checkboxes that enables tags
+            var getStateManagerCallback = this.getStateManager;
             this.$el.on('change', '.js_Tags', function () {
                 enableInputs(this);
+
+                var id = $(this).attr('id'),
+                    dataSelector = null;
+                if (id === 'chkSkillRequireLevel')
+                    dataSelector = 'skillRequireLevel';
+
+                var state_data = getStateManagerCallback().getState(STATE_KEY).data;
+                state_data[dataSelector].enabled = $(this).is(':checked');
+                getStateManagerCallback().setState(STATE_KEY, state_data);
             });
 
         };
@@ -72,13 +82,13 @@
 
         this.renderTags = function () {
             current.skillRequireLevel = {}
+            current.skillRequireLevel.list = [];
 
             // Define new properties for tags display
             _.each(current.tags, function (t) {
                 // TODO
                 if (t.tag == SKILL_REQUIRE_LEVEL) {
                     current.skillRequireLevel.enabled = true;
-                    if (!current.skillRequireLevel.list) current.skillRequireLevel.list = [];
 
                     var skill = _.find(linked_data.skills, function (skill) { return skill.id == t.data[0]; });
 
@@ -91,18 +101,18 @@
             });
 
             var data = {
-                skillRequireLevel: current.skillRequireLevel.list
+                'skillRequireLevel': new InlineEditTableDataInfo(current.skillRequireLevel.enabled, current.skillRequireLevel.list)
             }
             this.getStateManager().setState(STATE_KEY, data);
         };
 
         this.generateTags = function () {
             var tags = [],
-                data = this.getStateManager().getState(STATE_KEY).data;
+                state_data = this.getStateManager().getState(STATE_KEY).data;
 
             // TODO
-            if ($('#chkSkillRequireLevel').is(':checked')) {
-                _.each(data.skillRequireLevel, function (item) { tags.push(new NoteTag(SKILL_REQUIRE_LEVEL, [item.skillID, item.level])); });
+            if (state_data['skillRequireLevel'].enabled) {
+                _.each(state_data['skillRequireLevel'].data, function (item) { tags.push(new NoteTag(SKILL_REQUIRE_LEVEL, [item.skillID, item.level])); });
             }
 
             return tags;

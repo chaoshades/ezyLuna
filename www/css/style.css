@@ -73,10 +73,32 @@ textarea {
 .home .btn-toolbar .file-input .btn {
     float: none;
 }
-.inline-edit-table > tbody > tr > td {
+.inline-edit-table > tbody > tr > td, .inline-edit-table > thead > tr > th {
      vertical-align: middle;
 }
 
+
+/*JQuery Overrides*/
+table.tablesorter thead tr .header {
+	cursor: pointer;
+}
+table.tablesorter thead tr .header:hover {
+	background-color: #f5f5f5;
+}
+table.tablesorter thead tr .headerSortUp:after {
+  content:"\e253";
+  font-family:"Glyphicons Halflings";
+  line-height:1;
+  margin-left:10px;
+  display:inline-block;
+}
+table.tablesorter thead tr .headerSortDown:after {
+  content:"\e252";
+  font-family:"Glyphicons Halflings";
+  line-height:1;
+  margin-left:10px;
+  display:inline-block;
+}
 
 /*Bootstrap Overrides*/
 input[type="radio"], input[type="checkbox"] {
