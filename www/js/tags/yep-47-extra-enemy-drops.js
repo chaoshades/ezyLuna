@@ -2,16 +2,16 @@
 
     "use strict";
 
-    var BasicPercentParser = require("parser/BasicPercentParser");
+    var BasicTagArrayPercentParser = require("parser/BasicTagArrayPercentParser");
 
     return new Plugin(
         'YEP_ExtraEnemyDrops',
         'v1.05',
         'http://yanfly.moe/2015/12/19/yep-47-extra-enemy-drops/',
         [
-            //new TagParser("Item x", new BasicPercentParser()), TODO
-            //new TagParser("Weapon x", new BasicPercentParser()), TODO
-            //new TagParser("Armor x", new BasicPercentParser()) TODO
+            new TagParser("Item", new BasicTagArrayPercentParser(1)),
+            new TagParser("Weapon", new BasicTagArrayPercentParser(1)),
+            new TagParser("Armor", new BasicTagArrayPercentParser(1))
         ]
     );
 

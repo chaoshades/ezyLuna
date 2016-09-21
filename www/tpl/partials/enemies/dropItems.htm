@@ -1,4 +1,5 @@
-﻿<h4>Drop Items</h4>
+﻿<h4>Drop Items<span class="pull-right label label-info">YEP-Extra-Enemy-Drops</span></h4>
+{{#with current}}
 <table class="table table-striped table-hover table-condensed">
     <thead>
         <tr>
@@ -20,3 +21,81 @@
         {{/each}}
     </tbody>
 </table>
+
+<div class="form-group">
+    <div class="checkbox checkbox-right no-top">
+        <label for="chkExtraDrops">Extra Drops:<input id="chkExtraDrops" class="js_Tags" type="checkbox" title="Enables Extra Drops" {{checkedIf extraDrops.enabled}} /></label>
+    </div>
+    <div id="extra_drops">
+        {{!-- 
+        <script id="tplExtraDrops-headers" type="text/x-handlebars-template">
+            <th class="col-xs-4 col-md-4">Item</th>
+            <th class="col-xs-4 col-md-4">Probability</th>
+        </script>
+        <script id="tplExtraDrops-read" type="text/x-handlebars-template">
+            <td>{{item}}</td>
+            <td>{{probability}}</td>
+        </script>
+        <script id="tplExtraDrops-edit" type="text/x-handlebars-template">
+            <td>
+                <select id="ddlExtraDropItem" class="form-control js_InlineEditTableInput" {{disabledIfNot currentContext.enabled}}>
+                    {{#if parentContext.items}}
+                    <optgroup data-kind="1" label="Item">
+                        {{#each parentContext.items}}
+                        {{#compare ../kind "==" 1}}
+                            {{#compare id "==" ../itemID}}
+                                <option value="{{id}}" selected>{{name}}</option>
+                            {{/compare}}
+                        {{/compare}}
+                        {{#compare id "!=" ../itemID}}
+                            <option value="{{id}}">{{name}}</option>
+                        {{/compare}}
+                        {{/each}}
+                    </optgroup>
+                    {{/if}}
+                    {{#if parentContext.weapons}}
+                    <optgroup data-kind="2" label="Weapon">
+                        {{#each parentContext.weapons}}
+                        {{#compare ../kind "==" 2}}
+                            {{#compare id "==" ../itemID}}
+                                <option value="{{id}}" selected>{{name}}</option>
+                            {{/compare}}
+                        {{/compare}}
+                        {{#compare id "!=" ../itemID}}
+                            <option value="{{id}}">{{name}}</option>
+                        {{/compare}}
+                        {{/each}}
+                    </optgroup>
+                    {{/if}}
+                    {{#if parentContext.armors}}
+                    <optgroup data-kind="3" label="Armor">
+                        {{#each parentContext.armors}}
+                        {{#compare ../kind "==" 3}}
+                            {{#compare id "==" ../itemID}}
+                                <option value="{{id}}" selected>{{name}}</option>
+                            {{/compare}}
+                        {{/compare}}
+                        {{#compare id "!=" ../itemID}}
+                            <option value="{{id}}">{{name}}</option>
+                        {{/compare}}
+                        {{/each}}
+                    </optgroup>
+                    {{/if}}
+                </select>
+            </td>
+            <td>
+                <div class="input-group">
+                    <input type="number" class="form-control js_InlineEditTableInput" id="numExtraDropItemProbability" value="{{probability}}" {{readonlyIfNot currentContext.enabled}} />
+                    <span class="input-group-addon">%</span>
+                </div>
+            </td>
+        </script>
+        <script id="tplExtraDrops-empty" type="text/x-handlebars-template">
+            <td>None</td>
+            <td></td>
+        </script>
+        --}}
+        <!-- Filled by InlineEditTablePartialView.js-->
+    </div>
+</div>
+{{/with}}

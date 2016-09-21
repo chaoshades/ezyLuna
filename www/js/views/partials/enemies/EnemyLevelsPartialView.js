@@ -47,7 +47,7 @@
 
             var data = {
                 'current': current,
-                'skills': linked_data.skills,
+                'skills': linked_data.skills
             };
 
             var templateSets = [
@@ -122,13 +122,13 @@
             return $stateManager;
         };
 
-        this.saveSkillRequireLevel = function (item) {
+        this.saveSkillRequireLevel = function (obj) {
             var skillID = $('#ddlSkillRequireLevel').val();
             var skill = _.find(linked_data.skills, function (skill) { return skill.id == skillID; });
 
-            item.skillID = skillID,
-            item.skill = skill.name,
-            item.level = $('#numSkillRequireLevel').val()
+            obj.skillID = skill.id;
+            obj.skill = skill.name;
+            obj.level = $('#numSkillRequireLevel').val();
         };
 
         this.initialize();

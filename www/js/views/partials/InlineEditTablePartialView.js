@@ -74,7 +74,7 @@
                 getStateManagerCallback().setState(stateKey, state_data);
                 // Refresh table
                 refreshTableCallback(wrapperReference, state_data);
-                if (pager) initPagerCallback(wrapperReference, state_data);
+                if (pager) initPagerCallback(wrapperReference, state_data, true);
                 initSortCallback(wrapperReference);
             });
             this.$el.on('click', '.js_ConfirmDelete', function () {
@@ -85,7 +85,7 @@
                 getStateManagerCallback().setState(stateKey, state_data);
                 // Refresh table
                 refreshTableCallback(wrapperReference, state_data);
-                if (pager) initPagerCallback(wrapperReference, state_data);
+                if (pager) initPagerCallback(wrapperReference, state_data, true);
                 initSortCallback(wrapperReference);
             });
             this.$el.on('click', '.js_CancelDelete', function () {

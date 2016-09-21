@@ -72,7 +72,7 @@
         };
 
         this.getLastPage = function () {
-            return numPages - 1;
+            return numPages > 0 ? numPages - 1 : 0;
         };
         
         this.goTo = function (pager, page) {

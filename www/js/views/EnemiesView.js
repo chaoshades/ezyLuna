@@ -42,7 +42,7 @@
                 'general_settings': new GeneralSettingsPartialView(current),
                 'traits': new TraitsPartialView(current, linked_data),
                 'rewards': new RewardsPartialView(current),
-                'drop_items': new DropItemsPartialView(current, linked_data),
+                'drop_items': new DropItemsPartialView(current, linked_data, $stateManager),
                 'action_patterns': new ActionPatternsPartialView(current, linked_data),
                 'note': new NotePartialView(current),
                 'battle_settings': new BattleSettingsPartialView(current, linked_data),
