@@ -2,17 +2,16 @@
 
     "use strict";
 
-    var BasicParser = require("parser/BasicParser"),
-        BasicArrayParser = require("parser/BasicArrayParser");
+    var NumericArrayParser = require("parser/NumericArrayParser"),
+        TagArrayRangeParser = require("parser/TagArrayRangeParser");
 
     return new Plugin(
         'YEP_AutoPassiveStates',
         'v1.09',
         'http://yanfly.moe/2015/10/17/yep-13-auto-passive-states/',
         [
-            new TagParser("Passive State", new BasicParser()),
-            new TagParser("Passive State", new BasicArrayParser()),
-            //new TagParser("Passive State", new BasicCoordParser()), TODO
+            new TagParser("Passive State", new NumericArrayParser(), "Passive State"),
+            new TagParser("Passive State#2", new TagArrayRangeParser(), "Passive State")
         ]
     );
 

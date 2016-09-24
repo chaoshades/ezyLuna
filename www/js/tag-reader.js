@@ -45,11 +45,11 @@ define(function (require) {
             YEPInstantCast,
             YEPWeaponAnimation,
             YEPWeaponUnleash, // TODO
-            YEPAutoPassiveStates, // TODO
+            YEPAutoPassiveStates,
             YEPEnemyLevels, // TODO
             YEPJobPoints,
             YEPRowFormation,
-            YEPSwapEnemies // TODO
+            YEPSwapEnemies
         ],
 
         tags = _.chain(plugins)

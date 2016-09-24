@@ -1,0 +1,71 @@
+﻿<h4><a role="button" data-toggle="collapse" href="#collapseSwapEnemies" aria-expanded="true" aria-controls="collapseSwapEnemies">Swap Enemies</a><span class="pull-right label label-info">YEP-Swap-Enemies</span></h4>
+<div id="collapseSwapEnemies" class="collapse">
+    {{#with current}}
+    <div class="form-group">
+        <div class="checkbox checkbox-right no-top">
+            <label for="chkSwap">Swap:<input id="chkSwap" class="js_Tags" type="checkbox" title="Enables Swap" {{checkedIf swap.enabled}} /></label>
+        </div>
+        <div id="swap">
+            {{!-- 
+            <script id="tplSwap-headers" type="text/x-handlebars-template">
+                <th class="col-xs-8 col-md-8">Enemy</th>
+            </script>
+            <script id="tplSwap-read" type="text/x-handlebars-template">
+                <td>{{enemy}}</td>
+            </script>
+            <script id="tplSwap-edit" type="text/x-handlebars-template">
+                <td>
+                    <select id="ddlSwap" class="form-control js_InlineEditTableInput" {{disabledIfNot currentContext.enabled}}>
+                        {{#each parentContext.enemies}}
+                        <option value="{{id}}" {{selectedIf id ../enemyID}}>{{name}}</option>
+                        {{/each}}
+                    </select>
+                </td>
+            </script>
+            <script id="tplSwap-empty" type="text/x-handlebars-template">
+                <td>None</td>
+            </script>
+            --}}
+            <!-- Filled by InlineEditTablePartialView.js-->
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="checkbox checkbox-right no-top">
+            <label for="chkSwapRange">Swap Range:<input id="chkSwapRange" class="js_Tags" type="checkbox" title="Enables Swap Range" {{checkedIf swapRange.enabled}} /></label>
+        </div>
+        <div id="swap_range">
+            {{!-- 
+            <script id="tplSwapRange-headers" type="text/x-handlebars-template">
+                <th class="col-xs-4 col-md-4">Enemy start</th>
+                <th class="col-xs-4 col-md-4">Enemy end</th>
+            </script>
+            <script id="tplSwapRange-read" type="text/x-handlebars-template">
+                <td>{{curly true}}{{idFormat start}}{{curly}}-{{enemyStart}}</td>
+                <td>{{curly true}}{{idFormat end}}{{curly}}-{{enemyEnd}}</td>
+            </script>
+            <script id="tplSwapRange-edit" type="text/x-handlebars-template">
+                <td>
+                    <select id="ddlSwapRangeStart" class="form-control js_InlineEditTableInput" {{disabledIfNot currentContext.enabled}}>
+                        {{#each parentContext.enemies}}
+                        <option value="{{id}}" {{selectedIf id ../start}}>{{curly true}}{{idFormat id}}{{curly}}-{{name}}</option>
+                        {{/each}}
+                    </select>
+                </td>
+                <td>
+                    <select id="ddlSwapRangeEnd" class="form-control js_InlineEditTableInput" {{disabledIfNot currentContext.enabled}}>
+                        {{#each parentContext.enemies}}
+                        <option value="{{id}}" {{selectedIf id ../end}}>{{curly true}}{{idFormat id}}{{curly}}-{{name}}</option>
+                        {{/each}}
+                    </select>
+                </td>
+            </script>
+            <script id="tplSwapRange-empty" type="text/x-handlebars-template">
+                <td>None</td>
+                <td></td>
+            </script>
+            --}}
+            <!-- Filled by InlineEditTablePartialView.js-->
+        </div>
+    </div>
+    {{/with}}
+</div>

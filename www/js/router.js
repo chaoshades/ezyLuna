@@ -148,7 +148,7 @@
                                 dataAdapter.getWeaponSprites(),
                                 dataAdapter.getMotions()
                             ).done(function (items, armors, weapons, skills, states, animations, types, terms, weapon_sprites, motions) {
-                                var linked_data = { "items": items, "armors": armors, "weapons": weapons, "skills": skills, "states": states, "animations": animations, "types": types, "terms": terms, "weapon_sprites": weapon_sprites, "motions": motions };
+                                var linked_data = { "enemies": enemies, "items": items, "armors": armors, "weapons": weapons, "skills": skills, "states": states, "animations": animations, "types": types, "terms": terms, "weapon_sprites": weapon_sprites, "motions": motions };
                                 changeContent(new EnemiesView(config, enemies, current, linked_data, stateManager));
                             });
                         })

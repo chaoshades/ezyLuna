@@ -1,0 +1,71 @@
+﻿<h4><a role="button" data-toggle="collapse" href="#collapseAutoPassiveStates" aria-expanded="true" aria-controls="collapseAutoPassiveStates">Auto Passive States</a><span class="pull-right label label-info">YEP-Auto-Passive-States</span></h4>
+<div id="collapseAutoPassiveStates" class="collapse">
+    {{#with current}}
+    <div class="form-group">
+        <div class="checkbox checkbox-right no-top">
+            <label for="chkPassiveState">Passive State:<input id="chkPassiveState" class="js_Tags" type="checkbox" title="Enables Passive State" {{checkedIf passiveState.enabled}} /></label>
+        </div>
+        <div id="passive_state">
+            {{!-- 
+            <script id="tplPassiveState-headers" type="text/x-handlebars-template">
+                <th class="col-xs-8 col-md-8">State</th>
+            </script>
+            <script id="tplPassiveState-read" type="text/x-handlebars-template">
+                <td>{{state}}</td>
+            </script>
+            <script id="tplPassiveState-edit" type="text/x-handlebars-template">
+                <td>
+                    <select id="ddlPassiveState" class="form-control js_InlineEditTableInput" {{disabledIfNot currentContext.enabled}}>
+                        {{#each parentContext.states}}
+                        <option value="{{id}}" {{selectedIf id ../stateID}}>{{name}}</option>
+                        {{/each}}
+                    </select>
+                </td>
+            </script>
+            <script id="tplPassiveState-empty" type="text/x-handlebars-template">
+                <td>None</td>
+            </script>
+            --}}
+            <!-- Filled by InlineEditTablePartialView.js-->
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="checkbox checkbox-right no-top">
+            <label for="chkPassiveStateRange">Passive State Range:<input id="chkPassiveStateRange" class="js_Tags" type="checkbox" title="Enables Passive State Range" {{checkedIf passiveStateRange.enabled}} /></label>
+        </div>
+        <div id="passive_state_range">
+            {{!-- 
+            <script id="tplPassiveStateRange-headers" type="text/x-handlebars-template">
+                <th class="col-xs-4 col-md-4">State start</th>
+                <th class="col-xs-4 col-md-4">State end</th>
+            </script>
+            <script id="tplPassiveStateRange-read" type="text/x-handlebars-template">
+                <td>{{curly true}}{{idFormat start}}{{curly}}-{{stateStart}}</td>
+                <td>{{curly true}}{{idFormat end}}{{curly}}-{{stateEnd}}</td>
+            </script>
+            <script id="tplPassiveStateRange-edit" type="text/x-handlebars-template">
+                <td>
+                    <select id="ddlPassiveStateRangeStart" class="form-control js_InlineEditTableInput" {{disabledIfNot currentContext.enabled}}>
+                        {{#each parentContext.states}}
+                        <option value="{{id}}" {{selectedIf id ../start}}>{{curly true}}{{idFormat id}}{{curly}}-{{name}}</option>
+                        {{/each}}
+                    </select>
+                </td>
+                <td>
+                    <select id="ddlPassiveStateRangeEnd" class="form-control js_InlineEditTableInput" {{disabledIfNot currentContext.enabled}}>
+                        {{#each parentContext.states}}
+                        <option value="{{id}}" {{selectedIf id ../end}}>{{curly true}}{{idFormat id}}{{curly}}-{{name}}</option>
+                        {{/each}}
+                    </select>
+                </td>
+            </script>
+            <script id="tplPassiveStateRange-empty" type="text/x-handlebars-template">
+                <td>None</td>
+                <td></td>
+            </script>
+            --}}
+            <!-- Filled by InlineEditTablePartialView.js-->
+        </div>
+    </div>
+    {{/with}}
+</div>

@@ -31,6 +31,8 @@
         EnemyLevelsPartialView = require("partial/enemies/EnemyLevelsPartialView"),
         SkillColldownsPartialView = require("partial/enemies/SkillCooldownsPartialView"),
         InstantCastPartialView = require("partial/enemies/InstantCastPartialView"),
+        AutoPassiveStatesPartialView = require("partial/enemies/AutoPassiveStatesPartialView"),
+        SwapEnemiesPartialView = require("partial/enemies/SwapEnemiesPartialView"),
         enemiesHtml = require('text!tpl/enemies.htm'),
 
         enemiesTpl = Handlebars.compile(enemiesHtml);
@@ -63,7 +65,9 @@
                 'weapon_animation_settings': new WeaponAnimationSettingsPartialView(current, linked_data),
                 'enemy_levels': new EnemyLevelsPartialView(current, linked_data, $stateManager),
                 'skill_cooldowns': new SkillColldownsPartialView(current, linked_data, $stateManager),
-                'instant_cast': new InstantCastPartialView(current, linked_data, $stateManager)
+                'instant_cast': new InstantCastPartialView(current, linked_data, $stateManager),
+                'auto_passive_states': new AutoPassiveStatesPartialView(current, linked_data, $stateManager),
+                'swap_enemies': new SwapEnemiesPartialView(current, linked_data, $stateManager)
             }   
 
         this.initialize = function () {
