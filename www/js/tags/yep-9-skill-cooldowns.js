@@ -3,6 +3,7 @@
     "use strict";
 
     var BasicPercentParser = require("parser/BasicPercentParser"),
+        BasicTagArrayPercentParser = require("parser/BasicTagArrayPercentParser"),
         SignedParser = require("parser/SignedParser");
 
     return new Plugin(
@@ -10,14 +11,14 @@
         'v1.08',
         'http://yanfly.moe/2015/10/14/yep-9-skill-cooldowns/',
         [
-            //new TagParser("Skill x Cooldown Duration", new BasicPercentParser()), TODO
-            //new TagParser("SType x Cooldown Duration", new BasicPercentParser()), TODO
+            new TagParser("Skill Cooldown Duration", new BasicTagArrayPercentParser(1)),
+            new TagParser("SType Cooldown Duration", new BasicTagArrayPercentParser(1)),
             new TagParser("Global Cooldown Duration", new BasicPercentParser()),
-            //new TagParser("Skill x Cooldown Rate", new BasicPercentParser()), TODO
-            //new TagParser("SType x Cooldown Rate", new BasicPercentParser()), TODO
+            new TagParser("Skill Cooldown Rate", new BasicTagArrayPercentParser(1)),
+            new TagParser("SType Cooldown Rate", new BasicTagArrayPercentParser(1)),
             new TagParser("Global Cooldown Rate", new BasicPercentParser()),
-            //new TagParser("Skill x Cooldown Rate", new BasicPercentParser()), TODO
-            //new TagParser("SType x Cooldown Rate", new BasicPercentParser()), TODO
+            new TagParser("Skill Cooldown Rate", new BasicTagArrayPercentParser(1)),
+            new TagParser("SType Cooldown Rate", new BasicTagArrayPercentParser(1)),
             new TagParser("Global Cooldown Rate", new BasicPercentParser()),
             //new TagParser("Skill x Cooldown", new SignedParser()), TODO
             //new TagParser("SType x Cooldown", new SignedParser()), TODO

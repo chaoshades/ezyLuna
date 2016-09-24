@@ -55,7 +55,7 @@
 
                     $.when.apply($, requests)
                      .done(function () {
-                         var data = _.map(arguments, function (a) { return _.first(a) }),
+                         var data = arguments,
                              projects = _.map(config.projects, function (p, i) { p.system = data[i]; return p; });
                          changeContent(new HomeView(projects));
                      })

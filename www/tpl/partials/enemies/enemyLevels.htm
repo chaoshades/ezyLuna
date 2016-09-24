@@ -19,12 +19,7 @@
                 <td>
                     <select id="ddlSkillRequireLevel" class="form-control js_InlineEditTableInput" {{disabledIfNot currentContext.enabled}}>
                         {{#each parentContext.skills}}
-                        {{#compare id "==" ../skillID}}
-                            <option value="{{id}}" selected>{{name}}</option>
-                        {{/compare}}
-                        {{#compare id "!=" ../skillID}}
-                            <option value="{{id}}">{{name}}</option>
-                        {{/compare}}
+                        <option value="{{id}}" {{selectedIf id ../skillID}}>{{name}}</option>
                         {{/each}}
                     </select>
                 </td>

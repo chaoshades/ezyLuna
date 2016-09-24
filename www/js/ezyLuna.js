@@ -14,7 +14,7 @@ function pad(n, width, z) {
 
 /**
  * Set a basic tag
- * @param {Number} tags: Tags array. 
+ * @param {Array} tags: Tags array. 
  * @param {String} chkSelector: Checkbox selector.
  * @param {String} tag: Tag to create. 
  */
@@ -25,7 +25,7 @@ function setTag(tags, chkSelector, tag) {
 
 /**
  * Set a tag with a value
- * @param {Number} tags: Tags array. 
+ * @param {Array} tags: Tags array. 
  * @param {String} chkSelector: Checkbox selector.
  * @param {String} tag: Tag to create. 
  * @param {String} valSelector: Input value selector.
@@ -38,7 +38,7 @@ function setValueTag(tags, chkSelector, tag, valSelector) {
 
 /**
  * Set a tag with a percentage value
- * @param {Number} tags: Tags array. 
+ * @param {Array} tags: Tags array. 
  * @param {String} chkSelector: Checkbox selector.
  * @param {String} tag: Tag to create. 
  * @param {String} valSelector: Input value selector.
@@ -51,7 +51,7 @@ function setPercentValueTag(tags, chkSelector, tag, valSelector) {
 
 /**
  * Set a tag with an array of values
- * @param {Number} tags: Tags array. 
+ * @param {Array} tags: Tags array. 
  * @param {String} chkSelector: Checkbox selector.
  * @param {String} tag: Tag to create. 
  * @param {Array} valSelectors: Array of input value selectors.
@@ -70,7 +70,7 @@ function setValuesTag(tags, chkSelector, tag, valSelectors) {
 
 /**
  * Set a tag with a signed value
- * @param {Number} tags: Tags array. 
+ * @param {Array} tags: Tags array. 
  * @param {String} chkSelector: Checkbox selector.
  * @param {String} tag: Tag to create. 
  * @param {String} valSelector: Input value selector.
@@ -85,8 +85,23 @@ function setSignedValueTag(tags, chkSelector, tag, valSelector) {
 }
 
 /**
+ * Set a tag with an object value
+ * @param {Array} tags: Tags array. 
+ * @param {Object} state_data: State object. 
+ * @param {String} stateSelector: State data selector.
+ * @param {String} tag: Tag to create. 
+ * @param {Function} objFx: Function to execute to extract object value from state.
+ */
+function setObjectTag(tags, state_data, stateSelector, tag, objFx) {
+    if (state_data[stateSelector].enabled) {
+        var objects = _.map(state_data[stateSelector].data, objFx);
+        _.each(objects, function (obj) { tags.push(new NoteTag(tag, obj)); });
+    }
+}
+
+/**
  * Enable/Disable inputs linked to a checkbox
- * @param {Object} chk: Checkbox selector.
+ * @param {Object} chk: Checkbox element.
  */
 function enableInputs(chk) {
     var attr = null;

@@ -86,6 +86,18 @@ require(['jquery', 'bootstrap', 'handlebars', 'app/router'], function ($, Bootst
         return (!condition) ? "disabled" : "";
     });
 
+    // add value if there is content
+    // usage: {{valueIf value}}
+    Handlebars.registerHelper("valueIf", function (context) {
+        return (context) ? new Handlebars.SafeString('value="' + context + '"') : "";
+    });
+
+    // add selected if option is value
+    // usage: {{selectedIf optionValue valueToSelect}}
+    Handlebars.registerHelper('selectedIf', function (option, value) {
+        return (option == value) ? "selected" : "";
+    });
+
     // add basic compare operators
     // usage: {{compare number ">" 10}}
     Handlebars.registerHelper('compare', function (lvalue, operator, rvalue, options) {

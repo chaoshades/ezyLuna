@@ -29,6 +29,7 @@
         RowFormationPartialView = require("partial/enemies/RowFormationPartialView"),
         WeaponAnimationSettingsPartialView = require("partial/enemies/WeaponAnimationSettingsPartialView"),
         EnemyLevelsPartialView = require("partial/enemies/EnemyLevelsPartialView"),
+        SkillColldownsPartialView = require("partial/enemies/SkillCooldownsPartialView"),
         enemiesHtml = require('text!tpl/enemies.htm'),
 
         enemiesTpl = Handlebars.compile(enemiesHtml);
@@ -59,7 +60,8 @@
                 'job_points': new JobPointsPartialView(current),
                 'row_formation': new RowFormationPartialView(current),
                 'weapon_animation_settings': new WeaponAnimationSettingsPartialView(current, linked_data),
-                'enemy_levels': new EnemyLevelsPartialView(current, linked_data, $stateManager)
+                'enemy_levels': new EnemyLevelsPartialView(current, linked_data, $stateManager),
+                'skill_cooldowns': new SkillColldownsPartialView(current, linked_data, $stateManager)
             }   
 
         this.initialize = function () {

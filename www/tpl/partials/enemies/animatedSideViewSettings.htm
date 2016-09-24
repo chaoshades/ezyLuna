@@ -235,12 +235,7 @@
                     </span>
                     <select id="ddlSideViewAttackMotion" class="form-control" {{disabledIfNot sideview.attackMotionID}}>
                         {{#each ../motions}}
-                        {{#compare id "==" ../../current.sideview.attackMotionID}}
-                            <option value="{{id}}" selected>{{name}}</option>
-                        {{/compare}}
-                        {{#compare id "!=" ../../current.sideview.attackMotionID}}
-                            <option value="{{id}}">{{name}}</option>
-                        {{/compare}}
+                        <option value="{{id}}" {{selectedIf id ../../current.sideview.attackMotionID}}>{{name}}</option>
                         {{/each}}
                     </select>
                 </div>
@@ -256,34 +251,19 @@
             <span class="input-group-addon">Sprite</span>
             <select id="ddlSideViewWeaponSprite" class="form-control" {{disabledIfNot sideview.weapon.enabled}}>
                 {{#each ../weapon_sprites}}
-                {{#compare id "==" ../../current.sideview.weapon.spriteID}}
-                    <option value="{{id}}" selected>{{name}}</option>
-                {{/compare}}
-                {{#compare id "!=" ../../current.sideview.weapon.spriteID}}
-                    <option value="{{id}}">{{name}}</option>
-                {{/compare}}
+                <option value="{{id}}" {{selectedIf id ../../current.sideview.weapon.spriteID}}>{{name}}</option>
                 {{/each}}
             </select>
             <span class="input-group-addon">Motion</span>
             <select id="ddlSideViewWeaponMotion" class="form-control" {{disabledIfNot sideview.weapon.enabled}}>
                 {{#each ../weapon_motions}}
-                {{#compare id "==" ../../current.sideview.weapon.motionID}}
-                    <option value="{{id}}" selected>{{name}}</option>
-                {{/compare}}
-                {{#compare id "!=" ../../current.sideview.weapon.motionID}}
-                    <option value="{{id}}">{{name}}</option>
-                {{/compare}}
+                <option value="{{id}}" {{selectedIf id ../../current.sideview.weapon.motionID}}>{{name}}</option>
                 {{/each}}
             </select>
             <span class="input-group-addon">Animation</span>
             <select id="ddlSideViewWeaponAnimation" class="form-control" {{disabledIfNot sideview.weapon.enabled}}>
                 {{#each ../weapon_animations}}
-                {{#compare id "==" ../../current.sideview.weapon.animationID}}
-                    <option value="{{id}}" selected>{{name}}</option>
-                {{/compare}}
-                {{#compare id "!=" ../../current.sideview.weapon.animationID}}
-                    <option value="{{id}}">{{name}}</option>
-                {{/compare}}
+                <option value="{{id}}" {{selectedIf id ../../current.sideview.weapon.animationID}}>{{name}}</option>
                 {{/each}}
             </select>
         </div>
@@ -298,12 +278,7 @@
                     </span>
                     <select id="ddlSideViewIdleMotion" class="form-control" {{disabledIfNot sideview.idleMotionID}}>
                         {{#each ../motions}}
-                        {{#compare id "==" ../../current.sideview.idleMotionID}}
-                            <option value="{{id}}" selected>{{name}}</option>
-                        {{/compare}}
-                        {{#compare id "!=" ../../current.sideview.idleMotionID}}
-                            <option value="{{id}}">{{name}}</option>
-                        {{/compare}}
+                        <option value="{{id}}" {{selectedIf id ../../current.sideview.idleMotionID}}>{{name}}</option>
                         {{/each}}
                     </select>
                 </div>
@@ -318,12 +293,7 @@
                     </span>
                     <select id="ddlSideViewDamageMotion" class="form-control" {{disabledIfNot sideview.damageMotionID}}>
                         {{#each ../motions}}
-                        {{#compare id "==" ../../current.sideview.damageMotionID}}
-                            <option value="{{id}}" selected>{{name}}</option>
-                        {{/compare}}
-                        {{#compare id "!=" ../../current.sideview.damageMotionID}}
-                            <option value="{{id}}">{{name}}</option>
-                        {{/compare}}
+                        <option value="{{id}}" {{selectedIf id ../../current.sideview.damageMotionID}}>{{name}}</option>
                         {{/each}}
                     </select>
                 </div>
@@ -338,12 +308,7 @@
                     </span>
                     <select id="ddlSideViewEvadeMotion" class="form-control" {{disabledIfNot sideview.evadeMotionID}}>
                         {{#each ../motions}}
-                        {{#compare id "==" ../../current.sideview.evadeMotionID}}
-                            <option value="{{id}}" selected>{{name}}</option>
-                        {{/compare}}
-                        {{#compare id "!=" ../../current.sideview.evadeMotionID}}
-                            <option value="{{id}}">{{name}}</option>
-                        {{/compare}}
+                        <option value="{{id}}" {{selectedIf id ../../current.sideview.evadeMotionID}}>{{name}}</option>
                         {{/each}}
                     </select>
                 </div>
@@ -360,12 +325,7 @@
                     </span>
                     <select id="ddlSideViewEscapeMotion" class="form-control" {{disabledIfNot sideview.escapeMotionID}}>
                         {{#each ../motions}}
-                        {{#compare id "==" ../../current.sideview.escapeMotionID}}
-                            <option value="{{id}}" selected>{{name}}</option>
-                        {{/compare}}
-                        {{#compare id "!=" ../../current.sideview.escapeMotionID}}
-                            <option value="{{id}}">{{name}}</option>
-                        {{/compare}}
+                        <option value="{{id}}" {{selectedIf id ../../current.sideview.escapeMotionID}}>{{name}}</option>
                         {{/each}}
                     </select>
                 </div>
@@ -380,12 +340,7 @@
                     </span>
                     <select id="ddlSideViewGuardMotion" class="form-control" {{disabledIfNot sideview.guardMotionID}}>
                         {{#each ../motions}}
-                        {{#compare id "==" ../../current.sideview.guardMotionID}}
-                            <option value="{{id}}" selected>{{name}}</option>
-                        {{/compare}}
-                        {{#compare id "!=" ../../current.sideview.guardMotionID}}
-                            <option value="{{id}}">{{name}}</option>
-                        {{/compare}}
+                        <option value="{{id}}" {{selectedIf id ../../current.sideview.guardMotionID}}>{{name}}</option>
                         {{/each}}
                     </select>
                 </div>
@@ -400,12 +355,7 @@
                     </span>
                     <select id="ddlSideViewAbnormalMotion" class="form-control" {{disabledIfNot sideview.abnormalMotionID}}>
                         {{#each ../motions}}
-                        {{#compare id "==" ../../current.sideview.abnormalMotionID}}
-                            <option value="{{id}}" selected>{{name}}</option>
-                        {{/compare}}
-                        {{#compare id "!=" ../../current.sideview.abnormalMotionID}}
-                            <option value="{{id}}">{{name}}</option>
-                        {{/compare}}
+                        <option value="{{id}}" {{selectedIf id ../../current.sideview.abnormalMotionID}}>{{name}}</option>
                         {{/each}}
                     </select>
                 </div>
@@ -422,12 +372,7 @@
                     </span>
                     <select id="ddlSideViewSleepMotion" class="form-control" {{disabledIfNot sideview.sleepMotionID}}>
                         {{#each ../motions}}
-                        {{#compare id "==" ../../current.sideview.sleepMotionID}}
-                            <option value="{{id}}" selected>{{name}}</option>
-                        {{/compare}}
-                        {{#compare id "!=" ../../current.sideview.sleepMotionID}}
-                            <option value="{{id}}">{{name}}</option>
-                        {{/compare}}
+                        <option value="{{id}}" {{selectedIf id ../../current.sideview.sleepMotionID}}>{{name}}</option>
                         {{/each}}
                     </select>
                 </div>
@@ -442,12 +387,7 @@
                     </span>
                     <select id="ddlSideViewDyingMotion" class="form-control" {{disabledIfNot sideview.dyingMotionID}}>
                         {{#each ../motions}}
-                        {{#compare id "==" ../../current.sideview.dyingMotionID}}
-                            <option value="{{id}}" selected>{{name}}</option>
-                        {{/compare}}
-                        {{#compare id "!=" ../../current.sideview.dyingMotionID}}
-                            <option value="{{id}}">{{name}}</option>
-                        {{/compare}}
+                        <option value="{{id}}" {{selectedIf id ../../current.sideview.dyingMotionID}}>{{name}}</option>
                         {{/each}}
                     </select>
                 </div>

@@ -2,7 +2,8 @@
 
     "use strict";
 
-    var $ = require('jquery'),
+    var NB_PARAMS = 8,
+        $ = require('jquery'),
         _ = require('underscore'),
         Handlebars = require('handlebars'),
         UIConfig = require('ui-config'),
@@ -58,8 +59,8 @@
         };
 
         this.renderTags = function () {
-            current.maxbuffparams = _.range(8).map(function () { return false });
-            current.maxdebuffparams = _.range(8).map(function () { return false });
+            current.maxbuffparams = _.range(NB_PARAMS).map(function () { return null });
+            current.maxdebuffparams = _.range(NB_PARAMS).map(function () { return null });
 
             // Define new properties for tags display
             _.each(current.tags, function (t) {

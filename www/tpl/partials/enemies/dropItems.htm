@@ -34,7 +34,7 @@
         </script>
         <script id="tplExtraDrops-read" type="text/x-handlebars-template">
             <td>{{item}}</td>
-            <td>{{probability}}</td>
+            <td>{{probability}}%</td>
         </script>
         <script id="tplExtraDrops-edit" type="text/x-handlebars-template">
             <td>
@@ -43,11 +43,9 @@
                     <optgroup data-kind="1" label="Item">
                         {{#each parentContext.items}}
                         {{#compare ../kind "==" 1}}
-                            {{#compare id "==" ../itemID}}
-                                <option value="{{id}}" selected>{{name}}</option>
-                            {{/compare}}
+                            <option value="{{id}}" {{selectedIf id ../itemID}}>{{name}}</option>
                         {{/compare}}
-                        {{#compare id "!=" ../itemID}}
+                        {{#compare ../kind "!=" 1}}
                             <option value="{{id}}">{{name}}</option>
                         {{/compare}}
                         {{/each}}
@@ -57,11 +55,9 @@
                     <optgroup data-kind="2" label="Weapon">
                         {{#each parentContext.weapons}}
                         {{#compare ../kind "==" 2}}
-                            {{#compare id "==" ../itemID}}
-                                <option value="{{id}}" selected>{{name}}</option>
-                            {{/compare}}
+                            <option value="{{id}}" {{selectedIf id ../itemID}}>{{name}}</option>
                         {{/compare}}
-                        {{#compare id "!=" ../itemID}}
+                        {{#compare ../kind "!=" 2}}
                             <option value="{{id}}">{{name}}</option>
                         {{/compare}}
                         {{/each}}
@@ -71,11 +67,9 @@
                     <optgroup data-kind="3" label="Armor">
                         {{#each parentContext.armors}}
                         {{#compare ../kind "==" 3}}
-                            {{#compare id "==" ../itemID}}
-                                <option value="{{id}}" selected>{{name}}</option>
-                            {{/compare}}
+                            <option value="{{id}}" {{selectedIf id ../itemID}}>{{name}}</option>
                         {{/compare}}
-                        {{#compare id "!=" ../itemID}}
+                        {{#compare ../kind "!=" 3}}
                             <option value="{{id}}">{{name}}</option>
                         {{/compare}}
                         {{/each}}

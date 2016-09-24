@@ -11,12 +11,7 @@
                     </span>
                     <select id="ddlWeaponAnimationSprite" class="form-control" {{disabledIfNot weaponAnimation.spriteID}}>
                         {{#each ../weapon_sprites}}
-                        {{#compare id "==" ../../current.weaponAnimation.spriteID}}
-                            <option value="{{id}}" selected>{{name}}</option>
-                        {{/compare}}
-                        {{#compare id "!=" ../../current.weaponAnimation.spriteID}}
-                            <option value="{{id}}">{{name}}</option>
-                        {{/compare}}
+                        <option value="{{id}}" {{selectedIf id ../../current.weaponAnimation.spriteID}}>{{name}}</option>
                         {{/each}}
                     </select>
                 </div>
@@ -44,12 +39,7 @@
                     </span>
                     <select id="ddlWeaponAnimationMotion" class="form-control" {{disabledIfNot weaponAnimation.motionID}}>
                         {{#each ../motions}}
-                        {{#compare id "==" ../../current.weaponAnimation.motionID}}
-                            <option value="{{id}}" selected>{{name}}</option>
-                        {{/compare}}
-                        {{#compare id "!=" ../../current.weaponAnimation.motionID}}
-                            <option value="{{id}}">{{name}}</option>
-                        {{/compare}}
+                        <option value="{{id}}" {{selectedIf id ../../current.weaponAnimation.motionID}}>{{name}}</option>
                         {{/each}}
                     </select>
                 </div>
@@ -77,12 +67,7 @@
                     </span>
                     <select id="ddlWeaponAnimation" class="form-control" {{disabledIfNot sweaponAnimation.animationID}}>
                         {{#each ../animations}}
-                        {{#compare id "==" ../../current.weaponAnimation.animationID}}
-                            <option value="{{id}}" selected>{{name}}</option>
-                        {{/compare}}
-                        {{#compare id "!=" ../../current.weaponAnimation.animationID}}
-                            <option value="{{id}}">{{name}}</option>
-                        {{/compare}}
+                        <option value="{{id}}" {{selectedIf id ../../current.weaponAnimation.animationID}}>{{name}}</option>
                         {{/each}}
                     </select>
                 </div>

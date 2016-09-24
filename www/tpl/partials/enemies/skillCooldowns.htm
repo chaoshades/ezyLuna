@@ -1,0 +1,173 @@
+﻿<h4><a role="button" data-toggle="collapse" href="#collapseSkillCooldowns" aria-expanded="true" aria-controls="collapseSkillCooldowns">Skill Cooldowns</a><span class="pull-right label label-info">YEP-Skill-Cooldowns</span></h4>
+<div id="collapseSkillCooldowns" class="collapse">
+    {{#with current}}
+    <div class="form-group">
+        <div class="checkbox checkbox-right no-top">
+            <label for="chkSkillCooldownDuration">Skill Cooldown Duration:<input id="chkSkillCooldownDuration" class="js_Tags" type="checkbox" title="Enables Skill Cooldown Duration" {{checkedIf skillCooldownDuration.enabled}} /></label>
+        </div>
+        <div id="skill_cooldown_duration">
+            {{!-- 
+            <script id="tplSkillCooldownDuration-headers" type="text/x-handlebars-template">
+                <th class="col-xs-4 col-md-4">Skill</th>
+                <th class="col-xs-4 col-md-4">Duration</th>
+            </script>
+            <script id="tplSkillCooldownDuration-read" type="text/x-handlebars-template">
+                <td>{{skill}}</td>
+                <td>{{duration}}%</td>
+            </script>
+            <script id="tplSkillCooldownDuration-edit" type="text/x-handlebars-template">
+                <td>
+                    <select id="ddlSkillCooldownDuration" class="form-control js_InlineEditTableInput" {{disabledIfNot currentContext.enabled}}>
+                        {{#each parentContext.skills}}
+                        <option value="{{id}}" {{selectedIf id ../skillID}}>{{name}}</option>
+                        {{/each}}
+                    </select>
+                </td>
+                <td>
+                    <div class="input-group">
+                        <input type="number" class="form-control js_InlineEditTableInput" id="numSkillCooldownDuration" value="{{duration}}" {{readonlyIfNot currentContext.enabled}} />
+                        <span class="input-group-addon">%</span>
+                    </div>
+                </td>
+            </script>
+            <script id="tplSkillCooldownDuration-empty" type="text/x-handlebars-template">
+                <td>None</td>
+                <td></td>
+            </script>
+            --}}
+            <!-- Filled by InlineEditTablePartialView.js-->
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="checkbox checkbox-right no-top">
+            <label for="chkSkillTypeCooldownDuration">Skill Type Cooldown Duration:<input id="chkSkillTypeCooldownDuration" class="js_Tags" type="checkbox" title="Enables Skill Type Cooldown Duration" {{checkedIf skillTypeCooldownDuration.enabled}} /></label>
+        </div>
+        <div id="skill_type_cooldown_duration">
+            {{!-- 
+            <script id="tplSkillTypeCooldownDuration-headers" type="text/x-handlebars-template">
+                <th class="col-xs-4 col-md-4">Skill Type</th>
+                <th class="col-xs-4 col-md-4">Duration</th>
+            </script>
+            <script id="tplSkillTypeCooldownDuration-read" type="text/x-handlebars-template">
+                <td>{{skillType}}</td>
+                <td>{{duration}}%</td>
+            </script>
+            <script id="tplSkillTypeCooldownDuration-edit" type="text/x-handlebars-template">
+                <td>
+                    <select id="ddlSkillTypeCooldownDuration" class="form-control js_InlineEditTableInput" {{disabledIfNot currentContext.enabled}}>
+                        {{#each parentContext.skillTypes}}
+                        <option value="{{id}}" {{selectedIf id ../skillTypeID}}>{{name}}</option>
+                        {{/each}}
+                    </select>
+                </td>
+                <td>
+                    <div class="input-group">
+                        <input type="number" class="form-control js_InlineEditTableInput" id="numSkillTypeCooldownDuration" value="{{duration}}" {{readonlyIfNot currentContext.enabled}} />
+                        <span class="input-group-addon">%</span>
+                    </div>
+                </td>
+            </script>
+            <script id="tplSkillTypeCooldownDuration-empty" type="text/x-handlebars-template">
+                <td>None</td>
+                <td></td>
+            </script>
+            --}}
+            <!-- Filled by InlineEditTablePartialView.js-->
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="numGlobalCooldownDuration">Global Cooldown Duration:</label>
+        <div class="input-group">
+            <span class="input-group-addon">
+                <input id="chkGlobalCooldownDuration" type="checkbox" class="js_Tags" title="Enables Global Cooldown Duration" {{checkedIf globalCooldownDuration}} />
+            </span>
+            <input type="number" class="form-control" id="numGlobalCooldownDuration" {{valueIf globalCooldownDuration}} {{readonlyIfNot globalCooldownDuration}} />
+            <span class="input-group-addon">%</span>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="checkbox checkbox-right no-top">
+            <label for="chkSkillCooldownRate">Skill Cooldown Rate:<input id="chkSkillCooldownRate" class="js_Tags" type="checkbox" title="Enables Skill Cooldown Rate" {{checkedIf skillCooldownRate.enabled}} /></label>
+        </div>
+        <div id="skill_cooldown_rate">
+            {{!-- 
+            <script id="tplSkillCooldownRate-headers" type="text/x-handlebars-template">
+                <th class="col-xs-4 col-md-4">Skill</th>
+                <th class="col-xs-4 col-md-4">Rate</th>
+            </script>
+            <script id="tplSkillCooldownRate-read" type="text/x-handlebars-template">
+                <td>{{skill}}</td>
+                <td>{{rate}}%</td>
+            </script>
+            <script id="tplSkillCooldownRate-edit" type="text/x-handlebars-template">
+                <td>
+                    <select id="ddlSkillCooldownRate" class="form-control js_InlineEditTableInput" {{disabledIfNot currentContext.enabled}}>
+                        {{#each parentContext.skills}}
+                        <option value="{{id}}" {{selectedIf id ../skillID}}>{{name}}</option>
+                        {{/each}}
+                    </select>
+                </td>
+                <td>
+                    <div class="input-group">
+                        <input type="number" class="form-control js_InlineEditTableInput" id="numSkillCooldownRate" value="{{rate}}" {{readonlyIfNot currentContext.enabled}} />
+                        <span class="input-group-addon">%</span>
+                    </div>
+                </td>
+            </script>
+            <script id="tplSkillCooldownRate-empty" type="text/x-handlebars-template">
+                <td>None</td>
+                <td></td>
+            </script>
+            --}}
+            <!-- Filled by InlineEditTablePartialView.js-->
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="checkbox checkbox-right no-top">
+            <label for="chkSkillTypeCooldownRate">Skill Type Cooldown Rate:<input id="chkSkillTypeCooldownRate" class="js_Tags" type="checkbox" title="Enables Skill Type Cooldown Rate" {{checkedIf skillTypeCooldownRate.enabled}} /></label>
+        </div>
+        <div id="skill_type_cooldown_rate">
+            {{!-- 
+            <script id="tplSkillTypeCooldownRate-headers" type="text/x-handlebars-template">
+                <th class="col-xs-4 col-md-4">Skill Type</th>
+                <th class="col-xs-4 col-md-4">Rate</th>
+            </script>
+            <script id="tplSkillTypeCooldownRate-read" type="text/x-handlebars-template">
+                <td>{{skillType}}</td>
+                <td>{{rate}}%</td>
+            </script>
+            <script id="tplSkillTypeCooldownRate-edit" type="text/x-handlebars-template">
+                <td>
+                    <select id="ddlSkillTypeCooldownRate" class="form-control js_InlineEditTableInput" {{disabledIfNot currentContext.enabled}}>
+                        {{#each parentContext.skillTypes}}
+                        <option value="{{id}}" {{selectedIf id ../skillTypeID}}>{{name}}</option>
+                        {{/each}}
+                    </select>
+                </td>
+                <td>
+                    <div class="input-group">
+                        <input type="number" class="form-control js_InlineEditTableInput" id="numSkillTypeCooldownRate" value="{{rate}}" {{readonlyIfNot currentContext.enabled}} />
+                        <span class="input-group-addon">%</span>
+                    </div>
+                </td>
+            </script>
+            <script id="tplSkillTypeCooldownRate-empty" type="text/x-handlebars-template">
+                <td>None</td>
+                <td></td>
+            </script>
+            --}}
+            <!-- Filled by InlineEditTablePartialView.js-->
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="numGlobalCooldownRate">Global Cooldown Rate:</label>
+        <div class="input-group">
+            <span class="input-group-addon">
+                <input id="chkGlobalCooldownRate" type="checkbox" class="js_Tags" title="Enables Global Cooldown Rate" {{checkedIf globalCooldownRate}} />
+            </span>
+            <input type="number" class="form-control" id="numGlobalCooldownRate" {{valueIf globalCooldownRate}} {{readonlyIfNot globalCooldownRate}} />
+            <span class="input-group-addon">%</span>
+        </div>
+    </div>
+    {{/with}}
+</div>

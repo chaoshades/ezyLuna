@@ -33,9 +33,11 @@
                 if (id === 'chkSkillRequireLevel')
                     dataSelector = 'skillRequireLevel';
 
-                var state_data = getStateManagerCallback().getState(STATE_KEY).data;
-                state_data[dataSelector].enabled = $(this).is(':checked');
-                getStateManagerCallback().setState(STATE_KEY, state_data);
+                if (dataSelector) {
+                    var state_data = getStateManagerCallback().getState(STATE_KEY).data;
+                    state_data[dataSelector].enabled = $(this).is(':checked');
+                    getStateManagerCallback().setState(STATE_KEY, state_data);
+                }
             });
 
         };
@@ -81,7 +83,7 @@
         };
 
         this.renderTags = function () {
-            current.skillRequireLevel = {}
+            current.skillRequireLevel = {};
             current.skillRequireLevel.list = [];
 
             // Define new properties for tags display
@@ -111,9 +113,7 @@
                 state_data = this.getStateManager().getState(STATE_KEY).data;
 
             // TODO
-            if (state_data['skillRequireLevel'].enabled) {
-                _.each(state_data['skillRequireLevel'].data, function (item) { tags.push(new NoteTag(SKILL_REQUIRE_LEVEL, [item.skillID, item.level])); });
-            }
+            setObjectTag(tags, state_data, 'skillRequireLevel', SKILL_REQUIRE_LEVEL, function (item) { return [item.skillID, item.level]; });
 
             return tags;
         };

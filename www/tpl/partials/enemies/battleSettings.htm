@@ -9,12 +9,7 @@
             </span>
             <select id="ddlReflectAnimation" class="form-control" {{disabledIfNot reflectAnimationID}}>
                 {{#each ../animations}}
-                {{#compare id "==" ../../current.reflectAnimationID}}
-                    <option value="{{id}}" selected>{{name}}</option>
-                {{/compare}}
-                {{#compare id "!=" ../../current.reflectAnimationID}}
-                    <option value="{{id}}">{{name}}</option>
-                {{/compare}}
+                <option value="{{id}}" {{selectedIf id ../../current.reflectAnimationID}}>{{name}}</option>
                 {{/each}}
             </select>
         </div>

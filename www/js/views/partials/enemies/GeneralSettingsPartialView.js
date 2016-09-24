@@ -2,7 +2,8 @@
 
     "use strict";
 
-    var $ = require('jquery'),
+    var NB_PARAMS = 8,
+        $ = require('jquery'),
         _ = require('underscore'),
         Handlebars = require('handlebars'),
         UIConfig = require('ui-config'),
@@ -48,7 +49,7 @@
         };
 
         this.renderTags = function () {
-            current.overrideparams = _.range(8).map(function () { return false });
+            current.overrideparams = _.range(NB_PARAMS).map(function () { return false });
 
             // Define new properties for tags display
             _.each(current.tags, function (t) {

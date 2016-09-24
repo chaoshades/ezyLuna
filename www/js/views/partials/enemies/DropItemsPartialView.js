@@ -34,9 +34,11 @@
                 if (id === 'chkExtraDrops')
                     dataSelector = 'extraDrops';
 
-                var state_data = getStateManagerCallback().getState(STATE_KEY).data;
-                state_data[dataSelector].enabled = $(this).is(':checked');
-                getStateManagerCallback().setState(STATE_KEY, state_data);
+                if (dataSelector) {
+                    var state_data = getStateManagerCallback().getState(STATE_KEY).data;
+                    state_data[dataSelector].enabled = $(this).is(':checked');
+                    getStateManagerCallback().setState(STATE_KEY, state_data);
+                }
             });
         };
 
