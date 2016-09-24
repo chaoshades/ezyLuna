@@ -169,5 +169,161 @@
             <span class="input-group-addon">%</span>
         </div>
     </div>
+    <div class="form-group">
+        <div class="checkbox checkbox-right no-top">
+            <label for="chkSkillCooldown">Skill Cooldown:<input id="chkSkillCooldown" class="js_Tags" type="checkbox" title="Enables Skill Cooldown" {{checkedIf skillCooldown.enabled}} /></label>
+        </div>
+        <div id="skill_cooldown">
+            {{!-- 
+            <script id="tplSkillCooldown-headers" type="text/x-handlebars-template">
+                <th class="col-xs-4 col-md-4">Skill</th>
+                <th class="col-xs-4 col-md-4">Value</th>
+            </script>
+            <script id="tplSkillCooldown-read" type="text/x-handlebars-template">
+                <td>{{skill}}</td>
+                <td>{{value}}</td>
+            </script>
+            <script id="tplSkillCooldown-edit" type="text/x-handlebars-template">
+                <td>
+                    <select id="ddlSkillCooldown" class="form-control js_InlineEditTableInput" {{disabledIfNot currentContext.enabled}}>
+                        {{#each parentContext.skills}}
+                        <option value="{{id}}" {{selectedIf id ../skillID}}>{{name}}</option>
+                        {{/each}}
+                    </select>
+                </td>
+                <td>
+                    <input type="number" class="form-control js_InlineEditTableInput" id="numSkillCooldown" value="{{value}}" {{readonlyIfNot currentContext.enabled}} />
+                </td>
+            </script>
+            <script id="tplSkillCooldown-empty" type="text/x-handlebars-template">
+                <td>None</td>
+                <td></td>
+            </script>
+            --}}
+            <!-- Filled by InlineEditTablePartialView.js-->
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="checkbox checkbox-right no-top">
+            <label for="chkSkillTypeCooldown">Skill Type Cooldown:<input id="chkSkillTypeCooldown" class="js_Tags" type="checkbox" title="Enables Skill Type Cooldown" {{checkedIf skillTypeCooldown.enabled}} /></label>
+        </div>
+        <div id="skill_type_cooldown">
+            {{!-- 
+            <script id="tplSkillTypeCooldown-headers" type="text/x-handlebars-template">
+                <th class="col-xs-4 col-md-4">Skill Type</th>
+                <th class="col-xs-4 col-md-4">Value</th>
+            </script>
+            <script id="tplSkillTypeCooldown-read" type="text/x-handlebars-template">
+                <td>{{skillType}}</td>
+                <td>{{value}}</td>
+            </script>
+            <script id="tplSkillTypeCooldown-edit" type="text/x-handlebars-template">
+                <td>
+                    <select id="ddlSkillTypeCooldown" class="form-control js_InlineEditTableInput" {{disabledIfNot currentContext.enabled}}>
+                        {{#each parentContext.skillTypes}}
+                        <option value="{{id}}" {{selectedIf id ../skillTypeID}}>{{name}}</option>
+                        {{/each}}
+                    </select>
+                </td>
+                <td>
+                    <input type="number" class="form-control js_InlineEditTableInput" id="numSkillTypeCooldown" value="{{value}}" {{readonlyIfNot currentContext.enabled}} />
+                </td>
+            </script>
+            <script id="tplSkillTypeCooldown-empty" type="text/x-handlebars-template">
+                <td>None</td>
+                <td></td>
+            </script>
+            --}}
+            <!-- Filled by InlineEditTablePartialView.js-->
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="numGlobalCooldown">Global Cooldown:</label>
+        <div class="input-group">
+            <span class="input-group-addon">
+                <input id="chkGlobalCooldown" type="checkbox" class="js_Tags" title="Enables Global Cooldown" {{checkedIf globalCooldown}} />
+            </span>
+            <input type="number" class="form-control" id="numGlobalCooldown" {{valueIf globalCooldown}} {{readonlyIfNot globalCooldown}} />
+            <span class="input-group-addon">%</span>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="checkbox checkbox-right no-top">
+            <label for="chkSkillWarmup">Skill Warmup:<input id="chkSkillWarmup" class="js_Tags" type="checkbox" title="Enables Skill Warmup" {{checkedIf skillWarmup.enabled}} /></label>
+        </div>
+        <div id="skill_warmup">
+            {{!-- 
+            <script id="tplSkillWarmup-headers" type="text/x-handlebars-template">
+                <th class="col-xs-4 col-md-4">Skill</th>
+                <th class="col-xs-4 col-md-4">Value</th>
+            </script>
+            <script id="tplSkillWarmup-read" type="text/x-handlebars-template">
+                <td>{{skill}}</td>
+                <td>{{value}}</td>
+            </script>
+            <script id="tplSkillWarmup-edit" type="text/x-handlebars-template">
+                <td>
+                    <select id="ddlSkillWarmup" class="form-control js_InlineEditTableInput" {{disabledIfNot currentContext.enabled}}>
+                        {{#each parentContext.skills}}
+                        <option value="{{id}}" {{selectedIf id ../skillID}}>{{name}}</option>
+                        {{/each}}
+                    </select>
+                </td>
+                <td>
+                    <input type="number" class="form-control js_InlineEditTableInput" id="numSkillWarmup" value="{{value}}" {{readonlyIfNot currentContext.enabled}} />
+                </td>
+            </script>
+            <script id="tplSkillWarmup-empty" type="text/x-handlebars-template">
+                <td>None</td>
+                <td></td>
+            </script>
+            --}}
+            <!-- Filled by InlineEditTablePartialView.js-->
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="checkbox checkbox-right no-top">
+            <label for="chkSkillTypeWarmup">Skill Type Warmup:<input id="chkSkillTypeWarmup" class="js_Tags" type="checkbox" title="Enables Skill Type Warmup" {{checkedIf skillTypeWarmup.enabled}} /></label>
+        </div>
+        <div id="skill_type_warmup">
+            {{!-- 
+            <script id="tplSkillTypeWarmup-headers" type="text/x-handlebars-template">
+                <th class="col-xs-4 col-md-4">Skill Type</th>
+                <th class="col-xs-4 col-md-4">Value</th>
+            </script>
+            <script id="tplSkillTypeWarmup-read" type="text/x-handlebars-template">
+                <td>{{skillType}}</td>
+                <td>{{value}}</td>
+            </script>
+            <script id="tplSkillTypeWarmup-edit" type="text/x-handlebars-template">
+                <td>
+                    <select id="ddlSkillTypeWarmup" class="form-control js_InlineEditTableInput" {{disabledIfNot currentContext.enabled}}>
+                        {{#each parentContext.skillTypes}}
+                        <option value="{{id}}" {{selectedIf id ../skillTypeID}}>{{name}}</option>
+                        {{/each}}
+                    </select>
+                </td>
+                <td>
+                    <input type="number" class="form-control js_InlineEditTableInput" id="numSkillTypeWarmup" value="{{value}}" {{readonlyIfNot currentContext.enabled}} />
+                </td>
+            </script>
+            <script id="tplSkillTypeWarmup-empty" type="text/x-handlebars-template">
+                <td>None</td>
+                <td></td>
+            </script>
+            --}}
+            <!-- Filled by InlineEditTablePartialView.js-->
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="numGlobalWarmup">Global Warmup:</label>
+        <div class="input-group">
+            <span class="input-group-addon">
+                <input id="chkGlobalWarmup" type="checkbox" class="js_Tags" title="Enables Global Warmup" {{checkedIf globalWarmup}} />
+            </span>
+            <input type="number" class="form-control" id="numGlobalWarmup" {{valueIf globalWarmup}} {{readonlyIfNot globalWarmup}} />
+            <span class="input-group-addon">%</span>
+        </div>
+    </div>
     {{/with}}
 </div>

@@ -7,49 +7,75 @@
             <span class="input-group-addon">
                 <input id="chkGlobalUseMax" type="checkbox" class="js_Tags" title="Enables Global Use Max" {{checkedIf globalUseMax}} />
             </span>
-            <input type="number" class="form-control" id="numGlobalUseMax" value="{{globalUseMax}}" {{readonlyIfNot globalUseMax}} />
+            <input type="number" class="form-control" id="numGlobalUseMax" {{valueIf globalUseMax}} {{readonlyIfNot globalUseMax}} />
         </div>
     </div>
     <div class="form-group">
-        <label for="ddlSkillTypeUseMax">Skill Type Use Max:</label>
-        <div class="input-group">
-            <span class="input-group-addon">
-                <input id="chkSkillTypeUseMax" type="checkbox" class="js_Tags" title="Enables Skill Type Use Max" {{checkedIf skillTypeID}} />
-            </span>
-            <span class="input-group-addon">Type</span>
-            <select id="ddlSkillTypeUseMax" class="form-control" {{disabledIfNot skillTypeID}}>
-                {{#each ../skillTypes}}
-                {{#compare id "==" ../../current.skillTypeID}}
-                    <option value="{{id}}" selected>{{name}}</option>
-                {{/compare}}
-                {{#compare id "!=" ../../current.skillTypeID}}
-                    <option value="{{id}}">{{name}}</option>
-                {{/compare}}
-                {{/each}}
-            </select>
-            <span class="input-group-addon">Max</span>
-            <input type="number" class="form-control" id="numSkillTypeUseMax" value="{{skillTypeUseMax}}" {{readonlyIfNot skillTypeUseMax}} />
+        <div class="checkbox checkbox-right no-top">
+            <label for="chkSkillTypeUseMax">Skill Type Use Max:<input id="chkSkillTypeUseMax" class="js_Tags" type="checkbox" title="Enables Skill Type Use Max" {{checkedIf skillTypeUseMax.enabled}} /></label>
+        </div>
+        <div id="skill_type_use_max">
+            {{!-- 
+            <script id="tplSkillTypeUseMax-headers" type="text/x-handlebars-template">
+                <th class="col-xs-4 col-md-4">Skill</th>
+                <th class="col-xs-4 col-md-4">Value</th>
+            </script>
+            <script id="tplSkillTypeUseMax-read" type="text/x-handlebars-template">
+                <td>{{skillType}}</td>
+                <td>{{max}}</td>
+            </script>
+            <script id="tplSkillTypeUseMax-edit" type="text/x-handlebars-template">
+                <td>
+                    <select id="ddlSkillTypeUseMax" class="form-control js_InlineEditTableInput" {{disabledIfNot currentContext.enabled}}>
+                        {{#each parentContext.skillTypes}}
+                        <option value="{{id}}" {{selectedIf id ../skillTypeID}}>{{name}}</option>
+                        {{/each}}
+                    </select>
+                </td>
+                <td>
+                    <input type="number" class="form-control js_InlineEditTableInput" id="numSkillTypeUseMax" value="{{max}}" {{readonlyIfNot currentContext.enabled}} />
+                </td>
+            </script>
+            <script id="tplSkillTypeUseMax-empty" type="text/x-handlebars-template">
+                <td>None</td>
+                <td></td>
+            </script>
+            --}}
+            <!-- Filled by InlineEditTablePartialView.js-->
         </div>
     </div>
     <div class="form-group">
-        <label for="ddlSkillUseMax">Skill Use Max:</label>
-        <div class="input-group">
-            <span class="input-group-addon">
-                <input id="chkSkillUseMax" type="checkbox" class="js_Tags" title="Enables Skill Use Max" {{checkedIf skillID}} />
-            </span>
-            <span class="input-group-addon">Skill</span>
-            <select id="ddlSkillUseMax" class="form-control" {{disabledIfNot skillID}}>
-                {{#each ../skills}}
-                {{#compare id "==" ../../current.skillID}}
-                    <option value="{{id}}" selected>{{name}}</option>
-                {{/compare}}
-                {{#compare id "!=" ../../current.skillID}}
-                    <option value="{{id}}">{{name}}</option>
-                {{/compare}}
-                {{/each}}
-            </select>
-            <span class="input-group-addon">Max</span>
-            <input type="number" class="form-control" id="numSkillUseMax" value="{{skillUseMax}}" {{readonlyIfNot skillUseMax}} />
+        <div class="checkbox checkbox-right no-top">
+            <label for="chkSkillUseMax">Skill Use Max:<input id="chkSkillUseMax" class="js_Tags" type="checkbox" title="Enables Skill Use Max" {{checkedIf skillUseMax.enabled}} /></label>
+        </div>
+        <div id="skill_use_max">
+            {{!-- 
+            <script id="tplSkillUseMax-headers" type="text/x-handlebars-template">
+                <th class="col-xs-4 col-md-4">Skill Type</th>
+                <th class="col-xs-4 col-md-4">Value</th>
+            </script>
+            <script id="tplSkillUseMax-read" type="text/x-handlebars-template">
+                <td>{{skill}}</td>
+                <td>{{max}}</td>
+            </script>
+            <script id="tplSkillUseMax-edit" type="text/x-handlebars-template">
+                <td>
+                    <select id="ddlSkillUseMax" class="form-control js_InlineEditTableInput" {{disabledIfNot currentContext.enabled}}>
+                        {{#each parentContext.skills}}
+                        <option value="{{id}}" {{selectedIf id ../skillID}}>{{name}}</option>
+                        {{/each}}
+                    </select>
+                </td>
+                <td>
+                    <input type="number" class="form-control js_InlineEditTableInput" id="numSkillUseMax" value="{{max}}" {{readonlyIfNot currentContext.enabled}} />
+                </td>
+            </script>
+            <script id="tplSkillUseMax-empty" type="text/x-handlebars-template">
+                <td>None</td>
+                <td></td>
+            </script>
+            --}}
+            <!-- Filled by InlineEditTablePartialView.js-->
         </div>
     </div>
     {{/with}}

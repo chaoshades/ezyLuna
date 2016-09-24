@@ -69,6 +69,14 @@ function setValuesTag(tags, chkSelector, tag, valSelectors) {
 }
 
 /**
+ * Get a signed value from a value
+ * @param {Number} value: Value to sign.
+ */
+function getSignedValue(value) {
+    return (value > 0) ? "+" + value : value;
+}
+
+/**
  * Set a tag with a signed value
  * @param {Array} tags: Tags array. 
  * @param {String} chkSelector: Checkbox selector.
@@ -78,8 +86,7 @@ function setValuesTag(tags, chkSelector, tag, valSelectors) {
 function setSignedValueTag(tags, chkSelector, tag, valSelector) {
     var value = $(valSelector).val();
     if ($(chkSelector).is(':checked') && value) {
-        if (value > 0)
-            value = "+" + value;
+        value = getSignedValue(value);
         tags.push(new NoteTag(tag, value));
     }
 }

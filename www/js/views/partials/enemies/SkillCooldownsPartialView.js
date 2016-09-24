@@ -13,16 +13,18 @@
 
         skillCooldownsTpl = Handlebars.compile(skillCooldownsHtml),
 
-        //TODO
         SKILL_COOLDOWN_DURATION = "Skill Cooldown Duration",
         STYPE_COOLDOWN_DURATION = "SType Cooldown Duration",
         GLOBAL_COOLDOWN_DURATION = "Global Cooldown Duration",
         SKILL_COOLDOWN_RATE = "Skill Cooldown Rate",
         STYPE_COOLDOWN_RATE = "SType Cooldown Rate",
         GLOBAL_COOLDOWN_RATE = "Global Cooldown Rate",
-        SKILL_COOLDOWN_RATE = "Skill Cooldown Rate",
-        STYPE_COOLDOWN_RATE = "SType Cooldown Rate",
-        GLOBAL_COOLDOWN_RATE = "Global Cooldown Rate";
+        SKILL_COOLDOWN = "Skill Cooldown",
+        STYPE_COOLDOWN = "SType Cooldown",
+        GLOBAL_COOLDOWN = "Global Cooldown",
+        SKILL_WARMUP = "Skill Warmup",
+        STYPE_WARMUP = "SType Warmup",
+        GLOBAL_WARMUP = "Global Warmup";
 
     return function (current, linked_data, $stateManager) {
 
@@ -45,6 +47,14 @@
                     dataSelector = 'skillCooldownRate';
                 else if (id === 'chkSkillTypeCooldownRate')
                     dataSelector = 'skillTypeCooldownRate';
+                else if (id === 'chkSkillCooldown')
+                    dataSelector = 'skillCooldown';
+                else if (id === 'chkSkillTypeCooldown')
+                    dataSelector = 'skillTypeCooldown';
+                else if (id === 'chkSkillWarmup')
+                    dataSelector = 'skillWarmup';
+                else if (id === 'chkSkillTypeWarmup')
+                    dataSelector = 'skillTypeWarmup';
 
                 if (dataSelector) {
                     var state_data = getStateManagerCallback().getState(STATE_KEY).data;
@@ -70,7 +80,11 @@
                 new InlineEditTableTemplateSet($(skillCooldownsHtml), "#tplSkillCooldownDuration"),
                 new InlineEditTableTemplateSet($(skillCooldownsHtml), "#tplSkillTypeCooldownDuration"),
                 new InlineEditTableTemplateSet($(skillCooldownsHtml), "#tplSkillCooldownRate"),
-                new InlineEditTableTemplateSet($(skillCooldownsHtml), "#tplSkillTypeCooldownRate")
+                new InlineEditTableTemplateSet($(skillCooldownsHtml), "#tplSkillTypeCooldownRate"),
+                new InlineEditTableTemplateSet($(skillCooldownsHtml), "#tplSkillCooldown"),
+                new InlineEditTableTemplateSet($(skillCooldownsHtml), "#tplSkillTypeCooldown"),
+                new InlineEditTableTemplateSet($(skillCooldownsHtml), "#tplSkillWarmup"),
+                new InlineEditTableTemplateSet($(skillCooldownsHtml), "#tplSkillTypeWarmup")
             ];
             var templateInfos = {};
 
@@ -86,7 +100,11 @@
                 'skill_cooldown_duration': new InlineEditTablePartialView(data, templateInfos["tplSkillCooldownDuration"], $stateManager, STATE_KEY, "skillCooldownDuration", this.saveSkillCooldownDuration),
                 'skill_type_cooldown_duration': new InlineEditTablePartialView(data, templateInfos["tplSkillTypeCooldownDuration"], $stateManager, STATE_KEY, "skillTypeCooldownDuration", this.saveSkillTypeCooldownDuration),
                 'skill_cooldown_rate': new InlineEditTablePartialView(data, templateInfos["tplSkillCooldownRate"], $stateManager, STATE_KEY, "skillCooldownRate", this.saveSkillCooldownRate),
-                'skill_type_cooldown_rate': new InlineEditTablePartialView(data, templateInfos["tplSkillTypeCooldownRate"], $stateManager, STATE_KEY, "skillTypeCooldownRate", this.saveSkillTypeCooldownRate)
+                'skill_type_cooldown_rate': new InlineEditTablePartialView(data, templateInfos["tplSkillTypeCooldownRate"], $stateManager, STATE_KEY, "skillTypeCooldownRate", this.saveSkillTypeCooldownRate),
+                'skill_cooldown': new InlineEditTablePartialView(data, templateInfos["tplSkillCooldown"], $stateManager, STATE_KEY, "skillCooldown", this.saveSkillCooldown),
+                'skill_type_cooldown': new InlineEditTablePartialView(data, templateInfos["tplSkillTypeCooldown"], $stateManager, STATE_KEY, "skillTypeCooldown", this.saveSkillTypeCooldown),
+                'skill_warmup': new InlineEditTablePartialView(data, templateInfos["tplSkillWarmup"], $stateManager, STATE_KEY, "skillWarmup", this.saveSkillWarmup),
+                'skill_type_warmup': new InlineEditTablePartialView(data, templateInfos["tplSkillTypeWarmup"], $stateManager, STATE_KEY, "skillTypeWarmup", this.saveSkillTypeWarmup)
             }
 
             this.$el.html(skillCooldownsTpl(data));
@@ -111,10 +129,17 @@
             current.skillCooldownRate.list = [];
             current.skillTypeCooldownRate = {};
             current.skillTypeCooldownRate.list = [];
+            current.skillCooldown = {};
+            current.skillCooldown.list = [];
+            current.skillTypeCooldown = {};
+            current.skillTypeCooldown.list = [];
+            current.skillWarmup = {};
+            current.skillWarmup.list = [];
+            current.skillTypeWarmup = {};
+            current.skillTypeWarmup.list = [];
 
             // Define new properties for tags display
             _.each(current.tags, function (t) {
-                // TODO
                 if (t.tag == SKILL_COOLDOWN_DURATION) {
                     current.skillCooldownDuration.enabled = true;
 
@@ -140,7 +165,8 @@
                 else if (t.tag == GLOBAL_COOLDOWN_DURATION) {
                     current.globalCooldownDuration = t.data;
                 }
-                else if (t.tag == SKILL_COOLDOWN_RATE) {
+
+                if (t.tag == SKILL_COOLDOWN_RATE) {
                     current.skillCooldownRate.enabled = true;
 
                     var skill = _.find(linked_data.skills, function (skill) { return skill.id == t.data[0]; });
@@ -165,13 +191,69 @@
                 else if (t.tag == GLOBAL_COOLDOWN_RATE) {
                     current.globalCooldownRate = t.data;
                 }
+
+                if (t.tag == SKILL_COOLDOWN) {
+                    current.skillCooldown.enabled = true;
+
+                    var skill = _.find(linked_data.skills, function (skill) { return skill.id == t.data[0]; });
+
+                    current.skillCooldown.list.push({
+                        skillID: t.data[0],
+                        skill: skill.name,
+                        value: t.data[1].replace('+', '')
+                    });
+                }
+                else if (t.tag == STYPE_COOLDOWN) {
+                    current.skillTypeCooldown.enabled = true;
+
+                    var skillType = linked_data.types.skillTypes[t.data[0]];
+
+                    current.skillTypeCooldown.list.push({
+                        skillTypeID: t.data[0],
+                        skillType: skillType,
+                        value: t.data[1].replace('+', '')
+                    });
+                }
+                else if (t.tag == GLOBAL_COOLDOWN) {
+                    current.globalCooldown = t.data.replace('+', '');
+                }
+
+                if (t.tag == SKILL_WARMUP) {
+                    current.skillWarmup.enabled = true;
+
+                    var skill = _.find(linked_data.skills, function (skill) { return skill.id == t.data[0]; });
+
+                    current.skillWarmup.list.push({
+                        skillID: t.data[0],
+                        skill: skill.name,
+                        value: t.data[1].replace('+', '')
+                    });
+                }
+                else if (t.tag == STYPE_WARMUP) {
+                    current.skillTypeWarmup.enabled = true;
+
+                    var skillType = linked_data.types.skillTypes[t.data[0]];
+
+                    current.skillTypeWarmup.list.push({
+                        skillTypeID: t.data[0],
+                        skillType: skillType,
+                        value: t.data[1].replace('+', '')
+                    });
+                }
+                else if (t.tag == GLOBAL_WARMUP) {
+                    current.globalWarmup = t.data.replace('+', '');
+                }
             });
 
             var data = {
                 'skillCooldownDuration': new InlineEditTableDataInfo(current.skillCooldownDuration.enabled, current.skillCooldownDuration.list),
                 'skillTypeCooldownDuration': new InlineEditTableDataInfo(current.skillTypeCooldownDuration.enabled, current.skillTypeCooldownDuration.list),
                 'skillCooldownRate': new InlineEditTableDataInfo(current.skillCooldownRate.enabled, current.skillCooldownRate.list),
-                'skillTypeCooldownRate': new InlineEditTableDataInfo(current.skillTypeCooldownRate.enabled, current.skillTypeCooldownRate.list)
+                'skillTypeCooldownRate': new InlineEditTableDataInfo(current.skillTypeCooldownRate.enabled, current.skillTypeCooldownRate.list),
+                'skillCooldown': new InlineEditTableDataInfo(current.skillCooldown.enabled, current.skillCooldown.list),
+                'skillTypeCooldown': new InlineEditTableDataInfo(current.skillTypeCooldown.enabled, current.skillTypeCooldown.list),
+                'skillWarmup': new InlineEditTableDataInfo(current.skillWarmup.enabled, current.skillWarmup.list),
+                'skillTypeWarmup': new InlineEditTableDataInfo(current.skillTypeWarmup.enabled, current.skillTypeWarmup.list)
             }
             this.getStateManager().setState(STATE_KEY, data);
         };
@@ -180,13 +262,21 @@
             var tags = [],
                 state_data = this.getStateManager().getState(STATE_KEY).data;
 
-            // TODO
             setObjectTag(tags, state_data, 'skillCooldownDuration', SKILL_COOLDOWN_DURATION, function (item) { return [item.skillID, item.duration]; });
             setObjectTag(tags, state_data, 'skillTypeCooldownDuration', STYPE_COOLDOWN_DURATION, function (item) { return [item.skillTypeID, item.duration]; });
             setValueTag(tags, '#chkGlobalCooldownDuration', GLOBAL_COOLDOWN_DURATION, '#numGlobalCooldownDuration');
+
             setObjectTag(tags, state_data, 'skillCooldownRate', SKILL_COOLDOWN_RATE, function (item) { return [item.skillID, item.rate]; });
             setObjectTag(tags, state_data, 'skillTypeCooldownRate', STYPE_COOLDOWN_RATE, function (item) { return [item.skillTypeID, item.rate]; });
             setValueTag(tags, '#chkGlobalCooldownRate', GLOBAL_COOLDOWN_RATE, '#numGlobalCooldownRate');
+
+            setObjectTag(tags, state_data, 'skillCooldown', SKILL_COOLDOWN, function (item) { return [item.skillID, getSignedValue(item.value)]; });
+            setObjectTag(tags, state_data, 'skillTypeCooldown', STYPE_COOLDOWN, function (item) { return [item.skillTypeID, getSignedValue(item.value)]; });
+            setSignedValueTag(tags, '#chkGlobalCooldown', GLOBAL_COOLDOWN, '#numGlobalCooldown');
+
+            setObjectTag(tags, state_data, 'skillWarmup', SKILL_WARMUP, function (item) { return [item.skillID, getSignedValue(item.value)]; });
+            setObjectTag(tags, state_data, 'skillTypeWarmup', STYPE_WARMUP, function (item) { return [item.skillTypeID, getSignedValue(item.value)]; });
+            setSignedValueTag(tags, '#chkGlobalWarmup', GLOBAL_WARMUP, '#numGlobalWarmup');
 
             return tags;
         };
@@ -229,6 +319,42 @@
             obj.skillTypeID = skillTypeID;
             obj.skillType = skillType;
             obj.rate = $('#numSkillTypeCooldownRate').val();
+        };
+
+        this.saveSkillCooldown = function (obj) {
+            var skillID = $('#ddlSkillCooldown').val();
+            var skill = _.find(linked_data.skills, function (skill) { return skill.id == skillID; });
+
+            obj.skillID = skill.id;
+            obj.skill = skill.name;
+            obj.value = $('#numSkillCooldown').val();
+        };
+
+        this.saveSkillTypeCooldown = function (obj) {
+            var skillTypeID = $('#ddlSkillTypeCooldown').val();
+            var skillType = linked_data.types.skillTypes[skillTypeID];
+
+            obj.skillTypeID = skillTypeID;
+            obj.skillType = skillType;
+            obj.value = $('#numSkillTypeCooldown').val();
+        };
+
+        this.saveSkillWarmup = function (obj) {
+            var skillID = $('#ddlSkillWarmup').val();
+            var skill = _.find(linked_data.skills, function (skill) { return skill.id == skillID; });
+
+            obj.skillID = skill.id;
+            obj.skill = skill.name;
+            obj.value = $('#numSkillWarmup').val();
+        };
+
+        this.saveSkillTypeWarmup = function (obj) {
+            var skillTypeID = $('#ddlSkillTypeWarmup').val();
+            var skillType = linked_data.types.skillTypes[skillTypeID];
+
+            obj.skillTypeID = skillTypeID;
+            obj.skillType = skillType;
+            obj.value = $('#numSkillTypeWarmup').val();
         };
 
         this.initialize();

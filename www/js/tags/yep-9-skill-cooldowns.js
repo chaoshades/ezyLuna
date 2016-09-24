@@ -4,6 +4,7 @@
 
     var BasicPercentParser = require("parser/BasicPercentParser"),
         BasicTagArrayPercentParser = require("parser/BasicTagArrayPercentParser"),
+        BasicTagArraySignedParser = require("parser/BasicTagArraySignedParser"),
         SignedParser = require("parser/SignedParser");
 
     return new Plugin(
@@ -17,14 +18,11 @@
             new TagParser("Skill Cooldown Rate", new BasicTagArrayPercentParser(1)),
             new TagParser("SType Cooldown Rate", new BasicTagArrayPercentParser(1)),
             new TagParser("Global Cooldown Rate", new BasicPercentParser()),
-            new TagParser("Skill Cooldown Rate", new BasicTagArrayPercentParser(1)),
-            new TagParser("SType Cooldown Rate", new BasicTagArrayPercentParser(1)),
-            new TagParser("Global Cooldown Rate", new BasicPercentParser()),
-            //new TagParser("Skill x Cooldown", new SignedParser()), TODO
-            //new TagParser("SType x Cooldown", new SignedParser()), TODO
+            new TagParser("Skill Cooldown", new BasicTagArraySignedParser(1)),
+            new TagParser("SType Cooldown", new BasicTagArraySignedParser(1)),
             new TagParser("Global Cooldown", new SignedParser()),
-            //new TagParser("Skill x Warmup", new SignedParser()), TODO
-            //new TagParser("SType x Warmup", new SignedParser()), TODO
+            new TagParser("Skill Warmup", new BasicTagArraySignedParser(1)),
+            new TagParser("SType Warmup", new BasicTagArraySignedParser(1)),
             new TagParser("Global Warmup", new SignedParser())
         ]
     );

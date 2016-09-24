@@ -56,7 +56,7 @@
                 'damage_settings': new DamageSettingsPartialView(current),
                 'armor_scaling': new ArmorScalingPartialView(current),
                 'taunt_settings': new TauntSettingsPartialView(current),
-                'limited_skill_uses': new LimitedSkillUsesPartialView(current, linked_data),
+                'limited_skill_uses': new LimitedSkillUsesPartialView(current, linked_data, $stateManager),
                 'job_points': new JobPointsPartialView(current),
                 'row_formation': new RowFormationPartialView(current),
                 'weapon_animation_settings': new WeaponAnimationSettingsPartialView(current, linked_data),
