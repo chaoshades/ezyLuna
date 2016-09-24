@@ -4,7 +4,7 @@
 
     var BasicParser = require("parser/BasicParser"),
         TagOnlyParser = require("parser/TagOnlyParser"),
-        BasicPercentParser = require("parser/BasicPercentParser"),
+        PercentParser = require("parser/PercentParser"),
         CoordParser = require("parser/CoordParser"),
         BasicArrayParser = require("parser/BasicArrayParser");
 
@@ -21,9 +21,9 @@
             new TagParser("Floating", new TagOnlyParser()),
             new TagParser("Floating Speed", new BasicParser()),
             new TagParser("Floating Height", new BasicParser()),
-            new TagParser("Scale Sprite", new BasicPercentParser()),
-            new TagParser("Scale Sprite Width", new BasicPercentParser()),
-            new TagParser("Scale Sprite Height", new BasicPercentParser()),
+            new TagParser("Scale Sprite", new PercentParser()),
+            new TagParser("Scale Sprite Width", new PercentParser()),
+            new TagParser("Scale Sprite Height", new PercentParser()),
             new TagParser("Sideview Battler", new BasicParser()),
             new TagParser("Sideview Anchor X", new CoordParser()),
             new TagParser("Sideview Anchor Y", new CoordParser()),
@@ -44,8 +44,8 @@
             new TagParser("Sideview Dying Motion", new BasicParser()),
             new TagParser("Sideview Show Shadow", new TagOnlyParser()),
             new TagParser("Sideview Hide Shadow", new TagOnlyParser()),
-            new TagParser("Sideview Shadow Width", new BasicPercentParser()),
-            new TagParser("Sideview Shadow Height", new BasicPercentParser()),
+            new TagParser("Sideview Shadow Width", new PercentParser()),
+            new TagParser("Sideview Shadow Height", new PercentParser()),
             new TagParser("Hide Sideview Weapon", new TagOnlyParser())
         ]
     );

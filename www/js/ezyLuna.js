@@ -64,7 +64,7 @@ function setValuesTag(tags, chkSelector, tag, valSelectors) {
             values.push(value);
     }
 
-    if ($(chkSelector).is(':checked') && values)
+    if ($(chkSelector).is(':checked') && values.length > 0)
         tags.push(new NoteTag(tag, values));
 }
 
@@ -102,7 +102,24 @@ function setSignedValueTag(tags, chkSelector, tag, valSelector) {
 function setObjectTag(tags, state_data, stateSelector, tag, objFx) {
     if (state_data[stateSelector].enabled) {
         var objects = _.map(state_data[stateSelector].data, objFx);
-        _.each(objects, function (obj) { tags.push(new NoteTag(tag, obj)); });
+        if (objects.length > 0)
+            _.each(objects, function (obj) { tags.push(new NoteTag(tag, obj)); });
+    }
+}
+
+/**
+ * Set a tag with an object data value
+ * @param {Array} tags: Tags array. 
+ * @param {Object} state_data: State object. 
+ * @param {String} stateSelector: State data selector.
+ * @param {String} tag: Tag to create.
+ * @param {Function} valFx: Function to execute to extract value from state.
+ */
+function setObjectValuesTag(tags, state_data, stateSelector, tag, valFx) {
+    if (state_data[stateSelector].enabled) {
+        var values = _.map(state_data[stateSelector].data, valFx);
+        if (values.length > 0)
+            tags.push(new NoteTag(tag, values));
     }
 }
 

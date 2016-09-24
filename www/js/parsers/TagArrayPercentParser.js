@@ -5,9 +5,9 @@
     var $ = require('jquery'),
         _ = require('underscore'),
         Handlebars = require('handlebars'),
-        basicTagArrayPercentHtml = require('text!parsertpl/basicTagArrayPercent.htm'),
+        tagArrayPercentHtml = require('text!parsertpl/tagArrayPercent.htm'),
 
-        basicTagArrayPercentTpl = Handlebars.compile(basicTagArrayPercentHtml),
+        tagArrayPercentTpl = Handlebars.compile(tagArrayPercentHtml),
             
         DELIMITER = " ";
 
@@ -23,27 +23,29 @@
         this.stringify = function (tagToStringify, tagData) {
             var tags = tagToStringify.split(DELIMITER);
             // Insert first data within tags
-            tags.splice(_index, 0, _.first(tagData));
+            if (_index)
+                tags.splice(_index, 0, _.first(tagData));
 
             var data = {
                 "tags": tags,
-                "value": _.rest(tagData)
+                "value": (_index) ? _.rest(tagData) : tagData
             };
-            return basicTagArrayPercentTpl(data);
+            return tagArrayPercentTpl(data);
         };
 
         this.parse = function (tagToParse, tags) {
             var parseTags = tagToParse.split(DELIMITER);
             // Insert first data within tags
-            parseTags.splice(_index, 0, "([\\w]+)");
+            if (_index)
+                parseTags.splice(_index, 0, "([\\w]+)");
 
-            var global_regex = new RegExp("<(" + parseTags.join(DELIMITER) + "): ([\\w\\.]+)%>", "g"),
+            var global_regex = new RegExp("<(" + parseTags.join(DELIMITER) + "): ([\\d\\.]+)%>", "g"),
                 global_matches = null,
                 result = null;
 
             global_matches = tags.match(global_regex);
             if (global_matches) {
-                var regex = new RegExp("<(" + parseTags.join(DELIMITER) + "): ([\\w\\.]+)%>"),
+                var regex = new RegExp("<(" + parseTags.join(DELIMITER) + "): ([\\d\\.]+)%>"),
                     matches = null;
 
                 result = [];

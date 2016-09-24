@@ -51,7 +51,7 @@ require(['jquery', 'bootstrap', 'handlebars', 'app/router'], function ($, Bootst
     "use strict";
 
     // format with id format
-    // usage: {{idFormat money}}
+    // usage: {{idFormat value}}
     Handlebars.registerHelper('idFormat', function (context) {
         return pad(context, 4);
     });

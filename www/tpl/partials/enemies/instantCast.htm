@@ -1,0 +1,269 @@
+﻿<h4><a role="button" data-toggle="collapse" href="#collapseInstantCast" aria-expanded="true" aria-controls="collapseInstantCast">Instant Cast</a><span class="pull-right label label-info">YEP-Instant-Cast</span></h4>
+<div id="collapseInstantCast" class="collapse">
+    {{#with current}}
+    <div class="form-group">
+        <div class="checkbox checkbox-right no-top">
+            <label for="chkInstantSkill">Instant Skill:<input id="chkInstantSkill" class="js_Tags" type="checkbox" title="Enables Instant Skill" {{checkedIf instantSkill.enabled}} /></label>
+        </div>
+        <div id="instant_skill">
+            {{!-- 
+            <script id="tplInstantSkill-headers" type="text/x-handlebars-template">
+                <th class="col-xs-8 col-md-8">Skill</th>
+            </script>
+            <script id="tplInstantSkill-read" type="text/x-handlebars-template">
+                <td>{{skill}}</td>
+            </script>
+            <script id="tplInstantSkill-edit" type="text/x-handlebars-template">
+                <td>
+                    <select id="ddlInstantSkill" class="form-control js_InlineEditTableInput" {{disabledIfNot currentContext.enabled}}>
+                        {{#each parentContext.skills}}
+                        <option value="{{id}}" {{selectedIf id ../skillID}}>{{name}}</option>
+                        {{/each}}
+                    </select>
+                </td>
+            </script>
+            <script id="tplInstantSkill-empty" type="text/x-handlebars-template">
+                <td>None</td>
+            </script>
+            --}}
+            <!-- Filled by InlineEditTablePartialView.js-->
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="checkbox checkbox-right no-top">
+            <label for="chkInstantSkillRange">Instant Skill Range:<input id="chkInstantSkillRange" class="js_Tags" type="checkbox" title="Enables Instant Skill Range" {{checkedIf instantSkillRange.enabled}} /></label>
+        </div>
+        <div id="instant_skill_range">
+            {{!-- 
+            <script id="tplInstantSkillRange-headers" type="text/x-handlebars-template">
+                <th class="col-xs-4 col-md-4">Skill start</th>
+                <th class="col-xs-4 col-md-4">Skill end</th>
+            </script>
+            <script id="tplInstantSkillRange-read" type="text/x-handlebars-template">
+                <td>{{curly true}}{{idFormat start}}{{curly}}-{{skillStart}}</td>
+                <td>{{curly true}}{{idFormat end}}{{curly}}-{{skillEnd}}</td>
+            </script>
+            <script id="tplInstantSkillRange-edit" type="text/x-handlebars-template">
+                <td>
+                    <select id="ddlInstantSkillRangeStart" class="form-control js_InlineEditTableInput" {{disabledIfNot currentContext.enabled}}>
+                        {{#each parentContext.skills}}
+                        <option value="{{id}}" {{selectedIf id ../start}}>{{curly true}}{{idFormat id}}{{curly}}-{{name}}</option>
+                        {{/each}}
+                    </select>
+                </td>
+                <td>
+                    <select id="ddlInstantSkillRangeEnd" class="form-control js_InlineEditTableInput" {{disabledIfNot currentContext.enabled}}>
+                        {{#each parentContext.skills}}
+                        <option value="{{id}}" {{selectedIf id ../end}}>{{curly true}}{{idFormat id}}{{curly}}-{{name}}</option>
+                        {{/each}}
+                    </select>
+                </td>
+            </script>
+            <script id="tplInstantSkillRange-empty" type="text/x-handlebars-template">
+                <td>None</td>
+                <td></td>
+            </script>
+            --}}
+            <!-- Filled by InlineEditTablePartialView.js-->
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="checkbox checkbox-right no-top">
+            <label for="chkInstantItem">Instant Item:<input id="chkInstantItem" class="js_Tags" type="checkbox" title="Enables Instant Item" {{checkedIf instantItem.enabled}} /></label>
+        </div>
+        <div id="instant_item">
+            {{!-- 
+            <script id="tplInstantItem-headers" type="text/x-handlebars-template">
+                <th class="col-xs-8 col-md-8">Item</th>
+            </script>
+            <script id="tplInstantItem-read" type="text/x-handlebars-template">
+                <td>{{item}}</td>
+            </script>
+            <script id="tplInstantItem-edit" type="text/x-handlebars-template">
+                <td>
+                    <select id="ddlInstantItem" class="form-control js_InlineEditTableInput" {{disabledIfNot currentContext.enabled}}>
+                        {{#each parentContext.items}}
+                        <option value="{{id}}" {{selectedIf id ../itemID}}>{{name}}</option>
+                        {{/each}}
+                    </select>
+                </td>
+            </script>
+            <script id="tplInstantItem-empty" type="text/x-handlebars-template">
+                <td>None</td>
+            </script>
+            --}}
+            <!-- Filled by InlineEditTablePartialView.js-->
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="checkbox checkbox-right no-top">
+            <label for="chkInstantItemRange">Instant Item Range:<input id="chkInstantItemRange" class="js_Tags" type="checkbox" title="Enables Instant Item Range" {{checkedIf instantItemRange.enabled}} /></label>
+        </div>
+        <div id="instant_item_range">
+            {{!-- 
+            <script id="tplInstantItemRange-headers" type="text/x-handlebars-template">
+                <th class="col-xs-4 col-md-4">Item start</th>
+                <th class="col-xs-4 col-md-4">Item end</th>
+            </script>
+            <script id="tplInstantItemRange-read" type="text/x-handlebars-template">
+                <td>{{curly true}}{{idFormat start}}{{curly}}-{{itemStart}}</td>
+                <td>{{curly true}}{{idFormat end}}{{curly}}-{{itemEnd}}</td>
+            </script>
+            <script id="tplInstantItemRange-edit" type="text/x-handlebars-template">
+                <td>
+                    <select id="ddlInstantItemRangeStart" class="form-control js_InlineEditTableInput" {{disabledIfNot currentContext.enabled}}>
+                        {{#each parentContext.items}}
+                        <option value="{{id}}" {{selectedIf id ../itemID}}>{{curly true}}{{idFormat id}}{{curly}}-{{name}}</option>
+                        {{/each}}
+                    </select>
+                </td>
+                <td>
+                    <select id="ddlInstantItemRangeEnd" class="form-control js_InlineEditTableInput" {{disabledIfNot currentContext.enabled}}>
+                        {{#each parentContext.items}}
+                        <option value="{{id}}" {{selectedIf id ../end}}>{{curly true}}{{idFormat id}}{{curly}}-{{name}}</option>
+                        {{/each}}
+                    </select>
+                </td>
+            </script>
+            <script id="tplInstantItemRange-empty" type="text/x-handlebars-template">
+                <td>None</td>
+                <td></td>
+            </script>
+            --}}
+            <!-- Filled by InlineEditTablePartialView.js-->
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="checkbox checkbox-right no-top">
+            <label for="chkCancelInstantSkill">Cancel Instant Skill:<input id="chkCancelInstantSkill" class="js_Tags" type="checkbox" title="Enables Cancel Instant Skill" {{checkedIf cancelInstantSkill.enabled}} /></label>
+        </div>
+        <div id="cancel_instant_skill">
+            {{!-- 
+            <script id="tplCancelInstantSkill-headers" type="text/x-handlebars-template">
+                <th class="col-xs-8 col-md-8">Skill</th>
+            </script>
+            <script id="tplCancelInstantSkill-read" type="text/x-handlebars-template">
+                <td>{{skill}}</td>
+            </script>
+            <script id="tplCancelInstantSkill-edit" type="text/x-handlebars-template">
+                <td>
+                    <select id="ddlCancelInstantSkill" class="form-control js_InlineEditTableInput" {{disabledIfNot currentContext.enabled}}>
+                        {{#each parentContext.skills}}
+                        <option value="{{id}}" {{selectedIf id ../skillID}}>{{name}}</option>
+                        {{/each}}
+                    </select>
+                </td>
+            </script>
+            <script id="tplCancelInstantSkill-empty" type="text/x-handlebars-template">
+                <td>None</td>
+            </script>
+            --}}
+            <!-- Filled by InlineEditTablePartialView.js-->
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="checkbox checkbox-right no-top">
+            <label for="chkCancelInstantSkillRange">Cancel Instant Skill Range:<input id="chkCancelInstantSkillRange" class="js_Tags" type="checkbox" title="Enables Cancel Instant Skill Range" {{checkedIf cancelInstantSkillRange.enabled}} /></label>
+        </div>
+        <div id="cancel_instant_skill_range">
+            {{!-- 
+            <script id="tplCancelInstantSkillRange-headers" type="text/x-handlebars-template">
+                <th class="col-xs-4 col-md-4">Skill start</th>
+                <th class="col-xs-4 col-md-4">Skill end</th>
+            </script>
+            <script id="tplCancelInstantSkillRange-read" type="text/x-handlebars-template">
+                <td>{{curly true}}{{idFormat start}}{{curly}}-{{skillStart}}</td>
+                <td>{{curly true}}{{idFormat end}}{{curly}}-{{skillEnd}}</td>
+            </script>
+            <script id="tplCancelInstantSkillRange-edit" type="text/x-handlebars-template">
+                <td>
+                    <select id="ddlCancelInstantSkillRangeStart" class="form-control js_InlineEditTableInput" {{disabledIfNot currentContext.enabled}}>
+                        {{#each parentContext.skills}}
+                        <option value="{{id}}" {{selectedIf id ../start}}>{{curly true}}{{idFormat id}}{{curly}}-{{name}}</option>
+                        {{/each}}
+                    </select>
+                </td>
+                <td>
+                    <select id="ddlCancelInstantSkillRangeEnd" class="form-control js_InlineEditTableInput" {{disabledIfNot currentContext.enabled}}>
+                        {{#each parentContext.skills}}
+                        <option value="{{id}}" {{selectedIf id ../end}}>{{curly true}}{{idFormat id}}{{curly}}-{{name}}</option>
+                        {{/each}}
+                    </select>
+                </td>
+            </script>
+            <script id="tplCancelInstantSkillRange-empty" type="text/x-handlebars-template">
+                <td>None</td>
+                <td></td>
+            </script>
+            --}}
+            <!-- Filled by InlineEditTablePartialView.js-->
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="checkbox checkbox-right no-top">
+            <label for="chkCancelInstantItem">Cancel Instant Item:<input id="chkCancelInstantItem" class="js_Tags" type="checkbox" title="Enables Cancel Instant Item" {{checkedIf cancelInstantItem.enabled}} /></label>
+        </div>
+        <div id="cancel_instant_item">
+            {{!-- 
+            <script id="tplCancelInstantItem-headers" type="text/x-handlebars-template">
+                <th class="col-xs-8 col-md-8">Item</th>
+            </script>
+            <script id="tplCancelInstantItem-read" type="text/x-handlebars-template">
+                <td>{{item}}</td>
+            </script>
+            <script id="tplCancelInstantItem-edit" type="text/x-handlebars-template">
+                <td>
+                    <select id="ddlCancelInstantItem" class="form-control js_InlineEditTableInput" {{disabledIfNot currentContext.enabled}}>
+                        {{#each parentContext.items}}
+                        <option value="{{id}}" {{selectedIf id ../itemID}}>{{name}}</option>
+                        {{/each}}
+                    </select>
+                </td>
+            </script>
+            <script id="tplCancelInstantItem-empty" type="text/x-handlebars-template">
+                <td>None</td>
+            </script>
+            --}}
+            <!-- Filled by InlineEditTablePartialView.js-->
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="checkbox checkbox-right no-top">
+            <label for="chkCancelInstantItemRange">Cancel Instant Item Range:<input id="chkCancelInstantItemRange" class="js_Tags" type="checkbox" title="Enables Cancel Instant Item Range" {{checkedIf cancelInstantItemRange.enabled}} /></label>
+        </div>
+        <div id="cancel_instant_item_range">
+            {{!-- 
+            <script id="tplCancelInstantItemRange-headers" type="text/x-handlebars-template">
+                <th class="col-xs-4 col-md-4">Item start</th>
+                <th class="col-xs-4 col-md-4">Item end</th>
+            </script>
+            <script id="tplCancelInstantItemRange-read" type="text/x-handlebars-template">
+                <td>{{curly true}}{{idFormat start}}{{curly}}-{{itemStart}}</td>
+                <td>{{curly true}}{{idFormat end}}{{curly}}-{{itemEnd}}</td>
+            </script>
+            <script id="tplCancelInstantItemRange-edit" type="text/x-handlebars-template">
+                <td>
+                    <select id="ddlCancelInstantItemRangeStart" class="form-control js_InlineEditTableInput" {{disabledIfNot currentContext.enabled}}>
+                        {{#each parentContext.items}}
+                        <option value="{{id}}" {{selectedIf id ../itemID}}>{{curly true}}{{idFormat id}}{{curly}}-{{name}}</option>
+                        {{/each}}
+                    </select>
+                </td>
+                <td>
+                    <select id="ddlCancelInstantItemRangeEnd" class="form-control js_InlineEditTableInput" {{disabledIfNot currentContext.enabled}}>
+                        {{#each parentContext.items}}
+                        <option value="{{id}}" {{selectedIf id ../end}}>{{curly true}}{{idFormat id}}{{curly}}-{{name}}</option>
+                        {{/each}}
+                    </select>
+                </td>
+            </script>
+            <script id="tplCancelInstantItemRange-empty" type="text/x-handlebars-template">
+                <td>None</td>
+                <td></td>
+            </script>
+            --}}
+            <!-- Filled by InlineEditTablePartialView.js-->
+        </div>
+    </div>
+    {{/with}}
+</div>

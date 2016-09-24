@@ -4,9 +4,9 @@
 
     var $ = require('jquery'),
         Handlebars = require('handlebars'),
-        signedPercentHtml = require('text!parsertpl/signedPercent.htm'),
+        percentHtml = require('text!parsertpl/percent.htm'),
 
-        signedPercentTpl = Handlebars.compile(signedPercentHtml);
+        percentTpl = Handlebars.compile(percentHtml);
 
 
     return function () {
@@ -18,13 +18,13 @@
         this.stringify = function (tagToStringify, tagData) {
             var data = {
                 "tag": tagToStringify,
-                "signed_value": tagData
+                "value": tagData
             };
-            return signedPercentTpl(data);
+            return percentTpl(data);
         };
 
         this.parse = function (tagToParse, tags) {
-            var regex = new RegExp("<(" + tagToParse + "): ([\\-\\+][\\d\\.]+)%>"),
+            var regex = new RegExp("<(" + tagToParse + "): ([\\d\\.]+)%>"),
                 matches = null,
                 result = null;
 

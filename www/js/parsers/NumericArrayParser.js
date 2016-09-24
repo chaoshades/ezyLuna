@@ -4,9 +4,9 @@
 
     var $ = require('jquery'),
         Handlebars = require('handlebars'),
-        basicPercentHtml = require('text!parsertpl/basicPercent.htm'),
+        numericArrayHtml = require('text!parsertpl/numericArray.htm'),
 
-        basicPercentTpl = Handlebars.compile(basicPercentHtml);
+        numericArrayTpl = Handlebars.compile(numericArrayHtml);
 
 
     return function () {
@@ -18,19 +18,19 @@
         this.stringify = function (tagToStringify, tagData) {
             var data = {
                 "tag": tagToStringify,
-                "value": tagData
+                "values": tagData
             };
-            return basicPercentTpl(data);
+            return numericArrayTpl(data);
         };
 
         this.parse = function (tagToParse, tags) {
-            var regex = new RegExp("<(" + tagToParse + "): ([\\w\\.]+)%>"),
+            var regex = new RegExp("<(" + tagToParse + "): ([\\d, ]+)>"),
                 matches = null,
                 result = null;
 
             matches = tags.match(regex);
             if (matches)
-                result = new NoteTag(matches[1], matches[2]);
+                result = new NoteTag(matches[1], matches[2].split(', '));
 
             return result;
         };

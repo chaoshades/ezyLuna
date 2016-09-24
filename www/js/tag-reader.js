@@ -38,11 +38,11 @@ define(function (require) {
             YEPBuffsStatesCore,
             YEPDamageCore,
             YEPArmorScaling,
-            YEPExtraEnemyDrops, // TODO
+            YEPExtraEnemyDrops,
             YEPTaunt,
             YEPLimitedSkillUses,
-            YEPSkillCooldowns, // TODO
-            YEPInstantCast, // TODO
+            YEPSkillCooldowns,
+            YEPInstantCast,
             YEPWeaponAnimation,
             YEPWeaponUnleash, // TODO
             YEPAutoPassiveStates, // TODO

@@ -5,9 +5,9 @@
     var $ = require('jquery'),
         _ = require('underscore'),
         Handlebars = require('handlebars'),
-        basicTagArrayHtml = require('text!parsertpl/basicTagArray.htm'),
+        tagArraySignedHtml = require('text!parsertpl/tagArraySigned.htm'),
 
-        basicTagArrayTpl = Handlebars.compile(basicTagArrayHtml),
+        tagArraySignedTpl = Handlebars.compile(tagArraySignedHtml),
             
         DELIMITER = " ";
 
@@ -28,9 +28,9 @@
 
             var data = {
                 "tags": tags,
-                "value": (_index) ? _.rest(tagData) : tagData
+                "signed_value": (_index) ? _.rest(tagData) : tagData
             };
-            return basicTagArrayTpl(data);
+            return tagArraySignedTpl(data);
         };
 
         this.parse = function (tagToParse, tags) {
@@ -39,13 +39,13 @@
             if (_index)
                 parseTags.splice(_index, 0, "([\\w]+)");
 
-            var global_regex = new RegExp("<(" + parseTags.join(DELIMITER) + "): ([\\w\\.]+)>", "g"),
+            var global_regex = new RegExp("<(" + parseTags.join(DELIMITER) + "): ([\\-\\+][\\d\\.]+)>", "g"),
                 global_matches = null,
                 result = null;
 
             global_matches = tags.match(global_regex);
             if (global_matches) {
-                var regex = new RegExp("<(" + parseTags.join(DELIMITER) + "): ([\\w\\.]+)>"),
+                var regex = new RegExp("<(" + parseTags.join(DELIMITER) + "): ([\\-\\+][\\d\\.]+)>"),
                     matches = null;
 
                 result = [];
