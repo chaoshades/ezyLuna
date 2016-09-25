@@ -97,7 +97,7 @@
             // Define new properties for tags display
             _.each(current.tags, function (t) {
                 if (t.tag == GLOBAL_USE_MAX) {
-                    current.globalUseMax = t.data.replace('+', '');
+                    current.globalUseMax = extractFromSignedValue(t.data);
                 }
                 else if (t.tag == STYPE_USE_MAX) {
                     current.skillTypeUseMax.enabled = true;
@@ -107,7 +107,7 @@
                     current.skillTypeUseMax.list.push({
                         skillTypeID: t.data[0],
                         skillType: skillType,
-                        max: t.data[1].replace('+', '')
+                        max: extractFromSignedValue(t.data[1])
                     });
                 }
                 else if (t.tag == SKILL_USE_MAX) {
@@ -118,7 +118,7 @@
                     current.skillUseMax.list.push({
                         skillID: t.data[0],
                         skill: skill.name,
-                        max: t.data[1].replace('+', '')
+                        max: extractFromSignedValue(t.data[1])
                     });
                 }
             });

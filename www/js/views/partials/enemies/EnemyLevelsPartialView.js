@@ -2,7 +2,8 @@
 
     "use strict";
 
-    var STATE_KEY = "enemy_levels",
+    var NB_PARAMS = 8,
+        STATE_KEY = "enemy_levels",
         $ = require('jquery'),
         _ = require('underscore'),
         Handlebars = require('handlebars'),
@@ -12,8 +13,33 @@
         enemyLevelsHtml = require('text!partialtpl/enemies/enemyLevels.htm'),
 
         enemyLevelsTpl = Handlebars.compile(enemyLevelsHtml),
-            
-        //TODO
+
+        SHOW_LEVEL = "Show Level",
+        HIDE_LEVEL = "Hide Level",
+        MINIMUM_LEVEL = "Minimum Level",
+        MAXIMUM_LEVEL = "Maximum Level",
+        STATIC_LEVEL = "Static Level",
+        STARTING_LEVEL_TYPE = "Starting Level Type",
+        POS_LEVEL_FLUCTUATION = "Positive Level Fluctuation",
+        NEG_LEVEL_FLUCTUATION = "Negative Level Fluctuation",
+        LEVEL_FLUCTUATION = "Level Fluctuation",
+        HP_RATE = "maxhp Rate",
+        MP_RATE = "maxmp Rate",
+        ATK_RATE = "atk Rate",
+        DEF_RATE = "def Rate",
+        MAT_RATE = "mat Rate",
+        MDF_RATE = "mdf Rate",
+        AGI_RATE = "agi Rate",
+        LUK_RATE = "luk Rate",
+        HP_FLAT = "maxhp Flat",
+        MP_FLAT = "maxmp Flat",
+        ATK_FLAT = "atk Flat",
+        DEF_FLAT = "def Flat",
+        MAT_FLAT = "mat Flat",
+        MDF_FLAT = "mdf Flat",
+        AGI_FLAT = "agi Flat",
+        LUK_FLAT = "luk Flat",
+        RESIST_LEVEL_CHANGE = "Resist Level Change",
         SKILL_REQUIRE_LEVEL = "Skill Require Level";
 
 
@@ -83,13 +109,101 @@
         };
 
         this.renderTags = function () {
+            current.level = {};
+            current.fluctuation = {};
+            current.rateparams = _.range(NB_PARAMS).map(function () { return null });
+            current.flatparams = _.range(NB_PARAMS).map(function () { return null });
+            current.resistLevelChange = {};
             current.skillRequireLevel = {};
             current.skillRequireLevel.list = [];
 
             // Define new properties for tags display
             _.each(current.tags, function (t) {
-                // TODO
-                if (t.tag == SKILL_REQUIRE_LEVEL) {
+                if (t.tag == SHOW_LEVEL) {
+                    current.level.enabled = true;
+                    current.level.show = true;
+                }
+                else if (t.tag == HIDE_LEVEL) {
+                    current.level.enabled = true;
+                    current.level.hide = true;
+                }
+                else if (t.tag == MINIMUM_LEVEL) {
+                    current.level.min = t.data;
+                }
+                else if (t.tag == MAXIMUM_LEVEL) {
+                    current.level.max = t.data;
+                }
+                else if (t.tag == STATIC_LEVEL) {
+                    current.level.static = t.data;
+                }
+                else if (t.tag == STARTING_LEVEL_TYPE) {
+                    current.level.startingType = t.data;
+                }
+
+                if (t.tag == POS_LEVEL_FLUCTUATION) {
+                    current.fluctuation.pos = t.data;
+                }
+                else if (t.tag == NEG_LEVEL_FLUCTUATION) {
+                    current.fluctuation.neg = t.data;
+                }
+                else if (t.tag == LEVEL_FLUCTUATION) {
+                    current.fluctuation.value = t.data;
+                }
+
+                if (t.tag == HP_RATE) {
+                    current.rateparams[0] = extractFromPercentValue(extractFromSignedValue(t.data));
+                }
+                else if (t.tag == MP_RATE) {
+                    current.rateparams[1] = extractFromPercentValue(extractFromSignedValue(t.data));
+                }
+                else if (t.tag == ATK_RATE) {
+                    current.rateparams[2] = extractFromPercentValue(extractFromSignedValue(t.data));
+                }
+                else if (t.tag == DEF_RATE) {
+                    current.rateparams[3] = extractFromPercentValue(extractFromSignedValue(t.data));
+                }
+                else if (t.tag == MAT_RATE) {
+                    current.rateparams[4] = extractFromPercentValue(extractFromSignedValue(t.data));
+                }
+                else if (t.tag == MDF_RATE) {
+                    current.rateparams[5] = extractFromPercentValue(extractFromSignedValue(t.data));
+                }
+                else if (t.tag == AGI_RATE) {
+                    current.rateparams[6] = extractFromPercentValue(extractFromSignedValue(t.data));
+                }
+                else if (t.tag == LUK_RATE) {
+                    current.rateparams[7] = extractFromPercentValue(extractFromSignedValue(t.data));
+                }
+
+                if (t.tag == HP_FLAT) {
+                    current.flatparams[0] = extractFromPercentValue(extractFromSignedValue(t.data));
+                }
+                else if (t.tag == MP_FLAT) {
+                    current.flatparams[1] = extractFromPercentValue(extractFromSignedValue(t.data));
+                }
+                else if (t.tag == ATK_FLAT) {
+                    current.flatparams[2] = extractFromPercentValue(extractFromSignedValue(t.data));
+                }
+                else if (t.tag == DEF_FLAT) {
+                    current.flatparams[3] = extractFromPercentValue(extractFromSignedValue(t.data));
+                }
+                else if (t.tag == MAT_FLAT) {
+                    current.flatparams[4] = extractFromPercentValue(extractFromSignedValue(t.data));
+                }
+                else if (t.tag == MDF_FLAT) {
+                    current.flatparams[5] = extractFromPercentValue(extractFromSignedValue(t.data));
+                }
+                else if (t.tag == AGI_FLAT) {
+                    current.flatparams[6] = extractFromPercentValue(extractFromSignedValue(t.data));
+                }
+                else if (t.tag == LUK_FLAT) {
+                    current.flatparams[7] = extractFromPercentValue(extractFromSignedValue(t.data));
+                }
+
+                if (t.tag == RESIST_LEVEL_CHANGE) {
+                    current.resistLevelChange.enabled = true;
+                }
+                else if (t.tag == SKILL_REQUIRE_LEVEL) {
                     current.skillRequireLevel.enabled = true;
 
                     var skill = _.find(linked_data.skills, function (skill) { return skill.id == t.data[0]; });
@@ -112,7 +226,38 @@
             var tags = [],
                 state_data = this.getStateManager().getState(STATE_KEY).data;
 
-            // TODO
+            if ($('#chkShowLevel').is(':checked')) {
+                setTag(tags, '#radShowLevel', SHOW_LEVEL);
+                setTag(tags, '#radHideLevel', HIDE_LEVEL);
+            }
+            setValueTag(tags, '#chkMinimumLevel', MINIMUM_LEVEL, '#numMinimumLevel');
+            setValueTag(tags, '#chkMaximumLevel', MAXIMUM_LEVEL, '#numMaximumLevel');
+            setValueTag(tags, '#chkStaticLevel', STATIC_LEVEL, '#numStaticLevel');
+            setValueTag(tags, '#chkStartingLevelType', STARTING_LEVEL_TYPE, '#ddlStartingLevelType');
+
+            setValueTag(tags, '#chkPositiveLevelFluctuation', POS_LEVEL_FLUCTUATION, '#numPositiveLevelFluctuation');
+            setValueTag(tags, '#chkNegativeLevelFluctuation', NEG_LEVEL_FLUCTUATION, '#numNegativeLevelFluctuation');
+            setValueTag(tags, '#chkLevelFluctuation', LEVEL_FLUCTUATION, '#numLevelFluctuation');
+
+            setSignedPercentValueTag(tags, '#chkHPRate', HP_RATE, '#numHPRate');
+            setSignedPercentValueTag(tags, '#chkMPRate', MP_RATE, '#numMPRate');
+            setSignedPercentValueTag(tags, '#chkAtkRate', ATK_RATE, '#numAtkRate');
+            setSignedPercentValueTag(tags, '#chkDefRate', DEF_RATE, '#numDefRate');
+            setSignedPercentValueTag(tags, '#chkMatRate', MAT_RATE, '#numMatRate');
+            setSignedPercentValueTag(tags, '#chkMdfRate', MDF_RATE, '#numMdfRate');
+            setSignedPercentValueTag(tags, '#chkAgiRate', AGI_RATE, '#numAgiRate');
+            setSignedPercentValueTag(tags, '#chkLukRate', LUK_RATE, '#numLukRate');
+
+            setSignedPercentValueTag(tags, '#chkHPFlat', HP_FLAT, '#numHPFlat');
+            setSignedPercentValueTag(tags, '#chkMPFlat', MP_FLAT, '#numMPFlat');
+            setSignedPercentValueTag(tags, '#chkAtkFlat', ATK_FLAT, '#numAtkFlat');
+            setSignedPercentValueTag(tags, '#chkDefFlat', DEF_FLAT, '#numDefFlat');
+            setSignedPercentValueTag(tags, '#chkMatFlat', MAT_FLAT, '#numMatFlat');
+            setSignedPercentValueTag(tags, '#chkMdfFlat', MDF_FLAT, '#numMdfFlat');
+            setSignedPercentValueTag(tags, '#chkAgiFlat', AGI_FLAT, '#numAgiFlat');
+            setSignedPercentValueTag(tags, '#chkLukFlat', LUK_FLAT, '#numLukFlat');
+
+            setTag(tags, '#chkResistLevelChange', RESIST_LEVEL_CHANGE);
             setObjectTag(tags, state_data, 'skillRequireLevel', SKILL_REQUIRE_LEVEL, function (item) { return [item.skillID, item.level]; });
 
             return tags;

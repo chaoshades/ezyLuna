@@ -103,10 +103,10 @@
                     current.breathing.speed = t.data;
                 }
                 else if (t.tag == BREATHING_RATE_X) {
-                    current.breathing.rateX = t.data * 100;
+                    current.breathing.rateX = extractFromPercentValue(t.data);
                 }
                 else if (t.tag == BREATHING_RATE_Y) {
-                    current.breathing.rateY = t.data * 100;
+                    current.breathing.rateY = extractFromPercentValue(t.data);
                 }
 
                 if (t.tag == FLOATING) {

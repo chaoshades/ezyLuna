@@ -2,6 +2,326 @@
 <div id="collapseEnemyLevels" class="collapse">
     {{#with current}}
     <div class="form-group">
+        <label>Show Level:</label>
+        <div class="input-group">
+            <span class="input-group-addon">
+                <input id="chkShowLevel" type="checkbox" class="js_Tags" title="Enables Show Level" {{checkedIf level.enabled}} />
+            </span>
+            <div class="radio form-control" {{disabledIfNot level.enabled}}>
+                <label class="radio-inline">
+                    <input type="radio" name="Level" id="radShowLevel" {{disabledIfNot level.enabled}} {{checkedIf level.show}} />
+                    Show
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="Level" id="radHideLevel" {{disabledIfNot level.enabled}} {{checkedIf level.hide}} />
+                    Hide
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6 col-md-6">
+            <div class="form-group">
+                <label for="numMinimumLevel">Minimum Level:</label>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <input id="chkMinimumLevel" type="checkbox" class="js_Tags" title="Enables Minimum Level" {{checkedIf level.min}} />
+                    </span>
+                    <input type="number" class="form-control" id="numMinimumLevel" {{valueIf level.min}} {{readonlyIfNot level.min}} />
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-md-6">
+            <div class="form-group">
+                <label for="numMaximumLevel">Maximum Level:</label>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <input id="chkMaximumLevel" type="checkbox" class="js_Tags" title="Enables Maximum Level" {{checkedIf level.max}} />
+                    </span>
+                    <input type="number" class="form-control" id="numMaximumLevel" {{valueIf level.max}} {{readonlyIfNot level.max}} />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6 col-md-6">
+            <div class="form-group">
+                <label for="numStaticLevel">Static Level:</label>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <input id="chkStaticLevel" type="checkbox" class="js_Tags" title="Enables Static Level" {{checkedIf level.static}} />
+                    </span>
+                    <input type="number" class="form-control" id="numStaticLevel" {{valueIf level.static}} {{readonlyIfNot level.static}} />
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-md-6">
+            <div class="form-group">
+                <label for="ddlStartingLevelType">Starting Level Type:</label>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <input id="chkStartingLevelType" type="checkbox" class="js_Tags" title="Enables Starting Level Type" {{checkedIf level.startingType}} />
+                    </span>
+                    <select id="ddlStartingLevelType" class="form-control js_InlineEditTableInput" {{disabledIfNot level.startingType}}>
+                        {{#each ../skills}}
+                        <option value="{{id}}" {{selectedIf id ../level.startingType}}>{{name}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6 col-md-6">
+            <div class="form-group">
+                <label for="numPositiveLevelFluctuation">Positive Level Fluctuation:</label>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <input id="chkPositiveLevelFluctuation" type="checkbox" class="js_Tags" title="Enables Positive Level Fluctuation" {{checkedIf fluctuation.pos}} />
+                    </span>
+                    <input type="number" class="form-control" id="numPositiveLevelFluctuation" {{valueIf fluctuation.pos}} {{readonlyIfNot fluctuation.pos}} />
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-md-6">
+            <div class="form-group">
+                <label for="numNegativeLevelFluctuation">Negative Level Fluctuation:</label>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <input id="chkNegativeLevelFluctuation" type="checkbox" class="js_Tags" title="Enables Negative Level Fluctuation" {{checkedIf fluctuation.neg}} />
+                    </span>
+                    <input type="number" class="form-control" id="numNegativeLevelFluctuation" {{valueIf fluctuation.neg}} {{readonlyIfNot fluctuation.neg}} />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6 col-md-6">
+            <div class="form-group">
+                <label for="numLevelFluctuation">Level Fluctuation:</label>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <input id="chkLevelFluctuation" type="checkbox" class="js_Tags" title="Enables Level Fluctuation" {{checkedIf fluctuation.value}} />
+                    </span>
+                    <input type="number" class="form-control" id="numLevelFluctuation" {{valueIf fluctuation.value}} {{readonlyIfNot fluctuation.value}} />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6 col-md-6">
+            <div class="form-group">
+                <label for="numHPRate">HP Rate:</label>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <input id="chkHPRate" type="checkbox" class="js_Tags" title="Enables HP Rate" {{checkedIf rateparams.[0]}} />
+                    </span>
+                    <input type="number" class="form-control" id="numHPRate" {{valueIf rateparams.[0]}} {{readonlyIfNot rateparams.[0]}} />
+                    <span class="input-group-addon">%</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-md-6">
+            <div class="form-group">
+                <label for="numMPRate">MP Rate:</label>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <input id="chkMPRate" type="checkbox" class="js_Tags" title="Enables MP Rate" {{checkedIf rateparams.[1]}} />
+                    </span>
+                    <input type="number" class="form-control" id="numMPRate" {{valueIf rateparams.[1]}} {{readonlyIfNot rateparams.[1]}} />
+                    <span class="input-group-addon">%</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6 col-md-6">
+            <div class="form-group">
+                <label for="numAtkRate">Attack Rate:</label>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <input id="chkAtkRate" type="checkbox" class="js_Tags" title="Enables Attack Rate" {{checkedIf rateparams.[2]}} />
+                    </span>
+                    <input type="number" class="form-control" id="numAtkRate" {{valueIf rateparams.[2]}} {{readonlyIfNot rateparams.[2]}} />
+                    <span class="input-group-addon">%</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-md-6">
+            <div class="form-group">
+                <label for="numDefRate">Defense Rate:</label>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <input id="chkDefRate" type="checkbox" class="js_Tags" title="Enables Defense Rate" {{checkedIf rateparams.[3]}} />
+                    </span>
+                    <input type="number" class="form-control" id="numDefRate" {{valueIf rateparams.[3]}} {{readonlyIfNot rateparams.[3]}} />
+                    <span class="input-group-addon">%</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6 col-md-6">
+            <div class="form-group">
+                <label for="numMatRate">M.Attack Rate:</label>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <input id="chkMatRate" type="checkbox" class="js_Tags" title="Enables M.Attack Rate" {{checkedIf rateparams.[4]}} />
+                    </span>
+                    <input type="number" class="form-control" id="numMatRate" {{valueIf rateparams.[4]}} {{readonlyIfNot rateparams.[4]}} />
+                    <span class="input-group-addon">%</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-md-6">
+            <div class="form-group">
+                <label for="numMdfRate">M.Defense Rate:</label>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <input id="chkMdfRate" type="checkbox" class="js_Tags" title="Enables M.Defense Rate" {{checkedIf rateparams.[5]}} />
+                    </span>
+                    <input type="number" class="form-control" id="numMdfRate" {{valueIf rateparams.[5]}} {{readonlyIfNot rateparams.[5]}} />
+                    <span class="input-group-addon">%</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6 col-md-6">
+            <div class="form-group">
+                <label for="numAgiRate">Agility Rate:</label>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <input id="chkAgiRate" type="checkbox" class="js_Tags" title="Enables Agility Rate" {{checkedIf rateparams.[6]}} />
+                    </span>
+                    <input type="number" class="form-control" id="numAgiRate" {{valueIf rateparams.[6]}} {{readonlyIfNot rateparams.[6]}} />
+                    <span class="input-group-addon">%</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-md-6">
+            <div class="form-group">
+                <label for="numLukRate">Luck Rate:</label>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <input id="chkLukRate" type="checkbox" class="js_Tags" title="Enables Luck Rate" {{checkedIf rateparams.[7]}} />
+                    </span>
+                    <input type="number" class="form-control" id="numLukRate" {{valueIf rateparams.[7]}} {{readonlyIfNot rateparams.[7]}} />
+                    <span class="input-group-addon">%</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6 col-md-6">
+            <div class="form-group">
+                <label for="numHPFlat">HP Flat:</label>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <input id="chkHPFlat" type="checkbox" class="js_Tags" title="Enables HP Flat" {{checkedIf flatparams.[0]}} />
+                    </span>
+                    <input type="number" class="form-control" id="numHPFlat" {{valueIf flatparams.[0]}} {{readonlyIfNot flatparams.[0]}} />
+                    <span class="input-group-addon">%</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-md-6">
+            <div class="form-group">
+                <label for="numMPFlat">MP Flat:</label>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <input id="chkMPFlat" type="checkbox" class="js_Tags" title="Enables MP Flat" {{checkedIf flatparams.[1]}} />
+                    </span>
+                    <input type="number" class="form-control" id="numMPFlat" {{valueIf flatparams.[1]}} {{readonlyIfNot flatparams.[1]}} />
+                    <span class="input-group-addon">%</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6 col-md-6">
+            <div class="form-group">
+                <label for="numAtkFlat">Attack Flat:</label>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <input id="chkAtkFlat" type="checkbox" class="js_Tags" title="Enables Attack Flat" {{checkedIf flatparams.[2]}} />
+                    </span>
+                    <input type="number" class="form-control" id="numAtkFlat" {{valueIf flatparams.[2]}} {{readonlyIfNot flatparams.[2]}} />
+                    <span class="input-group-addon">%</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-md-6">
+            <div class="form-group">
+                <label for="numDefFlat">Defense Flat:</label>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <input id="chkDefFlat" type="checkbox" class="js_Tags" title="Enables Defense Flat" {{checkedIf flatparams.[3]}} />
+                    </span>
+                    <input type="number" class="form-control" id="numDefFlat" {{valueIf flatparams.[3]}} {{readonlyIfNot flatparams.[3]}} />
+                    <span class="input-group-addon">%</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6 col-md-6">
+            <div class="form-group">
+                <label for="numMatFlat">M.Attack Flat:</label>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <input id="chkMatFlat" type="checkbox" class="js_Tags" title="Enables M.Attack Flat" {{checkedIf flatparams.[4]}} />
+                    </span>
+                    <input type="number" class="form-control" id="numMatFlat" {{valueIf flatparams.[4]}} {{readonlyIfNot flatparams.[4]}} />
+                    <span class="input-group-addon">%</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-md-6">
+            <div class="form-group">
+                <label for="numMdfFlat">M.Defense Flat:</label>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <input id="chkMdfFlat" type="checkbox" class="js_Tags" title="Enables M.Defense Flat" {{checkedIf flatparams.[5]}} />
+                    </span>
+                    <input type="number" class="form-control" id="numMdfFlat" {{valueIf flatparams.[5]}} {{readonlyIfNot flatparams.[5]}} />
+                    <span class="input-group-addon">%</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6 col-md-6">
+            <div class="form-group">
+                <label for="numAgiFlat">Agility Flat:</label>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <input id="chkAgiFlat" type="checkbox" class="js_Tags" title="Enables Agility Flat" {{checkedIf flatparams.[6]}} />
+                    </span>
+                    <input type="number" class="form-control" id="numAgiFlat" {{valueIf flatparams.[6]}} {{readonlyIfNot flatparams.[6]}} />
+                    <span class="input-group-addon">%</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-md-6">
+            <div class="form-group">
+                <label for="numLukFlat">Luck Flat:</label>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <input id="chkLukFlat" type="checkbox" class="js_Tags" title="Enables Luck Flat" {{checkedIf flatparams.[7]}} />
+                    </span>
+                    <input type="number" class="form-control" id="numLukFlat" {{valueIf flatparams.[7]}} {{readonlyIfNot flatparams.[7]}} />
+                    <span class="input-group-addon">%</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="checkbox checkbox-right no-top">
+            <label for="chkResistLevelChange">Resist Level Change:<input id="chkResistLevelChange" type="checkbox" {{checkedIf resistLevelChange.enabled}} /></label>
+        </div>
+    </div>
+    <div class="form-group">
         <div class="checkbox checkbox-right no-top">
             <label for="chkSkillRequireLevel">Skill Require Level:<input id="chkSkillRequireLevel" class="js_Tags" type="checkbox" title="Enables Skill Require Level" {{checkedIf skillRequireLevel.enabled}} /></label>
         </div>

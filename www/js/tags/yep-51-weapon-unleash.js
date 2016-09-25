@@ -3,7 +3,8 @@
     "use strict";
 
     var BasicParser = require("parser/BasicParser"),
-        SignedPercentParser = require("parser/SignedPercentParser");
+        SignedPercentParser = require("parser/SignedPercentParser"),
+        TagArraySignedPercentParser = require("parser/TagArraySignedPercentParser");
 
     return new Plugin(
         'YEP_WeaponUnleash',
@@ -12,13 +13,10 @@
         [
             new TagParser("Replace Attack", new BasicParser()),
             new TagParser("Replace Guard", new BasicParser()),
-            new TagParser("Weapon Unleash", new SignedPercentParser()),
-            //new TagParser("Weapon Unleash x", new SignedPercentParser()), TODO
-            new TagParser("Guard Unleash", new SignedPercentParser()),
-            //new TagParser("Guard Unleash x", new SignedPercentParser()), TODO
-            new TagParser("Command Text", new BasicParser()),
-            new TagParser("Attack Text", new BasicParser()),
-            new TagParser("Guard Text", new BasicParser())
+            new TagParser("Weapon Unleash", new SignedPercentParser(), "Weapon Unleash"),
+            new TagParser("Weapon Unleash#2", new TagArraySignedPercentParser(2), "Weapon Unleash"),
+            new TagParser("Guard Unleash", new SignedPercentParser(), "Guard Unleash"),
+            new TagParser("Guard Unleash#2", new TagArraySignedPercentParser(2), "Guard Unleash")
         ]
     );
 

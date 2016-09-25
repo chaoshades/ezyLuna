@@ -44,9 +44,9 @@ define(function (require) {
             YEPSkillCooldowns,
             YEPInstantCast,
             YEPWeaponAnimation,
-            YEPWeaponUnleash, // TODO
+            YEPWeaponUnleash,
             YEPAutoPassiveStates,
-            YEPEnemyLevels, // TODO
+            YEPEnemyLevels,
             YEPJobPoints,
             YEPRowFormation,
             YEPSwapEnemies

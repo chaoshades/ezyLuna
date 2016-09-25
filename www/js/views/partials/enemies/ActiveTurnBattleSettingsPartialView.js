@@ -49,19 +49,19 @@
             _.each(current.tags, function (t) {
                 if (t.tag == ATB_START) {
                     if (!current.atbStart) current.atbStart = {};
-                    current.atbStart.unit = t.data.replace('+', '');
+                    current.atbStart.unit = extractFromSignedValue(t.data);
                 }
                 else if (t.tag == ATB_TURN) {
                     if (!current.atbTurn) current.atbTurn = {};
-                    current.atbTurn.unit = t.data.replace('+', '');
+                    current.atbTurn.unit = extractFromSignedValue(t.data);
                 }
                 else if (t.tag == ATB_START_2) {
                     if (!current.atbStart) current.atbStart = {};
-                    current.atbStart.rate = t.data.replace('+', '');
+                    current.atbStart.rate = extractFromSignedValue(t.data);
                 }
                 else if (t.tag == ATB_TURN_2) {
                     if (!current.atbTurn) current.atbTurn = {};
-                    current.atbTurn.rate = t.data.replace('+', '');
+                    current.atbTurn.rate = extractFromSignedValue(t.data);
                 }
             });
         };

@@ -65,52 +65,53 @@
             // Define new properties for tags display
             _.each(current.tags, function (t) {
                 if (t.tag == MAX_HP_BUFF) {
-                    current.maxbuffparams[0] = t.data.replace('+', '');
+                    current.maxbuffparams[0] = extractFromSignedValue(t.data);
                 }
                 else if (t.tag == MAX_MP_BUFF) {
-                    current.maxbuffparams[1] = t.data.replace('+', '');
+                    current.maxbuffparams[1] = extractFromSignedValue(t.data);
                 }
                 else if (t.tag == MAX_ATK_BUFF) {
-                    current.maxbuffparams[2] = t.data.replace('+', '');
+                    current.maxbuffparams[2] = extractFromSignedValue(t.data);
                 }
                 else if (t.tag == MAX_DEF_BUFF) {
-                    current.maxbuffparams[3] = t.data.replace('+', '');
+                    current.maxbuffparams[3] = extractFromSignedValue(t.data);
                 }
                 else if (t.tag == MAX_MAT_BUFF) {
-                    current.maxbuffparams[4] = t.data.replace('+', '');
+                    current.maxbuffparams[4] = extractFromSignedValue(t.data);
                 }
                 else if (t.tag == MAX_MDF_BUFF) {
-                    current.maxbuffparams[5] = t.data.replace('+', '');
+                    current.maxbuffparams[5] = extractFromSignedValue(t.data);
                 }
                 else if (t.tag == MAX_AGI_BUFF) {
-                    current.maxbuffparams[6] = t.data.replace('+', '');
+                    current.maxbuffparams[6] = extractFromSignedValue(t.data);
                 }
                 else if (t.tag == MAX_LUK_BUFF) {
-                    current.maxbuffparams[7] = t.data.replace('+', '');
+                    current.maxbuffparams[7] = extractFromSignedValue(t.data);
                 }
-                else if (t.tag == MAX_HP_DEBUFF) {
-                    current.maxdebuffparams[0] = t.data.replace('+', '');
+
+                if (t.tag == MAX_HP_DEBUFF) {
+                    current.maxdebuffparams[0] = extractFromSignedValue(t.data);
                 }
                 else if (t.tag == MAX_MP_DEBUFF) {
-                    current.maxdebuffparams[1] = t.data.replace('+', '');
+                    current.maxdebuffparams[1] = extractFromSignedValue(t.data);
                 }
                 else if (t.tag == MAX_ATK_DEBUFF) {
-                    current.maxdebuffparams[2] = t.data.replace('+', '');
+                    current.maxdebuffparams[2] = extractFromSignedValue(t.data);
                 }
                 else if (t.tag == MAX_DEF_DEBUFF) {
-                    current.maxdebuffparams[3] = t.data.replace('+', '');
+                    current.maxdebuffparams[3] = extractFromSignedValue(t.data);
                 }
                 else if (t.tag == MAX_MAT_DEBUFF) {
-                    current.maxdebuffparams[4] = t.data.replace('+', '');
+                    current.maxdebuffparams[4] = extractFromSignedValue(t.data);
                 }
                 else if (t.tag == MAX_MDF_DEBUFF) {
-                    current.maxdebuffparams[5] = t.data.replace('+', '');
+                    current.maxdebuffparams[5] = extractFromSignedValue(t.data);
                 }
                 else if (t.tag == MAX_AGI_DEBUFF) {
-                    current.maxdebuffparams[6] = t.data.replace('+', '');
+                    current.maxdebuffparams[6] = extractFromSignedValue(t.data);
                 }
                 else if (t.tag == MAX_LUK_DEBUFF) {
-                    current.maxdebuffparams[7] = t.data.replace('+', '');
+                    current.maxdebuffparams[7] = extractFromSignedValue(t.data);
                 }
                 else if (t.tag == SHOW_STATE_TURN) {
                     current.showStateTurn.enabled = true;
@@ -129,6 +130,7 @@
             setSignedValueTag(tags, '#chkMaxMdfBuff', MAX_MDF_BUFF, '#numMaxMdfBuff');
             setSignedValueTag(tags, '#chkMaxAgiBuff', MAX_AGI_BUFF, '#numMaxAgiBuff');
             setSignedValueTag(tags, '#chkMaxLukBuff', MAX_LUK_BUFF, '#numMaxLukBuff');
+
             setSignedValueTag(tags, '#chkMaxHPDebuff', MAX_HP_DEBUFF, '#numMaxHPDebuff');
             setSignedValueTag(tags, '#chkMaxMPDebuff', MAX_MP_DEBUFF, '#numMaxMPDebuff');
             setSignedValueTag(tags, '#chkMaxAtkDebuff', MAX_ATK_DEBUFF, '#numMaxAtkDebuff');

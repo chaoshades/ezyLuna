@@ -11,7 +11,7 @@
                     </span>
                     <select id="ddlWeaponAnimationSprite" class="form-control" {{disabledIfNot weaponAnimation.spriteID}}>
                         {{#each ../weapon_sprites}}
-                        <option value="{{id}}" {{selectedIf id ../../current.weaponAnimation.spriteID}}>{{name}}</option>
+                        <option value="{{id}}" {{selectedIf id ../weaponAnimation.spriteID}}>{{name}}</option>
                         {{/each}}
                     </select>
                 </div>
@@ -39,7 +39,7 @@
                     </span>
                     <select id="ddlWeaponAnimationMotion" class="form-control" {{disabledIfNot weaponAnimation.motionID}}>
                         {{#each ../motions}}
-                        <option value="{{id}}" {{selectedIf id ../../current.weaponAnimation.motionID}}>{{name}}</option>
+                        <option value="{{id}}" {{selectedIf id ../weaponAnimation.motionID}}>{{name}}</option>
                         {{/each}}
                     </select>
                 </div>
@@ -67,7 +67,7 @@
                     </span>
                     <select id="ddlWeaponAnimation" class="form-control" {{disabledIfNot sweaponAnimation.animationID}}>
                         {{#each ../animations}}
-                        <option value="{{id}}" {{selectedIf id ../../current.weaponAnimation.animationID}}>{{name}}</option>
+                        <option value="{{id}}" {{selectedIf id ../weaponAnimation.animationID}}>{{name}}</option>
                         {{/each}}
                     </select>
                 </div>

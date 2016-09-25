@@ -37,6 +37,22 @@ function setValueTag(tags, chkSelector, tag, valSelector) {
 }
 
 /**
+ * Get a percent value from a value
+ * @param {Number} value: Value.
+ */
+function getPercentValue(value) {
+    return value / 100;
+}
+
+/**
+ * Extract a value from a percent value
+ * @param {Number} percent_value: Percent value to extract.
+ */
+function extractFromPercentValue(percent_value) {
+    return percent_value * 100
+}
+
+/**
  * Set a tag with a percentage value
  * @param {Array} tags: Tags array. 
  * @param {String} chkSelector: Checkbox selector.
@@ -46,7 +62,7 @@ function setValueTag(tags, chkSelector, tag, valSelector) {
 function setPercentValueTag(tags, chkSelector, tag, valSelector) {
     var value = $(valSelector).val();
     if ($(chkSelector).is(':checked') && value)
-        tags.push(new NoteTag(tag, value / 100));
+        tags.push(new NoteTag(tag, getPercentValue(value)));
 }
 
 /**
@@ -77,6 +93,14 @@ function getSignedValue(value) {
 }
 
 /**
+ * Extract a value from a signed value
+ * @param {Number} signed_value: Signed value to extract.
+ */
+function extractFromSignedValue(signed_value) {
+    return signed_value.replace('+', '');
+}
+
+/**
  * Set a tag with a signed value
  * @param {Array} tags: Tags array. 
  * @param {String} chkSelector: Checkbox selector.
@@ -87,6 +111,21 @@ function setSignedValueTag(tags, chkSelector, tag, valSelector) {
     var value = $(valSelector).val();
     if ($(chkSelector).is(':checked') && value) {
         value = getSignedValue(value);
+        tags.push(new NoteTag(tag, value));
+    }
+}
+
+/**
+ * Set a tag with a signed value
+ * @param {Array} tags: Tags array. 
+ * @param {String} chkSelector: Checkbox selector.
+ * @param {String} tag: Tag to create. 
+ * @param {String} valSelector: Input value selector.
+ */
+function setSignedPercentValueTag(tags, chkSelector, tag, valSelector) {
+    var value = $(valSelector).val();
+    if ($(chkSelector).is(':checked') && value) {
+        value = getSignedValue(getPercentValue(value));
         tags.push(new NoteTag(tag, value));
     }
 }
@@ -217,6 +256,15 @@ function download(filename, text) {
     else {
         pom.click();
     }
+}
+
+/**
+ * Scroll page to the top
+ */
+function scrollUp() {
+    $('body').animate({
+        scrollTop: 0
+    }, 'easeOutExpo');
 }
 
 // Utils classes

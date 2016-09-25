@@ -200,7 +200,7 @@
                     current.skillCooldown.list.push({
                         skillID: t.data[0],
                         skill: skill.name,
-                        value: t.data[1].replace('+', '')
+                        value: extractFromSignedValue(t.data[1])
                     });
                 }
                 else if (t.tag == STYPE_COOLDOWN) {
@@ -211,11 +211,11 @@
                     current.skillTypeCooldown.list.push({
                         skillTypeID: t.data[0],
                         skillType: skillType,
-                        value: t.data[1].replace('+', '')
+                        value: extractFromSignedValue(t.data[1])
                     });
                 }
                 else if (t.tag == GLOBAL_COOLDOWN) {
-                    current.globalCooldown = t.data.replace('+', '');
+                    current.globalCooldown = extractFromSignedValue(t.data);
                 }
 
                 if (t.tag == SKILL_WARMUP) {
@@ -226,7 +226,7 @@
                     current.skillWarmup.list.push({
                         skillID: t.data[0],
                         skill: skill.name,
-                        value: t.data[1].replace('+', '')
+                        value: extractFromSignedValue(t.data[1])
                     });
                 }
                 else if (t.tag == STYPE_WARMUP) {
@@ -237,11 +237,11 @@
                     current.skillTypeWarmup.list.push({
                         skillTypeID: t.data[0],
                         skillType: skillType,
-                        value: t.data[1].replace('+', '')
+                        value: extractFromSignedValue(t.data[1])
                     });
                 }
                 else if (t.tag == GLOBAL_WARMUP) {
-                    current.globalWarmup = t.data.replace('+', '');
+                    current.globalWarmup = extractFromSignedValue(t.data);
                 }
             });
 

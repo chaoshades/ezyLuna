@@ -1,0 +1,125 @@
+﻿<h4><a role="button" data-toggle="collapse" href="#collapseWeaponUnleash" aria-expanded="true" aria-controls="collapseWeaponUnleash">Weapon Unleash</a><span class="pull-right label label-info">YEP-Weapon-Unleash</span></h4>
+<div id="collapseWeaponUnleash" class="collapse">
+    {{#with current}}
+    <div class="form-group">
+        <label for="ddlReplaceAttack">Replace Attack:</label>
+        <div class="input-group">
+            <span class="input-group-addon">
+                <input id="chkReplaceAttack" type="checkbox" class="js_Tags" title="Enables Replace Attack" {{checkedIf replaceAttack}} />
+            </span>
+            <select id="ddlReplaceAttack" class="form-control js_InlineEditTableInput" {{disabledIfNot replaceAttack}}>
+                {{#each ../skills}}
+                <option value="{{id}}" {{selectedIf id ../replaceAttack}}>{{name}}</option>
+                {{/each}}
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="ddlReplaceGuard">Replace Guard:</label>
+        <div class="input-group">
+            <span class="input-group-addon">
+                <input id="chkReplaceGuard" type="checkbox" class="js_Tags" title="Enables Replace Guard" {{checkedIf replaceGuard}} />
+            </span>
+            <select id="ddlReplaceGuard" class="form-control js_InlineEditTableInput" {{disabledIfNot replaceGuard}}>
+                {{#each ../skills}}
+                <option value="{{id}}" {{selectedIf id ../replaceGuard}}>{{name}}</option>
+                {{/each}}
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="numWeaponUnleashRate">Weapon Unleash Rate:</label>
+        <div class="input-group">
+            <span class="input-group-addon">
+                <input id="chkWeaponUnleashRate" type="checkbox" class="js_Tags" title="Enables Weapon Unleash Rate" {{checkedIf weaponUnleashRate}} />
+            </span>
+            <input type="number" class="form-control" id="numWeaponUnleashRate" {{valueIf weaponUnleashRate}} {{readonlyIfNot weaponUnleashRate}} />
+            <span class="input-group-addon">%</span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="numGuardUnleashRate">Guard Unleash Rate:</label>
+        <div class="input-group">
+            <span class="input-group-addon">
+                <input id="chkGuardUnleashRate" type="checkbox" class="js_Tags" title="Enables Guard Unleash Rate" {{checkedIf guardUnleashRate}} />
+            </span>
+            <input type="number" class="form-control" id="numGuardUnleashRate" {{valueIf GuardUnleashRate}} {{readonlyIfNot guardUnleashRate}} />
+            <span class="input-group-addon">%</span>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="checkbox checkbox-right no-top">
+            <label for="chkWeaponUnleashSkill">Weapon Unleash Skill:<input id="chkWeaponUnleashSkill" class="js_Tags" type="checkbox" title="Enables Weapon Unleash Skill" {{checkedIf weaponUnleashSkill.enabled}} /></label>
+        </div>
+        <div id="weapon_unleash_skill">
+            {{!-- 
+            <script id="tplWeaponUnleashSkill-headers" type="text/x-handlebars-template">
+                <th class="col-xs-4 col-md-4">Skill</th>
+                <th class="col-xs-4 col-md-4">Rate</th>
+            </script>
+            <script id="tplWeaponUnleashSkill-read" type="text/x-handlebars-template">
+                <td>{{skill}}</td>
+                <td>{{rate}}%</td>
+            </script>
+            <script id="tplWeaponUnleashSkill-edit" type="text/x-handlebars-template">
+                <td>
+                    <select id="ddlWeaponUnleashSkill" class="form-control js_InlineEditTableInput" {{disabledIfNot currentContext.enabled}}>
+                        {{#each parentContext.skills}}
+                        <option value="{{id}}" {{selectedIf id ../skillID}}>{{name}}</option>
+                        {{/each}}
+                    </select>
+                </td>
+                <td>
+                    <div class="input-group">
+                        <input type="number" class="form-control js_InlineEditTableInput" id="numWeaponUnleashSkill" value="{{rate}}" {{readonlyIfNot currentContext.enabled}} />
+                        <span class="input-group-addon">%</span>
+                    </div>
+                </td>
+            </script>
+            <script id="tplWeaponUnleashSkill-empty" type="text/x-handlebars-template">
+                <td>None</td>
+                <td></td>
+            </script>
+            --}}
+            <!-- Filled by InlineEditTablePartialView.js-->
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="checkbox checkbox-right no-top">
+            <label for="chkGuardUnleashSkill">Guard Unleash Skill:<input id="chkGuardUnleashSkill" class="js_Tags" type="checkbox" title="Enables Guard Unleash Skill" {{checkedIf guardUnleashSkill.enabled}} /></label>
+        </div>
+        <div id="guard_unleash_skill">
+            {{!-- 
+            <script id="tplGuardUnleashSkill-headers" type="text/x-handlebars-template">
+                <th class="col-xs-4 col-md-4">Skill</th>
+                <th class="col-xs-4 col-md-4">Rate</th>
+            </script>
+            <script id="tplGuardUnleashSkill-read" type="text/x-handlebars-template">
+                <td>{{skill}}</td>
+                <td>{{rate}}%</td>
+            </script>
+            <script id="tplGuardUnleashSkill-edit" type="text/x-handlebars-template">
+                <td>
+                    <select id="ddlGuardUnleashSkill" class="form-control js_InlineEditTableInput" {{disabledIfNot currentContext.enabled}}>
+                        {{#each parentContext.skills}}
+                        <option value="{{id}}" {{selectedIf id ../skillID}}>{{name}}</option>
+                        {{/each}}
+                    </select>
+                </td>
+                <td>
+                    <div class="input-group">
+                        <input type="number" class="form-control js_InlineEditTableInput" id="numGuardUnleashSkill" value="{{rate}}" {{readonlyIfNot currentContext.enabled}} />
+                        <span class="input-group-addon">%</span>
+                    </div>
+                </td>
+            </script>
+            <script id="tplGuardUnleashSkill-empty" type="text/x-handlebars-template">
+                <td>None</td>
+                <td></td>
+            </script>
+            --}}
+            <!-- Filled by InlineEditTablePartialView.js-->
+        </div>
+    </div>
+    {{/with}}
+</div>

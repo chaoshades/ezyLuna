@@ -28,10 +28,11 @@
         JobPointsPartialView = require("partial/enemies/JobPointsPartialView"),
         RowFormationPartialView = require("partial/enemies/RowFormationPartialView"),
         WeaponAnimationSettingsPartialView = require("partial/enemies/WeaponAnimationSettingsPartialView"),
-        EnemyLevelsPartialView = require("partial/enemies/EnemyLevelsPartialView"),
         SkillColldownsPartialView = require("partial/enemies/SkillCooldownsPartialView"),
         InstantCastPartialView = require("partial/enemies/InstantCastPartialView"),
+        WeaponUnleashPartialView = require("partial/enemies/WeaponUnleashPartialView"),
         AutoPassiveStatesPartialView = require("partial/enemies/AutoPassiveStatesPartialView"),
+        EnemyLevelsPartialView = require("partial/enemies/EnemyLevelsPartialView"),
         SwapEnemiesPartialView = require("partial/enemies/SwapEnemiesPartialView"),
         enemiesHtml = require('text!tpl/enemies.htm'),
 
@@ -40,7 +41,8 @@
 
     return function (project, enemies, current, linked_data, $stateManager) {
 
-        var base_url = "#project/" + project.id + "/enemies",
+        var collapsed = true,
+            base_url = "#project/" + project.id + "/enemies",
             partials = {
                 'carousel': new CarouselPartialView(base_url, enemies, 15),
                 'general_settings': new GeneralSettingsPartialView(current),
@@ -63,10 +65,11 @@
                 'job_points': new JobPointsPartialView(current),
                 'row_formation': new RowFormationPartialView(current),
                 'weapon_animation_settings': new WeaponAnimationSettingsPartialView(current, linked_data),
-                'enemy_levels': new EnemyLevelsPartialView(current, linked_data, $stateManager),
                 'skill_cooldowns': new SkillColldownsPartialView(current, linked_data, $stateManager),
                 'instant_cast': new InstantCastPartialView(current, linked_data, $stateManager),
+                'weapon_unleash': new WeaponUnleashPartialView(current, linked_data, $stateManager),
                 'auto_passive_states': new AutoPassiveStatesPartialView(current, linked_data, $stateManager),
+                'enemy_levels': new EnemyLevelsPartialView(current, linked_data, $stateManager),
                 'swap_enemies': new SwapEnemiesPartialView(current, linked_data, $stateManager)
             }   
 
@@ -78,6 +81,23 @@
             var generateTagsCallback = this.generateTags;
             this.$el.on('click', '#btnGenerateTags', function () {
                 generateTagsCallback();
+            });
+
+            // Click Event for ToggleAll button
+            this.$el.on('click', '#btnToggleAll', function () {
+                var divs = $('div.collapse');
+                if (collapsed) {
+                    divs.collapse('show');
+                    collapsed = false;
+                } else {
+                    divs.collapse('hide');
+                    collapsed = true;
+                }
+            });
+
+            // Click Event for ScrollUp button
+            this.$el.on('click', '#btnScrollUp', function () {
+                scrollUp();
             });
 
             // Click Event for GenerateTags button

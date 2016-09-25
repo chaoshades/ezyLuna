@@ -235,7 +235,7 @@
                     </span>
                     <select id="ddlSideViewAttackMotion" class="form-control" {{disabledIfNot sideview.attackMotionID}}>
                         {{#each ../motions}}
-                        <option value="{{id}}" {{selectedIf id ../../current.sideview.attackMotionID}}>{{name}}</option>
+                        <option value="{{id}}" {{selectedIf id ../sideview.attackMotionID}}>{{name}}</option>
                         {{/each}}
                     </select>
                 </div>
@@ -251,19 +251,19 @@
             <span class="input-group-addon">Sprite</span>
             <select id="ddlSideViewWeaponSprite" class="form-control" {{disabledIfNot sideview.weapon.enabled}}>
                 {{#each ../weapon_sprites}}
-                <option value="{{id}}" {{selectedIf id ../../current.sideview.weapon.spriteID}}>{{name}}</option>
+                <option value="{{id}}" {{selectedIf id ../sideview.weapon.spriteID}}>{{name}}</option>
                 {{/each}}
             </select>
             <span class="input-group-addon">Motion</span>
             <select id="ddlSideViewWeaponMotion" class="form-control" {{disabledIfNot sideview.weapon.enabled}}>
                 {{#each ../weapon_motions}}
-                <option value="{{id}}" {{selectedIf id ../../current.sideview.weapon.motionID}}>{{name}}</option>
+                <option value="{{id}}" {{selectedIf id ../sideview.weapon.motionID}}>{{name}}</option>
                 {{/each}}
             </select>
             <span class="input-group-addon">Animation</span>
             <select id="ddlSideViewWeaponAnimation" class="form-control" {{disabledIfNot sideview.weapon.enabled}}>
                 {{#each ../weapon_animations}}
-                <option value="{{id}}" {{selectedIf id ../../current.sideview.weapon.animationID}}>{{name}}</option>
+                <option value="{{id}}" {{selectedIf id ../sideview.weapon.animationID}}>{{name}}</option>
                 {{/each}}
             </select>
         </div>
@@ -278,7 +278,7 @@
                     </span>
                     <select id="ddlSideViewIdleMotion" class="form-control" {{disabledIfNot sideview.idleMotionID}}>
                         {{#each ../motions}}
-                        <option value="{{id}}" {{selectedIf id ../../current.sideview.idleMotionID}}>{{name}}</option>
+                        <option value="{{id}}" {{selectedIf id ../sideview.idleMotionID}}>{{name}}</option>
                         {{/each}}
                     </select>
                 </div>
@@ -293,7 +293,7 @@
                     </span>
                     <select id="ddlSideViewDamageMotion" class="form-control" {{disabledIfNot sideview.damageMotionID}}>
                         {{#each ../motions}}
-                        <option value="{{id}}" {{selectedIf id ../../current.sideview.damageMotionID}}>{{name}}</option>
+                        <option value="{{id}}" {{selectedIf id ../sideview.damageMotionID}}>{{name}}</option>
                         {{/each}}
                     </select>
                 </div>
@@ -308,7 +308,7 @@
                     </span>
                     <select id="ddlSideViewEvadeMotion" class="form-control" {{disabledIfNot sideview.evadeMotionID}}>
                         {{#each ../motions}}
-                        <option value="{{id}}" {{selectedIf id ../../current.sideview.evadeMotionID}}>{{name}}</option>
+                        <option value="{{id}}" {{selectedIf id ../sideview.evadeMotionID}}>{{name}}</option>
                         {{/each}}
                     </select>
                 </div>
@@ -325,7 +325,7 @@
                     </span>
                     <select id="ddlSideViewEscapeMotion" class="form-control" {{disabledIfNot sideview.escapeMotionID}}>
                         {{#each ../motions}}
-                        <option value="{{id}}" {{selectedIf id ../../current.sideview.escapeMotionID}}>{{name}}</option>
+                        <option value="{{id}}" {{selectedIf id ../sideview.escapeMotionID}}>{{name}}</option>
                         {{/each}}
                     </select>
                 </div>
@@ -340,7 +340,7 @@
                     </span>
                     <select id="ddlSideViewGuardMotion" class="form-control" {{disabledIfNot sideview.guardMotionID}}>
                         {{#each ../motions}}
-                        <option value="{{id}}" {{selectedIf id ../../current.sideview.guardMotionID}}>{{name}}</option>
+                        <option value="{{id}}" {{selectedIf id ../sideview.guardMotionID}}>{{name}}</option>
                         {{/each}}
                     </select>
                 </div>
@@ -355,7 +355,7 @@
                     </span>
                     <select id="ddlSideViewAbnormalMotion" class="form-control" {{disabledIfNot sideview.abnormalMotionID}}>
                         {{#each ../motions}}
-                        <option value="{{id}}" {{selectedIf id ../../current.sideview.abnormalMotionID}}>{{name}}</option>
+                        <option value="{{id}}" {{selectedIf id ../sideview.abnormalMotionID}}>{{name}}</option>
                         {{/each}}
                     </select>
                 </div>
@@ -372,7 +372,7 @@
                     </span>
                     <select id="ddlSideViewSleepMotion" class="form-control" {{disabledIfNot sideview.sleepMotionID}}>
                         {{#each ../motions}}
-                        <option value="{{id}}" {{selectedIf id ../../current.sideview.sleepMotionID}}>{{name}}</option>
+                        <option value="{{id}}" {{selectedIf id ../sideview.sleepMotionID}}>{{name}}</option>
                         {{/each}}
                     </select>
                 </div>
@@ -387,7 +387,7 @@
                     </span>
                     <select id="ddlSideViewDyingMotion" class="form-control" {{disabledIfNot sideview.dyingMotionID}}>
                         {{#each ../motions}}
-                        <option value="{{id}}" {{selectedIf id ../../current.sideview.dyingMotionID}}>{{name}}</option>
+                        <option value="{{id}}" {{selectedIf id ../sideview.dyingMotionID}}>{{name}}</option>
                         {{/each}}
                     </select>
                 </div>
