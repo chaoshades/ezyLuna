@@ -5,6 +5,7 @@
     var $ = require('jquery'),
         _ = require('underscore'),
         Handlebars = require('handlebars'),
+        UIConfig = require('ui-config'),
         Clipboard = require('clipboard'),
         tagReader = require('app/tag-reader'),
         CarouselPartialView = require("partial/CarouselPartialView"),
@@ -85,14 +86,7 @@
 
             // Click Event for ToggleAll button
             this.$el.on('click', '#btnToggleAll', function () {
-                var divs = $('div.collapse');
-                if (collapsed) {
-                    divs.collapse('show');
-                    collapsed = false;
-                } else {
-                    divs.collapse('hide');
-                    collapsed = true;
-                }
+                collapsed = toggleAll(collapsed);
             });
 
             // Click Event for ScrollUp button
@@ -137,6 +131,7 @@
             var renderedPartials = _.mapObject(partials, function (p, key) { wrapperReference.find('#' + key).html(p.render().$el); });
 
             // Initial Display
+            this.$el.find('#sidebar').affix(UIConfig.affix.sidebar);
             setActiveMenuItem(this.$el, base_url + '/' + current.id);
             this.$el.find('#successTags').hide();
             this.$el.find('#errorNoTags').hide();

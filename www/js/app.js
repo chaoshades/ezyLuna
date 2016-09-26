@@ -140,6 +140,12 @@ require(['jquery', 'bootstrap', 'handlebars', 'app/router'], function ($, Bootst
 
     });
 
+    $(window).resize(function () {
+        var affix = $('#sidebar');
+        if (affix)
+            $('#sidebar').affix('checkPosition');
+    });
+
     // Start
     router.start();
 

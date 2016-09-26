@@ -76,6 +76,31 @@ textarea {
 .inline-edit-table > tbody > tr > td, .inline-edit-table > thead > tr > th {
      vertical-align: middle;
 }
+.affix-bottom {
+    position: absolute;
+}
+@media (max-width:991px)
+{
+    .affix {
+        position: static;
+    }
+}
+@media (min-width:992px)
+{
+    #sidebar {
+        top: 68px;
+    }
+    #sidebar.affix-top {
+        width: 100%;
+    }
+    #sidebar.affix {
+        width:25%;
+        padding-right:30px;
+    }
+    #sidebar.affix-bottom {
+        padding-right:15px;
+    }
+}
 
 
 /*JQuery Overrides*/

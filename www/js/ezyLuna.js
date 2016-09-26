@@ -267,6 +267,36 @@ function scrollUp() {
     }, 'easeOutExpo');
 }
 
+/**
+ * Toggle all collapsiable divs and reposition affix if necessary
+ */
+function toggleAll(collapsed) {
+    var divs = $('div.collapse').not('.navbar-collapse');
+    if (collapsed) {
+        divs.collapse('show');
+        collapsed = false;
+    } else {
+        divs.collapse('hide');
+        collapsed = true;
+    }
+
+    if (!collapsed)
+        removeAffixBottom($('#sidebar'));
+
+    return collapsed;
+}
+
+/**
+ * Bootsrap fix to remove affix-bottom when opening collapsible divs
+ */
+function removeAffixBottom(affix) {
+    if (affix.hasClass('affix-bottom')) {
+        affix.removeClass('affix-bottom');
+        affix.addClass('affix');
+        affix.css('top', '');
+    }
+}
+
 // Utils classes
 
 /**

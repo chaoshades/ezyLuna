@@ -33,6 +33,15 @@ define(function (require) {
                     $(this).change();
                 }
             }
+        },
+        // Bootstrap affix
+        affix: {
+            sidebar: {
+                offset: {
+                    top: 30,
+                    bottom: 450
+                }
+            }
         }
     };
 
