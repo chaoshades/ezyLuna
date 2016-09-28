@@ -63,7 +63,7 @@
                         <input id="chkStartingLevelType" type="checkbox" class="js_Tags" title="Enables Starting Level Type" {{checkedIf level.startingType}} />
                     </span>
                     <select id="ddlStartingLevelType" class="form-control js_InlineEditTableInput" {{disabledIfNot level.startingType}}>
-                        {{#each ../skills}}
+                        {{#each ../levelTypes}}
                         <option value="{{id}}" {{selectedIf id ../level.startingType}}>{{name}}</option>
                         {{/each}}
                     </select>

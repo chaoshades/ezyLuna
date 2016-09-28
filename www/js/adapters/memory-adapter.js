@@ -260,6 +260,17 @@
             return deferred.promise();
         },
 
+        getLevelTypes = function () {
+            var deferred = $.Deferred(),
+                results = null;
+
+            results = level_types;
+
+            deferred.resolve(results);
+
+            return deferred.promise();
+        },
+
         getPlugins = function () {
             var deferred = $.Deferred(),
                 results = null;
@@ -447,6 +458,15 @@ motions = [
 { "id": "abnormal", "name": "Abnormal" },
 { "id": "sleep", "name": "Sleep" },
 { "id": "dead", "name": "Dead" }
+],
+
+level_types = [
+{ "id": 0, "name": "Type 0" },
+{ "id": 1, "name": "Type 1" },
+{ "id": 2, "name": "Type 2" },
+{ "id": 3, "name": "Type 3" },
+{ "id": 4, "name": "Type 4" },
+{ "id": 5, "name": "Type 5" }
 ];
 
     // The public API
@@ -475,6 +495,7 @@ motions = [
         getTerms: getTerms,
         getWeaponSprites: getWeaponSprites,
         getMotions: getMotions,
+        getLevelTypes: getLevelTypes,
         getPlugins: getPlugins
     };
 

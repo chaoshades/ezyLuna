@@ -75,6 +75,7 @@
 
             var data = {
                 'current': current,
+                'levelTypes': linked_data.levelTypes,
                 'skills': linked_data.skills
             };
 
