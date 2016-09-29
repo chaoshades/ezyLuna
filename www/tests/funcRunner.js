@@ -1,6 +1,6 @@
 ﻿require.config({
 
-    baseUrl: 'lib',
+    baseUrl: '../lib',
 
     paths: {
         app: '../js',
@@ -50,7 +50,18 @@ require(['jquery', 'bootstrap', 'handlebars', 'app/handlebars-helpers', 'app/rou
 
     "use strict";
 
-    // Start
-    router.start();
+    // Execute func tests
+    router.start(function () {
+        var overlay = $('#contentPage').parents("body").children().first().wrap('<div id="testOverlay"></div>');
+        $(overlay).before('' +
+        '<div id="testMode">' +
+        '    <p class="text-center">' +
+        '        Test Mode' +
+        '    </p>' +
+        '    <div class="text-center">' +
+        '        <a href="/index.html" class="btn block btn-primary btn-lg"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>&nbsp;Return to ezyLuna</a>' +
+        '   </div>' +
+        '</div>');
+    });
 
 });

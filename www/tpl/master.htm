@@ -9,8 +9,8 @@
             </button>
             <a class="navbar-brand" href="#">ezyLuna</a>
         </div>
-        {{#if project.id}}
         <div id="navbar" class="collapse navbar-collapse">
+            {{#if project.id}}
             <ul class="nav navbar-nav">
                 <li><a href="#project/{{project.id}}">Project</a></li>
                 <li><a href="#project/{{project.id}}/enemies">Enemies</a></li>
@@ -19,8 +19,13 @@
                 <li><a href="#project/{{project.id}}/weapons">Weapons</a></li>
                 <li><a href="#project/{{project.id}}/armors">Armors</a></li>
             </ul>
+            {{/if}}
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/tests/unitspecrunner.html"><span class="glyphicon glyphicon-console" aria-hidden="true"></span>&nbsp;Unit tests</a></li>
+                <li><a href="/tests/funcspecrunner.html"><span class="glyphicon glyphicon-modal-window" aria-hidden="true"></span>&nbsp;Func tests</a></li>
+            </ul>
         </div>
-        {{/if}}
+        
     </div>
 </nav>
 

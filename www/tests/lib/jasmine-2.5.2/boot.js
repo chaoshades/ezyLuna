@@ -68,8 +68,8 @@
    * The `HtmlReporter` builds all of the HTML UI for the runner page. This reporter paints the dots, stars, and x's for specs, as well as all spec names and all failures (if any).
    */
   
-    var isRunningFuncTests = (window.location.pathname.startsWith("/func"));
-    if (isRunningFuncTests) {
+  var isRunningFuncTests = window.location.href.toLowerCase().indexOf("funcspecrunner.html") > -1
+  if (isRunningFuncTests) {
       var ConsoleReporter = jasmineRequire.ConsoleReporter();
       var options = {
           timer: new jasmine.Timer,

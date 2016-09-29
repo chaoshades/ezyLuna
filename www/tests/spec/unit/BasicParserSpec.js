@@ -1,14 +1,20 @@
-/************************************
- * Tests
- ************************************
- */
-describe("Basic Parser", function () {
+define(["parser/BasicParser"], function (BasicParser) {
 
-    it("should parse simple tag", function (done) {
-        var notetags = "<hp: 3243>";
+    /************************************
+     * Tests
+     ************************************
+     */
+    describe("Basic Parser", function () {
 
-        var parser = new BasicParser();
-        expect(parser.parse("hp", notetags)).toEqual(new NoteTag("hp", 3243));
+        it("should parse simple tag", function () {
+            var notetags = "<hp: 3243>",
+                expected = new NoteTag("hp", "3243");
+
+            var parser = new BasicParser(),
+                result = parser.parse("hp", notetags);
+
+            expect(result).toEqual(expected);
+        });
+
     });
-
 });

@@ -28,6 +28,7 @@
             { name: "armorsURL", url: /^#project\/(\d{1,})\/armors\/?(\d{1,})?$/ },
         ],
         stateManager = new StateManager(),
+        _callback = null,
 
     route = function () {
 
@@ -86,7 +87,8 @@
         return;
     },
 
-    start = function () {
+    start = function (callback) {
+        _callback = callback;
 
         $(window).on('hashchange', function () { route(false); });
         route();
@@ -100,6 +102,9 @@
         var masterView = new MasterView(view.$settings, view.$el).render();
 
         $("body").html(masterView.$el);
+
+        if (_callback)
+            _callback();
     },
 
     errorHandler = function (error) {
