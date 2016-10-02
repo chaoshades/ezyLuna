@@ -47,11 +47,13 @@
                         dup_plugins.push(dup);
                         if (dup.supported) p.supported = dup.supported;
                         if (dup.detected) p.detected = dup.detected;
+                        if (dup.version) p.version = dup.version;
+                        if (dup.description) p.description = dup.description;
                     }
                     return p;
                 }
             });
-            merged_plugins = _.compact(merged_plugins);
+            merged_plugins = _.sortBy(_.compact(merged_plugins), 'supported');
 
             this.$el.html(projectPluginsTpl(merged_plugins));
 

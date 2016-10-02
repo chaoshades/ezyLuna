@@ -5,77 +5,61 @@
 <div class="half-spacing-bottom"><span class="label label-info">YEP-Weapon-Animation</span></div>
 <div id="collapseWeaponAnimationSettings" class="collapse">
     {{#with current}}
-    <div class="row">
-        <div class="col-xs-6 col-md-6">
-            <div class="form-group">
-                <label for="ddlWeaponAnimationSprite">Weapon Image:</label>
-                <div class="input-group">
-                    <span class="input-group-addon">
-                        <input id="chkWeaponAnimationSprite" type="checkbox" class="js_Tags" title="Enables Weapon Animation Sprite" {{checkedIf weaponAnimation.spriteID}} />
-                    </span>
-                    <select id="ddlWeaponAnimationSprite" class="form-control" {{disabledIfNot weaponAnimation.spriteID}}>
-                        {{#each ../weapon_sprites}}
-                        <option value="{{id}}" {{selectedIf id ../weaponAnimation.spriteID}}>{{name}}</option>
-                        {{/each}}
-                    </select>
-                </div>
-            </div>
-        </div>
-        <div class="col-xs-6 col-md-6">
-            <div class="form-group">
-                <label for="txtWeaponAnimationImage">Weapon Image File:</label>
-                <div class="input-group">
-                    <span class="input-group-addon">
-                        <input id="chkWeaponAnimationImage" type="checkbox" class="js_Tags" title="Enables Weapon Image File" {{checkedIf weaponAnimation.imageFile}} />
-                    </span>
-                    <input type="text" class="form-control" id="txtWeaponAnimationImage" value="{{weaponAnimation.imageFile}}" {{readonlyIfNot weaponAnimation.imageFile}} />
-                </div>
-            </div>
+    <div class="form-group">
+        <label for="ddlWeaponAnimationSprite">Weapon Image:</label>
+        <div class="input-group">
+            <span class="input-group-addon">
+                <input id="chkWeaponAnimationSprite" type="checkbox" class="js_Tags" title="Enables Weapon Animation Sprite" {{checkedIf weaponAnimation.spriteID}} />
+            </span>
+            <select id="ddlWeaponAnimationSprite" class="form-control" {{disabledIfNot weaponAnimation.spriteID}}>
+                {{#each ../weapon_sprites}}
+                <option value="{{id}}" {{selectedIf id ../weaponAnimation.spriteID}}>{{name}}</option>
+                {{/each}}
+            </select>
         </div>
     </div>
-    <div class="row">
-        <div class="col-xs-6 col-md-6">
-            <div class="form-group">
-                <label for="ddlWeaponAnimationMotion">Weapon Motion:</label>
-                <div class="input-group">
-                    <span class="input-group-addon">
-                        <input id="chkWeaponAnimationMotion" type="checkbox" class="js_Tags" title="Enables Weapon Motion" {{checkedIf weaponAnimation.motionID}} />
-                    </span>
-                    <select id="ddlWeaponAnimationMotion" class="form-control" {{disabledIfNot weaponAnimation.motionID}}>
-                        {{#each ../motions}}
-                        <option value="{{id}}" {{selectedIf id ../weaponAnimation.motionID}}>{{name}}</option>
-                        {{/each}}
-                    </select>
-                </div>
-            </div>
-        </div>
-        <div class="col-xs-6 col-md-6">
-            <div class="form-group">
-                <label for="numWeaponAnimationHue">Weapon Hue:</label>
-                <div class="input-group">
-                    <span class="input-group-addon">
-                        <input id="chkWeaponAnimationHue" type="checkbox" class="js_Tags" title="Enables Weapon Hue" {{checkedIf weaponAnimation.hue}} />
-                    </span>
-                    <input type="number" class="form-control" id="numWeaponAnimationHue" value="{{weaponAnimation.hue}}" {{readonlyIfNot weaponAnimation.hue}} />
-                </div>
-            </div>
+    <div class="form-group">
+        <label for="txtWeaponAnimationImage">Weapon Image File:</label>
+        <div class="input-group">
+            <span class="input-group-addon">
+                <input id="chkWeaponAnimationImage" type="checkbox" class="js_Tags" title="Enables Weapon Image File" {{checkedIf weaponAnimation.imageFile}} />
+            </span>
+            <input type="text" class="form-control" id="txtWeaponAnimationImage" value="{{weaponAnimation.imageFile}}" {{readonlyIfNot weaponAnimation.imageFile}} />
         </div>
     </div>
-    <div class="row">
-        <div class="col-xs-6 col-md-6">
-            <div class="form-group">
-                <label for="ddlWeaponAnimation">Weapon Animation:</label>
-                <div class="input-group">
-                    <span class="input-group-addon">
-                        <input id="chkWeaponAnimation" type="checkbox" class="js_Tags" title="Enables Weapon Animation" {{checkedIf weaponAnimation.animationID}} />
-                    </span>
-                    <select id="ddlWeaponAnimation" class="form-control" {{disabledIfNot sweaponAnimation.animationID}}>
-                        {{#each ../animations}}
-                        <option value="{{id}}" {{selectedIf id ../weaponAnimation.animationID}}>{{name}}</option>
-                        {{/each}}
-                    </select>
-                </div>
-            </div>
+    <div class="form-group">
+        <label for="ddlWeaponAnimationMotion">Weapon Motion:</label>
+        <div class="input-group">
+            <span class="input-group-addon">
+                <input id="chkWeaponAnimationMotion" type="checkbox" class="js_Tags" title="Enables Weapon Motion" {{checkedIf weaponAnimation.motionID}} />
+            </span>
+            <select id="ddlWeaponAnimationMotion" class="form-control" {{disabledIfNot weaponAnimation.motionID}}>
+                {{#each ../motions}}
+                <option value="{{id}}" {{selectedIf id ../weaponAnimation.motionID}}>{{name}}</option>
+                {{/each}}
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="numWeaponAnimationHue">Weapon Hue:</label>
+        <div class="input-group">
+            <span class="input-group-addon">
+                <input id="chkWeaponAnimationHue" type="checkbox" class="js_Tags" title="Enables Weapon Hue" {{checkedIf weaponAnimation.hue}} />
+            </span>
+            <input type="number" class="form-control" id="numWeaponAnimationHue" value="{{weaponAnimation.hue}}" {{readonlyIfNot weaponAnimation.hue}} />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="ddlWeaponAnimation">Weapon Animation:</label>
+        <div class="input-group">
+            <span class="input-group-addon">
+                <input id="chkWeaponAnimation" type="checkbox" class="js_Tags" title="Enables Weapon Animation" {{checkedIf weaponAnimation.animationID}} />
+            </span>
+            <select id="ddlWeaponAnimation" class="form-control" {{disabledIfNot sweaponAnimation.animationID}}>
+                {{#each ../animations}}
+                <option value="{{id}}" {{selectedIf id ../weaponAnimation.animationID}}>{{name}}</option>
+                {{/each}}
+            </select>
         </div>
     </div>
     {{/with}}

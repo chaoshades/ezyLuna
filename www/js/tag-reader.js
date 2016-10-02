@@ -93,7 +93,7 @@ define(function (require) {
         var results = [];
 
         _.each(plugins, function (p) {
-            results.push(new Plugin(p.name, p.version, p.help_url));
+            results.push(new Plugin(p.name, p.version, p.description, p.help_url));
         });
 
         return results;
