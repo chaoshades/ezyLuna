@@ -9,6 +9,8 @@
         UIConfig = require('ui-config'),
         Switch = require('bootstrap-switch'),
         InlineEditTablePartialView = require("partial/InlineEditTablePartialView"),
+        PluginTooltipPartialView = require("partial/PluginTooltipPartialView"),
+        YEPExtraEnemyDrops = require("tag/yep-47-extra-enemy-drops"),
         dropItemsHtml = require('text!partialtpl/enemies/dropItems.htm'),
 
         dropItemsTpl = Handlebars.compile(dropItemsHtml),
@@ -72,7 +74,8 @@
             });
 
             var partials = {
-                'extra_drops': new InlineEditTablePartialView(data, templateInfos["tplExtraDrops"], $stateManager, STATE_KEY, "extraDrops", this.saveExtraDrops)
+                'extra_drops': new InlineEditTablePartialView(data, templateInfos["tplExtraDrops"], $stateManager, STATE_KEY, "extraDrops", this.saveExtraDrops),
+                'tooltipExtraDropItems': new PluginTooltipPartialView(YEPExtraEnemyDrops)
             }
 
             this.$el.html(dropItemsTpl(data));
@@ -83,6 +86,7 @@
 
             // Initial Display
             this.$el.find('input[type="checkbox"]').bootstrapSwitch(UIConfig.switch.tag);
+            this.$el.find('[data-toggle="popover"]').popover(UIConfig.popover.tag(YEPExtraEnemyDrops));
 
             return this;
         };

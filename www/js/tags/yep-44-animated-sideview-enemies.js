@@ -11,6 +11,7 @@
     return new Plugin(
         'YEP_X_AnimatedSVEnemies',
         'v1.11',
+        '(Requires YEP_BattleEngineCore.js) This plugin lets you use Animated Sideview Actors for enemies!',
         'http://yanfly.moe/2015/12/13/yep-44-animated-sideview-enemies/',
         [
             new TagParser("Breathing", new TagOnlyParser()),

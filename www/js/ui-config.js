@@ -42,6 +42,22 @@ define(function (require) {
                     bottom: 450
                 }
             }
+        },
+        // Bootstrap popover
+        popover: {
+            tag: function(plugin) {
+                return {
+                    html: true,
+                    placement: 'auto right',
+                    trigger: 'focus',
+                    content: function () {
+                        return $("#tpl" + plugin.name + "-content").html();
+                    },
+                    title: function () {
+                        return $("#tpl" + plugin.name + "-title").html();
+                    }
+                }
+            }
         }
     };
 

@@ -10,6 +10,8 @@
         UIConfig = require('ui-config'),
         Switch = require('bootstrap-switch'),
         InlineEditTablePartialView = require("partial/InlineEditTablePartialView"),
+        PluginTooltipPartialView = require("partial/PluginTooltipPartialView"),
+        YEPEnemyLevels = require("tag/yep-64-enemy-levels"),
         enemyLevelsHtml = require('text!partialtpl/enemies/enemyLevels.htm'),
 
         enemyLevelsTpl = Handlebars.compile(enemyLevelsHtml),
@@ -93,7 +95,8 @@
             });
 
             var partials = {
-                'skill_require_level': new InlineEditTablePartialView(data, templateInfos["tplSkillRequireLevel"], $stateManager, STATE_KEY, "skillRequireLevel", this.saveSkillRequireLevel)
+                'skill_require_level': new InlineEditTablePartialView(data, templateInfos["tplSkillRequireLevel"], $stateManager, STATE_KEY, "skillRequireLevel", this.saveSkillRequireLevel),
+                'tooltipEnemyLevels': new PluginTooltipPartialView(YEPEnemyLevels)
             }
 
             this.$el.html(enemyLevelsTpl(data));
@@ -105,6 +108,7 @@
             // Initial Display
             openCollapse(this.$el.find('#collapseEnemyLevels'));
             this.$el.find('input[type="checkbox"]').bootstrapSwitch(UIConfig.switch.tag);
+            this.$el.find('[data-toggle="popover"]').popover(UIConfig.popover.tag(YEPEnemyLevels));
 
             return this;
         };

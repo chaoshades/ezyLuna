@@ -7,6 +7,8 @@
         Handlebars = require('handlebars'),
         UIConfig = require('ui-config'),
         Switch = require('bootstrap-switch'),
+        PluginTooltipPartialView = require("partial/PluginTooltipPartialView"),
+        YEPJobPoints = require("tag/yep-27-job-points"),
         jobPointsHtml = require('text!partialtpl/enemies/jobPoints.htm'),
 
         jobPointsTpl = Handlebars.compile(jobPointsHtml),
@@ -34,9 +36,18 @@
 
             this.$el.html(jobPointsTpl(current));
 
+            var partials = {
+                'tooltipJobPoints': new PluginTooltipPartialView(YEPJobPoints)
+            }
+
+            // Render partial views
+            var wrapperReference = this.$el;
+            var renderedPartials = _.mapObject(partials, function (p, key) { wrapperReference.find('#' + key).html(p.render().$el); });
+
             // Initial Display
             openCollapse(this.$el.find('#collapseJobPoints'));
             this.$el.find('input[type="checkbox"]').bootstrapSwitch(UIConfig.switch.tag);
+            this.$el.find('[data-toggle="popover"]').popover(UIConfig.popover.tag(YEPJobPoints));
 
             return this;
         };

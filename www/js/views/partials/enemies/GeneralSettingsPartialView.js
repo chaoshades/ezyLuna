@@ -8,6 +8,8 @@
         Handlebars = require('handlebars'),
         UIConfig = require('ui-config'),
         Switch = require('bootstrap-switch'),
+        PluginTooltipPartialView = require("partial/PluginTooltipPartialView"),
+        YEPCoreEngine = require("tag/yep-1-core-engine"),
         generalSettingsHtml = require('text!partialtpl/enemies/generalSettings.htm'),
 
         generalSettingsTpl = Handlebars.compile(generalSettingsHtml),
@@ -42,8 +44,17 @@
 
             this.$el.html(generalSettingsTpl(current));
 
+            var partials = {
+                'tooltipGeneralSettings': new PluginTooltipPartialView(YEPCoreEngine)
+            }
+
+            // Render partial views
+            var wrapperReference = this.$el;
+            var renderedPartials = _.mapObject(partials, function (p, key) { wrapperReference.find('#' + key).html(p.render().$el); });
+
             // Initial Display
             this.$el.find('input[type="checkbox"]').bootstrapSwitch(UIConfig.switch.tag);
+            this.$el.find('[data-toggle="popover"]').popover(UIConfig.popover.tag(YEPCoreEngine));
 
             return this;
         };

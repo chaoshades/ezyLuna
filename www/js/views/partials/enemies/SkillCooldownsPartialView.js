@@ -9,6 +9,8 @@
         UIConfig = require('ui-config'),
         Switch = require('bootstrap-switch'),
         InlineEditTablePartialView = require("partial/InlineEditTablePartialView"),
+        PluginTooltipPartialView = require("partial/PluginTooltipPartialView"),
+        YEPSkillCooldowns = require("tag/yep-9-skill-cooldowns"),
         skillCooldownsHtml = require('text!partialtpl/enemies/skillCooldowns.htm'),
 
         skillCooldownsTpl = Handlebars.compile(skillCooldownsHtml),
@@ -104,7 +106,8 @@
                 'skill_cooldown': new InlineEditTablePartialView(data, templateInfos["tplSkillCooldown"], $stateManager, STATE_KEY, "skillCooldown", this.saveSkillCooldown),
                 'skill_type_cooldown': new InlineEditTablePartialView(data, templateInfos["tplSkillTypeCooldown"], $stateManager, STATE_KEY, "skillTypeCooldown", this.saveSkillTypeCooldown),
                 'skill_warmup': new InlineEditTablePartialView(data, templateInfos["tplSkillWarmup"], $stateManager, STATE_KEY, "skillWarmup", this.saveSkillWarmup),
-                'skill_type_warmup': new InlineEditTablePartialView(data, templateInfos["tplSkillTypeWarmup"], $stateManager, STATE_KEY, "skillTypeWarmup", this.saveSkillTypeWarmup)
+                'skill_type_warmup': new InlineEditTablePartialView(data, templateInfos["tplSkillTypeWarmup"], $stateManager, STATE_KEY, "skillTypeWarmup", this.saveSkillTypeWarmup),
+                'tooltipSkillCooldowns': new PluginTooltipPartialView(YEPSkillCooldowns)
             }
 
             this.$el.html(skillCooldownsTpl(data));
@@ -116,6 +119,7 @@
             // Initial Display
             openCollapse(this.$el.find('#collapseSkillCooldowns'));
             this.$el.find('input[type="checkbox"]').bootstrapSwitch(UIConfig.switch.tag);
+            this.$el.find('[data-toggle="popover"]').popover(UIConfig.popover.tag(YEPSkillCooldowns));
 
             return this;
         };

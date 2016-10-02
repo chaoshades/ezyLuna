@@ -7,6 +7,7 @@
     return new Plugin(
         'YEP_WeaponAnimation',
         'v1.03',
+        'This plugin allows you to go past the standard weapon images and even using custom images.',
         'http://yanfly.moe/2016/01/28/yep-63-weapon-animation/',
         [
             new TagParser("Weapon Image", new BasicParser()),

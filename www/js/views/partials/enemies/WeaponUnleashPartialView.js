@@ -9,6 +9,8 @@
         UIConfig = require('ui-config'),
         Switch = require('bootstrap-switch'),
         InlineEditTablePartialView = require("partial/InlineEditTablePartialView"),
+        PluginTooltipPartialView = require("partial/PluginTooltipPartialView"),
+        YEPWeaponUnleash = require("tag/yep-51-weapon-unleash"),
         weaponUnleashHtml = require('text!partialtpl/enemies/weaponUnleash.htm'),
 
         weaponUnleashTpl = Handlebars.compile(weaponUnleashHtml),
@@ -75,6 +77,7 @@
             var partials = {
                 'weapon_unleash_skill': new InlineEditTablePartialView(data, templateInfos["tplWeaponUnleashSkill"], $stateManager, STATE_KEY, "weaponUnleashSkill", this.saveWeaponUnleashSkill),
                 'guard_unleash_skill': new InlineEditTablePartialView(data, templateInfos["tplGuardUnleashSkill"], $stateManager, STATE_KEY, "guardUnleashSkill", this.saveGuardUnleashSkill),
+                'tooltipWeaponUnleash': new PluginTooltipPartialView(YEPWeaponUnleash)
             }
 
             this.$el.html(weaponUnleashTpl(data));
@@ -86,6 +89,7 @@
             // Initial Display
             openCollapse(this.$el.find('#collapseWeaponUnleashs'));
             this.$el.find('input[type="checkbox"]').bootstrapSwitch(UIConfig.switch.tag);
+            this.$el.find('[data-toggle="popover"]').popover(UIConfig.popover.tag(YEPWeaponUnleash));
 
             return this;
         };

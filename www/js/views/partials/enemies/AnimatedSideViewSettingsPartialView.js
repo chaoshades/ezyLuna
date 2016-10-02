@@ -7,6 +7,8 @@
         Handlebars = require('handlebars'),
         UIConfig = require('ui-config'),
         Switch = require('bootstrap-switch'),
+        PluginTooltipPartialView = require("partial/PluginTooltipPartialView"),
+        YEPAnimatedSideViewEnemies = require("tag/yep-44-animated-sideview-enemies"),
         animatedSideViewSettingsHtml = require('text!partialtpl/enemies/animatedSideViewSettings.htm'),
 
         animatedSideViewSettingsTpl = Handlebars.compile(animatedSideViewSettingsHtml),
@@ -74,9 +76,18 @@
             };
             this.$el.html(animatedSideViewSettingsTpl(data));
 
+            var partials = {
+                'tooltipAnimatedSideViewSettings': new PluginTooltipPartialView(YEPAnimatedSideViewEnemies)
+            }
+
+            // Render partial views
+            var wrapperReference = this.$el;
+            var renderedPartials = _.mapObject(partials, function (p, key) { wrapperReference.find('#' + key).html(p.render().$el); });
+
             // Initial Display
             openCollapse(this.$el.find('#collapseAnimatedSideViewSettings'));
             this.$el.find('input[type="checkbox"]').bootstrapSwitch(UIConfig.switch.tag);
+            this.$el.find('[data-toggle="popover"]').popover(UIConfig.popover.tag(YEPAnimatedSideViewEnemies));
 
             return this;
         };

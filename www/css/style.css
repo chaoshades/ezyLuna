@@ -171,6 +171,15 @@ h4 .label {
     min-width: 65px;
 }
 
+h3.popover-title
+{
+    font-size:1.15em;
+    font-weight:bold;
+}
+.popover {
+    width: 300px;
+}
+
 /*Vertical carousel*/
 .carousel-inner.vertical > .item .list-group-item:first-child {
     border-radius:0;

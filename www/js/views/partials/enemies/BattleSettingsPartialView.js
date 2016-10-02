@@ -7,6 +7,8 @@
         Handlebars = require('handlebars'),
         UIConfig = require('ui-config'),
         Switch = require('bootstrap-switch'),
+        PluginTooltipPartialView = require("partial/PluginTooltipPartialView"),
+        YEPBattleEngineCore = require("tag/yep-3-battle-engine-core"),
         battleSettingsHtml = require('text!partialtpl/enemies/battleSettings.htm'),
 
         battleSettingsTpl = Handlebars.compile(battleSettingsHtml),
@@ -39,9 +41,18 @@
             };
             this.$el.html(battleSettingsTpl(data));
 
+            var partials = {
+                'tooltipBattleSettings': new PluginTooltipPartialView(YEPBattleEngineCore)
+            }
+
+            // Render partial views
+            var wrapperReference = this.$el;
+            var renderedPartials = _.mapObject(partials, function (p, key) { wrapperReference.find('#' + key).html(p.render().$el); });
+
             // Initial Display
             openCollapse(this.$el.find('#collapseBattleSettings'));
             this.$el.find('input[type="checkbox"]').bootstrapSwitch(UIConfig.switch.tag);
+            this.$el.find('[data-toggle="popover"]').popover(UIConfig.popover.tag(YEPBattleEngineCore));
 
             return this;
         };

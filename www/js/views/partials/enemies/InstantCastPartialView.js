@@ -9,6 +9,8 @@
         UIConfig = require('ui-config'),
         Switch = require('bootstrap-switch'),
         InlineEditTablePartialView = require("partial/InlineEditTablePartialView"),
+        PluginTooltipPartialView = require("partial/PluginTooltipPartialView"),
+        YEPInstantCast = require("tag/yep-22-instant-cast-2"),
         instantCastHtml = require('text!partialtpl/enemies/instantCast.htm'),
 
         instantCastTpl = Handlebars.compile(instantCastHtml),
@@ -100,7 +102,8 @@
                 'cancel_instant_skill': new InlineEditTablePartialView(data, templateInfos["tplCancelInstantSkill"], $stateManager, STATE_KEY, "cancelInstantSkill", this.saveCancelInstantSkill),
                 'cancel_instant_skill_range': new InlineEditTablePartialView(data, templateInfos["tplCancelInstantSkillRange"], $stateManager, STATE_KEY, "cancelInstantSkillRange", this.saveCancelInstantSkillRange),
                 'cancel_instant_item': new InlineEditTablePartialView(data, templateInfos["tplCancelInstantItem"], $stateManager, STATE_KEY, "cancelInstantItem", this.saveCancelInstantItem),
-                'cancel_instant_item_range': new InlineEditTablePartialView(data, templateInfos["tplCancelInstantItemRange"], $stateManager, STATE_KEY, "cancelInstantItemRange", this.saveCancelInstantItemRange)
+                'cancel_instant_item_range': new InlineEditTablePartialView(data, templateInfos["tplCancelInstantItemRange"], $stateManager, STATE_KEY, "cancelInstantItemRange", this.saveCancelInstantItemRange),
+                'tooltipInstantCast': new PluginTooltipPartialView(YEPInstantCast)
             }
 
             this.$el.html(instantCastTpl(data));
@@ -112,6 +115,7 @@
             // Initial Display
             openCollapse(this.$el.find('#collapseInstantCast'));
             this.$el.find('input[type="checkbox"]').bootstrapSwitch(UIConfig.switch.tag);
+            this.$el.find('[data-toggle="popover"]').popover(UIConfig.popover.tag(YEPInstantCast));
 
             return this;
         };

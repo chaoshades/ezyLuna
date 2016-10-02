@@ -8,6 +8,7 @@
     return new Plugin(
         'YEP_X_VisualATBGauge',
         'v1.03',
+        '(Requires YEP_BattleSysATB.js) Provides a visible ATB gauge for your enemies!',
         'http://yanfly.moe/2015/11/22/yep-31-visual-atb-gauge/',
         [
             new TagParser("Show ATB Gauge", new TagOnlyParser()),

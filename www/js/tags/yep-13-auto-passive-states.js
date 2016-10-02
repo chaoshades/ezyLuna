@@ -8,6 +8,7 @@
     return new Plugin(
         'YEP_AutoPassiveStates',
         'v1.09',
+        'This plugin allows for some states to function as passives for actors, enemies, skills, and equips.',
         'http://yanfly.moe/2015/10/17/yep-13-auto-passive-states/',
         [
             new TagParser("Passive State", new NumericArrayParser(), "Passive State"),

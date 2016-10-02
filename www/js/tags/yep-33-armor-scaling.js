@@ -9,6 +9,7 @@
     return new Plugin(
         'YEP_X_ArmorScaling',
         'v1.02',
+        '(Requires YEP_DamageCore.js) Scale defensive stats relative to a universal scale.',
         'http://yanfly.moe/2015/11/28/yep-33-armor-scaling/',
         [
             new TagParser("Bypass Armor Scaling", new TagOnlyParser()),

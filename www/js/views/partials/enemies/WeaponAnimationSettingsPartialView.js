@@ -7,6 +7,8 @@
         Handlebars = require('handlebars'),
         UIConfig = require('ui-config'),
         Switch = require('bootstrap-switch'),
+        PluginTooltipPartialView = require("partial/PluginTooltipPartialView"),
+        YEPWeaponAnimation = require("tag/yep-63-weapon-animation"),
         weaponAnimationSettingsHtml = require('text!partialtpl/enemies/weaponAnimationSettings.htm'),
 
         weaponAnimationSettingsTpl = Handlebars.compile(weaponAnimationSettingsHtml),
@@ -44,9 +46,18 @@
             };
             this.$el.html(weaponAnimationSettingsTpl(data));
 
+            var partials = {
+                'tooltipWeaponAnimationSettings': new PluginTooltipPartialView(YEPWeaponAnimation)
+            }
+
+            // Render partial views
+            var wrapperReference = this.$el;
+            var renderedPartials = _.mapObject(partials, function (p, key) { wrapperReference.find('#' + key).html(p.render().$el); });
+
             // Initial Display
             openCollapse(this.$el.find('#collapseWeaponAnimationSettings'));
             this.$el.find('input[type="checkbox"]').bootstrapSwitch(UIConfig.switch.tag);
+            this.$el.find('[data-toggle="popover"]').popover(UIConfig.popover.tag(YEPWeaponAnimation));
 
             return this;
         };

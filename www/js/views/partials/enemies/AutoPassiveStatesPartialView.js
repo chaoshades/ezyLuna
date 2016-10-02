@@ -9,6 +9,8 @@
         UIConfig = require('ui-config'),
         Switch = require('bootstrap-switch'),
         InlineEditTablePartialView = require("partial/InlineEditTablePartialView"),
+        PluginTooltipPartialView = require("partial/PluginTooltipPartialView"),
+        YEPAutoPassiveStates = require("tag/yep-13-auto-passive-states"),
         autoPassiveStatesHtml = require('text!partialtpl/enemies/autoPassiveStates.htm'),
 
         autoPassiveStatesTpl = Handlebars.compile(autoPassiveStatesHtml),
@@ -70,6 +72,7 @@
             var partials = {
                 'passive_state': new InlineEditTablePartialView(data, templateInfos["tplPassiveState"], $stateManager, STATE_KEY, "passiveState", this.savePassiveState),
                 'passive_state_range': new InlineEditTablePartialView(data, templateInfos["tplPassiveStateRange"], $stateManager, STATE_KEY, "passiveStateRange", this.savePassiveStateRange),
+                'tooltipAutoPassiveStates': new PluginTooltipPartialView(YEPAutoPassiveStates)
             }
 
             this.$el.html(autoPassiveStatesTpl(data));
@@ -81,6 +84,7 @@
             // Initial Display
             openCollapse(this.$el.find('#collapseAutoPassiveStates'));
             this.$el.find('input[type="checkbox"]').bootstrapSwitch(UIConfig.switch.tag);
+            this.$el.find('[data-toggle="popover"]').popover(UIConfig.popover.tag(YEPAutoPassiveStates));
 
             return this;
         };

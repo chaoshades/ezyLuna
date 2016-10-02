@@ -9,6 +9,8 @@
         UIConfig = require('ui-config'),
         Switch = require('bootstrap-switch'),
         InlineEditTablePartialView = require("partial/InlineEditTablePartialView"),
+        PluginTooltipPartialView = require("partial/PluginTooltipPartialView"),
+        YEPLimitedSkillUses = require("tag/yep-56-limited-skill-uses"),
         limitedSkillUsesHtml = require('text!partialtpl/enemies/limitedSkillUses.htm'),
 
         limitedSkillUsesTpl = Handlebars.compile(limitedSkillUsesHtml),
@@ -73,6 +75,7 @@
             var partials = {
                 'skill_type_use_max': new InlineEditTablePartialView(data, templateInfos["tplSkillTypeUseMax"], $stateManager, STATE_KEY, "skillTypeUseMax", this.saveSkillTypeUseMax),
                 'skill_use_max': new InlineEditTablePartialView(data, templateInfos["tplSkillUseMax"], $stateManager, STATE_KEY, "skillUseMax", this.saveSkillUseMax),
+                'tooltipLimitedSkillUses': new PluginTooltipPartialView(YEPLimitedSkillUses)
             }
 
             this.$el.html(limitedSkillUsesTpl(data));
@@ -84,6 +87,7 @@
             // Initial Display
             openCollapse(this.$el.find('#collapseLimitedSkillUses'));
             this.$el.find('input[type="checkbox"]').bootstrapSwitch(UIConfig.switch.tag);
+            this.$el.find('[data-toggle="popover"]').popover(UIConfig.popover.tag(YEPLimitedSkillUses));
 
             return this;
         };

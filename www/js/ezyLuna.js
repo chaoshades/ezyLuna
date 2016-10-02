@@ -336,12 +336,14 @@ function Project(url) {
  * The Plugin class defines a plugin config.
  * @param {String} name: name to the plugin. 
  * @param {String} version: version of the plugin.
+ * @param {String} description: description of the plugin.
  * @param {String} help_url: url of the help of the plugin.
  * @param {Object} tags: array of tags of the plugin. 
  */
-function Plugin(name, version, help_url, tags) {
+function Plugin(name, version, description, help_url, tags) {
     this.name = String(name);
     this.version = String(version);
+    this.description = String(description);
     this.help_url = String(help_url);
     this.tags = tags;
 }

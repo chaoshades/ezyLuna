@@ -7,6 +7,7 @@
     return new Plugin(
         'YEP_CoreEngine',
         'v1.16',
+        'Needed for the majority of Yanfly Engine Scripts. Also contains bug fixes found inherently in RPG Maker.',
         'http://yanfly.moe/2015/10/09/yep-1-core-engine/',
         [
             new TagParser("hp", new BasicParser()),

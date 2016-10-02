@@ -7,6 +7,8 @@
         Handlebars = require('handlebars'),
         UIConfig = require('ui-config'),
         Switch = require('bootstrap-switch'),
+        PluginTooltipPartialView = require("partial/PluginTooltipPartialView"),
+        YEPBattleSystemActiveTurnBattle = require("tag/yep-24-battle-system-active-turn-battle"),
         activeTurnBattleSettingsHtml = require('text!partialtpl/enemies/activeTurnBattleSettings.htm'),
 
         activeTurnBattleSettingsTpl = Handlebars.compile(activeTurnBattleSettingsHtml),
@@ -37,9 +39,18 @@
 
             this.$el.html(activeTurnBattleSettingsTpl(current));
 
+            var partials = {
+                'tooltipActiveTurnBattleSettings': new PluginTooltipPartialView(YEPBattleSystemActiveTurnBattle)
+            }
+
+            // Render partial views
+            var wrapperReference = this.$el;
+            var renderedPartials = _.mapObject(partials, function (p, key) { wrapperReference.find('#' + key).html(p.render().$el); });
+
             // Initial Display
             openCollapse(this.$el.find('#collapseActiveTurnBattleSettings'));
             this.$el.find('input[type="checkbox"]').bootstrapSwitch(UIConfig.switch.tag);
+            this.$el.find('[data-toggle="popover"]').popover(UIConfig.popover.tag(YEPBattleSystemActiveTurnBattle));
 
             return this;
         };

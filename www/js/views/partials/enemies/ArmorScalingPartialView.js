@@ -7,6 +7,8 @@
         Handlebars = require('handlebars'),
         UIConfig = require('ui-config'),
         Switch = require('bootstrap-switch'),
+        PluginTooltipPartialView = require("partial/PluginTooltipPartialView"),
+        YEPArmorScaling = require("tag/yep-33-armor-scaling"),
         armorScalingHtml = require('text!partialtpl/enemies/armorScaling.htm'),
 
         armorScalingTpl = Handlebars.compile(armorScalingHtml),
@@ -40,9 +42,18 @@
 
             this.$el.html(armorScalingTpl(current));
 
+            var partials = {
+                'tooltipArmorScaling': new PluginTooltipPartialView(YEPArmorScaling)
+            }
+
+            // Render partial views
+            var wrapperReference = this.$el;
+            var renderedPartials = _.mapObject(partials, function (p, key) { wrapperReference.find('#' + key).html(p.render().$el); });
+
             // Initial Display
             openCollapse(this.$el.find('#collapseArmorScaling'));
             this.$el.find('input[type="checkbox"]').bootstrapSwitch(UIConfig.switch.tag);
+            this.$el.find('[data-toggle="popover"]').popover(UIConfig.popover.tag(YEPArmorScaling));
 
             return this;
         };

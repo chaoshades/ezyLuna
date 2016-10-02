@@ -7,6 +7,8 @@
         Handlebars = require('handlebars'),
         UIConfig = require('ui-config'),
         Switch = require('bootstrap-switch'),
+        PluginTooltipPartialView = require("partial/PluginTooltipPartialView"),
+        YEPVisualHPGauges = require("tag/yep-30-visual-hp-gauges"),
         visualHPGaugesHtml = require('text!partialtpl/enemies/visualHPGauges.htm'),
 
         visualHPGaugesTpl = Handlebars.compile(visualHPGaugesHtml),
@@ -40,9 +42,18 @@
 
             this.$el.html(visualHPGaugesTpl(current));
 
+            var partials = {
+                'tooltipVisualHPGauges': new PluginTooltipPartialView(YEPVisualHPGauges)
+            }
+
+            // Render partial views
+            var wrapperReference = this.$el;
+            var renderedPartials = _.mapObject(partials, function (p, key) { wrapperReference.find('#' + key).html(p.render().$el); });
+
             // Initial Display
             openCollapse(this.$el.find('#collapseVisualHPGauges'));
             this.$el.find('input[type="checkbox"]').bootstrapSwitch(UIConfig.switch.tag);
+            this.$el.find('[data-toggle="popover"]').popover(UIConfig.popover.tag(YEPVisualHPGauges));
 
             return this;
         };

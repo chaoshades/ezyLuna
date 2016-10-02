@@ -9,6 +9,8 @@
         UIConfig = require('ui-config'),
         Switch = require('bootstrap-switch'),
         InlineEditTablePartialView = require("partial/InlineEditTablePartialView"),
+        PluginTooltipPartialView = require("partial/PluginTooltipPartialView"),
+        YEPSwapEnemies = require("tag/yep-45-swap-enemies"),
         swapEnemiesHtml = require('text!partialtpl/enemies/swapEnemies.htm'),
 
         swapEnemiesTpl = Handlebars.compile(swapEnemiesHtml),
@@ -70,6 +72,7 @@
             var partials = {
                 'swap': new InlineEditTablePartialView(data, templateInfos["tplSwap"], $stateManager, STATE_KEY, "swap", this.saveSwap),
                 'swap_range': new InlineEditTablePartialView(data, templateInfos["tplSwapRange"], $stateManager, STATE_KEY, "swapRange", this.saveSwapRange),
+                'tooltipSwapEnemies': new PluginTooltipPartialView(YEPSwapEnemies)
             }
 
             this.$el.html(swapEnemiesTpl(data));
@@ -81,6 +84,7 @@
             // Initial Display
             openCollapse(this.$el.find('#collapseSwapEnemies'));
             this.$el.find('input[type="checkbox"]').bootstrapSwitch(UIConfig.switch.tag);
+            this.$el.find('[data-toggle="popover"]').popover(UIConfig.popover.tag(YEPSwapEnemies));
 
             return this;
         };

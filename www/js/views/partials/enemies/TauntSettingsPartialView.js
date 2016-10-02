@@ -7,6 +7,8 @@
         Handlebars = require('handlebars'),
         UIConfig = require('ui-config'),
         Switch = require('bootstrap-switch'),
+        PluginTooltipPartialView = require("partial/PluginTooltipPartialView"),
+        YEPTaunt = require("tag/yep-23-taunt"),
         tauntSettingsHtml = require('text!partialtpl/enemies/tauntSettings.htm'),
 
         tauntSettingsTpl = Handlebars.compile(tauntSettingsHtml),
@@ -42,9 +44,18 @@
 
             this.$el.html(tauntSettingsTpl(current));
 
+            var partials = {
+                'tooltipTauntSettings': new PluginTooltipPartialView(YEPTaunt)
+            }
+
+            // Render partial views
+            var wrapperReference = this.$el;
+            var renderedPartials = _.mapObject(partials, function (p, key) { wrapperReference.find('#' + key).html(p.render().$el); });
+
             // Initial Display
             openCollapse(this.$el.find('#collapseTauntSettings'));
             this.$el.find('input[type="checkbox"]').bootstrapSwitch(UIConfig.switch.tag);
+            this.$el.find('[data-toggle="popover"]').popover(UIConfig.popover.tag(YEPTaunt));
 
             return this;
         };

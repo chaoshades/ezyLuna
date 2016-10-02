@@ -7,6 +7,7 @@
     return new Plugin(
         'YEP_Taunt',
         'v1.01',
+        'Adds a Taunt mechanic to battle. Battlers with a taunt property become the target of enemy focus.',
         'http://yanfly.moe/2015/10/31/yep-23-taunt/',
         [
             new TagParser("Physical Taunt", new TagOnlyParser()),
