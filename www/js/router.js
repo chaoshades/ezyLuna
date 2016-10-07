@@ -13,6 +13,7 @@
         EnemiesView = require("view/EnemiesView"),
         ItemsView = require("view/ItemsView"),
         SkillsView = require("view/SkillsView"),
+        SkillsActionView = require("view/SkillsActionView"),
         WeaponsView = require("view/WeaponsView"),
         ArmorsView = require("view/ArmorsView"),
         ErrorView = require("view/ErrorView"),
@@ -26,6 +27,7 @@
             { name: "skillsURL", url: /^#project\/(\d{1,})\/skills\/?(\d{1,})?$/ },
             { name: "weaponsURL", url: /^#project\/(\d{1,})\/weapons\/?(\d{1,})?$/ },
             { name: "armorsURL", url: /^#project\/(\d{1,})\/armors\/?(\d{1,})?$/ },
+            { name: "skillsActionURL", url: /^#project\/(\d{1,})\/skills\/action\/?(\d{1,})?$/ }
         ],
         stateManager = new StateManager(),
         _callback = null,
@@ -189,6 +191,22 @@
                         dataAdapter.getSkillById(id)
                         .done(function (current) {
                             changeContent(new SkillsView(config, skills, current));
+                        })
+                        .fail(errorHandler);
+                    })
+                    .fail(errorHandler);
+                    break;
+
+                case "skillsActionURL":
+                    dataAdapter.getSkills()
+                    .done(function (skills) {
+                        // Default to first one
+                        var id = args[2];
+                        if (!id)
+                            id = 1;
+                        dataAdapter.getSkillById(id)
+                        .done(function (current) {
+                            changeContent(new SkillsActionView(config, skills, current));
                         })
                         .fail(errorHandler);
                     })

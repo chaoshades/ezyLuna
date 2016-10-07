@@ -142,7 +142,7 @@
             return this;
         };
 
-        this.generateTags = function (setValueTagCallback, setTagCallback, setPercentValueTagCallback) {
+        this.generateTags = function () {
             var tags = [];
 
             // Generate tags from every partials (if method is defined)

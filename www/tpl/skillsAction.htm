@@ -1,0 +1,390 @@
+﻿<div>
+    <div class="row">
+        <div class="col-md-3">
+            <div id="sidebar">
+                <div id="carousel">
+                    <!-- Filled by CarouselPartialView.js-->
+                </div>
+                <div class="spacing-bottom">
+                    <button id="btnScrollUp" type="button" class="btn btn-default btn-block" title="Scroll up">
+                        <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>&nbsp;Scroll up&nbsp;
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="well well-sm">
+                <h4>Skills Action Sequences</h4>
+                <div class="text-center half-spacing-bottom">
+                    <div class="btn-group" data-toggle="buttons">
+                      <label class="btn btn-default btn-lg" title="Show setup action">
+                        <input type="radio" name="ActionSequences" id="radSetup"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>&nbsp;Setup
+                      </label>
+                      <label class="btn btn-default btn-lg" title="Show whole action">
+                        <input type="radio" name="ActionSequences" id="radDetectedOnly"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>&nbsp;Whole
+                      </label>
+                      <label class="btn btn-default btn-lg" title="Show target action">
+                        <input type="radio" name="ActionSequences" id="Radio1"><span class="glyphicon glyphicon-screenshot" aria-hidden="true"></span>&nbsp;Target
+                      </label>
+                      <label class="btn btn-default btn-lg" title="Show follow action">
+                        <input type="radio" name="ActionSequences" id="Radio2"><span class="glyphicon glyphicon-random" aria-hidden="true"></span>&nbsp;Follow
+                      </label>
+                      <label class="btn btn-default btn-lg" title="Show Finis action">
+                        <input type="radio" name="ActionSequences" id="radAdvanced"><span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp;Finish
+                      </label>
+                    </div>
+                </div>
+
+                <div>
+                    <ul class="timeline">
+                        <li>
+                          <div class="timeline-badge danger"><i class="glyphicon glyphicon-eye-close"></i></div>
+                          <div class="timeline-panel">
+                            <div class="timeline-body">
+                              <p>fade out: 30</p>
+                            </div>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="timeline-badge"><i class="glyphicon glyphicon-hourglass"></i></div>
+                          <div class="timeline-panel">
+                            <div class="timeline-body">
+                              <p>wait: 30</p>
+                            </div>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="timeline-badge danger"><i class="glyphicon glyphicon-eye-close"></i></div>
+                          <div class="timeline-panel">
+                            <div class="timeline-body">
+                              <p>hide battle hud</p>
+                            </div>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="timeline-badge danger"><i class="glyphicon glyphicon-eye-close"></i></div>
+                          <div class="timeline-panel">
+                            <div class="timeline-body">
+                              <p>opacity all alive: 0, 1</p>
+                            </div>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="timeline-badge danger"><i class="glyphicon glyphicon-eye-close"></i></div>
+                          <div class="timeline-panel">
+                            <div class="timeline-body">
+                              <p>opacity dead actors: 0, 1</p>
+                            </div>
+                          </div>
+                        </li>
+                        <li class="timeline-inverted">
+                          <div class="timeline-badge"><i class="glyphicon glyphicon-console"></i></div>
+                          <div class="timeline-panel">
+                            <div class="timeline-body">
+                              <p>change variable 3 = 7</p>
+                            </div>
+                          </div>
+                        </li>
+                        <li class="timeline-inverted">
+                          <div class="timeline-badge"><i class="glyphicon glyphicon-console"></i></div>
+                          <div class="timeline-panel">
+                            <div class="timeline-body">
+                              <p>common event: 4</p>
+                            </div>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="timeline-badge success"><i class="glyphicon glyphicon-eye-open"></i></div>
+                          <div class="timeline-panel">
+                            <div class="timeline-body">
+                              <p>fade in: 30</p>
+                            </div>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="timeline-badge"><i class="glyphicon glyphicon-hourglass"></i></div>
+                          <div class="timeline-panel">
+                            <div class="timeline-body">
+                              <p>wait: 30</p>
+                            </div>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="timeline-badge primary"><i class="glyphicon glyphicon-facetime-video"></i></div>
+                          <div class="timeline-panel">
+                            <div class="timeline-body">
+                              <p>animation 144: target</p>
+                            </div>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="timeline-badge"><i class="glyphicon glyphicon-hourglass"></i></div>
+                          <div class="timeline-panel">
+                            <div class="timeline-body">
+                              <p>wait for animation</p>
+                            </div>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="timeline-badge success"><i class="glyphicon glyphicon-eye-open"></i></div>
+                          <div class="timeline-panel">
+                            <div class="timeline-body">
+                              <p>opacity enemies: 100%, 1 </p>
+                            </div>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="timeline-badge"><i class="glyphicon glyphicon-hourglass"></i></div>
+                          <div class="timeline-panel">
+                            <div class="timeline-body">
+                              <p>wait: 10</p>
+                            </div>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="timeline-badge primary"><i class="glyphicon glyphicon-facetime-video"></i></div>
+                          <div class="timeline-panel">
+                            <div class="timeline-body">
+                              <p>animation 145: target</p>
+                            </div>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="timeline-badge"><i class="glyphicon glyphicon-hourglass"></i></div>
+                          <div class="timeline-panel">
+                            <div class="timeline-body">
+                              <p>wait: 50</p>
+                            </div>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="timeline-badge info"><i class="glyphicon glyphicon-ok"></i></div>
+                          <div class="timeline-panel">
+                            <div class="timeline-body">
+                              <p>action effect</p>
+                            </div>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="timeline-badge"><i class="glyphicon glyphicon-hourglass"></i></div>
+                          <div class="timeline-panel">
+                            <div class="timeline-body">
+                              <p>wait: 15</p>
+                            </div>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="timeline-badge info"><i class="glyphicon glyphicon-ok"></i></div>
+                          <div class="timeline-panel">
+                            <div class="timeline-body">
+                              <p>action effect</p>
+                            </div>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="timeline-badge"><i class="glyphicon glyphicon-hourglass"></i></div>
+                          <div class="timeline-panel">
+                            <div class="timeline-body">
+                              <p>wait: 15</p>
+                            </div>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="timeline-badge info"><i class="glyphicon glyphicon-ok"></i></div>
+                          <div class="timeline-panel">
+                            <div class="timeline-body">
+                              <p>action effect</p>
+                            </div>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="timeline-badge"><i class="glyphicon glyphicon-hourglass"></i></div>
+                          <div class="timeline-panel">
+                            <div class="timeline-body">
+                              <p>wait: 15</p>
+                            </div>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="timeline-badge info"><i class="glyphicon glyphicon-ok"></i></div>
+                          <div class="timeline-panel">
+                            <div class="timeline-body">
+                              <p>action effect</p>
+                            </div>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="timeline-badge"><i class="glyphicon glyphicon-hourglass"></i></div>
+                          <div class="timeline-panel">
+                            <div class="timeline-body">
+                              <p>wait: 15</p>
+                            </div>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="timeline-badge info"><i class="glyphicon glyphicon-ok"></i></div>
+                          <div class="timeline-panel">
+                            <div class="timeline-body">
+                              <p>action effect</p>
+                            </div>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="timeline-badge"><i class="glyphicon glyphicon-hourglass"></i></div>
+                          <div class="timeline-panel">
+                            <div class="timeline-body">
+                              <p>wait: 15</p>
+                            </div>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="timeline-badge info"><i class="glyphicon glyphicon-ok"></i></div>
+                          <div class="timeline-panel">
+                            <div class="timeline-body">
+                              <p>action effect</p>
+                            </div>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="timeline-badge"><i class="glyphicon glyphicon-hourglass"></i></div>
+                          <div class="timeline-panel">
+                            <div class="timeline-body">
+                              <p>wait: 15</p>
+                            </div>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="timeline-badge"><i class="glyphicon glyphicon-hourglass"></i></div>
+                          <div class="timeline-panel">
+                            <div class="timeline-body">
+                              <p>wait for animation</p>
+                            </div>
+                          </div>
+                        </li>
+                        <li class="timeline-inverted">
+                          <div class="timeline-badge"><i class="glyphicon glyphicon-console"></i></div>
+                          <div class="timeline-panel">
+                            <div class="timeline-body">
+                              <p>damage rate: 500%</p>
+                            </div>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="timeline-badge primary"><i class="glyphicon glyphicon-facetime-video"></i></div>
+                          <div class="timeline-panel">
+                            <div class="timeline-body">
+                              <p>animation 146: target</p>
+                            </div>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="timeline-badge"><i class="glyphicon glyphicon-hourglass"></i></div>
+                          <div class="timeline-panel">
+                            <div class="timeline-body">
+                              <p>wait: 20</p>
+                            </div>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="timeline-badge info"><i class="glyphicon glyphicon-ok"></i></div>
+                          <div class="timeline-panel">
+                            <div class="timeline-body">
+                              <p>action effect</p>
+                            </div>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="timeline-badge"><i class="glyphicon glyphicon-hourglass"></i></div>
+                          <div class="timeline-panel">
+                            <div class="timeline-body">
+                              <p>wait for animation</p>
+                            </div>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="timeline-badge danger"><i class="glyphicon glyphicon-eye-close"></i></div>
+                          <div class="timeline-panel">
+                            <div class="timeline-body">
+                              <p>fade out: 30</p>
+                            </div>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="timeline-badge"><i class="glyphicon glyphicon-hourglass"></i></div>
+                          <div class="timeline-panel">
+                            <div class="timeline-body">
+                              <p>wait: 30</p>
+                            </div>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="timeline-badge success"><i class="glyphicon glyphicon-eye-open"></i></div>
+                          <div class="timeline-panel">
+                            <div class="timeline-body">
+                              <p>opacity all actors: 100%, 1</p>
+                            </div>
+                          </div>
+                        </li>
+                        <li class="timeline-inverted">
+                          <div class="timeline-badge"><i class="glyphicon glyphicon-console"></i></div>
+                          <div class="timeline-panel">
+                            <div class="timeline-body">
+                              <p>common event: 5</p>
+                            </div>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="timeline-badge success"><i class="glyphicon glyphicon-eye-open"></i></div>
+                          <div class="timeline-panel">
+                            <div class="timeline-body">
+                              <p>show battle hud</p>
+                            </div>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="timeline-badge success"><i class="glyphicon glyphicon-eye-open"></i></div>
+                          <div class="timeline-panel">
+                            <div class="timeline-body">
+                              <p>fade in: 30</p>
+                            </div>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="timeline-badge"><i class="glyphicon glyphicon-hourglass"></i></div>
+                          <div class="timeline-panel">
+                            <div class="timeline-body">
+                              <p>wait: 30</p>
+                            </div>
+                          </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center half-spacing-bottom ">
+        <button id="btnGenerateTags" type="button" class="btn btn-default btn-primary btn-lg" title="Generate tags">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>&nbsp;Generate notetags&nbsp;<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        </button>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div id="successTags" class="alert alert-success" role="alert"><strong>Success!</strong> The tags have been generated and are in the output below.</div>
+            <div id="errorNoTags" class="alert alert-danger" role="alert"><strong>Oh snap!</strong> There are no tags to generate.</div>
+            <div id="successCopy" class="alert alert-success" role="alert"><strong>Success!</strong> The tags have been copied to the clipboard.</div>
+            <div id="errorCopy" class="alert alert-danger" role="alert"><strong>Oh snap!</strong> There was an error during the copy to the clipboard. You can still do it yourself with Ctrl+C or Cmd+C.</div>
+            <div id="errorNoCopy" class="alert alert-danger" role="alert"><strong>Oh snap!</strong> There is nothing to copy to the clipboard.</div>
+            <div class="form-group">
+                <div class="btn-toolbar pull-right">
+                    <button id="btnCopyClipboard" type="button" class="btn btn-default btn-primary" title="Copy output to clipboard">
+                        <span class="glyphicon glyphicon-copy" aria-hidden="true"></span><span class="hidden-xs">&nbsp;Copy clipboard</span>
+                    </button>
+                </div>
+                <label for="txtOutput">Output:</label>
+                <textarea class="form-control" id="txtOutput" rows="20"></textarea>
+            </div>
+        </div>
+    </div>
+</div>
