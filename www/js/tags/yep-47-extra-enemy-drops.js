@@ -6,6 +6,7 @@
 
     return new Plugin(
         'YEP_ExtraEnemyDrops',
+        'Extra Enemy Drops',
         'v1.05',
         'Allows your enemies to drop more than just three items as per the editor\'s limit.',
         'http://yanfly.moe/2015/12/19/yep-47-extra-enemy-drops/',

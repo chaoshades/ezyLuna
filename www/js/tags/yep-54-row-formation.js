@@ -7,6 +7,7 @@
 
     return new Plugin(
         'YEP_RowFormation',
+        'Row Formation',
         'v1.10',
         'Places party members into row formations to give them distinct advantages based on row location.',
         'http://yanfly.moe/2016/01/02/yep-54-row-formation/',

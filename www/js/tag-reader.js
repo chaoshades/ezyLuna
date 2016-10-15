@@ -26,7 +26,10 @@ define(function (require) {
         YEPJobPoints = require("tag/yep-27-job-points"),
         YEPRowFormation = require("tag/yep-54-row-formation"),
         YEPSwapEnemies = require("tag/yep-45-swap-enemies"),
-        
+        YEPActionSequencePack1 = require("tag/yep-4-action-sequence-pack-1"),
+        YEPActionSequencePack2 = require("tag/yep-5-action-sequence-pack-2"),
+        YEPActionSequencePack3 = require("tag/yep-6-action-sequence-pack-3"),
+
         plugins = [
             YEPCoreEngine,
             YEPBattleEngineCore,
@@ -49,13 +52,21 @@ define(function (require) {
             YEPEnemyLevels,
             YEPJobPoints,
             YEPRowFormation,
-            YEPSwapEnemies
+            YEPSwapEnemies,
+            YEPActionSequencePack1,
+            YEPActionSequencePack2,
+            YEPActionSequencePack3
         ],
 
-        tags = _.chain(plugins)
+        tags = _.compact(_.chain(plugins)
                 .map(function(p) { return p.tags; })
                 .flatten()
-                .value(),
+                .value()),
+
+        exts = _.compact(_.chain(plugins)
+                .map(function (p) { return p.exts; })
+                .flatten()
+                .value()),
 
     getStringFromNoteTags = function (notetags) {
         var result = "";
@@ -77,10 +88,20 @@ define(function (require) {
             if (temp) {
                 // Can parse more than one tags (ex.: BasicTagArrayParser)
                 if ($.isArray(temp)) {
-                    _.each(temp, function(tmp) { tmp.tag = t.id; });
+                    _.each(temp, function (tmp) {
+                        tmp.tag = t.id;
+                        if (t.ext_plugin) {
+                            tmp.ext_plugin = t.ext_plugin;
+                            tmp.data = getExtensionsFromNoteTag(tmp);
+                        }
+                    });
                     results = results.concat(temp);
                 } else {
                     temp.tag = t.id;
+                    if (t.ext_plugin) {
+                        temp.ext_plugin = t.ext_plugin;
+                        temp.data = getExtensionsFromNoteTag(temp);
+                    }
                     results.push(temp);
                 }
             }
@@ -88,12 +109,31 @@ define(function (require) {
 
         return results;
     },
-        
+       
+    getExtensionsFromNoteTag = function (tag) {
+        var results = [],
+            lines = tag.data.split('\n'),
+            filtered_exts = _.filter(exts, function (e) { return e.plugin == tag.ext_plugin; });
+
+        _.each(lines, function(line, i) {
+            _.each(filtered_exts, function (e) {
+                var temp = e.parser.parse(e.ext, line);
+                if (temp) {
+                    temp.position = i;
+                    temp.ext = e.id;
+                    results.push(temp);
+                }
+            });
+        });
+
+        return results;
+    },
+
     getSupportedPlugins = function () {
         var results = [];
 
         _.each(plugins, function (p) {
-            results.push(new Plugin(p.name, p.version, p.description, p.help_url));
+            results.push(new Plugin(p.name, p.longname, p.version, p.description, p.help_url));
         });
 
         return results;

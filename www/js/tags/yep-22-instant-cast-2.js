@@ -7,6 +7,7 @@
 
     return new Plugin(
         'YEP_InstantCast',
+        'Instant Cast',
         'v1.08',
         'Allows skills/items to be instantly cast after being selected in the battle menu.',
         'http://yanfly.moe/2015/10/30/yep-22-instant-cast-2/',

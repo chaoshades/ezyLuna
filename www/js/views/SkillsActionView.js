@@ -17,7 +17,8 @@
 
     return function (project, skills, current) {
 
-        var base_url = "#project/" + project.id + "/skills/action",
+        var collapsed = true,
+            base_url = "#project/" + project.id + "/skills/action",
             partials = {
                 'carousel': new CarouselPartialView(base_url, skills, 15)
             }
@@ -30,6 +31,16 @@
             var generateTagsCallback = this.generateTags;
             this.$el.on('click', '#btnGenerateTags', function () {
                 generateTagsCallback();
+            });
+
+            // Click Event for ToggleAll button
+            this.$el.on('click', '#btnToggleAll', function () {
+                if (collapsed)
+                    $('.timeline.nested').removeClass('hide');
+                else
+                    $('.timeline.nested').addClass('hide');
+
+                collapsed = !collapsed;
             });
 
             // Click Event for ScrollUp button
@@ -76,7 +87,14 @@
             // Initial Display
             this.$el.find('#sidebar').affix(UIConfig.affix.sidebar);
             setActiveMenuItem(this.$el, base_url + '/' + current.id);
-            Sortable.create(this.$el.find(".timeline").get(0));
+            Sortable.create(this.$el.find(".timeline").get(0), {animation: 150, handle: '.timeline-badge'});
+            _.each(this.$el.find(".timeline.nested"), function(obj) {
+                //Sortable.create(obj);
+                Sortable.create(obj, {
+                    group: 'action',
+                    animation: 150, handle: '.timeline-badge'
+                });
+            });
             this.$el.find('#successTags').hide();
             this.$el.find('#errorNoTags').hide();
             this.$el.find('#successCopy').hide();

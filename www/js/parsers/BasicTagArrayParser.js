@@ -39,13 +39,13 @@
             if (_index)
                 parseTags.splice(_index, 0, "([\\w]+)");
 
-            var global_regex = new RegExp("<(" + parseTags.join(DELIMITER) + "): ([\\w\\.]+)>", "g"),
+            var global_regex = new RegExp("<(" + parseTags.join(DELIMITER) + "): ([\\w\\.]+)>", "gi"),
                 global_matches = null,
                 result = null;
 
             global_matches = tags.match(global_regex);
             if (global_matches) {
-                var regex = new RegExp("<(" + parseTags.join(DELIMITER) + "): ([\\w\\.]+)>"),
+                var regex = new RegExp("<(" + parseTags.join(DELIMITER) + "): ([\\w\\.]+)>", "i"),
                     matches = null;
 
                 result = [];

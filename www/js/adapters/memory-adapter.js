@@ -271,6 +271,28 @@
             return deferred.promise();
         },
 
+        getTargets = function () {
+            var deferred = $.Deferred(),
+                results = null;
+
+            results = targets;
+
+            deferred.resolve(results);
+
+            return deferred.promise();
+        },
+
+        getSwitchActions = function () {
+            var deferred = $.Deferred(),
+                results = null;
+
+            results = switch_actions;
+
+            deferred.resolve(results);
+
+            return deferred.promise();
+        },
+
         getPlugins = function () {
             var deferred = $.Deferred(),
                 results = null;
@@ -467,6 +489,47 @@ level_types = [
 { "id": 3, "name": "Type 3" },
 { "id": 4, "name": "Type 4" },
 { "id": 5, "name": "Type 5" }
+],
+
+targets = [
+{ "id": "user", "name": "Active battler" },
+{ "id": "target", "name": "Active targets" },
+{ "id": "targets", "name": "Active targets#2" },
+{ "id": "actors", "name": "Living actors" },
+{ "id": "existing actors", "name": "Living actors#2" },
+{ "id": "all actors", "name": "All actors" },
+{ "id": "dead actors", "name": "Dead actors only" },
+{ "id": "actors not user", "name": "All actors except for the user" },
+{ "id": "actor", "name": "Actor in slot" },
+{ "id": "character", "name": "Character with actor ID" },
+{ "id": "enemies", "name": "Living enemies" },
+{ "id": "existing enemies", "name": "Living enemies#2" },
+{ "id": "all enemies", "name": "All enemies" },
+{ "id": "dead enemies", "name": "Dead enemies only" },
+{ "id": "enemies not user", "name": "All enemies except for the user" },
+{ "id": "enemy", "name": "Enemy in slot" },
+{ "id": "friends", "name": "Battler's alive allies" },
+{ "id": "all friends", "name": "All of the battler's allies" },
+{ "id": "dead friends", "name": "Battler's dead allies only" },
+{ "id": "friends not user", "name": "All battler's allies except for the user" },
+{ "id": "friend", "name": "Battler's ally in slot" },
+{ "id": "opponents", "name": "Battler's alive opponents" },
+{ "id": "all opponents", "name": "All of the battler's opponents" },
+{ "id": "dead opponents", "name": "Battler's dead opponents only" },
+{ "id": "opponent", "name": "Battler's opponent in slot" },
+{ "id": "all alive", "name": "All living actors and enemies" },
+{ "id": "all members", "name": "All living and dead actors and enemies" },
+{ "id": "all dead", "name": "All dead actors and enemies" },
+{ "id": "all not user", "name": "All living battlers except for the user" },
+{ "id": "focus", "name": "Active battler and it's targets" },
+{ "id": "not focus", "name": "Everi=ything but the active battler and it's targets" }
+],
+        
+switch_actions = [
+{ "id": "on", "name": "On" },
+{ "id": "off", "name": "Off" },
+{ "id": "toggle", "name": "Toggle" },
+{ "id": "switch", "name": "Value of another switch" },
 ];
 
     // The public API
@@ -496,6 +559,8 @@ level_types = [
         getWeaponSprites: getWeaponSprites,
         getMotions: getMotions,
         getLevelTypes: getLevelTypes,
+        getTargets: getTargets,
+        getSwitchActions: getSwitchActions,
         getPlugins: getPlugins
     };
 

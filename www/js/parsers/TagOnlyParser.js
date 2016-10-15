@@ -23,7 +23,7 @@
         };
 
         this.parse = function (tagToParse, tags) {
-            var regex = new RegExp("<(" + tagToParse + ")>"),
+            var regex = new RegExp("<(" + tagToParse + ")>", "i"),
                 matches = null,
                 result = null;
 

@@ -6,6 +6,7 @@
 
     return new Plugin(
         'YEP_DamageCore',
+        'Damage Core',
         'v1.04',
         'Expand the control you have over the game\'s damage calculation with more features and effects.',
         'http://yanfly.moe/2015/11/07/yep-25-damage-core/',

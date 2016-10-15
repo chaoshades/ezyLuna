@@ -4,14 +4,12 @@
 
     var $ = require('jquery'),
         Handlebars = require('handlebars'),
-        signedConstHtml = require('text!parsertpl/signedConst.htm'),
+        tagExtensionHtml = require('text!parsertpl/tagExtension.htm'),
 
-        signedConstTpl = Handlebars.compile(signedConstHtml);
+        tagExtensionTpl = Handlebars.compile(tagExtensionHtml);
 
 
-    return function (constant_value) {
-
-        var _constant_value = constant_value;
+    return function () {
 
         this.initialize = function () {
             // Nothing to do
@@ -20,14 +18,13 @@
         this.stringify = function (tagToStringify, tagData) {
             var data = {
                 "tag": tagToStringify,
-                "signed_value": tagData,
-                "constant_value": _constant_value
+                "exts": tagData
             };
-            return signedConstTpl(data);
+            return tagExtensionTpl(data);
         };
 
         this.parse = function (tagToParse, tags) {
-            var regex = new RegExp("<(" + tagToParse + "): ([\\-\\+][\\d\\.]+) " + _constant_value + ">", "i"),
+            var regex = new RegExp("<(" + tagToParse + ")>([^<]+?)</(" + tagToParse + ")>", "i"),
                 matches = null,
                 result = null;
 

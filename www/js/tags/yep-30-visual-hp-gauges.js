@@ -7,6 +7,7 @@
 
     return new Plugin(
         'YEP_X_VisualHpGauge',
+        'Visual HP Gauge',
         'v1.05',
         '(Requires YEP_BattleEngineCore.js) Reveal HP Gauges when a battler is selected or takes damage in battle.',
         'http://yanfly.moe/2015/11/21/yep-30-visual-hp-gauges/',

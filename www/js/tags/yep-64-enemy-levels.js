@@ -10,6 +10,7 @@
 
     return new Plugin(
         'YEP_EnemyLevels',
+        'Enemy Levels',
         'v1.05',
         'This plugin enables giving your enemies levels and parameter changes with those levels.',
         'http://yanfly.moe/2016/01/29/yep-64-enemy-levels/',

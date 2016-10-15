@@ -310,18 +310,49 @@ function NoteTag(tag, data) {
 }
 
 /**
+ * The Extension class defines an extension tag.
+ * @param {String} ext: Name of the tag. 
+ * @param {String/Array/Object} data: The data contained in the extension tag.
+ */
+function ExtensionTag(ext, data) {
+    this.ext = String(ext);
+    this.data = data;
+    this.position = -1;
+}
+
+/**
  * The TagParser class defines a tag parser.
  * @param {String} id: Unique id of the tag. 
  * @param {Object} parser: The parser object.
  * @param {String} tag: Name of the tag (optional). 
+ * @param {String} ext_plugin: Name of the plugin this tag has extensions (optional). 
  */
-function TagParser(id, parser, tag) {
+function TagParser(id, parser, tag, ext_plugin) {
     this.id = String(id);
     this.parser = parser;
     if (tag)
         this.tag = String(tag);
     else
         this.tag = this.id;
+    if (ext_plugin)
+        this.ext_plugin = String(ext_plugin);
+}
+
+/**
+ * The ExtensionParser class defines an extension parser.
+ * @param {String} plugin: Name of the plugin this extension is for. 
+ * @param {String} id: Unique id of the extension. 
+ * @param {Object} parser: The parser object.
+ * @param {String} ext: Name of the extension (optional). 
+ */
+function ExtensionParser(plugin, id, parser, ext) {
+    this.plugin = plugin;
+    this.id = String(id);
+    this.parser = parser;
+    if (ext)
+        this.ext = String(ext);
+    else
+        this.ext = this.id;
 }
 
 /**
@@ -334,18 +365,22 @@ function Project(url) {
 
 /**
  * The Plugin class defines a plugin config.
- * @param {String} name: name to the plugin. 
+ * @param {String} name: name of the plugin. 
+ * @param {String} longname: longname to the plugin. 
  * @param {String} version: version of the plugin.
  * @param {String} description: description of the plugin.
  * @param {String} help_url: url of the help of the plugin.
  * @param {Object} tags: array of tags of the plugin. 
+ * @param {Object} exts: array of extensions of the plugin. 
  */
-function Plugin(name, version, description, help_url, tags) {
+function Plugin(name, longname, version, description, help_url, tags, exts) {
     this.name = String(name);
+    this.longname = String(longname);
     this.version = String(version);
     this.description = String(description);
     this.help_url = String(help_url);
     this.tags = tags;
+    this.exts = exts;
 }
 
 /**

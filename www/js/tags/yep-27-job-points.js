@@ -6,6 +6,7 @@
 
     return new Plugin(
         'YEP_JobPoints',
+        'Job Points',
         'v1.07',
         'This plugin by itself doesn\'t do much, but it enables actors to acquire JP (job points) used for other plugins.',
         'http://yanfly.moe/2015/11/13/yep-27-job-points/',

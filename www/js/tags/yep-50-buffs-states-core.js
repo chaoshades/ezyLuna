@@ -7,6 +7,7 @@
 
     return new Plugin(
         'YEP_BuffsStatesCore',
+        'Buffs & States Core',
         'v1.10',
         'Alter the basic mechanics behind buffs and states that aren\'t adjustable within the RPG Maker editor.',
         'http://yanfly.moe/2015/12/25/yep-50-buffs-states-core/',

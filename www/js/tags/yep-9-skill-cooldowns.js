@@ -9,6 +9,7 @@
 
     return new Plugin(
         'YEP_X_SkillCooldowns',
+        'Cooldowns',
         'v1.08',
         '(Requires YEP_SkillCore.js) Cooldowns can be applied to skills to prevent them from being used continuously.',
         'http://yanfly.moe/2015/10/14/yep-9-skill-cooldowns/',

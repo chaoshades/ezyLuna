@@ -24,7 +24,7 @@
         };
 
         this.parse = function (tagToParse, tags) {
-            var regex = new RegExp("<(" + tagToParse + "): ([\\d]+) to ([\\d]+)>"),
+            var regex = new RegExp("<(" + tagToParse + "): ([\\d]+) to ([\\d]+)>", "i"),
                 matches = null,
                 result = null;
 
