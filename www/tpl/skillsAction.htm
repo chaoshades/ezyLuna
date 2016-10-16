@@ -7,10 +7,10 @@
                 </div>
                 <div class="spacing-bottom">
                     <button id="btnToggleAll" type="button" class="btn btn-default btn-block" title="Toggle all">
-                        <span class="glyphicon glyphicon-sort" aria-hidden="true"></span>&nbsp;Toggle all&nbsp;
+                        <span class="glyphicon glyphicon-sort" aria-hidden="true"></span>&nbsp;Toggle all
                     </button>
                     <button id="btnScrollUp" type="button" class="btn btn-default btn-block" title="Scroll up">
-                        <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>&nbsp;Scroll up&nbsp;
+                        <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>&nbsp;Scroll up
                     </button>
                 </div>
             </div>
@@ -450,33 +450,8 @@
             </div>
         </div>
         <div class="col-md-3">
-            <div class="well well-sm">
-                <div class="btn-toolbar pull-right">
-                    <button type="button" class="btn btn-default btn-success btn-sm" title="Add">
-                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span><span class="hidden-xs">&nbsp;Add</span>
-                    </button>
-                </div>
-                <h4>Toolbox</h4>
-                <ul class="list-group">
-                    <li class="list-group-item active"><a>Action block</a></li>
-                    <li class="list-group-item"><a>Action Sequence Pack #1</a></li>
-                    <li class="list-group-item"><a>Action Sequence Pack #2</a></li>
-                    <li class="list-group-item"><a>Action Sequence Pack #3</a></li>
-                    <li class="list-group-item list-group-item-info">
-                    <a role="button" data-toggle="collapse" href="#collapseActiveTurnBattlePlugin" aria-expanded="true" aria-controls="collapseActiveTurnBattlePlugin">ATB Plugin</a><span class="pull-right"><a tabindex="0" class="btn btn-lg btn-default"  data-toggle="popover" role="button">?</a></span>
-<div id="tooltipActiveTurnBattlePlugin" class="hidden">
-    <!-- Filled by PluginTooltipPartialView.js-->
-</div>
-<div class="half-spacing-bottom"><span class="label label-info">YEP-Battle-ATB</span></div>
-<ul id="collapseActiveTurnBattlePlugin" class="list-group nested collapse">
-    <li class="list-group-item"><a>ATB Charge</a></li>
-    <li class="list-group-item"><a>ATB Gauge</a></li>
-    <li class="list-group-item"><a>ATB Interrupt</a></li>
-    <li class="list-group-item"><a>ATB Speed</a></li>
-</ul>
-                        </li>
-                    <li class="list-group-item"><a>Other Plugin</a></li>
-                </ul>
+            <div id="extension_toolbox">
+                <!-- Filled by ExtensionToolboxPartialView.js-->
             </div>
             <div class="well well-sm">
                 <div class="btn-toolbar pull-right">
@@ -494,27 +469,10 @@
         </div>
     </div>
 
-    <div class="text-center half-spacing-bottom ">
-        <button id="btnGenerateTags" type="button" class="btn btn-default btn-primary btn-lg" title="Generate tags">
-            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>&nbsp;Generate notetags&nbsp;<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-        </button>
-    </div>
-
     <div class="row">
         <div class="col-md-12">
-            <div id="successTags" class="alert alert-success" role="alert"><strong>Success!</strong> The tags have been generated and are in the output below.</div>
-            <div id="errorNoTags" class="alert alert-danger" role="alert"><strong>Oh snap!</strong> There are no tags to generate.</div>
-            <div id="successCopy" class="alert alert-success" role="alert"><strong>Success!</strong> The tags have been copied to the clipboard.</div>
-            <div id="errorCopy" class="alert alert-danger" role="alert"><strong>Oh snap!</strong> There was an error during the copy to the clipboard. You can still do it yourself with Ctrl+C or Cmd+C.</div>
-            <div id="errorNoCopy" class="alert alert-danger" role="alert"><strong>Oh snap!</strong> There is nothing to copy to the clipboard.</div>
-            <div class="form-group">
-                <div class="btn-toolbar pull-right">
-                    <button id="btnCopyClipboard" type="button" class="btn btn-default btn-primary" title="Copy output to clipboard">
-                        <span class="glyphicon glyphicon-copy" aria-hidden="true"></span><span class="hidden-xs">&nbsp;Copy clipboard</span>
-                    </button>
-                </div>
-                <label for="txtOutput">Output:</label>
-                <textarea class="form-control" id="txtOutput" rows="20"></textarea>
+            <div id="tag_generator">
+                <!-- Filled by TagGeneratorPartialView.js-->
             </div>
         </div>
     </div>

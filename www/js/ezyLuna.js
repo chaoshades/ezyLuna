@@ -270,8 +270,8 @@ function scrollUp() {
 /**
  * Toggle all collapsiable divs and reposition affix if necessary
  */
-function toggleAll(collapsed) {
-    var divs = $('div.collapse').not('.navbar-collapse');
+function toggleAll(container, collapsed) {
+    var divs = $(container).find('div.collapse').not('.navbar-collapse');
     if (collapsed) {
         divs.collapse('show');
         collapsed = false;

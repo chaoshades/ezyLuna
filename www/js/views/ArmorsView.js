@@ -7,6 +7,7 @@
         Handlebars = require('handlebars'),
         tagReader = require('app/tag-reader'),
         CarouselPartialView = require("partial/CarouselPartialView"),
+        TagGeneratorPartialView = require("partial/TagGeneratorPartialView"),
         armorsHtml = require('text!tpl/armors.htm'),
 
         armorsTpl = Handlebars.compile(armorsHtml);
@@ -15,8 +16,11 @@
     return function (project, armors, current) {
 
         var base_url = "#project/" + project.id + "/armors",
+            tag_partials = {
+            },
             partials = {
-                'carousel': new CarouselPartialView(base_url, armors, 15)
+                'carousel': new CarouselPartialView(base_url, armors, 15),
+                'tag_generator': new TagGeneratorPartialView(tag_partials)
             }
 
         this.initialize = function () {

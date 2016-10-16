@@ -1,0 +1,31 @@
+﻿<div class="clearfix">
+    <div class="btn-toolbar pull-right">
+        <button type="button" class="js_ToggleAll btn btn-sm btn-default" title="Toggle all">
+            <span class="glyphicon glyphicon-sort" aria-hidden="true"></span><span class="hidden-xs">&nbsp;Toggle all</span>
+        </button>
+        <button type="button" class="js_Add btn btn-sm btn-success" title="Add">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span><span class="hidden-xs">&nbsp;Add</span>
+        </button>
+    </div>
+    <h4>Toolbox</h4>
+    <div class="list-group toolbox">
+        {{#.}}
+        <a class="list-group-item collapse-toggle collapsed" role="button" data-toggle="collapse" href="#collapse{{name}}" aria-expanded="true" aria-controls="collapse{{name}}">{{longname}}</a>
+            <div id="collapse{{name}}" class="list-group nested collapse">
+                <div class="list-group-item">
+                    <span class="label label-info pull-left">{{name}}</span>
+                    <a id="popover{{name}}" tabindex="0" class="btn btn-sm btn-default"  data-toggle="popover" role="button">?</a>
+                    <div id="tooltip{{name}}" class="hidden">
+                        <!-- Filled by PluginTooltipPartialView.js-->
+                    </div>
+                </div>
+                {{#each exts}}
+                <a href="#" class="js_ToolboxLink list-group-item">
+                    {{ext}}
+                </a>
+                {{/each}}
+            </div>
+        </a>
+        {{/.}}
+    </div>
+</div>

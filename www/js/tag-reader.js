@@ -33,6 +33,9 @@ define(function (require) {
         plugins = [
             YEPCoreEngine,
             YEPBattleEngineCore,
+            YEPActionSequencePack1,
+            YEPActionSequencePack2,
+            YEPActionSequencePack3,
             YEPAnimatedSideViewEnemies,
             YEPBattleSystemActiveTurnBattle,
             YEPVisualATBGauge,
@@ -52,10 +55,7 @@ define(function (require) {
             YEPEnemyLevels,
             YEPJobPoints,
             YEPRowFormation,
-            YEPSwapEnemies,
-            YEPActionSequencePack1,
-            YEPActionSequencePack2,
-            YEPActionSequencePack3
+            YEPSwapEnemies
         ],
 
         tags = _.compact(_.chain(plugins)
@@ -129,11 +129,25 @@ define(function (require) {
         return results;
     },
 
-    getSupportedPlugins = function () {
+    getSupportedPlugins = function (includeTags, includeExts) {
         var results = [];
 
         _.each(plugins, function (p) {
-            results.push(new Plugin(p.name, p.longname, p.version, p.description, p.help_url));
+            var temp = new Plugin(p.name, p.longname, p.version, p.description, p.help_url);
+            if (includeTags) {
+                temp.tags = [];
+                _.each(p.tags, function (t) {
+                    temp.tags.push(new TagParser(t.id, null, t.tag, t.ext_plugin));
+                });
+            }
+            if (includeExts) {
+                temp.exts = [];
+                _.each(p.exts, function (e) {
+                    temp.exts.push(new ExtensionParser(e.plugin, e.id, null, e.ext));
+                });
+            }
+
+            results.push(temp);
         });
 
         return results;
