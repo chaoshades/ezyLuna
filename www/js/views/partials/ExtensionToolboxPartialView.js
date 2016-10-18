@@ -6,6 +6,7 @@
         _ = require('underscore'),
         Handlebars = require('handlebars'),
         UIConfig = require('ui-config'),
+        TypeAhead = require('bootstrap-typeahead'),
         PluginTooltipPartialView = require("partial/PluginTooltipPartialView"),
         extensionToolboxHtml = require('text!partialtpl/extensionToolbox.htm'),
 
@@ -13,8 +14,6 @@
 
 
     return function (plugins, ext_plugin) {
-
-        var collapsed = true;
 
         this.initialize = function () {
             // Define a div wrapper for the view. The div wrapper is used to attach events.
@@ -39,10 +38,16 @@
                 //}
             });
 
-            // Click Event for Toggle All button
-            this.$el.on('click', '.js_ToggleAll', function () {
-                var toolbox = $('.toolbox');
-                collapsed = toggleAll(toolbox, collapsed);
+            // Click Event for Change Plugin buttons
+            this.$el.on('click', '.js_SaveChangePlugin', function () {
+                var selected = $('#txtChangePlugin').typeahead("getActive");
+                if (selected) {
+                    $('.toolbox').find('div.list-group').not('.hidden').addClass("hidden");
+                    $('#grp' + selected.id).removeClass("hidden");
+                }
+            });
+            this.$el.on('click', '.js_ClearChangePlugin', function () {
+                $('#txtChangePlugin').val('');
             });
 
             // Toolbox Item Navigation Events
@@ -61,8 +66,11 @@
                     return p.exts && p.exts.length > 0; 
                 });
 
-            // Render view
-            this.$el.html(extensionToolboxTpl(filtered_plugins));
+            var data = {
+                'toolboxPluginID': _.first(filtered_plugins).name,
+                'plugins': filtered_plugins
+            };
+            this.$el.html(extensionToolboxTpl(data));
 
             var partials = {};
             _.each(filtered_plugins, function(p) {
@@ -78,6 +86,9 @@
             _.each(filtered_plugins, function(p) {
                 container.find('#popover' + p.name).popover(UIConfig.popover.tag(p));
             });
+
+            var source = _.map(filtered_plugins, function (p) { return { id: p.name, name: p.longname }; });
+            this.$el.find('#txtChangePlugin').typeahead(UIConfig.typeahead.custom(source));
 
             return this;
         };

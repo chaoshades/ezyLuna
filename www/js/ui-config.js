@@ -58,6 +58,15 @@ define(function (require) {
                     }
                 }
             }
+        },
+        // Bootstrap typeahead
+        typeahead: {
+            custom: function (dataset) {
+                return {
+                    source: dataset,
+                    autoSelect: true
+                }
+            }
         }
     };
 

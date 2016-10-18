@@ -36,6 +36,9 @@
         'bootstrap-switch': {
             deps: ['jquery', 'bootstrap']
         },
+        'bootstrap-typeahead': {
+            deps: ['jquery', 'bootstrap']
+        },
         'jquery-tablesorter': {
             deps: ['jquery']
         },

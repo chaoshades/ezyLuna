@@ -1,31 +1,48 @@
 ﻿<div class="clearfix">
     <div class="btn-toolbar pull-right">
-        <button type="button" class="js_ToggleAll btn btn-sm btn-default" title="Toggle all">
-            <span class="glyphicon glyphicon-sort" aria-hidden="true"></span><span class="hidden-xs">&nbsp;Toggle all</span>
-        </button>
+        <a role="button" data-toggle="collapse" href="#collapseChangePlugin" aria-expanded="true" aria-controls="collapseChangePlugin" class="btn btn-sm btn-default" title="Change">
+            <span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span><span class="hidden-xs">&nbsp;Change</span>
+        </a>
         <button type="button" class="js_Add btn btn-sm btn-success" title="Add">
             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span><span class="hidden-xs">&nbsp;Add</span>
         </button>
     </div>
     <h4>Toolbox</h4>
-    <div class="list-group toolbox">
-        {{#.}}
-        <a class="list-group-item collapse-toggle collapsed" role="button" data-toggle="collapse" href="#collapse{{name}}" aria-expanded="true" aria-controls="collapse{{name}}">{{longname}}</a>
-            <div id="collapse{{name}}" class="list-group nested collapse">
-                <div class="list-group-item">
-                    <span class="label label-info pull-left">{{name}}</span>
-                    <a id="popover{{name}}" tabindex="0" class="btn btn-sm btn-default"  data-toggle="popover" role="button">?</a>
-                    <div id="tooltip{{name}}" class="hidden">
-                        <!-- Filled by PluginTooltipPartialView.js-->
+    <div class="toolbox">
+        <div id="collapseChangePlugin" class="collapse">
+            <div class="form-group well well-sm half-spacing-bottom">
+                <label for="txtChangePlugin">Select plugin:</label>
+                <div class="input-group">
+                    <input id="txtChangePlugin" class="form-control input-sm" type="text" data-provide="typeahead" autocomplete="off">
+                    <div class="input-group-btn">
+                        <button type="button" class="js_SaveChangePlugin btn btn-primary btn-sm" title="Save">
+                            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span><span class="hidden-xs">&nbsp;Save</span>
+                        </button>
+                        <button type="button" class="js_ClearChangePlugin btn btn-default btn-sm" title="Clear">
+                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span><span class="hidden-xs">&nbsp;Clear</span>
+                        </button>
                     </div>
                 </div>
-                {{#each exts}}
-                <a href="#" class="js_ToolboxLink list-group-item">
-                    {{ext}}
-                </a>
-                {{/each}}
             </div>
-        </a>
-        {{/.}}
+        </div>
+        {{#each plugins}}
+        <div id="grp{{name}}" class="list-group{{#compare name "!=" ../toolboxPluginID}} hidden{{/compare}}">
+            <div class="list-group-item">
+                <div class="btn-toolbar pull-right">
+                    <a id="popover{{name}}" tabindex="0" class="btn btn-sm btn-default"  data-toggle="popover" role="button">?</a>
+                </div>
+                <div>{{longname}}</div>
+                <span class="label label-info">{{name}}</span>
+                <div id="tooltip{{name}}" class="hidden">
+                    <!-- Filled by PluginTooltipPartialView.js-->
+                </div>
+            </div>
+            {{#each exts}}
+            <a href="#" class="js_ToolboxLink list-group-item">
+                {{ext}}
+            </a>
+            {{/each}}
+        </div>
+        {{/each}}
     </div>
 </div>

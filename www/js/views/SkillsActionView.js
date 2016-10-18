@@ -6,6 +6,7 @@
         _ = require('underscore'),
         Handlebars = require('handlebars'),
         UIConfig = require('ui-config'),
+        TypeAhead = require('bootstrap-typeahead'),
         Sortable = require('sortable'),
         tagReader = require('app/tag-reader'),
         CarouselPartialView = require("partial/CarouselPartialView"),
@@ -31,6 +32,17 @@
         this.initialize = function () {
             // Define a div wrapper for the view. The div wrapper is used to attach events.
             this.$el = $('<div/>');
+
+            // Click Event for Quick Access buttons
+            this.$el.on('click', '.js_SaveQuickAccess', function () {
+                var selected = $('#txtQuickAccess').typeahead("getActive");
+                if (selected) {
+                    window.location.hash = selected.url;
+                }
+            });
+            this.$el.on('click', '.js_ClearQuickAccess', function () {
+                $('#txtQuickAccess').val('');
+            });
 
             // Click Event for ToggleAll button
             this.$el.on('click', '#btnToggleAll', function () {
@@ -78,6 +90,9 @@
                     animation: 150, handle: '.timeline-badge'
                 });
             });
+
+            var source = _.map(skills, function (s) { return { id: s.id, name: s.name, url: base_url + '/' + s.id }; });
+            this.$el.find('#txtQuickAccess').typeahead(UIConfig.typeahead.custom(source));
 
             return this;
         };
