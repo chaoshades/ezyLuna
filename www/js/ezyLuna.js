@@ -281,7 +281,7 @@ function toggleAll(container, collapsed) {
     }
 
     if (!collapsed)
-        removeAffixBottom($('#sidebar'));
+        removeAffixBottom($('.sidebar'));
 
     return collapsed;
 }

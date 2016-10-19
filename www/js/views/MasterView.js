@@ -24,9 +24,9 @@
 
             // Resize Event for affix if there is one
             $(window).resize(function () {
-                var affix = $('#sidebar');
+                var affix = $('.sidebar');
                 if (affix)
-                    $('#sidebar').affix('checkPosition');
+                    $('.sidebar').affix('checkPosition');
             });
 
         };

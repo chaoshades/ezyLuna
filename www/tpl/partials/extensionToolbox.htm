@@ -1,6 +1,6 @@
 ﻿<div class="clearfix">
     <div class="btn-toolbar pull-right">
-        <a role="button" data-toggle="collapse" href="#collapseChangePlugin" aria-expanded="true" aria-controls="collapseChangePlugin" class="btn btn-sm btn-default" title="Change">
+        <a role="button" data-toggle="collapse" href="#collapseChangePlugin" aria-expanded="true" aria-controls="collapseChangePlugin" class="btn btn-sm btn-default" title="Change plugin">
             <span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span><span class="hidden-xs">&nbsp;Change</span>
         </a>
         <button type="button" class="js_Add btn btn-sm btn-success" title="Add">
@@ -15,8 +15,8 @@
                 <div class="input-group">
                     <input id="txtChangePlugin" class="form-control input-sm" type="text" data-provide="typeahead" autocomplete="off">
                     <div class="input-group-btn">
-                        <button type="button" class="js_SaveChangePlugin btn btn-primary btn-sm" title="Save">
-                            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span><span class="hidden-xs">&nbsp;Save</span>
+                        <button type="button" class="js_SaveChangePlugin btn btn-primary btn-sm" title="Go">
+                            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span><span class="hidden-xs">&nbsp;Go</span>
                         </button>
                         <button type="button" class="js_ClearChangePlugin btn btn-default btn-sm" title="Clear">
                             <span class="glyphicon glyphicon-trash" aria-hidden="true"></span><span class="hidden-xs">&nbsp;Clear</span>
@@ -26,16 +26,18 @@
             </div>
         </div>
         {{#each plugins}}
-        <div id="grp{{name}}" class="list-group{{#compare name "!=" ../toolboxPluginID}} hidden{{/compare}}">
+        <div id="grp{{pagename}}" class="list-group{{#compare pagename "!=" ../toolboxPluginID}} hidden{{/compare}}">
             <div class="list-group-item">
                 <div class="btn-toolbar pull-right">
-                    <a id="popover{{name}}" tabindex="0" class="btn btn-sm btn-default"  data-toggle="popover" role="button">?</a>
+                    <a id="popover{{pagename}}" tabindex="0" class="btn btn-sm btn-default"  data-toggle="popover" role="button">?</a>
                 </div>
                 <div>{{longname}}</div>
                 <span class="label label-info">{{name}}</span>
+                {{#compare num_page "==" 1}}
                 <div id="tooltip{{name}}" class="hidden">
                     <!-- Filled by PluginTooltipPartialView.js-->
                 </div>
+                {{/compare}}
             </div>
             {{#each exts}}
             <a href="#" class="js_ToolboxLink list-group-item">

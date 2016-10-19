@@ -26,7 +26,7 @@
             partials = {
                 'carousel': new CarouselPartialView(base_url, skills, 15),
                 'tag_generator': new TagGeneratorPartialView(tag_partials),
-                'extension_toolbox': new ExtensionToolboxPartialView(tagReader.getSupportedPlugins(false, true), "YEP_BattleEngineCore")
+                'extension_toolbox': new ExtensionToolboxPartialView(tagReader.getSupportedPlugins(false, true), "YEP_BattleEngineCore", 15)
             }
 
         this.initialize = function () {
@@ -80,7 +80,7 @@
             var renderedPartials = _.mapObject(partials, function (p, key) { wrapperReference.find('#' + key).html(p.render().$el); });
 
             // Initial Display
-            this.$el.find('#sidebar').affix(UIConfig.affix.sidebar);
+            this.$el.find('.sidebar').affix(UIConfig.affix.sidebar);
             setActiveMenuItem(this.$el, base_url + '/' + current.id);
             Sortable.create(this.$el.find(".timeline").get(0), {animation: 150, handle: '.timeline-badge'});
             _.each(this.$el.find(".timeline.nested"), function(obj) {

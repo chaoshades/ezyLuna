@@ -87,18 +87,19 @@ textarea {
 }
 @media (min-width:992px)
 {
-    #sidebar {
+    .sidebar {
         top: 68px;
     }
-    #sidebar.affix-top {
+    .sidebar.affix-top {
         width: 100%;
     }
-    #sidebar.affix {
+    .sidebar.affix {
         width:25%;
         padding-right:30px;
     }
-    #sidebar.affix-bottom {
-        padding-right:15px;
+    .sidebar.affix-bottom {
+        width: 100%;
+        padding-right:30px;
     }
 }
 

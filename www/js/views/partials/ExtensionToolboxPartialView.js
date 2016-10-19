@@ -13,7 +13,7 @@
         extensionToolboxTpl = Handlebars.compile(extensionToolboxHtml);
 
 
-    return function (plugins, ext_plugin) {
+    return function (plugins, ext_plugin, page_size) {
 
         this.initialize = function () {
             // Define a div wrapper for the view. The div wrapper is used to attach events.
@@ -22,20 +22,6 @@
             // Click Event for Add button
             this.$el.on('click', '.js_Add', function () {
                 // TODO
-                //var state_data = getStateManagerCallback().getState(stateKey).data;
-                //var addingIndex = _.findIndex(state_data[dataSelector].data, function (d) { return d.add; });
-                //// Limit one add at a time
-                //if (addingIndex === -1) {
-                //    // Only one editable row at a time
-                //    _.each(state_data[dataSelector].data, function (d) { d.edit = false; });
-                //    // Push new item
-                //    state_data[dataSelector].data.push({ edit: true, add: true });
-                //    getStateManagerCallback().setState(stateKey, state_data);
-                //    // Refresh table
-                //    refreshTableCallback(wrapperReference, state_data);
-                //    if (pager) initPagerCallback(wrapperReference, state_data, true);
-                //    initSortCallback(wrapperReference);
-                //}
             });
 
             // Click Event for Change Plugin buttons
@@ -44,6 +30,7 @@
                 if (selected) {
                     $('.toolbox').find('div.list-group').not('.hidden').addClass("hidden");
                     $('#grp' + selected.id).removeClass("hidden");
+                    $('#txtChangePlugin').val('');
                 }
             });
             this.$el.on('click', '.js_ClearChangePlugin', function () {
@@ -60,15 +47,43 @@
         };
 
         this.render = function () {
-            // Filter plugins and keeps only the ones which have extensionsc for the plugin of the toolbox (ext_plugin)
-            var filtered_plugins = _.filter(plugins, function(p) {
-                    p.exts = _.filter(p.exts, function(e) { return e.plugin == ext_plugin; });
+            // Filter plugins and keeps only the ones which have extensions for the plugin of the toolbox (ext_plugin)
+            var filtered_plugins = _.filter(plugins, function (p) {
+                    // Removes duplicates (because different extensions can generate the same extension tag)
+                    p.exts = _.uniq(_.filter(p.exts, function (e) { return e.plugin == ext_plugin; }), function (e) { return e.ext; });
                     return p.exts && p.exts.length > 0; 
                 });
 
+            // Split data into pages
+            var paged_plugins = [];
+            _.each(filtered_plugins, function (p) {
+                if (p.exts.length > page_size) {
+                    var i = 1,
+                        temp = p.exts.slice(0);
+                    while (temp.length > 0) {
+                        var new_p = _.extend({}, p);
+                        // Change longname here instead of template because it is used for typeahead
+                        new_p.longname += " (page " + i + ")"; 
+                        // Helper properties for template
+                        new_p.num_page = i;
+                        new_p.pagename = new_p.name + "_page" + i;
+                        // Split extensions by page
+                        new_p.exts = temp.splice(0, page_size);
+                        paged_plugins.push(new_p);
+                        i++;
+                    }
+                }
+                else {
+                    // Helper properties for template
+                    p.pagename = p.name; 
+                    p.num_page = 1;
+                    paged_plugins.push(p);
+                }
+            });
+
             var data = {
-                'toolboxPluginID': _.first(filtered_plugins).name,
-                'plugins': filtered_plugins
+                'toolboxPluginID': _.first(paged_plugins).pagename,
+                'plugins': paged_plugins
             };
             this.$el.html(extensionToolboxTpl(data));
 
@@ -83,11 +98,11 @@
 
             // Initial Display
             var container = this.$el;
-            _.each(filtered_plugins, function(p) {
-                container.find('#popover' + p.name).popover(UIConfig.popover.tag(p));
+            _.each(paged_plugins, function (p) {
+                container.find('#popover' + p.pagename).popover(UIConfig.popover.tag(p));
             });
 
-            var source = _.map(filtered_plugins, function (p) { return { id: p.name, name: p.longname }; });
+            var source = _.map(paged_plugins, function (p) { return { id: p.pagename, name: p.longname }; });
             this.$el.find('#txtChangePlugin').typeahead(UIConfig.typeahead.custom(source));
 
             return this;

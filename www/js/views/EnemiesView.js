@@ -125,7 +125,7 @@
             var renderedPartials = _.mapObject(_.extend({}, partials, tag_partials), function (p, key) { wrapperReference.find('#' + key).html(p.render().$el); });
 
             // Initial Display
-            this.$el.find('#sidebar').affix(UIConfig.affix.sidebar);
+            this.$el.find('.sidebar').affix(UIConfig.affix.sidebar);
             setActiveMenuItem(this.$el, base_url + '/' + current.id);
 
             var source = _.map(enemies, function (e) { return { id: e.id, name: e.name, url:base_url + '/' + e.id }; });
