@@ -42,7 +42,11 @@
                 this.renderTags();
             }
 
-            this.$el.html(tauntSettingsTpl(current));
+            var data = {
+                'current': current,
+                'plugin': YEPTaunt
+            };
+            this.$el.html(tauntSettingsTpl(data));
 
             var partials = {
                 'tooltipTauntSettings': new PluginTooltipPartialView(YEPTaunt)
@@ -107,6 +111,10 @@
             setTag(tags, '#chkIgnoreCertainTaunt', IGNORE_CERTAIN_TAUNT);
 
             return tags;
+        };
+
+        this.getSupportedTag = function () {
+            return YEPTaunt;
         };
 
         this.initialize();

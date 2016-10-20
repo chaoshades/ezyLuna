@@ -42,7 +42,11 @@
                 this.renderTags();
             }
 
-            this.$el.html(generalSettingsTpl(current));
+            var data = {
+                'current': current,
+                'plugin': YEPCoreEngine
+            };
+            this.$el.html(generalSettingsTpl(data));
 
             var partials = {
                 'tooltipGeneralSettings': new PluginTooltipPartialView(YEPCoreEngine)
@@ -112,6 +116,10 @@
             setValueTag(tags, '#chkLuk', LUK, '#numLuk');
 
             return tags;
+        };
+
+        this.getSupportedTag = function () {
+            return YEPCoreEngine;
         };
 
         this.initialize();

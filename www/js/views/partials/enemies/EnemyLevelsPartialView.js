@@ -77,6 +77,7 @@
 
             var data = {
                 'current': current,
+                'plugin': YEPEnemyLevels,
                 'levelTypes': linked_data.levelTypes,
                 'skills': linked_data.skills
             };
@@ -266,6 +267,10 @@
             setObjectTag(tags, state_data, 'skillRequireLevel', SKILL_REQUIRE_LEVEL, function (item) { return [item.skillID, item.level]; });
 
             return tags;
+        };
+
+        this.getSupportedTag = function () {
+            return YEPEnemyLevels;
         };
 
         this.getStateManager = function () {

@@ -40,6 +40,7 @@
 
             var data = {
                 'current': current,
+                'plugin': YEPWeaponAnimation,
                 'weapon_sprites': linked_data.weapon_sprites,
                 'motions': linked_data.motions,
                 'animations': linked_data.animations
@@ -95,6 +96,10 @@
             setValueTag(tags, '#chkWeaponAnimation', WEAPON_ANIMATION, '#ddlWeaponAnimation');
 
             return tags;
+        };
+
+        this.getSupportedTag = function () {
+            return YEPWeaponAnimation;
         };
 
         this.initialize();

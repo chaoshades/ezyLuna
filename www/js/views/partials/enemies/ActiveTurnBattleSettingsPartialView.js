@@ -37,7 +37,11 @@
                 this.renderTags();
             }
 
-            this.$el.html(activeTurnBattleSettingsTpl(current));
+            var data = {
+                'current': current,
+                'plugin': YEPBattleSystemActiveTurnBattle
+            };
+            this.$el.html(activeTurnBattleSettingsTpl(data));
 
             var partials = {
                 'tooltipActiveTurnBattleSettings': new PluginTooltipPartialView(YEPBattleSystemActiveTurnBattle)
@@ -86,6 +90,10 @@
             setSignedValueTag(tags, '#chkAtbTurn', ATB_TURN_2, '#numAtbTurnRate');
 
             return tags;
+        };
+
+        this.getSupportedTag = function () {
+            return YEPBattleSystemActiveTurnBattle;
         };
 
         this.initialize();

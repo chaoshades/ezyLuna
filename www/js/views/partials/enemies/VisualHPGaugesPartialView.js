@@ -40,7 +40,11 @@
                 this.renderTags();
             }
 
-            this.$el.html(visualHPGaugesTpl(current));
+            var data = {
+                'current': current,
+                'plugin': YEPVisualHPGauges
+            };
+            this.$el.html(visualHPGaugesTpl(data));
 
             var partials = {
                 'tooltipVisualHPGauges': new PluginTooltipPartialView(YEPVisualHPGauges)
@@ -103,6 +107,10 @@
             setValueTag(tags, '#chkHpGaugeColor2', HP_GAUGE_COLOR_2, '#numHpGaugeColor2');
 
             return tags;
+        };
+
+        this.getSupportedTag = function () {
+            return YEPVisualHPGauges;
         };
 
         this.initialize();

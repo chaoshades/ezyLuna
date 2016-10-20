@@ -1,9 +1,10 @@
-﻿<h4><a role="button" data-toggle="collapse" href="#collapseTauntSettings" aria-expanded="true" aria-controls="collapseTauntSettings">Taunt Settings</a><span class="pull-right"><a tabindex="0" class="btn btn-lg btn-default"  data-toggle="popover" role="button">?</a></span></h4>
+﻿<h4><a role="button" data-toggle="collapse" href="#collapseTauntSettings" aria-expanded="true" aria-controls="collapseTauntSettings">{{plugin.longname}}</a><span class="pull-right"><a tabindex="0" class="btn btn-lg btn-default"  data-toggle="popover" role="button">?</a></span></h4>
 <div id="tooltipTauntSettings" class="hidden">
     <!-- Filled by PluginTooltipPartialView.js-->
 </div>
-<div class="half-spacing-bottom"><span class="label label-info">YEP-Taunt</span></div>
+<div class="half-spacing-bottom"><span class="label label-info">{{plugin.name}}</span></div>
 <div id="collapseTauntSettings" class="collapse">
+    {{#with current}}
     <div class="form-group">
         <div class="checkbox checkbox-right no-top">
             <label for="chkPhysicalTaunt">Physical Taunt:<input id="chkPhysicalTaunt" type="checkbox" {{checkedIf physicalTaunt}} /></label>
@@ -49,4 +50,5 @@
             <label for="chkIgnoreCertainTaunt">Ignore Certain Taunt:<input id="chkIgnoreCertainTaunt" type="checkbox" {{checkedIf ignoreCertainTaunt}} /></label>
         </div>
     </div>
+    {{/with}}
 </div>

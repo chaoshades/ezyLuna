@@ -51,7 +51,11 @@
                 this.renderTags();
             }
 
-            this.$el.html(buffsStatesSettingsTpl(current));
+            var data = {
+                'current': current,
+                'plugin': YEPBuffsStatesCore
+            };
+            this.$el.html(buffsStatesSettingsTpl(data));
 
             var partials = {
                 'tooltipBuffsStatesSettings': new PluginTooltipPartialView(YEPBuffsStatesCore)
@@ -153,6 +157,10 @@
             setTag(tags, '#chkShowStateTurn', SHOW_STATE_TURN);
 
             return tags;
+        };
+
+        this.getSupportedTag = function () {
+            return YEPBuffsStatesCore;
         };
 
         this.initialize();

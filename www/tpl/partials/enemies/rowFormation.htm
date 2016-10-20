@@ -1,9 +1,10 @@
-﻿<h4><a role="button" data-toggle="collapse" href="#collapseRowFormation" aria-expanded="true" aria-controls="collapseRowFormation">Row Formation</a><span class="pull-right"><a tabindex="0" class="btn btn-lg btn-default"  data-toggle="popover" role="button">?</a></span></h4>
+﻿<h4><a role="button" data-toggle="collapse" href="#collapseRowFormation" aria-expanded="true" aria-controls="collapseRowFormation">{{plugin.longname}}</a><span class="pull-right"><a tabindex="0" class="btn btn-lg btn-default"  data-toggle="popover" role="button">?</a></span></h4>
 <div id="tooltipRowFormation" class="hidden">
     <!-- Filled by PluginTooltipPartialView.js-->
 </div>
-<div class="half-spacing-bottom"><span class="label label-info">YEP-Row-Formation</span></div>
+<div class="half-spacing-bottom"><span class="label label-info">{{plugin.name}}</span></div>
 <div id="collapseRowFormation" class="collapse">
+    {{#with current}}
     <div class="form-group">
         <label for="numDefaultRow">Default Row:</label>
         <div class="input-group">
@@ -31,4 +32,5 @@
             </div>
         </div>
     </div>
+    {{/with}}
 </div>

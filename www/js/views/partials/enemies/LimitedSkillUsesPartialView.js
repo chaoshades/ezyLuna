@@ -54,6 +54,7 @@
 
             var data = {
                 'current': current,
+                'plugin': YEPLimitedSkillUses,
                 'skillTypes': _.map(_.compact(linked_data.types.skillTypes), function (t, i) {return {id: i+1, name:t}}),
                 'skills': linked_data.skills
             };
@@ -143,6 +144,10 @@
             setObjectTag(tags, state_data, 'skillUseMax', SKILL_USE_MAX, function (item) { return [item.skillID, getSignedValue(item.max)]; });
 
             return tags;
+        };
+
+        this.getSupportedTag = function () {
+            return YEPLimitedSkillUses;
         };
 
         this.getStateManager = function () {

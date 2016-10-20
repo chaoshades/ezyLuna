@@ -34,7 +34,11 @@
                 this.renderTags();
             }
 
-            this.$el.html(damageSettingsTpl(current));
+            var data = {
+                'current': current,
+                'plugin': YEPDamageCore
+            };
+            this.$el.html(damageSettingsTpl(data));
 
             var partials = {
                 'tooltipDamageSettings': new PluginTooltipPartialView(YEPDamageCore)
@@ -67,6 +71,10 @@
             setTag(tags, '#chkBypassDamageCap', BYPASS_DAMAGE_CAP);
 
             return tags;
+        };
+
+        this.getSupportedTag = function () {
+            return YEPDamageCore;
         };
 
         this.initialize();

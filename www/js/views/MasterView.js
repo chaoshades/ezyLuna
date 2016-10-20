@@ -5,6 +5,7 @@
     var //DEFAULT_ROUTE = "#",
         $ = require('jquery'),
         Handlebars = require('handlebars'),
+        UIConfig = require('ui-config'),
         masterHtml = require('text!tpl/master.htm'),
 
         masterTpl = Handlebars.compile(masterHtml);
@@ -17,7 +18,7 @@
             this.$el = $('<div/>');
 
             // Click Event for nav bar buttons
-            this.$el.on('click', '.navbar-nav a', function () {
+            this.$el.on('click', '.navbar-nav > li > a', function () {
                 $('.navbar-nav > .active').removeClass('active');
                 $(this).parent().addClass('active');
             });
@@ -29,6 +30,30 @@
                     $('.sidebar').affix('checkPosition');
             });
 
+            // Click Event for ScrollUp button
+            this.$el.on('click', '#btnScrollUp', function () {
+                scrollUp();
+                return false;
+            });
+
+            // Click Event for Quick Scroll buttons
+            this.$el.on('click', '.js_SaveQuickScroll', function () {
+                var selected = $('#txtQuickScroll').typeahead("getActive");
+                if (selected) {
+                    scrollToDiv($('#'+selected.id));
+                }
+            });
+            this.$el.on('click', '.js_ClearQuickScroll', function () {
+                $('#txtQuickScroll').val('');
+            });
+
+            // Bind custom events
+            if (settings.events) {
+                var container = this.$el;
+                $.each(settings.events, function (i, e) {
+                    container.on(e.event, e.selector, e.handler);
+                });
+            }
         };
 
         this.render = function () {
@@ -46,6 +71,12 @@
                 // Sets specific menu link active
                 if (settings.menu.active) {
                     this.setActiveMenuItem(settings.menu.active);
+                }
+
+                if (settings.menu.quickScroll && settings.menu.quickScroll.enabled) {
+                    var source = settings.menu.quickScroll.source;
+                    if (source)
+                        this.$el.find('#txtQuickScroll').typeahead(UIConfig.typeahead.custom(source));
                 }
             }
 

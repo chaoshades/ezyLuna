@@ -37,6 +37,7 @@
 
             var data = {
                 'current': current,
+                'plugin': YEPBattleEngineCore,
                 'animations': linked_data.animations
             };
             this.$el.html(battleSettingsTpl(data));
@@ -76,6 +77,10 @@
             setTag(tags, '#chkSpriteCannotMove', SPRITE_CANNOT_MOVE);
 
             return tags;
+        };
+
+        this.getSupportedTag = function () {
+            return YEPBattleEngineCore;
         };
 
         this.initialize();

@@ -35,7 +35,11 @@
                 this.renderTags();
             }
 
-            this.$el.html(rewardsTpl(current));
+            var data = {
+                'current': current,
+                'plugin': YEPCoreEngine
+            };
+            this.$el.html(rewardsTpl(data));
 
             var partials = {
                 'tooltipRewards': new PluginTooltipPartialView(YEPCoreEngine)
@@ -73,6 +77,10 @@
             setValueTag(tags, '#chkGold', GOLD, '#numGold');
 
             return tags;
+        };
+
+        this.getSupportedTag = function () {
+            return YEPCoreEngine;
         };
 
         this.initialize();

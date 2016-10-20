@@ -1,9 +1,10 @@
-﻿<h4><a role="button" data-toggle="collapse" href="#collapseBuffsStatesSettings" aria-expanded="true" aria-controls="collapseBuffsStatesSettings">Buffs & States Settings</a><span class="pull-right"><a tabindex="0" class="btn btn-lg btn-default"  data-toggle="popover" role="button">?</a></span></h4>
+﻿<h4><a role="button" data-toggle="collapse" href="#collapseBuffsStatesSettings" aria-expanded="true" aria-controls="collapseBuffsStatesSettings">{{plugin.longname}}</a><span class="pull-right"><a tabindex="0" class="btn btn-lg btn-default"  data-toggle="popover" role="button">?</a></span></h4>
 <div id="tooltipBuffsStatesSettings" class="hidden">
     <!-- Filled by PluginTooltipPartialView.js-->
 </div>
-<div class="half-spacing-bottom"><span class="label label-info">YEP-Buffs-States-Core</span></div>
+<div class="half-spacing-bottom"><span class="label label-info">{{plugin.name}}</span></div>
 <div id="collapseBuffsStatesSettings" class="collapse">
+    {{#with current}}
     <div class="row">
         <div class="col-xs-6 col-md-6">
             <div class="form-group">
@@ -201,4 +202,5 @@
             <label for="chkShowStateTurn">Show State Turn:<input id="chkShowStateTurn" type="checkbox" {{checkedIf showStateTurn.enabled}} /></label>
         </div>
     </div>
+    {{/with}}
 </div>

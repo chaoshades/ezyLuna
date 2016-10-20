@@ -70,6 +70,7 @@
 
             var data = {
                 'current': current,
+                'plugin': YEPInstantCast,
                 'skills': linked_data.skills,
                 'items': linked_data.items
             };
@@ -271,6 +272,10 @@
             setObjectTag(tags, state_data, 'cancelInstantItemRange', CANCEL_INSTANT_ITEM_2, function (item) { return [item.start, item.end]; });
 
             return tags;
+        };
+
+        this.getSupportedTag = function () {
+            return YEPInstantCast;
         };
 
         this.getStateManager = function () {

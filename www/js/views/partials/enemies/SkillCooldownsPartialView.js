@@ -74,6 +74,7 @@
 
             var data = {
                 'current': current,
+                'plugin': YEPSkillCooldowns,
                 'skillTypes': _.map(_.compact(linked_data.types.skillTypes), function (t, i) { return { id: i+1, name: t } }),
                 'skills': linked_data.skills
             };
@@ -283,6 +284,10 @@
             setSignedValueTag(tags, '#chkGlobalWarmup', GLOBAL_WARMUP, '#numGlobalWarmup');
 
             return tags;
+        };
+
+        this.getSupportedTag = function () {
+            return YEPSkillCooldowns;
         };
 
         this.getStateManager = function () {

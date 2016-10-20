@@ -36,7 +36,11 @@
                 this.renderTags();
             }
 
-            this.$el.html(visualATBGaugeTpl(current));
+            var data = {
+                'current': current,
+                'plugin': YEPVisualATBGauge
+            };
+            this.$el.html(visualATBGaugeTpl(data));
 
             var partials = {
                 'tooltipVisualATBGauge': new PluginTooltipPartialView(YEPVisualATBGauge)
@@ -83,6 +87,10 @@
             setValueTag(tags, '#chkAtbGaugeWidth', ATB_GAUGE_WIDTH, '#numAtbGaugeWidth');
 
             return tags;
+        };
+
+        this.getSupportedTag = function () {
+            return YEPVisualATBGauge;
         };
 
         this.initialize();

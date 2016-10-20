@@ -262,8 +262,24 @@ function download(filename, text) {
  * Scroll page to the top
  */
 function scrollUp() {
+    scrollTo(0);
+}
+
+/**
+ * Scroll page to specific div
+ */
+function scrollToDiv(div) {
+    // Navbar height + margin of div
+    var adjustment = $('nav.navbar').height() + parseInt($(div).css('margin-bottom'));
+    scrollTo($(div).offset().top - adjustment);
+}
+
+/**
+ * Scroll page to specific top position
+ */
+function scrollTo(top) {
     $('body').animate({
-        scrollTop: 0
+        scrollTop: top
     }, 'easeOutExpo');
 }
 
@@ -271,7 +287,8 @@ function scrollUp() {
  * Toggle all collapsiable divs and reposition affix if necessary
  */
 function toggleAll(container, collapsed) {
-    var divs = $(container).find('div.collapse').not('.navbar-collapse');
+    // Excludes collapse in navigation bar and in sidebars
+    var divs = $(container).find('div.collapse').not('.navbar-collapse').not('.sidebar .collapse');
     if (collapsed) {
         divs.collapse('show');
         collapsed = false;
@@ -381,6 +398,28 @@ function Plugin(name, longname, version, description, help_url, tags, exts) {
     this.help_url = String(help_url);
     this.tags = tags;
     this.exts = exts;
+}
+
+/**
+ * The QuickAccessItem class defines an item for the QuickAccess for the typeahead.
+ * @param {String} id: id of the item. 
+ * @param {String} name: name to the item (used to search). 
+ * @param {String} url: url of the item.
+ */
+function QuickAccessItem(id, name, url) {
+    this.id = String(id);
+    this.name = String(name);
+    this.url = String(url);;
+}
+
+/**
+ * The QuickScrollItem class defines an item for the QuickScroll for the typeahead.
+ * @param {String} id: id of the item. 
+ * @param {String} name: name to the item (used to search). 
+ */
+function QuickScrollItem(id, name) {
+    this.id = String(id);
+    this.name = String(name);
 }
 
 /**

@@ -40,7 +40,11 @@
                 this.renderTags();
             }
 
-            this.$el.html(armorScalingTpl(current));
+            var data = {
+                'current': current,
+                'plugin': YEPArmorScaling
+            };
+            this.$el.html(armorScalingTpl(data));
 
             var partials = {
                 'tooltipArmorScaling': new PluginTooltipPartialView(YEPArmorScaling)
@@ -103,6 +107,10 @@
             setValueTag(tags, '#chkCertainArmorReduction', CERTAIN_ARMOR_REDUCTION_2, '#numCertainArmorReductionRate');
 
             return tags;
+        };
+
+        this.getSupportedTag = function () {
+            return YEPArmorScaling;
         };
 
         this.initialize();

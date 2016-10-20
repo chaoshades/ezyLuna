@@ -52,6 +52,7 @@
 
             var data = {
                 'current': current,
+                'plugin': YEPAutoPassiveStates,
                 'states': linked_data.states
             };
 
@@ -139,6 +140,10 @@
             setObjectTag(tags, state_data, 'passiveStateRange', PASSIVE_STATE_2, function (item) { return [item.start, item.end]; });
 
             return tags;
+        };
+
+        this.getSupportedTag = function () {
+            return YEPAutoPassiveStates;
         };
 
         this.getStateManager = function () {

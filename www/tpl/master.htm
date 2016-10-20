@@ -22,8 +22,40 @@
             </ul>
             {{/if}}
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/tests/unitspecrunner.html"><span class="glyphicon glyphicon-console" aria-hidden="true"></span>&nbsp;Unit tests</a></li>
-                <li><a href="/tests/funcspecrunner.html"><span class="glyphicon glyphicon-modal-window" aria-hidden="true"></span>&nbsp;Func tests</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Quick links&nbsp;<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a id="btnScrollUp" href="#"><span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>&nbsp;Scroll up</a></li>
+                        {{#if menu.enableToggleAll}}<li><a id="btnToggleAll" href="#"><span class="glyphicon glyphicon-sort" aria-hidden="true"></span>&nbsp;Toggle all</a></li>{{/if}}
+                        {{#if menu.enableTagGenerator}}<li><a id="btnTagGenerator" href="#"><span class="glyphicon glyphicon-console" aria-hidden="true"></span>&nbsp;Tag generator</a></li>{{/if}}
+                        {{#if menu.quickScroll.enabled}}
+                        <li role="separator" class="divider"></li>
+                        <li class="quickscroll">
+                            <div class="form-group">
+                                <label for="txtQuickScroll">Scroll to:</label>
+                                <div class="input-group">
+                                    <input id="txtQuickScroll" class="form-control input-sm" type="text" data-provide="typeahead" autocomplete="off">
+                                    <div class="input-group-btn">
+                                        <button type="button" class="js_SaveQuickScroll btn btn-primary btn-sm" title="Go">
+                                            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span><span class="hidden-xs">&nbsp;Go</span>
+                                        </button>
+                                        <button type="button" class="js_ClearQuickScroll btn btn-default btn-sm" title="Clear">
+                                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span><span class="hidden-xs">&nbsp;Clear</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        {{/if}}
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tests&nbsp;<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/tests/unitspecrunner.html"><span class="glyphicon glyphicon-console" aria-hidden="true"></span>&nbsp;Unit tests</a></li>
+                        <li><a href="/tests/funcspecrunner.html"><span class="glyphicon glyphicon-modal-window" aria-hidden="true"></span>&nbsp;Func tests</a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
         

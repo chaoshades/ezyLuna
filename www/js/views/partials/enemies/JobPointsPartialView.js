@@ -34,7 +34,11 @@
                 this.renderTags();
             }
 
-            this.$el.html(jobPointsTpl(current));
+            var data = {
+                'current': current,
+                'plugin': YEPJobPoints
+            };
+            this.$el.html(jobPointsTpl(data));
 
             var partials = {
                 'tooltipJobPoints': new PluginTooltipPartialView(YEPJobPoints)
@@ -67,6 +71,10 @@
             setValueTag(tags, '#chkJobPoints', JP, '#numJobPoints');
 
             return tags;
+        };
+
+        this.getSupportedTag = function () {
+            return YEPJobPoints;
         };
 
         this.initialize();

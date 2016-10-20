@@ -2,38 +2,11 @@
     <div class="row">
         <div class="col-md-3">
             <div class="sidebar clearfix">
-                <div class="btn-toolbar pull-right">
-                    <a role="button" data-toggle="collapse" href="#collapseQuickAccess" aria-expanded="true" aria-controls="collapseQuickAccess" class="btn btn-sm btn-default" title="Quick Access">
-                        <span class="glyphicon glyphicon-flash" aria-hidden="true"></span><span class="hidden-xs">&nbsp;Quick Access</span>
-                    </a>
-                </div>
-                <h4>List</h4>
-                <div id="collapseQuickAccess" class="collapse">
-                    <div class="form-group well well-sm half-spacing-bottom">
-                        <label for="txtQuickAccess">Select skill:</label>
-                        <div class="input-group">
-                            <input id="txtQuickAccess" class="form-control input-sm" type="text" data-provide="typeahead" autocomplete="off">
-                            <div class="input-group-btn">
-                                <button type="button" class="js_SaveQuickAccess btn btn-primary btn-sm" title="Go">
-                                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span><span class="hidden-xs">&nbsp;Go</span>
-                                </button>
-                                <button type="button" class="js_ClearQuickAccess btn btn-default btn-sm" title="Clear">
-                                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span><span class="hidden-xs">&nbsp;Clear</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+                <div id="quick_access">
+                    <!-- Filled by QuickAccessPartialView.js-->
                 </div>
                 <div id="carousel">
                     <!-- Filled by CarouselPartialView.js-->
-                </div>
-                <div class="spacing-bottom">
-                    <button id="btnToggleAll" type="button" class="btn btn-default btn-block" title="Toggle all">
-                        <span class="glyphicon glyphicon-sort" aria-hidden="true"></span>&nbsp;Toggle all
-                    </button>
-                    <button id="btnScrollUp" type="button" class="btn btn-default btn-block" title="Scroll up">
-                        <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>&nbsp;Scroll up
-                    </button>
                 </div>
             </div>
         </div>

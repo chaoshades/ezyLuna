@@ -57,6 +57,7 @@
 
             var data = {
                 'current': current,
+                'plugin': YEPWeaponUnleash,
                 'skills': linked_data.skills
             };
 
@@ -157,6 +158,10 @@
             setObjectTag(tags, state_data, 'guardUnleashSkill', GUARD_UNLEASH_2, function (item) { return [item.skillID, getSignedValue(item.rate)]; });
 
             return tags;
+        };
+
+        this.getSupportedTag = function () {
+            return YEPWeaponUnleash;
         };
 
         this.getStateManager = function () {

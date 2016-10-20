@@ -52,6 +52,7 @@
 
             var data = {
                 'current': current,
+                'plugin': YEPSwapEnemies,
                 'enemies': linked_data.enemies
             };
 
@@ -139,6 +140,10 @@
             setObjectTag(tags, state_data, 'swapRange', SWAP_2, function (item) { return [item.start, item.end]; });
 
             return tags;
+        };
+
+        this.getSupportedTag = function () {
+            return YEPSwapEnemies;
         };
 
         this.getStateManager = function () {

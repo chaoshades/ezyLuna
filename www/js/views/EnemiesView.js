@@ -10,6 +10,7 @@
         tagReader = require('app/tag-reader'),
         CarouselPartialView = require("partial/CarouselPartialView"),
         TagGeneratorPartialView = require("partial/TagGeneratorPartialView"),
+        QuickAccessPartialView = require("partial/QuickAccessPartialView"),
         GeneralSettingsPartialView = require("partial/enemies/GeneralSettingsPartialView"),
         TraitsPartialView = require("partial/enemies/TraitsPartialView"),
         RewardsPartialView = require("partial/enemies/RewardsPartialView"),
@@ -75,38 +76,35 @@
             },
             partials = {
                 'carousel': new CarouselPartialView(base_url, enemies, 15),
-                'tag_generator': new TagGeneratorPartialView(tag_partials)
+                'tag_generator': new TagGeneratorPartialView(tag_partials),
+                'quick_access': new QuickAccessPartialView(_.map(enemies, function (e) { return new QuickAccessItem(e.id, e.name, base_url + '/' + e.id) }), "List", "Select enemy:")
             }   
 
         this.initialize = function () {
             // Define a div wrapper for the view. The div wrapper is used to attach events.
             this.$el = $('<div/>');
 
-            // Click Event for Quick Access buttons
-            this.$el.on('click', '.js_SaveQuickAccess', function () {
-                var selected = $('#txtQuickAccess').typeahead("getActive");
-                if (selected) {
-                    window.location.hash = selected.url;
-                }
-            });
-            this.$el.on('click', '.js_ClearQuickAccess', function () {
-                $('#txtQuickAccess').val('');
-            });
-
-            // Click Event for ToggleAll button
-            this.$el.on('click', '#btnToggleAll', function () {
-                var body = $('body');
-                collapsed = toggleAll(body, collapsed);
-            });
-
-            // Click Event for ScrollUp button
-            this.$el.on('click', '#btnScrollUp', function () {
-                scrollUp();
-            });
-
             this.$settings = {
+                events: [
+                    // Click Event for Toggle All quick link
+                    { event: 'click', selector: '#btnToggleAll', handler: this.toggleAllHandler },
+                    // Click Event for Tag Generator quick link
+                    { event: 'click', selector: '#btnTagGenerator', handler: this.scrollToTagGenerator }
+                ],
                 menu: {
-                    active: base_url
+                    active: base_url,
+                    enableToggleAll: true,
+                    enableTagGenerator: true,
+                    quickScroll: {
+                        enabled: true, source: _.compact(_.map(tag_partials, function (p, key) {
+                            if (p.getSupportedTag) {
+                                var tag = p.getSupportedTag();
+                                return new QuickScrollItem(key, tag.longname);
+                            }
+                            else
+                                return null;
+                        }))
+                    }
                 },
                 project: project
             };
@@ -128,10 +126,18 @@
             this.$el.find('.sidebar').affix(UIConfig.affix.sidebar);
             setActiveMenuItem(this.$el, base_url + '/' + current.id);
 
-            var source = _.map(enemies, function (e) { return { id: e.id, name: e.name, url:base_url + '/' + e.id }; });
-            this.$el.find('#txtQuickAccess').typeahead(UIConfig.typeahead.custom(source));
-
             return this;
+        };
+
+        this.toggleAllHandler = function () {
+            var body = $('body');
+            collapsed = toggleAll(body, collapsed);
+            return false;
+        };
+
+        this.scrollToTagGenerator = function () {
+            scrollToDiv($('#tag_generator'));
+            return false;
         };
 
         this.initialize();

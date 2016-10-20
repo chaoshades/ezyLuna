@@ -55,6 +55,7 @@
 
             var data = {
                 'current': current,
+                'plugin': YEPExtraEnemyDrops,
                 'items': linked_data.items,
                 'weapons': linked_data.weapons,
                 'armors': linked_data.armors
@@ -181,6 +182,10 @@
             }
 
             return tags;
+        };
+
+        this.getSupportedTag = function () {
+            return YEPExtraEnemyDrops;
         };
 
         this.getStateManager = function () {

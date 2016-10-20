@@ -36,7 +36,11 @@
                 this.renderTags();
             }
 
-            this.$el.html(rowFormationTpl(current));
+            var data = {
+                'current': current,
+                'plugin': YEPRowFormation
+            };
+            this.$el.html(rowFormationTpl(data));
 
             var partials = {
                 'tooltipRowFormation': new PluginTooltipPartialView(YEPRowFormation)
@@ -81,6 +85,10 @@
             }
 
             return tags;
+        };
+
+        this.getSupportedTag = function () {
+            return YEPRowFormation;
         };
 
         this.initialize();

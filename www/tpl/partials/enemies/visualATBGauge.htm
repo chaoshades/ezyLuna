@@ -1,9 +1,10 @@
-﻿<h4><a role="button" data-toggle="collapse" href="#collapseVisualATBGauge" aria-expanded="true" aria-controls="collapseVisualATBGauge">ATB Gauge</a><span class="pull-right"><a tabindex="0" class="btn btn-lg btn-default"  data-toggle="popover" role="button">?</a></span></h4>
+﻿<h4><a role="button" data-toggle="collapse" href="#collapseVisualATBGauge" aria-expanded="true" aria-controls="collapseVisualATBGauge">{{plugin.longname}}</a><span class="pull-right"><a tabindex="0" class="btn btn-lg btn-default"  data-toggle="popover" role="button">?</a></span></h4>
 <div id="tooltipVisualATBGauge" class="hidden">
     <!-- Filled by PluginTooltipPartialView.js-->
 </div>
-<div class="half-spacing-bottom"><span class="label label-info">YEP-Visual-ATB-Gauge</span></div>
+<div class="half-spacing-bottom"><span class="label label-info">{{plugin.name}}</span></div>
 <div id="collapseVisualATBGauge" class="collapse">
+    {{#with current}}
     <div class="form-group">
         <label>Show ATB Gauge:</label>
         <div class="input-group">
@@ -31,4 +32,5 @@
             <input type="number" class="form-control" id="numAtbGaugeWidth" value="{{atbGaugeWidth}}" {{readonlyIfNot atbGaugeWidth}} />
         </div>
     </div>
+    {{/with}}
 </div>

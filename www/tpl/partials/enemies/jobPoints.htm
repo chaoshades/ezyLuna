@@ -1,9 +1,10 @@
-﻿<h4><a role="button" data-toggle="collapse" href="#collapseJobPoints" aria-expanded="true" aria-controls="collapseJobPoints">Job Points</a><span class="pull-right"><a tabindex="0" class="btn btn-lg btn-default"  data-toggle="popover" role="button">?</a></span></h4>
+﻿<h4><a role="button" data-toggle="collapse" href="#collapseJobPoints" aria-expanded="true" aria-controls="collapseJobPoints">{{plugin.longname}}</a><span class="pull-right"><a tabindex="0" class="btn btn-lg btn-default"  data-toggle="popover" role="button">?</a></span></h4>
 <div id="tooltipJobPoints" class="hidden">
     <!-- Filled by PluginTooltipPartialView.js-->
 </div>
-<div class="half-spacing-bottom"><span class="label label-info">YEP-Job-Points</span></div>
+<div class="half-spacing-bottom"><span class="label label-info">{{plugin.name}}</span></div>
 <div id="collapseJobPoints" class="collapse">
+    {{#with current}}
     <div class="form-group">
         <label for="numJobPoints">Job Points:</label>
         <div class="input-group">
@@ -13,4 +14,5 @@
             <input type="number" class="form-control" id="numJobPoints" value="{{jobPoints}}" {{readonlyIfNot jobPoints}} />
         </div>
     </div>
+    {{/with}}
 </div>

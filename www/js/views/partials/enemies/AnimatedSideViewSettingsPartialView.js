@@ -69,6 +69,7 @@
 
             var data = {
                 'current': current,
+                'plugin': YEPAnimatedSideViewEnemies,
                 'weapon_sprites': linked_data.weapon_sprites,
                 'motions': linked_data.motions,
                 'weapon_motions': [{ id: null, name: "Disabled" }].concat(linked_data.motions),
@@ -279,6 +280,10 @@
             setTag(tags, '#chkHideSideViewWeapon', HIDE_SIDEVIEW_WEAPON);
 
             return tags;
+        };
+
+        this.getSupportedTag = function () {
+            return YEPAnimatedSideViewEnemies;
         };
 
         this.initialize();

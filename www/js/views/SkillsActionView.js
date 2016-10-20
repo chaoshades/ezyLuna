@@ -12,6 +12,7 @@
         CarouselPartialView = require("partial/CarouselPartialView"),
         TagGeneratorPartialView = require("partial/TagGeneratorPartialView"),
         ExtensionToolboxPartialView = require("partial/ExtensionToolboxPartialView"),
+        QuickAccessPartialView = require("partial/QuickAccessPartialView"),
         skillsActionHtml = require('text!tpl/skillsAction.htm'),
 
         skillsActionTpl = Handlebars.compile(skillsActionHtml);
@@ -26,42 +27,25 @@
             partials = {
                 'carousel': new CarouselPartialView(base_url, skills, 15),
                 'tag_generator': new TagGeneratorPartialView(tag_partials),
-                'extension_toolbox': new ExtensionToolboxPartialView(tagReader.getSupportedPlugins(false, true), "YEP_BattleEngineCore", 15)
+                'extension_toolbox': new ExtensionToolboxPartialView(tagReader.getSupportedPlugins(false, true), "YEP_BattleEngineCore", 15),
+                'quick_access': new QuickAccessPartialView(_.map(skills, function (s) { return new QuickAccessItem(s.id, s.name, base_url + '/' + s.id) }), "List", "Select skill:")
             }
 
         this.initialize = function () {
             // Define a div wrapper for the view. The div wrapper is used to attach events.
             this.$el = $('<div/>');
 
-            // Click Event for Quick Access buttons
-            this.$el.on('click', '.js_SaveQuickAccess', function () {
-                var selected = $('#txtQuickAccess').typeahead("getActive");
-                if (selected) {
-                    window.location.hash = selected.url;
-                }
-            });
-            this.$el.on('click', '.js_ClearQuickAccess', function () {
-                $('#txtQuickAccess').val('');
-            });
-
-            // Click Event for ToggleAll button
-            this.$el.on('click', '#btnToggleAll', function () {
-                if (collapsed)
-                    $('.timeline.nested').removeClass('hide');
-                else
-                    $('.timeline.nested').addClass('hide');
-
-                collapsed = !collapsed;
-            });
-
-            // Click Event for ScrollUp button
-            this.$el.on('click', '#btnScrollUp', function () {
-                scrollUp();
-            });
-
             this.$settings = {
+                events: [
+                    // Click Event for Toggle All quick link
+                    { event: 'click', selector: '#btnToggleAll', handler: this.toggleAllHandler },
+                    // Click Event for Tag Generator quick link
+                    { event: 'click', selector: '#btnTagGenerator', handler: this.scrollToTagGenerator }
+                ],
                 menu: {
-                    active: base_url
+                    active: base_url,
+                    enableToggleAll: true,
+                    enableTagGenerator: true
                 },
                 project: project
             };
@@ -91,10 +75,22 @@
                 });
             });
 
-            var source = _.map(skills, function (s) { return { id: s.id, name: s.name, url: base_url + '/' + s.id }; });
-            this.$el.find('#txtQuickAccess').typeahead(UIConfig.typeahead.custom(source));
-
             return this;
+        };
+
+        this.toggleAllHandler = function () {
+            if (collapsed)
+                $('.timeline.nested').removeClass('hide');
+            else
+                $('.timeline.nested').addClass('hide');
+
+            collapsed = !collapsed;
+            return false;
+        };
+
+        this.scrollToTagGenerator = function () {
+            scrollToDiv($('#tag_generator'));
+            return false;
         };
 
         this.initialize();

@@ -1,9 +1,10 @@
-﻿<h4><a role="button" data-toggle="collapse" href="#collapseVisualHPGauges" aria-expanded="true" aria-controls="collapseVisualHPGauges">HP Gauges</a><span class="pull-right"><a tabindex="0" class="btn btn-lg btn-default"  data-toggle="popover" role="button">?</a></span></h4>
+﻿<h4><a role="button" data-toggle="collapse" href="#collapseVisualHPGauges" aria-expanded="true" aria-controls="collapseVisualHPGauges">{{plugin.longname}}</a><span class="pull-right"><a tabindex="0" class="btn btn-lg btn-default"  data-toggle="popover" role="button">?</a></span></h4>
 <div id="tooltipVisualHPGauges" class="hidden">
     <!-- Filled by PluginTooltipPartialView.js-->
 </div>
-<div class="half-spacing-bottom"><span class="label label-info">YEP-Visual-HP-Gauges</span></div>
+<div class="half-spacing-bottom"><span class="label label-info">{{plugin.name}}</span></div>
 <div id="collapseVisualHPGauges" class="collapse">
+    {{#with current}}
     <div class="form-group">
         <label>Show HP Gauge:</label>
         <div class="input-group">
@@ -67,4 +68,5 @@
             <input type="number" class="form-control" id="numHpGaugeColor2" value="{{hpGaugeColor2}}" {{readonlyIfNot hpGaugeColor2}} />
         </div>
     </div>
+    {{/with}}
 </div>

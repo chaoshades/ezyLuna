@@ -36,7 +36,11 @@
                 this.renderTags();
             }
 
-            this.$el.html(chargeTurnBattleSettingsTpl(current));
+            var data = {
+                'current': current,
+                'plugin': YEPBattleSystemChargeTurnBattle
+            };
+            this.$el.html(chargeTurnBattleSettingsTpl(data));
 
             var partials = {
                 'tooltipChargeTurnBattleSettings': new PluginTooltipPartialView(YEPBattleSystemChargeTurnBattle)
@@ -77,6 +81,10 @@
             setValueTag(tags, '#chkCtbBackgroundColor', CTB_BACKGROUND_COLOR, '#numCtbBackgroundColor');
 
             return tags;
+        };
+
+        this.getSupportedTag = function () {
+            return YEPBattleSystemChargeTurnBattle;
         };
 
         this.initialize();
