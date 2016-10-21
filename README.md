@@ -76,7 +76,7 @@ localhost:2015 {
 
 localhost:9005 {
 	cors
-	root "C:\Program Files\RPG Making\RPG Maker MV\Projects\Project1"
+	root "C:\path\to\project"
 }
 ```
 And the same example but with annotations :
@@ -92,7 +92,7 @@ localhost:2015 {
 
 #Define each of your projects from here
 #Change the port number if you want to have more than one project
-#Change the root for the directory of your project
+#Change the root for the directory of your RPG Maker MV project (the Game.rpgproject file)
 localhost:9005 {
 	cors
 	root "C:\path\to\project"
