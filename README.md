@@ -65,6 +65,47 @@ Have a bug or a feature request? Please first search for existing and closed iss
 
 Still in development...
 
+### Caddy configuration (CaddyFile)
+
+There is a [complete documentation](https://caddyserver.com/docs/caddyfile) about this file, but here is an example :
+
+```
+localhost:2015 {
+	cors
+}
+
+localhost:9005 {
+	cors
+	root "C:\Program Files\RPG Making\RPG Maker MV\Projects\Project1"
+}
+```
+And the same example but with annotations :
+```
+#Defines the url for ezyLuna
+localhost:2015 {
+	cors
+}
+#Use 0.0.0.0 instead of localhost if you want to access it anywhere on your local network
+#0.0.0.0:2015{
+#	cors
+#}
+
+#Define each of your projects from here
+#Change the port number if you want to have more than one project
+#Change the root for the directory of your project
+localhost:9005 {
+	cors
+	root "C:\path\to\project"
+}
+
+#Use 0.0.0.0 instead of localhost if you want to access it anywhere on your local network
+#0.0.0.0:9005 {
+#	cors
+#	root "C:\path\to\project"
+#}
+
+```
+
 ### Configuration file (config.json)
 
 It will eventually be automatically generated from ezyLuna, but for now, you need to create it yourself.
