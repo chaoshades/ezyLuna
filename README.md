@@ -22,12 +22,13 @@ To know more about these plugins (which are not mine), check out <http://yanfly.
 - [Download the latest release.](https://github.com/chaoshades/ezyLuna/archive/master.zip)
 - [Download caddy server (corresponding to your OS version)]
 (https://caddyserver.com/download)
-- [Drop it into ezyLuna]
+- Drop it into ezyLuna
 - [Configure the CaddyFile (corresponding to where your RPG Maker MV projects are)]
 (https://caddyserver.com/docs/caddyfile)
-- [Run caddy.exe]
-- [Open any browser]
-- [Go to the address you configured for ezyLuna]
+- Run caddy.exe
+- Configure ezyLuna config.json file
+- Open any browser
+- Go to the address you configured for ezyLuna
 
 ### What's included
 
@@ -63,6 +64,32 @@ Have a bug or a feature request? Please first search for existing and closed iss
 ## Documentation
 
 Still in development...
+
+### Configuration file (config.json)
+
+It will eventually be automatically generated from ezyLuna, but for now, you need to create it yourself.
+
+Here is an example :
+
+```
+{
+"projects": [
+    {url: "http://localhost:9005/"}
+]
+}
+```
+And the same example but with annotations :
+```
+// Define each of your projects url here
+{
+"projects": [
+    // You can use localhost...
+    //{url: "http://localhost:9005/"}
+    // ...or local network ip depending of your CaddyFile
+    //{url: "http://192.168.1.1:9005/"}
+]
+}
+```
 
 
 
