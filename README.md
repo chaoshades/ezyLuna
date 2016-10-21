@@ -23,15 +23,19 @@ To know more about these plugins (which are not mine), check out <http://yanfly.
 - [Download Caddy]
 (https://caddyserver.com/download)
   1. Select Features
-    * Server Types - HTTP
-    * Directives / Middleware - cors
+    * Server Types - select HTTP
+    * Directives / Middleware - select cors
   2. Donate (if you want :))
   3. Choose platform corresponding to your OS version
-- Drop it into ezyLuna
+- Drop caddy.exe into ezyLuna/www directory
+- Rename/copy CaddyFile.default to CaddyFile
 - [Configure Caddy (CaddyFile)]
-(https://caddyserver.com/docs/caddyfile)
-- Run caddy.exe
-- Configure ezyLuna (config.json)
+(#caddy-configuration-caddyfile)
+- Run caddy.exe (you need to keep it running, this is your local host for ezyLuna)
+- Rename/copy config.default.json to config.json
+- [Configure ezyLuna (config.json)]
+(#configuration-ezyluna-configjson)
+- Put it into ezyLuna/www directory
 - Open any browser
 - Go to the address you configured for ezyLuna
 
@@ -84,9 +88,9 @@ localhost:9005 {
 	root "C:\path\to\project"
 }
 ```
-And the same example but with annotations :
+And the same example with annotations :
 ```
-#Defines the url for ezyLuna
+#Represents the url for ezyLuna (normally, you don't need to change it)
 localhost:2015 {
 	cors
 }
@@ -124,7 +128,7 @@ Here is an example :
 ]
 }
 ```
-And the same example but with annotations :
+And the same example with annotations :
 ```
 // Define each of your projects url here
 {
@@ -152,6 +156,8 @@ Still in development...
 ### Func tests
 
 If you want to run func tests, you will need the config.json file within the tests directory.
+
+
 
 ## Creators
 
