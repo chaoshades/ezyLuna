@@ -34,7 +34,7 @@ To know more about these plugins (which are not mine), check out <http://yanfly.
 - Run caddy.exe (you need to keep it running, this is your local host for ezyLuna)
 - Rename/copy config.default.json to config.json
 - [Configure ezyLuna (config.json)]
-(#configuration-ezyluna-configjson)
+(#configuration-file-configjson)
 - Put it into ezyLuna/www directory
 - Open any browser
 - Go to the address you configured for ezyLuna
@@ -124,7 +124,7 @@ Here is an example :
 ```
 {
 "projects": [
-    {url: "http://localhost:9005/"}
+    {"url": "http://localhost:9005/"}
 ]
 }
 ```
@@ -134,9 +134,9 @@ And the same example with annotations :
 {
 "projects": [
     // You can use localhost...
-    //{url: "http://localhost:9005/"}
+    //{"url": "http://localhost:9005/"}
     // ...or local network ip depending of your CaddyFile
-    //{url: "http://192.168.1.1:9005/"}
+    //{"url": "http://192.168.1.1:9005/"}
 ]
 }
 ```
