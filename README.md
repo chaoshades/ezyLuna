@@ -19,14 +19,19 @@ To know more about these plugins (which are not mine), check out <http://yanfly.
 
 ## Quick start
 
-- [Download the latest release.](https://github.com/chaoshades/ezyLuna/archive/master.zip)
-- [Download caddy server (corresponding to your OS version)]
+- [Download the latest release.](https://github.com/chaoshades/ezyLuna/archive/DEV.zip)
+- [Download Caddy]
 (https://caddyserver.com/download)
+  1. Select Features
+    * Server Types - HTTP
+    * Directives / Middleware - cors
+  2. Donate (if you want :))
+  3. Choose platform corresponding to your OS version
 - Drop it into ezyLuna
-- [Configure the CaddyFile (corresponding to where your RPG Maker MV projects are)]
+- [Configure Caddy (CaddyFile)]
 (https://caddyserver.com/docs/caddyfile)
 - Run caddy.exe
-- Configure ezyLuna config.json file
+- Configure ezyLuna (config.json)
 - Open any browser
 - Go to the address you configured for ezyLuna
 
@@ -138,7 +143,15 @@ And the same example but with annotations :
 
 Still in development...
 
+The test framework used is [Jasmine](http://jasmine.github.io/index.html). There is plenty of documentation on their website.
 
+### Unit tests
+
+Still in development...
+
+### Func tests
+
+If you want to run func tests, you will need the config.json file within the tests directory.
 
 ## Creators
 
