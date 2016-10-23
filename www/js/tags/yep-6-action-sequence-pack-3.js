@@ -14,13 +14,7 @@
         'v1.03',
         '(Requires YEP_BattleEngineCore.js) Camera control is added to the Battle Engine Core\'s action sequences.',
         'http://yanfly.moe/2015/10/12/yep-6-action-sequence-pack-3/',
-        [
-            new TagParser("Setup Action#3", new TagExtensionParser(), "Setup Action", YEP_BATTLE_ENGINE_CORE_EXT),
-            new TagParser("Whole Action#3", new TagExtensionParser(), "Whole Action", YEP_BATTLE_ENGINE_CORE_EXT),
-            new TagParser("Target Action#3", new TagExtensionParser(), "Target Action", YEP_BATTLE_ENGINE_CORE_EXT),
-            new TagParser("Follow Action#3", new TagExtensionParser(), "Follow Action", YEP_BATTLE_ENGINE_CORE_EXT),
-            new TagParser("Finish Action#3", new TagExtensionParser(), "Finish Action", YEP_BATTLE_ENGINE_CORE_EXT)
-        ],
+        [],
         [
             // YEP_BattleEngineCore
             new ExtensionParser(YEP_BATTLE_ENGINE_CORE_EXT, "Camera Clamp On", new ExtOnlyParser()),

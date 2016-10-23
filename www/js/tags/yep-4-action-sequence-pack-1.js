@@ -16,13 +16,7 @@
         'v1.10a',
         '(Requires YEP_BattleEngineCore.js) Basic functions are added to the Battle Engine Core\'s action sequences.',
         'http://yanfly.moe/2015/10/11/yep-4-action-sequence-pack-1/',
-        [
-            new TagParser("Setup Action", new TagExtensionParser(), "Setup Action", YEP_BATTLE_ENGINE_CORE_EXT),
-            new TagParser("Whole Action", new TagExtensionParser(), "Whole Action", YEP_BATTLE_ENGINE_CORE_EXT),
-            new TagParser("Target Action", new TagExtensionParser(), "Target Action", YEP_BATTLE_ENGINE_CORE_EXT),
-            new TagParser("Follow Action", new TagExtensionParser(), "Follow Action", YEP_BATTLE_ENGINE_CORE_EXT),
-            new TagParser("Finish Action", new TagExtensionParser(), "Finish Action", YEP_BATTLE_ENGINE_CORE_EXT)
-        ],
+        [],
         [
             // YEP_BattleEngineCore
             new ExtensionParser(YEP_BATTLE_ENGINE_CORE_EXT, "Add maxhp Buff", new ArrayExtParser()),

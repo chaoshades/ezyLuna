@@ -14,13 +14,7 @@
         'v1.11',
         '(Requires YEP_BattleEngineCore.js) Visual functions are added to the Battle Engine Core\'s action sequences.',
         'http://yanfly.moe/2015/10/12/yep-5-action-sequence-pack-2/',
-        [
-            new TagParser("Setup Action#2", new TagExtensionParser(), "Setup Action", YEP_BATTLE_ENGINE_CORE_EXT),
-            new TagParser("Whole Action#2", new TagExtensionParser(), "Whole Action", YEP_BATTLE_ENGINE_CORE_EXT),
-            new TagParser("Target Action#2", new TagExtensionParser(), "Target Action", YEP_BATTLE_ENGINE_CORE_EXT),
-            new TagParser("Follow Action#2", new TagExtensionParser(), "Follow Action", YEP_BATTLE_ENGINE_CORE_EXT),
-            new TagParser("Finish Action#2", new TagExtensionParser(), "Finish Action", YEP_BATTLE_ENGINE_CORE_EXT)
-        ],
+        [],
         [
             // YEP_BattleEngineCore
             new ExtensionParser(YEP_BATTLE_ENGINE_CORE_EXT, "Attack Animation", new BasicExtParser()),

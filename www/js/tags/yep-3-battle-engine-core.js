@@ -19,11 +19,11 @@
         [
             new TagParser("Reflect Animation ID", new BasicParser()),
             new TagParser("Sprite Cannot Move", new TagOnlyParser()),
-            new TagParser("Setup Action", new TagExtensionParser(), "Setup Action", YEP_BATTLE_ENGINE_CORE_EXT),
-            new TagParser("Whole Action", new TagExtensionParser(), "Whole Action", YEP_BATTLE_ENGINE_CORE_EXT),
-            new TagParser("Target Action", new TagExtensionParser(), "Target Action", YEP_BATTLE_ENGINE_CORE_EXT),
-            new TagParser("Follow Action", new TagExtensionParser(), "Follow Action", YEP_BATTLE_ENGINE_CORE_EXT),
-            new TagParser("Finish Action", new TagExtensionParser(), "Finish Action", YEP_BATTLE_ENGINE_CORE_EXT)
+            new TagParser("Setup Action", new TagExtensionParser(), null, YEP_BATTLE_ENGINE_CORE_EXT),
+            new TagParser("Whole Action", new TagExtensionParser(), null, YEP_BATTLE_ENGINE_CORE_EXT),
+            new TagParser("Target Action", new TagExtensionParser(), null, YEP_BATTLE_ENGINE_CORE_EXT),
+            new TagParser("Follow Action", new TagExtensionParser(), null, YEP_BATTLE_ENGINE_CORE_EXT),
+            new TagParser("Finish Action", new TagExtensionParser(),null, YEP_BATTLE_ENGINE_CORE_EXT)
         ],
         [
             // YEP_BattleEngineCore

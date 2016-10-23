@@ -125,6 +125,19 @@ textarea {
     }
 }
 
+.timeline_empty {
+    text-align:center;
+    font-size:20px;
+    margin-top:250px;
+    margin-bottom:250px;
+}
+
+.timeline_empty .glyphicon {
+    width: 100%;
+    font-size:5em;
+    color:#d9d9d9;
+}
+
 /*JQuery Overrides*/
 table.tablesorter thead tr .header {
 	cursor: pointer;
@@ -485,7 +498,7 @@ h3.popover-title
 
    
 
-.timeline.nested > li > .timeline-badge {
+.actions .timeline.nested > li > .timeline-badge {
     width: 25px;
     height: 25px;
     line-height: 25px;
@@ -494,20 +507,20 @@ h3.popover-title
     top: 30px;
 }
 
-.timeline.actions > li > .timeline-badge {
+.actions .timeline > li > .timeline-badge {
     top:auto;
     bottom:-6px;
 }
-            .timeline.actions > li > .timeline-panel:before {
-                top:auto;
-                bottom: 6px;
-            }
-            .timeline.actions > li > .timeline-panel:after {
-                top: auto;
-                bottom:7px;
-            }
+.actions .timeline > li > .timeline-panel:before {
+    top:auto;
+    bottom: 6px;
+}
+.actions .timeline > li > .timeline-panel:after {
+    top: auto;
+    bottom:7px;
+}
 
-.timeline.actions > li > .timeline-badge, .timeline.actions .timeline.nested > li > .timeline-badge {
+.actions .timeline > li > .timeline-badge, .actions .timeline .timeline.nested > li > .timeline-badge {
     cursor: pointer;
 }
 

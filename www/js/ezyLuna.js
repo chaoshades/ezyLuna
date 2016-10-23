@@ -475,3 +475,51 @@ function InlineEditTableDataInfo(enabled, data) {
     this.enabled = enabled;
     this.data = data;
 }
+
+/**
+ * The InlineEditTimelineTemplateSet class defines a set of partials templates for the inline edit timeline.
+ * @param {Object} container: container object.
+ * @param {String} selector: partial template selector.
+ */
+function InlineEditTimelineTemplateSet(container, selector) {
+    this.setID = selector.substring(1);
+    this.templates = [
+        new InlineEditTimelineTemplate(container, selector + '-edit'),
+        new InlineEditTimelineTemplate(container, selector + '-read')
+    ];
+}
+
+/**
+ * The InlineEditTimelineTemplate class defines a partial template for the inline edit timeline.
+ * @param {Object} container: container object.
+ * @param {String} selector: partial template selector.
+ */
+function InlineEditTimelineTemplate(container, selector) {
+    this.name = selector.substring(1);
+    this.template = $(container).find(selector).html();
+}
+
+/**
+ * The InlineEditTimelineTemplateInfo class defines templates informations for the inline edit timeline.
+ * @param {Object} set: set of partials templates object.
+ */
+function InlineEditTimelineTemplateInfo(set) {
+    this.setID = set.setID;
+    for (var i = 0; i < set.templates.length; i++) {
+        var t = set.templates[i];
+        if (t.name.indexOf('-read') > 0)
+            this.read_template = t.name;
+        else if (t.name.indexOf('-edit') > 0)
+            this.edit_template = t.name;
+    }
+}
+
+/**
+ * The InlineEditTimelineDataInfo class defines data information for the inline edit timeline.
+ * @param {Boolean} enabled: true if it should be enabled, else false.
+ * @param {Array} data: The data for the inline edit timeline.
+ */
+function InlineEditTimelineDataInfo(enabled, data) {
+    this.enabled = enabled;
+    this.data = data;
+}

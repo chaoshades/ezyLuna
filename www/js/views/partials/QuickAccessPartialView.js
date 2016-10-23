@@ -31,6 +31,9 @@
         };
 
         this.render = function () {
+            // Removes empty quick items
+            var filtered_source = _.filter(source, function (s) { return s.name; });
+
             // Render view
             var data = {
                 'title': title,
@@ -39,7 +42,7 @@
             this.$el.html(quickAccessTpl(data));
 
             // Initial Display
-            this.$el.find('#txtQuickAccess').typeahead(UIConfig.typeahead.custom(source));
+            this.$el.find('#txtQuickAccess').typeahead(UIConfig.typeahead.custom(filtered_source));
 
             return this;
         };

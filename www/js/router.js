@@ -206,7 +206,18 @@
                             id = 1;
                         dataAdapter.getSkillById(id)
                         .done(function (current) {
-                            changeContent(new SkillsActionView(config, skills, current));
+                            $.when(
+                                dataAdapter.getItems(),
+                                dataAdapter.getArmors(),
+                                dataAdapter.getWeapons(),
+                                dataAdapter.getStates(),
+                                dataAdapter.getAnimations(),
+                                dataAdapter.getTypes(),
+                                dataAdapter.getMotions()
+                            ).done(function (items, armors, weapons, states, animations, types, motions) {
+                                var linked_data = { "items": items, "armors": armors, "weapons": weapons, "states": states, "animations": animations, "types": types, "motions": motions };
+                                changeContent(new SkillsActionView(config, skills, current, linked_data, stateManager));
+                            });
                         })
                         .fail(errorHandler);
                     })

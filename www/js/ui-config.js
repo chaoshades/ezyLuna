@@ -67,6 +67,16 @@ define(function (require) {
                     autoSelect: true
                 }
             }
+        },
+        // Sortable
+        sortable: {
+            timeline: function (group) {
+                return {
+                    group: group,
+                    animation: 150,
+                    handle: '.timeline-badge'
+                }
+            }
         }
     };
 
