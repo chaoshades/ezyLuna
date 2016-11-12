@@ -7,7 +7,7 @@
         TagExtensionParser = require("parser/TagExtensionParser"),
         ExtOnlyParser = require("parser/ExtOnlyParser"),
         BasicExtParser = require("parser/BasicExtParser"),
-        ArrayExtParser = require("parser/ArrayExtParser"),
+        BasicArrayExtParser = require("parser/BasicArrayExtParser"),
         YEP_BATTLE_ENGINE_CORE_EXT = "YEP_BattleEngineCore";
 
     return new Plugin(
@@ -27,16 +27,18 @@
         ],
         [
             // YEP_BattleEngineCore
-            new ExtensionParser(YEP_BATTLE_ENGINE_CORE_EXT, "Action Animation", new ExtOnlyParser()),
+            new ExtensionParser(YEP_BATTLE_ENGINE_CORE_EXT, "Action Animation", new ExtOnlyParser(), "Action Animation"),
+            new ExtensionParser(YEP_BATTLE_ENGINE_CORE_EXT, "Action Animation#2", new BasicArrayExtParser(), "Action Animation"),
             new ExtensionParser(YEP_BATTLE_ENGINE_CORE_EXT, "Action Common Event", new ExtOnlyParser()),
-            new ExtensionParser(YEP_BATTLE_ENGINE_CORE_EXT, "Action Effect", new ExtOnlyParser()),
+            new ExtensionParser(YEP_BATTLE_ENGINE_CORE_EXT, "Action Effect", new ExtOnlyParser(), "Action Effect"),
+            new ExtensionParser(YEP_BATTLE_ENGINE_CORE_EXT, "Action Effect#2", new BasicExtParser(), "Action Effect"),
             new ExtensionParser(YEP_BATTLE_ENGINE_CORE_EXT, "Animation Wait", new BasicExtParser()),
             new ExtensionParser(YEP_BATTLE_ENGINE_CORE_EXT, "Cast Animation", new ExtOnlyParser()),
             new ExtensionParser(YEP_BATTLE_ENGINE_CORE_EXT, "Clear Battle Log", new ExtOnlyParser()),
             new ExtensionParser(YEP_BATTLE_ENGINE_CORE_EXT, "Death Break", new ExtOnlyParser()),
             new ExtensionParser(YEP_BATTLE_ENGINE_CORE_EXT, "Display Action", new ExtOnlyParser()),
             //new ExtensionParser(YEP_BATTLE_ENGINE_CORE_EXT, "IF", new ExtOnlyParser()), TODO
-            new ExtensionParser(YEP_BATTLE_ENGINE_CORE_EXT, "Immortal", new ArrayExtParser()),
+            new ExtensionParser(YEP_BATTLE_ENGINE_CORE_EXT, "Immortal", new BasicArrayExtParser()),
             new ExtensionParser(YEP_BATTLE_ENGINE_CORE_EXT, "Motion Wait", new BasicExtParser()),
             new ExtensionParser(YEP_BATTLE_ENGINE_CORE_EXT, "Perform Action", new ExtOnlyParser()),
             new ExtensionParser(YEP_BATTLE_ENGINE_CORE_EXT, "Perform Finish", new ExtOnlyParser()),

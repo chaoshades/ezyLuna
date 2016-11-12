@@ -15,13 +15,18 @@
 
     return function (plugins, ext_plugin, page_size) {
 
+        var builder = null;
+
         this.initialize = function () {
             // Define a div wrapper for the view. The div wrapper is used to attach events.
             this.$el = $('<div/>');
 
             // Click Event for Add button
+            var getCurrentExtCallback = this.getCurrentExt;
             this.$el.on('click', '.js_Add', function () {
-                // TODO
+                var ext = getCurrentExtCallback(this);
+                if (ext && builder)
+                    builder.addExtension(ext);
             });
 
             // Click Event for Change Plugin buttons
@@ -106,6 +111,14 @@
             this.$el.find('#txtChangePlugin').typeahead(UIConfig.typeahead.custom(source));
 
             return this;
+        };
+
+        this.getCurrentExt = function (btn) {
+            return $(btn).parents('#extension_toolbox').find('.active').data('ext');
+        };
+
+        this.setExtensionBuilderReference = function (bldr) {
+            builder = bldr;
         };
 
         this.initialize();

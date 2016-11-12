@@ -98,8 +98,8 @@ textarea {
         padding-right:30px;
     }
     .sidebar.affix-bottom {
-        width: 100%;
-        padding-right:30px;
+        width: 95%;
+        padding-right:13px;
     }
 }
 
@@ -123,19 +123,6 @@ textarea {
     .quickscroll > .form-group > label {
         color: #9d9d9d;
     }
-}
-
-.timeline_empty {
-    text-align:center;
-    font-size:20px;
-    margin-top:250px;
-    margin-bottom:250px;
-}
-
-.timeline_empty .glyphicon {
-    width: 100%;
-    font-size:5em;
-    color:#d9d9d9;
 }
 
 /*JQuery Overrides*/
@@ -497,6 +484,9 @@ h3.popover-title
 }
 
    
+.actions {
+    min-height:642px;
+}
 
 .actions .timeline.nested > li > .timeline-badge {
     width: 25px;
@@ -504,7 +494,7 @@ h3.popover-title
     line-height: 25px;
     font-size: 0.8em;
     margin-left: -13px;
-    top: 30px;
+    bottom:8px;
 }
 
 .actions .timeline > li > .timeline-badge {
@@ -531,4 +521,23 @@ h3.popover-title
         left: 28px;
     }
 
+}
+
+.timeline_empty {
+    text-align:center;
+    font-size:20px;
+    padding-top:250px;
+    padding-bottom:250px;
+}
+
+.timeline_empty.nested {
+    font-size:10px;
+    padding:0;
+    margin-left:50%;
+}
+
+.timeline_empty .glyphicon {
+    width: 100%;
+    font-size:5em;
+    color:#d9d9d9;
 }

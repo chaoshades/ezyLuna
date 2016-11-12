@@ -1,26 +1,14 @@
 ﻿{{#if currentContext.data}}
 <ul class="timeline{{#if currentContext.nested}} nested{{/if}}">
     {{#each currentContext.data}}
-    <li data-uid="{{@index}}">
-        <div class="timeline-badge
-            {{#compare badge.type "invisible"}} danger{{/compare}}
-            {{#compare badge.type "visible"}} success{{/compare}}
-            {{#compare badge.type "code"}} inverted{{/compare}}
-            {{#compare badge.type "animation"}} primary{{/compare}}
-            {{#compare badge.type "action"}} info{{/compare}}
-            {{#compare badge.type "wait"}} inverted{{/compare}}
-        ">
-            {{#if badge.value}}
-                {{badge.value}}
-            {{else}}
-                {{#compare badge.type "invisible"}}<i class="glyphicon glyphicon-eye-close" />{{/compare}}
-                {{#compare badge.type "visible"}}<i class="glyphicon glyphicon-eye-open" />{{/compare}}
-                {{#compare badge.type "code"}}<i class="glyphicon glyphicon glyphicon-console" />{{/compare}}
-                {{#compare badge.type "animation"}}<i class="glyphicon glyphicon-facetime-video" />{{/compare}}
-                {{#compare badge.type "action"}}<i class="glyphicon glyphicon glyphicon-ok" />{{/compare}}
-                {{#compare badge.type "wait"}}<i class="glyphicon glyphicon glyphicon-hourglass" />{{/compare}}
-            {{/if}}
-        </div>
+    <li data-uid="{{index}}" {{#if ../currentContext.nested}}class="timeline-inverted"{{/if}}>
+        {{#if has_children}}
+            <div id="nested{{groupID}}">
+                <!-- Filled by InlineEditTimelinePartialView.js-->
+            </div>
+        {{/if}}
+
+        {{> (lookup ../templateInfos 'badge_template') parentContext=parentContext currentContext=currentContext}}
         <div class="timeline-panel">
             {{#if heading}}
                 <div class="timeline-heading">
@@ -28,23 +16,22 @@
                 </div>
             {{/if}}
             <div class="timeline-body">
-                {{#if nestedID}}
-                    <div id="nested{{nestedID}}">
-                        <!-- Filled by InlineEditTimelinePartialView.js-->
-                    </div>
-                {{/if}}
                 {{#if edit}}
-                    {{> (lookup (lookup ../templateInfos template) 'edit_template') parentContext=../../parentContext currentContext=../../currentContext}}
-                    <div class="btn-group pull-right">
-                        <button type="button" class="js_SaveEdit btn btn-primary btn-sm" title="Save" {{disabledIfNot ../currentContext.enabled}}>
-                            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span><span class="hidden-xs">&nbsp;Save</span>
-                        </button>
-                        <button type="button" class="js_CancelEdit btn btn-default btn-sm" title="Cancel" {{disabledIfNot ../currentContext.enabled}}>
-                            <span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span><span class="hidden-xs">&nbsp;Cancel</span>
-                        </button>
-                    </div> 
+                    {{#if can_edit}}
+                        {{> (lookup (lookup ../templateInfos template) 'edit_template') parentContext=../parentContext currentContext=../currentContext}}
+                        <div class="btn-group pull-right">
+                            <button type="button" class="js_SaveEdit btn btn-primary btn-sm" title="Save" {{disabledIfNot ../currentContext.enabled}}>
+                                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span><span class="hidden-xs">&nbsp;Save</span>
+                            </button>
+                            <button type="button" class="js_CancelEdit btn btn-default btn-sm" title="Cancel" {{disabledIfNot ../currentContext.enabled}}>
+                                <span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span><span class="hidden-xs">&nbsp;Cancel</span>
+                            </button>
+                        </div> 
+                    {{else}}
+                        {{> (lookup (lookup ../templateInfos template) 'read_template') parentContext=../parentContext currentContext=../currentContext}}
+                    {{/if}}
                 {{else}}
-                    {{> (lookup (lookup ../templateInfos template) 'read_template') parentContext=../../parentContext currentContext=../../currentContext}}
+                    {{> (lookup (lookup ../templateInfos template) 'read_template') parentContext=../parentContext currentContext=../currentContext}}
                     {{#if deleting}}
                     <div class="btn-group pull-right">
                         <button type="button" class="js_ConfirmDelete btn btn-danger btn-sm" title="Confirm" {{disabledIfNot ../currentContext.enabled}}>
@@ -56,9 +43,11 @@
                     </div>
                     {{else}}
                     <div class="btn-group pull-right">
+                        {{#if can_edit}}
                         <button type="button" class="js_Edit btn btn-default btn-sm" title="Edit" {{disabledIfNot ../currentContext.enabled}}>
                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span><span class="hidden-xs">&nbsp;Edit</span>
                         </button>
+                        {{/if}}
                         <button type="button" class="js_Delete btn btn-default btn-sm" title="Delete" {{disabledIfNot ../currentContext.enabled}}>
                             <span class="glyphicon glyphicon-remove" aria-hidden="true"></span><span class="hidden-xs">&nbsp;Delete</span>
                         </button>
@@ -71,5 +60,7 @@
     {{/each}}
 </ul>
 {{else}}
-    {{> (lookup templateInfos 'empty_template') parentContext=parentContext currentContext=currentContext}}
+    <div class="timeline_empty{{#if currentContext.nested}} nested{{/if}}">
+        {{> (lookup templateInfos 'empty_template') parentContext=parentContext currentContext=currentContext}}
+    </div>
 {{/if}}

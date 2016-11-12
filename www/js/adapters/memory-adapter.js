@@ -522,7 +522,7 @@ targets = [
 { "id": "all dead", "name": "All dead actors and enemies" },
 { "id": "all not user", "name": "All living battlers except for the user" },
 { "id": "focus", "name": "Active battler and it's targets" },
-{ "id": "not focus", "name": "Everi=ything but the active battler and it's targets" }
+{ "id": "not focus", "name": "Everything but the active battler and it's targets" }
 ],
         
 switch_actions = [

@@ -1,7 +1,7 @@
 ﻿// Utils functions
 
 /**
- * Pad a number with a character or zeros
+ * Pad a number with a character or zeros.
  * @param {Number} n: Original value to pad. 
  * @param {Number} width: Maximum with to pad.
  * @param {String} z: Character to pad (optional) - Default character : 0. 
@@ -13,7 +13,7 @@ function pad(n, width, z) {
 };
 
 /**
- * Set a basic tag
+ * Set a basic tag.
  * @param {Array} tags: Tags array. 
  * @param {String} chkSelector: Checkbox selector.
  * @param {String} tag: Tag to create. 
@@ -24,7 +24,7 @@ function setTag(tags, chkSelector, tag) {
 }
 
 /**
- * Set a tag with a value
+ * Set a tag with a value.
  * @param {Array} tags: Tags array. 
  * @param {String} chkSelector: Checkbox selector.
  * @param {String} tag: Tag to create. 
@@ -37,7 +37,7 @@ function setValueTag(tags, chkSelector, tag, valSelector) {
 }
 
 /**
- * Get a percent value from a value
+ * Get a percent value from a value.
  * @param {Number} value: Value.
  */
 function getPercentValue(value) {
@@ -45,7 +45,7 @@ function getPercentValue(value) {
 }
 
 /**
- * Extract a value from a percent value
+ * Extract a value from a percent value.
  * @param {Number} percent_value: Percent value to extract.
  */
 function extractFromPercentValue(percent_value) {
@@ -53,7 +53,7 @@ function extractFromPercentValue(percent_value) {
 }
 
 /**
- * Set a tag with a percentage value
+ * Set a tag with a percentage value.
  * @param {Array} tags: Tags array. 
  * @param {String} chkSelector: Checkbox selector.
  * @param {String} tag: Tag to create. 
@@ -66,7 +66,7 @@ function setPercentValueTag(tags, chkSelector, tag, valSelector) {
 }
 
 /**
- * Set a tag with an array of values
+ * Set a tag with an array of values.
  * @param {Array} tags: Tags array. 
  * @param {String} chkSelector: Checkbox selector.
  * @param {String} tag: Tag to create. 
@@ -93,7 +93,7 @@ function getSignedValue(value) {
 }
 
 /**
- * Extract a value from a signed value
+ * Extract a value from a signed value.
  * @param {Number} signed_value: Signed value to extract.
  */
 function extractFromSignedValue(signed_value) {
@@ -101,7 +101,7 @@ function extractFromSignedValue(signed_value) {
 }
 
 /**
- * Set a tag with a signed value
+ * Set a tag with a signed value.
  * @param {Array} tags: Tags array. 
  * @param {String} chkSelector: Checkbox selector.
  * @param {String} tag: Tag to create. 
@@ -116,7 +116,7 @@ function setSignedValueTag(tags, chkSelector, tag, valSelector) {
 }
 
 /**
- * Set a tag with a signed value
+ * Set a tag with a signed value.
  * @param {Array} tags: Tags array. 
  * @param {String} chkSelector: Checkbox selector.
  * @param {String} tag: Tag to create. 
@@ -131,7 +131,7 @@ function setSignedPercentValueTag(tags, chkSelector, tag, valSelector) {
 }
 
 /**
- * Set a tag with an object value
+ * Set a tag with an object value.
  * @param {Array} tags: Tags array. 
  * @param {Object} state_data: State object. 
  * @param {String} stateSelector: State data selector.
@@ -147,7 +147,7 @@ function setObjectTag(tags, state_data, stateSelector, tag, objFx) {
 }
 
 /**
- * Set a tag with an object data value
+ * Set a tag with an object data value.
  * @param {Array} tags: Tags array. 
  * @param {Object} state_data: State object. 
  * @param {String} stateSelector: State data selector.
@@ -163,7 +163,7 @@ function setObjectValuesTag(tags, state_data, stateSelector, tag, valFx) {
 }
 
 /**
- * Enable/Disable inputs linked to a checkbox
+ * Enable/Disable inputs linked to a checkbox.
  * @param {Object} chk: Checkbox element.
  */
 function enableInputs(chk) {
@@ -211,17 +211,17 @@ function enableInputs(chk) {
 }
 
 /**
- * Clear active menu item from within container
- * @param {Object} container: container object.
+ * Clear active menu item from within container.
+ * @param {Object} container: Container object.
  */
 function clearActiveMenuItem(container) {
     $(container).find('.list-group > .active').removeClass('active');
 };
 
 /**
- * Set active menu item from base url and id from within container
- * @param {Object} container: container object.
- * @param {String} hash: hash of the menu item to set active.
+ * Set active menu item from base url and id from within container.
+ * @param {Object} container: Container object.
+ * @param {String} hash: Hash of the menu item to set active.
  */
 function setActiveMenuItem(container, hash) {
     clearActiveMenuItem(container);
@@ -230,8 +230,8 @@ function setActiveMenuItem(container, hash) {
 };
 
 /**
- * Open collapsed div if any checkbox is checked
- * @param {Object} collapsed_div: collapsed div object.
+ * Open collapsed div if any checkbox is checked.
+ * @param {Object} collapsed_div: Collapsed div object.
  */
 function openCollapse(collapsed_div) {
     if ($(collapsed_div).find('input[type=checkbox].js_Tags').is(':checked'))
@@ -239,9 +239,9 @@ function openCollapse(collapsed_div) {
 };
 
 /**
- * Download content into a file
- * @param {String} filename: name of the file
- * @param {String} text: text content of the file
+ * Download content into a file.
+ * @param {String} filename: Name of the file.
+ * @param {String} text: Text content of the file.
  */
 function download(filename, text) {
     var pom = document.createElement('a');
@@ -267,6 +267,7 @@ function scrollUp() {
 
 /**
  * Scroll page to specific div
+ * @param {Object} div: Div to scroll to.
  */
 function scrollToDiv(div) {
     // Navbar height + margin of div
@@ -276,6 +277,7 @@ function scrollToDiv(div) {
 
 /**
  * Scroll page to specific top position
+ * @param {Integer} top: Position to scroll to.
  */
 function scrollTo(top) {
     $('body').animate({
@@ -284,7 +286,9 @@ function scrollTo(top) {
 }
 
 /**
- * Toggle all collapsiable divs and reposition affix if necessary
+ * Toggle all collapsible divs and reposition affix if necessary.
+ * @param {Object} container: Container object.
+ * @param {Boolean} collapsed: True if already collapsed, else false.
  */
 function toggleAll(container, collapsed) {
     // Excludes collapse in navigation bar and in sidebars
@@ -304,7 +308,8 @@ function toggleAll(container, collapsed) {
 }
 
 /**
- * Bootsrap fix to remove affix-bottom when opening collapsible divs
+ * Bootsrap fix to remove affix-bottom when opening collapsible divs.
+ * @param {Object} affix: Container that is "affixable".
  */
 function removeAffixBottom(affix) {
     if (affix.hasClass('affix-bottom')) {
@@ -312,6 +317,15 @@ function removeAffixBottom(affix) {
         affix.addClass('affix');
         affix.css('top', '');
     }
+}
+
+/**
+ * Format a control id from a tag
+ * @param {String} tag: Name of the tag.
+ * @param {Integer} uid: Unique id for the control.
+ */
+function formatCtrlId(tag, uid) {
+    return tag.replace(" ", "") + uid.toString();
 }
 
 // Utils classes
@@ -374,7 +388,7 @@ function ExtensionParser(plugin, id, parser, ext) {
 
 /**
  * The Project class defines a project config.
- * @param {String} url: url to the project. 
+ * @param {String} url: Url to the project. 
  */
 function Project(url) {
     this.url = String(url);
@@ -382,13 +396,13 @@ function Project(url) {
 
 /**
  * The Plugin class defines a plugin config.
- * @param {String} name: name of the plugin. 
- * @param {String} longname: longname to the plugin. 
- * @param {String} version: version of the plugin.
- * @param {String} description: description of the plugin.
- * @param {String} help_url: url of the help of the plugin.
- * @param {Object} tags: array of tags of the plugin. 
- * @param {Object} exts: array of extensions of the plugin. 
+ * @param {String} name: Name of the plugin. 
+ * @param {String} longname: Longname to the plugin. 
+ * @param {String} version: Version of the plugin.
+ * @param {String} description: Description of the plugin.
+ * @param {String} help_url: Url of the help of the plugin.
+ * @param {Object} tags: Array of tags of the plugin. 
+ * @param {Object} exts: Array of extensions of the plugin. 
  */
 function Plugin(name, longname, version, description, help_url, tags, exts) {
     this.name = String(name);
@@ -402,9 +416,9 @@ function Plugin(name, longname, version, description, help_url, tags, exts) {
 
 /**
  * The QuickAccessItem class defines an item for the QuickAccess for the typeahead.
- * @param {String} id: id of the item. 
- * @param {String} name: name to the item (used to search). 
- * @param {String} url: url of the item.
+ * @param {String} id: Id of the item. 
+ * @param {String} name: Name to the item (used to search). 
+ * @param {String} url: Url of the item.
  */
 function QuickAccessItem(id, name, url) {
     this.id = String(id);
@@ -414,8 +428,8 @@ function QuickAccessItem(id, name, url) {
 
 /**
  * The QuickScrollItem class defines an item for the QuickScroll for the typeahead.
- * @param {String} id: id of the item. 
- * @param {String} name: name to the item (used to search). 
+ * @param {String} id: Id of the item. 
+ * @param {String} name: Name to the item (used to search). 
  */
 function QuickScrollItem(id, name) {
     this.id = String(id);
@@ -424,8 +438,8 @@ function QuickScrollItem(id, name) {
 
 /**
  * The InlineEditTableTemplateSet class defines a set of partials templates for the inline edit table.
- * @param {Object} container: container object.
- * @param {String} selector: partial template selector.
+ * @param {Object} container: Container object.
+ * @param {String} selector: Partial template selector.
  */
 function InlineEditTableTemplateSet(container, selector) {
     this.setID = selector.substring(1);
@@ -439,8 +453,8 @@ function InlineEditTableTemplateSet(container, selector) {
 
 /**
  * The InlineEditTableTemplate class defines a partial template for the inline edit table.
- * @param {Object} container: container object.
- * @param {String} selector: partial template selector.
+ * @param {Object} container: Container object.
+ * @param {String} selector: Partial template selector.
  */
 function InlineEditTableTemplate(container, selector) {
     this.name = selector.substring(1);
@@ -449,7 +463,7 @@ function InlineEditTableTemplate(container, selector) {
 
 /**
  * The InlineEditTableTemplateInfo class defines templates informations for the inline edit table.
- * @param {Object} set: set of partials templates object.
+ * @param {Object} set: Set of partials templates object.
  */
 function InlineEditTableTemplateInfo(set) {
     this.setID = set.setID;
@@ -468,7 +482,7 @@ function InlineEditTableTemplateInfo(set) {
 
 /**
  * The InlineEditTableDataInfo class defines data information for the inline edit table.
- * @param {Boolean} enabled: true if it should be enabled, else false.
+ * @param {Boolean} enabled: True if it should be enabled, else false.
  * @param {Array} data: The data for the inline edit table.
  */
 function InlineEditTableDataInfo(enabled, data) {
@@ -478,8 +492,8 @@ function InlineEditTableDataInfo(enabled, data) {
 
 /**
  * The InlineEditTimelineTemplateSet class defines a set of partials templates for the inline edit timeline.
- * @param {Object} container: container object.
- * @param {String} selector: partial template selector.
+ * @param {Object} container: Container object.
+ * @param {String} selector: Partial template selector.
  */
 function InlineEditTimelineTemplateSet(container, selector) {
     this.setID = selector.substring(1);
@@ -491,8 +505,8 @@ function InlineEditTimelineTemplateSet(container, selector) {
 
 /**
  * The InlineEditTimelineTemplate class defines a partial template for the inline edit timeline.
- * @param {Object} container: container object.
- * @param {String} selector: partial template selector.
+ * @param {Object} container: Container object.
+ * @param {String} selector: Partial template selector.
  */
 function InlineEditTimelineTemplate(container, selector) {
     this.name = selector.substring(1);
@@ -501,7 +515,7 @@ function InlineEditTimelineTemplate(container, selector) {
 
 /**
  * The InlineEditTimelineTemplateInfo class defines templates informations for the inline edit timeline.
- * @param {Object} set: set of partials templates object.
+ * @param {Object} set: Set of partials templates object.
  */
 function InlineEditTimelineTemplateInfo(set) {
     this.setID = set.setID;
@@ -516,7 +530,7 @@ function InlineEditTimelineTemplateInfo(set) {
 
 /**
  * The InlineEditTimelineDataInfo class defines data information for the inline edit timeline.
- * @param {Boolean} enabled: true if it should be enabled, else false.
+ * @param {Boolean} enabled: True if it should be enabled, else false.
  * @param {Array} data: The data for the inline edit timeline.
  */
 function InlineEditTimelineDataInfo(enabled, data) {

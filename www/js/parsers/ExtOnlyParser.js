@@ -23,7 +23,7 @@
         };
 
         this.parse = function (extToParse, exts) {
-            var regex = new RegExp("(" + extToParse + ")", "i"),
+            var regex = new RegExp("^(" + extToParse + ")$", "im"),
                 matches = null,
                 result = null;
 

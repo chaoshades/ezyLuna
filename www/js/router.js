@@ -213,9 +213,11 @@
                                 dataAdapter.getStates(),
                                 dataAdapter.getAnimations(),
                                 dataAdapter.getTypes(),
-                                dataAdapter.getMotions()
-                            ).done(function (items, armors, weapons, states, animations, types, motions) {
-                                var linked_data = { "items": items, "armors": armors, "weapons": weapons, "states": states, "animations": animations, "types": types, "motions": motions };
+                                dataAdapter.getMotions(),
+                                dataAdapter.getTargets(),
+                                dataAdapter.getSwitchActions()
+                            ).done(function (items, armors, weapons, states, animations, types, motions, targets, switch_actions) {
+                                var linked_data = { "items": items, "armors": armors, "weapons": weapons, "states": states, "animations": animations, "types": types, "motions": motions, "targets": targets, "switch_actions": switch_actions };
                                 changeContent(new SkillsActionView(config, skills, current, linked_data, stateManager));
                             });
                         })

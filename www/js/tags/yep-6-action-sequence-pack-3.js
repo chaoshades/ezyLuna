@@ -4,7 +4,7 @@
 
     var TagExtensionParser = require("parser/TagExtensionParser"),
         BasicExtParser = require("parser/BasicExtParser"),
-        ArrayExtParser = require("parser/ArrayExtParser"),
+        BasicArrayExtParser = require("parser/BasicArrayExtParser"),
         ExtOnlyParser = require("parser/ExtOnlyParser"),
         YEP_BATTLE_ENGINE_CORE_EXT = "YEP_BattleEngineCore";
 
@@ -19,15 +19,15 @@
             // YEP_BattleEngineCore
             new ExtensionParser(YEP_BATTLE_ENGINE_CORE_EXT, "Camera Clamp On", new ExtOnlyParser()),
             new ExtensionParser(YEP_BATTLE_ENGINE_CORE_EXT, "Camera Clamp Off", new ExtOnlyParser()),
-            new ExtensionParser(YEP_BATTLE_ENGINE_CORE_EXT, "Camera Focus", new ArrayExtParser()),
-            new ExtensionParser(YEP_BATTLE_ENGINE_CORE_EXT, "Camera Offset", new ArrayExtParser()),
-            new ExtensionParser(YEP_BATTLE_ENGINE_CORE_EXT, "Camera Pan", new ArrayExtParser()),
-            new ExtensionParser(YEP_BATTLE_ENGINE_CORE_EXT, "Camera Screen", new ArrayExtParser()),
+            new ExtensionParser(YEP_BATTLE_ENGINE_CORE_EXT, "Camera Focus", new BasicArrayExtParser()),
+            new ExtensionParser(YEP_BATTLE_ENGINE_CORE_EXT, "Camera Offset", new BasicArrayExtParser()),
+            new ExtensionParser(YEP_BATTLE_ENGINE_CORE_EXT, "Camera Pan", new BasicArrayExtParser()),
+            new ExtensionParser(YEP_BATTLE_ENGINE_CORE_EXT, "Camera Screen", new BasicArrayExtParser()),
             new ExtensionParser(YEP_BATTLE_ENGINE_CORE_EXT, "Reset Camera", new BasicExtParser()),
             new ExtensionParser(YEP_BATTLE_ENGINE_CORE_EXT, "Reset Zoom", new BasicExtParser()),
             new ExtensionParser(YEP_BATTLE_ENGINE_CORE_EXT, "Wait for Camera", new ExtOnlyParser()),
             new ExtensionParser(YEP_BATTLE_ENGINE_CORE_EXT, "Wait for Zoom", new ExtOnlyParser()),
-            new ExtensionParser(YEP_BATTLE_ENGINE_CORE_EXT, "Zoom", new ArrayExtParser())
+            new ExtensionParser(YEP_BATTLE_ENGINE_CORE_EXT, "Zoom", new BasicArrayExtParser())
         ]
     );
 

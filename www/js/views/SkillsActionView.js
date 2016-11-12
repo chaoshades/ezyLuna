@@ -87,16 +87,20 @@
             this.$el.find('#target').hide();
             this.$el.find('#follow').hide();
             this.$el.find('#finish').hide();
+            this.$el.find('.timeline.nested').addClass('hide');
+            this.$el.find('.timeline_empty.nested').addClass('hide');
 
             return this;
         };
 
         this.toggleAllHandler = function () {
-            if (collapsed)
+            if (collapsed) {
                 $('.timeline.nested').removeClass('hide');
-            else
+                $('.timeline_empty.nested').removeClass('hide');
+            } else {
                 $('.timeline.nested').addClass('hide');
-
+                $('.timeline_empty.nested').addClass('hide');
+            }
             collapsed = !collapsed;
             return false;
         };
@@ -114,17 +118,22 @@
             $('#finish').hide();
             $('#selectTimeline').hide();
 
-            if ($('#radSetup').is(':checked'))
+            if ($('#radSetup').is(':checked')) {
                 $('#setup').show();
-            else if ($('#radWhole').is(':checked'))
+                partials['extension_toolbox'].setExtensionBuilderReference(tag_partials['setup']);
+            } else if ($('#radWhole').is(':checked')){
                 $('#whole').show();
-            else if ($('#radTarget').is(':checked'))
+                partials['extension_toolbox'].setExtensionBuilderReference(tag_partials['whole']);
+            } else if ($('#radTarget').is(':checked')){
                 $('#target').show();
-            else if ($('#radFollow').is(':checked'))
+                partials['extension_toolbox'].setExtensionBuilderReference(tag_partials['target']);
+            } else if ($('#radFollow').is(':checked')){
                 $('#follow').show();
-            else if ($('#radFinish').is(':checked'))
+                partials['extension_toolbox'].setExtensionBuilderReference(tag_partials['follow']);
+            } else if ($('#radFinish').is(':checked')){
                 $('#finish').show();
-            else
+                partials['extension_toolbox'].setExtensionBuilderReference(tag_partials['finish']);
+            } else
                 $('#selectTimeline').show();
         };
 

@@ -1,18 +1,132 @@
 ﻿<div class="actions">
     {{!-- 
+    <script id="tplNotEditable-read" type="text/x-handlebars-template">
+    </script>
+    <script id="tplNotEditable-edit" type="text/x-handlebars-template">
+        <div>
+            {{action.value}}
+        </div>
+    </script>
+
     <script id="tplCheckOnly-read" type="text/x-handlebars-template">
-        {{action.value}}
+        <div>
+            <p>{{action.value}}</p>
+        </div>
     </script>
     <script id="tplCheckOnly-edit" type="text/x-handlebars-template">
-        <div class="checkbox checkbox-right no-top">
-            <label for="chk{{action.id}}">{{action.label}}:<input id="chk{{action.id}}" type="checkbox" {{checkedIf action.enabled}} /></label>
+        <div class="form-group">
+            <div class="checkbox checkbox-right no-top">
+                <label for="chk{{action.id}}">{{action.label}}:<input id="chk{{action.id}}" type="checkbox" {{checkedIf action.enabled}} /></label>
+            </div>
         </div>
     </script>
-    <script id="timeline-empty" type="text/x-handlebars-template">
-        <div class="timeline_empty">
-            <i class="glyphicon glyphicon-download-alt spacing-bottom" />
-            <strong>Add an action</strong><span> or drag it here.</span>
+
+    <script id="tplNumericOnly-read" type="text/x-handlebars-template">
+        <div>
+            <p>{{action.value}}</p>
         </div>
+    </script>
+    <script id="tplNumericOnly-edit" type="text/x-handlebars-template">
+        <div class="form-group">
+            <input type="number" class="form-control" id="num{{action.id}}" title="{{action.label}}" {{valueIf action.value}} />
+        </div>
+    </script>
+
+    <script id="tplTargets-read" type="text/x-handlebars-template">
+        <div>
+            {{#if action.targetID}}
+            <p>
+            {{#each parentContext.targets}}
+                {{#compare id ../action.targetID}}
+                    {{name}}
+                {{/compare}}
+            {{/each}}
+            </p>
+            {{/if}}
+        </div>
+    </script>
+    <script id="tplTargets-edit" type="text/x-handlebars-template">
+        <div class="form-group">
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <input id="chk{{action.id}}" type="checkbox" class="js_Tags" title="Enables {{action.label}}" {{checkedIf action.targetID}} />
+                </span>
+                <select id="ddl{{action.id}}" class="form-control" title="{{action.label}}" {{disabledIfNot action.targetID}}>
+                    {{#each parentContext.targets}}
+                    <option value="{{id}}" {{selectedIf id ../action.targetID}}>{{name}}</option>
+                    {{/each}}
+                </select>
+            </div>
+        </div>
+    </script>
+
+    <script id="tplTargetsMirror-read" type="text/x-handlebars-template">
+        <div>
+            {{#if action.targetID}}
+            <p>
+            {{#each parentContext.targets}}
+                {{#compare id ../action.targetID}}
+                    {{name}}
+                {{/compare}}
+            {{/each}}
+            </p>
+            {{/if}}
+            {{#if action.mirrored}}<p><span class="glyphicon glyphicon-retweet"></span>&nbsp;Mirror</p>{{/if}}
+        </div>
+    </script>
+    <script id="tplTargetsMirror-edit" type="text/x-handlebars-template">
+        <div class="form-group">
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <input id="chk{{action.id}}" type="checkbox" class="js_Tags" title="Enables {{action.label}}" {{checkedIf action.targetID}} />
+                </span>
+                <select id="ddl{{action.id}}" class="form-control" title="{{action.label}}" {{disabledIfNot action.targetID}}>
+                    {{#each parentContext.targets}}
+                    <option value="{{id}}" {{selectedIf id ../action.targetID}}>{{name}}</option>
+                    {{/each}}
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="checkbox checkbox-right no-top">
+                <label for="chkMirror{{action.id}}">Mirror:<input id="chkMirror{{action.id}}" type="checkbox" {{checkedIf action.mirrored}} /></label>
+            </div>
+        </div>
+    </script>
+
+    <script id="timeline-badge" type="text/x-handlebars-template">
+        <div class="timeline-badge
+            {{#compare badge.type "invisible"}} danger{{/compare}}
+            {{#compare badge.type "visible"}} success{{/compare}}
+            {{#compare badge.type "code"}} inverted{{/compare}}
+            {{#compare badge.type "animation"}} primary{{/compare}}
+            {{#compare badge.type "action"}} primary{{/compare}}
+            {{#compare badge.type "camera"}} info{{/compare}}
+            {{#compare badge.type "screen"}} info{{/compare}}
+            {{#compare badge.type "music"}} info{{/compare}}
+            {{#compare badge.type "special"}} warning{{/compare}}
+            {{#compare badge.type "wait"}} inverted{{/compare}}
+        ">
+            {{#if badge.value}}
+                {{badge.value}}
+            {{else}}
+                {{#compare badge.type "invisible"}}<i class="glyphicon glyphicon-eye-close" />{{/compare}}
+                {{#compare badge.type "visible"}}<i class="glyphicon glyphicon-eye-open" />{{/compare}}
+                {{#compare badge.type "code"}}<i class="glyphicon glyphicon glyphicon-console" />{{/compare}}
+                {{#compare badge.type "animation"}}<i class="glyphicon glyphicon-play" />{{/compare}}
+                {{#compare badge.type "action"}}<i class="glyphicon glyphicon glyphicon-ok" />{{/compare}}
+                {{#compare badge.type "camera"}}<i class="glyphicon glyphicon-facetime-video" />{{/compare}}
+                {{#compare badge.type "screen"}}<i class="glyphicon glyphicon-picture" />{{/compare}}
+                {{#compare badge.type "music"}}<i class="glyphicon glyphicon-music" />{{/compare}}
+                {{#compare badge.type "special"}}<i class="glyphicon  glyphicon-star-empty" />{{/compare}}
+                {{#compare badge.type "wait"}}<i class="glyphicon glyphicon glyphicon-hourglass" />{{/compare}}
+            {{/if}}
+        </div>
+    </script>
+
+    <script id="timeline-empty" type="text/x-handlebars-template">
+        <i class="glyphicon glyphicon-download-alt spacing-bottom" />
+        <strong>Add an action</strong><span> or drag it here.</span>
     </script>
     --}}
     <!-- Filled by InlineEditTimelinePartialView.js-->
