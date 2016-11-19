@@ -19,6 +19,17 @@
                 {{#if edit}}
                     {{#if can_edit}}
                         {{> (lookup (lookup ../templateInfos template) 'edit_template') parentContext=../parentContext currentContext=../currentContext}}
+                        <h4>Position</h4>
+                        <div class="form-group">
+                            <div class="btn-group">
+                                <button type="button" class="js_MoveUp btn btn-default btn-sm" title="Move up" {{disabledIfNot ../currentContext.enabled}}>
+                                    <span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span><span class="hidden-xs">&nbsp;Up</span>
+                                </button>
+                                <button type="button" class="js_MoveDown btn btn-default btn-sm" title="Move down" {{disabledIfNot ../currentContext.enabled}}>
+                                    <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span><span class="hidden-xs">&nbsp;Down</span>
+                                </button>
+                            </div> 
+                        </div>
                         <div class="btn-group pull-right">
                             <button type="button" class="js_SaveEdit btn btn-primary btn-sm" title="Save" {{disabledIfNot ../currentContext.enabled}}>
                                 <span class="glyphicon glyphicon-ok" aria-hidden="true"></span><span class="hidden-xs">&nbsp;Save</span>

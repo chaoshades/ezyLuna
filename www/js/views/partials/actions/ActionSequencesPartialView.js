@@ -505,7 +505,23 @@
             });
 
             var state_data = this.getStateManager().getState(STATE_KEY).data;
-            state_data[actionTag].enabled = true;
+            if (!state_data[actionTag].enabled) {
+                state_data[actionTag].enabled = true;
+                this.getStateManager().setState(STATE_KEY, state_data);
+            }
+
+            var groupID = -1,
+                has_children = false;
+            if (GROUP_CFG.indexOf(ext) > -1) {
+                groupID = _.chain(state_data[actionTag].data)
+                           .map(function (d) { return d.groupID; })
+                           .max().value();
+                if (groupID == -1)
+                    groupID = 1;
+                else
+                    groupID += 1;
+                has_children = true;
+            }
 
             var badge = {
                 type: badgeTypes[ext]//,
@@ -546,12 +562,10 @@
                 heading: action.label,
                 template: template,
                 action: action,
-                groupID: -1,
-                has_children: false,
+                groupID: groupID,
+                has_children: has_children,
                 can_edit: (template !== "tplNotEditable") ? true : false
             });
-
-            this.getStateManager().setState(STATE_KEY, state_data);
 
         };
 
