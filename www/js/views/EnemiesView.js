@@ -96,14 +96,14 @@
                     enableToggleAll: true,
                     enableTagGenerator: true,
                     quickScroll: {
-                        enabled: true, source: _.compact(_.map(tag_partials, function (p, key) {
+                        enabled: true, source: _.chain(tag_partials).map(tag_partials, function (p, key) {
                             if (p.getSupportedTag) {
                                 var tag = p.getSupportedTag();
                                 return new QuickScrollItem(key, tag.longname);
                             }
                             else
                                 return null;
-                        }))
+                        }).compact().value()
                     }
                 },
                 project: project

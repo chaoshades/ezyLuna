@@ -110,14 +110,14 @@
                 var uid = getUIDCallback(this);
                 var state_data = getStateManagerCallback().getState(stateKey).data;
                 // Move item if necessary
-                var moved = moveItemCallback(state_data[dataSelector].data, uid, true);
+                var moved = moveItemCallback(state_data[dataSelector], uid, true);
                 if (moved) {
                     getStateManagerCallback().setState(stateKey, state_data);
                     // Refresh timeline
                     refreshTimelineCallback(wrapperReference, state_data);
                     editCallback(true);
 
-                    var new_uid = parseInt(uid) - 1;
+                    var new_uid = _.findIndex(state_data[dataSelector].data, function (d) { return d.edit; });
                     scrollToDiv($('li[data-uid="' + new_uid + '"]'));
                 }
             });
@@ -125,14 +125,14 @@
                 var uid = getUIDCallback(this);
                 var state_data = getStateManagerCallback().getState(stateKey).data;
                 // Move item if necessary
-                var moved = moveItemCallback(state_data[dataSelector].data, uid, false);
+                var moved = moveItemCallback(state_data[dataSelector], uid, false);
                 if (moved) {
                     getStateManagerCallback().setState(stateKey, state_data);
                     // Refresh timeline
                     refreshTimelineCallback(wrapperReference, state_data);
                     editCallback(true);
 
-                    var new_uid = parseInt(uid) + 1;
+                    var new_uid = _.findIndex(state_data[dataSelector].data, function (d) { return d.edit; });
                     scrollToDiv($('li[data-uid="' + new_uid + '"]'));
                 }
             });
@@ -176,13 +176,13 @@
                     });
                 }
                 // Push new item
-                var new_uid = state_data[dataSelector].data.length;
                 state_data[dataSelector].data.push(_.extend(item, { edit: true, add: true }));
                 this.getStateManager().setState(stateKey, state_data);
                 // Refresh timeline
                 this.refreshTimeline(this.$el, state_data);
                 editCallback(true);
 
+                var new_uid = state_data[dataSelector].data.length - 1;
                 scrollToDiv($('li[data-uid="' + new_uid + '"]'));
             }
         };
@@ -208,21 +208,48 @@
             }
         };
 
-        this.moveItem = function (data, uid, up) {
-            var moved = false,
+        this.moveItem = function (state_data, uid, up) {
+            var data = state_data.data,
+                moved = false,
                 x = uid,
                 y = uid;
 
             var item = data[x];
             // Group move
             if (item.has_children) {
-                var nextGroupIndex = null;
-                if (up)
-                    nextGroupIndex = _.findLastIndex(data, function (d, i) { return d.has_children && i < x; });
-                else
-                    nextGroupIndex = _.findIndex(data, function (d, i) { return d.has_children && i > x; });
+                // Build new struct to ease group move
+                var groupedData = _.chain(data)
+                                   .filter(function (d) { return d.has_children; })
+                                   .map(function (d) { var new_d = _.extend({}, d); return new_d; })
+                                   .value();
+                _.each(groupedData, function(g) {
+                    g.children = _.filter(data, function (d) { return d.groupID == g.groupID && !d.has_children });
+                });
 
-                y = (nextGroupIndex) ? nextGroupIndex : -1;
+                // Get new index from the new struct
+                x = _.findIndex(groupedData, function (d) { return d.groupID == item.groupID && d.has_children; });
+
+                if (up)
+                    y = x - 1;
+                else
+                    y = x + 1;
+
+                // Bounds checking
+                if (x >= 0 && x < groupedData.length && y >= 0 && y < groupedData.length) {
+                    // Swap items
+                    var tmp = groupedData[y];
+                    groupedData[y] = groupedData[x];
+                    groupedData[x] = tmp;
+                    moved = true;
+
+                    // Unbuild struct to data format
+                    state_data.data = _.chain(groupedData)
+                                       .map(function (g) { var new_g = _.omit(g, 'children'); return [g.children, new_g]; })
+                                       .flatten()
+                                       .compact()
+                                       .union(_.filter(data, function (d) { return d.groupID == -1; }))
+                                       .value();
+                }
             }
             // Child move
             else
@@ -250,15 +277,15 @@
                     if (!up)
                         item.groupID = -1;                    
                 }
-            }
 
-            // Bounds checking
-            if (x >= 0 && x < data.length && y >= 0 && y < data.length) {
-                // Swap items
-                var tmp = data[y];
-                data[y] = data[x];
-                data[x] = tmp;
-                moved = true;
+                // Bounds checking
+                if (x >= 0 && x < data.length && y >= 0 && y < data.length) {
+                    // Swap items
+                    var tmp = data[y];
+                    data[y] = data[x];
+                    data[x] = tmp;
+                    moved = true;
+                }
             }
 
             return moved;

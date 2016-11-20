@@ -163,6 +163,53 @@ function setObjectValuesTag(tags, state_data, stateSelector, tag, valFx) {
 }
 
 /**
+ * Set a basic extension.
+ * @param {Array}  exts: Extensions array. 
+ * @param {Object} state_data: State object. 
+ * @param {String} stateSelector: State data selector.
+ * @param {String} ext: Extension to create.
+ */
+function setExt(exts, state_data, stateSelector, ext) {
+    if (state_data[stateSelector].enabled) {
+        var objects = _.filter(state_data[stateSelector].data, function (d) { return d.ext == ext; });
+        if (objects.length > 0)
+            _.each(objects, function () { exts.push(new ExtensionTag(ext)); });
+    }
+}
+
+
+/**
+ * Set a basic extension.
+ * @param {Array} exts: Extensions array. 
+ * @param {String} ext: Extension to create. 
+ */
+function setExt(exts, ext) {
+    exts.push(new ExtensionTag(ext));
+}
+
+/**
+ * Set an extension with a value.
+ * @param {Array} exts: Extensions array. 
+ * @param {String} ext: Extension to create.  
+ * @param {String} value: value.
+ */
+function setValueExt(exts, ext, value) {
+    if (value)
+        exts.push(new ExtensionTag(ext, value));
+}
+
+/**
+ * Set an extension with an array of values.
+ * @param {Array} exts: Extensions array. 
+ * @param {String} ext: Extension to create. 
+ * @param {Array} values: Array of values.
+ */
+function setValuesExt(exts, ext, values) {
+    if (values && values.length > 0)
+        exts.push(new ExtensionTag(ext, values));
+}
+
+/**
  * Enable/Disable inputs linked to a checkbox.
  * @param {Object} chk: Checkbox element.
  */

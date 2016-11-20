@@ -421,7 +421,7 @@
                     }
                     else if (e.ext == ACTION_EFFECT_2) {
                         action.label = "Action Effect";
-                        action.targetID = e.data[0];
+                        action.targetID = e.data;
 
                         test = true;
                     }
@@ -462,6 +462,7 @@
                         heading: action.label,
                         template: template,
                         action: action,
+                        ext: e.ext,
                         groupID: (groupIDs[i]) ? groupIDs[i]: -1,
                         has_children: (groups[i] && groups[i].length > 0) ? true: false,
                         can_edit: (template !== "tplNotEditable") ? true: false
@@ -478,14 +479,38 @@
         };
 
         this.generateTags = function () {
-            var tags = [],
+            var exts = [],
                 state_data = this.getStateManager().getState(STATE_KEY).data;
 
-            // Default Action Sequence
-            // Action Sequence Pack 1
-            // Action Sequence Pack 2 
-            // Action Sequence Pack 3
-            //TODO
+            _.each(state_data[actionTag].data, function (d) {
+                // Default Action Sequence
+                if (d.ext == ACTION_ANIMATION) {
+                    var values = _.compact([d.action.targetID, d.action.mirrored]);
+                    if (values.length > 0)
+                        setValuesExt(exts, ACTION_ANIMATION_2, values);
+                    else
+                        setExt(exts, ACTION_ANIMATION);
+                } else if (d.ext == ACTION_EFFECT) {
+                    var value = d.action.targetID;
+                    if (value)
+                        setValueExt(exts, ACTION_EFFECT_2, value);
+                    else
+                        setExt(exts, ACTION_EFFECT);
+                } else if (d.ext == WAIT)
+                    setValueExt(exts, WAIT, d.action.value);
+                // Action Sequence Pack 1
+                // Action Sequence Pack 2 
+                if (d.ext == FADE_OUT) 
+                    setValueExt(exts, FADE_OUT, d.action.value);
+                else if (d.ext == FADE_IN)
+                    setValueExt(exts, FADE_IN, d.action.value);
+                // Action Sequence Pack 3
+                //TODO
+            });
+
+            var tags = [];
+            if (exts.length > 0)
+                tags.push(new NoteTag(actionTag, exts));
 
             return tags;
         };
@@ -562,6 +587,7 @@
                 heading: action.label,
                 template: template,
                 action: action,
+                ext: ext,
                 groupID: groupID,
                 has_children: has_children,
                 can_edit: (template !== "tplNotEditable") ? true : false

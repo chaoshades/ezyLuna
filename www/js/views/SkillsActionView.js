@@ -25,7 +25,7 @@
 
     return function (project, skills, current, linked_data, $stateManager) {
 
-        var collapsed = true,
+        var collapsed = false,
             base_url = "#project/" + project.id + "/skills/action",
             tag_partials = {
                 'setup': new ActionSequencesPartialView(current, linked_data, $stateManager, SETUP_ACTION),
@@ -87,19 +87,15 @@
             this.$el.find('#target').hide();
             this.$el.find('#follow').hide();
             this.$el.find('#finish').hide();
-            this.$el.find('.timeline.nested').addClass('hide');
-            this.$el.find('.timeline_empty.nested').addClass('hide');
 
             return this;
         };
 
         this.toggleAllHandler = function () {
             if (collapsed) {
-                $('.timeline.nested').removeClass('hide');
-                $('.timeline_empty.nested').removeClass('hide');
+                $('.actions').removeClass('hide-nested');
             } else {
-                $('.timeline.nested').addClass('hide');
-                $('.timeline_empty.nested').addClass('hide');
+                $('.actions').addClass('hide-nested');
             }
             collapsed = !collapsed;
             return false;

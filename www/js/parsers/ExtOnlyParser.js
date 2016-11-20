@@ -11,7 +11,7 @@
 
     return function () {
 
-        this.initialize = function () {ExtensionTag
+        this.initialize = function () {
             // Nothing to do
         };
 

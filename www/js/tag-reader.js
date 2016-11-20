@@ -58,23 +58,42 @@ define(function (require) {
             YEPSwapEnemies
         ],
 
-        tags = _.compact(_.chain(plugins)
+        tags = _.chain(plugins)
                 .map(function(p) { return p.tags; })
                 .flatten()
-                .value()),
+                .compact()
+                .value(),
 
-        exts = _.compact(_.chain(plugins)
+        exts = _.chain(plugins)
                 .map(function (p) { return p.exts; })
                 .flatten()
-                .value()),
+                .compact()
+                .value(),
 
     getStringFromNoteTags = function (notetags) {
         var result = "";
 
         _.each(notetags, function (nt) {
             var temp = _.find(tags, function (t) { return t.id == nt.tag; });
-            if (temp)
-                result += temp.parser.stringify(temp.tag, nt.data) + "\n";
+            if (temp) {
+                if (temp.ext_plugin)
+                    result += temp.parser.stringify(temp.tag, getStringFromExtensionTags(temp.ext_plugin, nt.data)) + "\n";
+                else
+                    result += temp.parser.stringify(temp.tag, nt.data) + "\n";
+            }
+        });
+
+        return result.trim();
+    },
+
+    getStringFromExtensionTags = function (ext_plugin, exttags) {
+        var result = "";
+
+        _.each(exttags, function (et) {
+            var temp = _.find(exts, function (e) { return e.plugin == ext_plugin && e.id == et.ext; });
+            if (temp) {
+                result += temp.parser.stringify(temp.ext, et.data) + "\n";
+            }
         });
 
         return result.trim();

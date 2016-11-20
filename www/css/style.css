@@ -514,6 +514,13 @@ h3.popover-title
     cursor: pointer;
 }
 
+.actions.hide-nested .timeline.nested {
+    display: none !important;
+}
+.actions.hide-nested .timeline_empty.nested {
+    display: none !important;
+}
+
 @media (max-width: 767px) {
  
     .timeline.nested > li > .timeline-badge {
