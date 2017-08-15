@@ -20,8 +20,7 @@ To know more about these plugins (which are not mine), check out <http://yanfly.
 ## Quick start
 
 - [Download the latest release.](https://github.com/chaoshades/ezyLuna/archive/DEV.zip)
-- [Download Caddy]
-(https://caddyserver.com/download)
+- [Download Caddy](https://caddyserver.com/download)
   1. Select Features
     * Server Types - select HTTP
     * Directives / Middleware - select cors
@@ -29,12 +28,10 @@ To know more about these plugins (which are not mine), check out <http://yanfly.
   3. Choose platform corresponding to your OS version
 - Drop caddy.exe into ezyLuna/www directory
 - Rename/copy CaddyFile.default to CaddyFile
-- [Configure Caddy (CaddyFile)]
-(#caddy-configuration-caddyfile)
+- [Configure Caddy (CaddyFile)](#caddy-configuration-caddyfile)
 - Run caddy.exe (you need to keep it running, this is your local host for ezyLuna)
 - Rename/copy config.default.json to config.json
-- [Configure ezyLuna (config.json)]
-(#configuration-file-configjson)
+- [Configure ezyLuna (config.json)](#configuration-file-configjson)
 - Put it into ezyLuna/www directory
 - Open any browser
 - Go to the address you configured for ezyLuna
