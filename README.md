@@ -159,9 +159,3 @@ If you want to run func tests, you will need the config.json file within the tes
 ## Creators
 
 - <https://github.com/chaoshades>
-
-
-
-## Copyright and license
-
-Code released under the [WTFPL](http://www.wtfpl.net/).
