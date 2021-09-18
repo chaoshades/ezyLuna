@@ -13,7 +13,6 @@ To know more about these plugins (which are not mine), check out <http://yanfly.
 - [Documentation](#documentation)
 - [Contributing](#contributing)
 - [Creators](#creators)
-- [Copyright and license](#copyright-and-license)
 
 
 
